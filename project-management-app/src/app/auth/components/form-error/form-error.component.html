@@ -1,0 +1,7 @@
+<mat-error *ngIf="field?.invalid && (field?.dirty || field?.touched)">
+  <ng-container *ngFor="let error of errors">
+    <p *ngIf="field?.errors?.[error]">
+      {{error}}
+    </p>
+  </ng-container>
+</mat-error>
