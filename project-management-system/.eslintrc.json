@@ -28,7 +28,6 @@
       "linebreak-style": "off",
       "@typescript-eslint/lines-between-class-members": ["off"],
       "arrow-parens": "off",
-      "@typescript-eslint/no-unused-expressions": ["off"],
       "no-plusplus": "off",
       "max-len": ["error", { "code": 130 }]
     }
