@@ -1,14 +1,18 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+import { TFormError } from '../../shared/models/validation-error.model';
 
 @Component({
   selector: 'app-form-error',
   templateUrl: './form-error.component.html',
   styleUrls: ['./form-error.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormErrorComponent {
+export class FormErrorComponent implements OnInit {
   @Input() control: AbstractControl | null = null;
 
-  @Input() errors: string[] = [];
+  @Input() errors: TFormError[] = [];
+
+  ngOnInit(): void {
+    console.log('errors');
+  }
 }

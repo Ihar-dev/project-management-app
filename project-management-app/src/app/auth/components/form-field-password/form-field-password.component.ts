@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-field-password',
@@ -13,7 +13,12 @@ export class FormFieldPasswordComponent {
 
   isPasswordShown = false;
 
-  @Input() control = new FormControl();
+  controlValue = new FormControl();
+
+  @Input()
+  set control(value: AbstractControl) {
+    this.controlValue = <FormControl>value;
+  }
 
   @Input() placeholder = 'Password';
 

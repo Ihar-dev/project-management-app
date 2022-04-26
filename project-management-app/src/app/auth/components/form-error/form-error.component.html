@@ -1,5 +1,5 @@
 <ng-container *ngFor="let error of errors">
-  <mat-error *ngIf="control?.hasError(error)">
-    {{error}}
+  <mat-error class="error" *ngIf="(control?.dirty || control?.touched) && control?.hasError(error.type)">
+    <p class="error__message">{{error.message}}</p>
   </mat-error>
 </ng-container>

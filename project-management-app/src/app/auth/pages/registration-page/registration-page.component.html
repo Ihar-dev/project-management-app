@@ -1,10 +1,19 @@
 <div class="container">
   <app-form [form]="form">
     <h2 class="title">Sign up</h2>
-    <app-form-field></app-form-field>
-    <app-form-field></app-form-field>
-    <app-form-field-password></app-form-field-password>
-    <app-form-field-password></app-form-field-password>
+    <app-form-field [control]="form.controls[controlName]" [placeholder]="'Enter your name'"></app-form-field>
+    <app-form-error [control]="form.controls[controlName]" [errors]="formErrors[controlName]"></app-form-error>
+
+    <app-form-field [control]="form.controls[controlLogin]" [placeholder]="'Enter login'"></app-form-field>
+    <app-form-error [control]="form.controls[controlLogin]" [errors]="formErrors[controlLogin]"></app-form-error>
+
+    <app-form-field-password [control]="form.controls[controlPassword]"></app-form-field-password>
+    <app-form-error [control]="form.controls[controlPassword]" [errors]="formErrors[controlPassword]"></app-form-error>
+
+    <app-form-field-password [control]="form.controls[controlPasswordConfirm]" [placeholder]="'Confirm password'">
+    </app-form-field-password>
+    <app-form-error [control]="form.controls[controlPasswordConfirm]" [errors]="formErrors[controlPasswordConfirm]">
+    </app-form-error>
 
     <app-form-btn [text]="'Sign up'" [isDisabled]="!form.valid"></app-form-btn>
   </app-form>

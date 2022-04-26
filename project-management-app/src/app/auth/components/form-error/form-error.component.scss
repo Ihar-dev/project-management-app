@@ -1,0 +1,44 @@
+@import "variables";
+
+:host {
+  width: 100%;
+}
+
+.error {
+  height: 0;
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  animation: showError 0.3s forwards ease-in;
+
+  &__message {
+    position: absolute;
+    top: -50px;
+    right: -139px;
+    max-width: 149px;
+    padding: 12px 16px;
+    background-color: $error-bg;
+    color: $form-bg;
+    border-radius: $border-radius;
+    border-top-left-radius: 0;
+
+    &::before {
+      content: "";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      top: 0;
+      left: -16px;
+      border-top: 8px solid $error-bg;
+      border-right: 8px solid $error-bg;
+      border-bottom: 8px solid transparent;
+      border-left: 8px solid transparent;
+    }
+  }
+}
+
+@keyframes showError {
+  to {
+    opacity: 1;
+  }
+}
