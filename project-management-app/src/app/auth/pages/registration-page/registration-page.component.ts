@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationFormService } from '../../services/validation-form.service';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
 const MIN_LENGTH_NAME = 2;
 const MIN_LENGTH_LOGIN = 8;
+const MIN_LENGTH_PASSWORD = 8;
 
 const ERRORS_MESSAGES: TValidationError = {
   name: [
@@ -29,11 +31,20 @@ const ERRORS_MESSAGES: TValidationError = {
       message: 'Please enter a password.',
     },
     {
-      type: 'invalidPassword',
-      message: `Your password isn't strong enough. It must have:
-            at least 8 characters, uppercase and lowercase letters,
-            at least 1 digit,
-            and 1 special character (!@#$%^&?[])`,
+      type: 'minlength',
+      message: `The min length is ${MIN_LENGTH_PASSWORD} characters.`,
+    },
+    {
+      type: 'upLowCase',
+      message: `Should include uppercase and lowercase letters.`,
+    },
+    {
+      type: 'digits',
+      message: `Should include at least 1 digit.`,
+    },
+    {
+      type: 'specialCharacters',
+      message: `Should include 1 special character (!@#$%^&?[]).`,
     },
   ],
   confirmPassword: [
@@ -66,15 +77,32 @@ export class RegistrationPageComponent {
 
   readonly controlPasswordConfirm = 'confirmPassword';
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(MIN_LENGTH_NAME)]],
-      login: [
-        '',
-        [Validators.required, Validators.minLength(MIN_LENGTH_LOGIN)],
-      ],
-      password: ['', Validators.compose([Validators.required])],
-      confirmPassword: ['', [Validators.required]],
-    });
+  constructor(
+    private fb: FormBuilder,
+    private validFormService: ValidationFormService
+  ) {
+    this.form = this.fb.group(
+      {
+        name: [
+          '',
+          [Validators.required, Validators.minLength(MIN_LENGTH_NAME)],
+        ],
+        login: [
+          '',
+          [Validators.required, Validators.minLength(MIN_LENGTH_LOGIN)],
+        ],
+        password: [
+          '',
+          Validators.compose([
+            Validators.required,
+            this.validFormService.validatePassword(),
+          ]),
+        ],
+        confirmPassword: ['', [Validators.required]],
+      },
+      {
+        validators: this.validFormService.confirmPassword(),
+      }
+    );
   }
 }
