@@ -7,9 +7,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./form-field-password.component.scss'],
 })
 export class FormFieldPasswordComponent {
-  typePassword = 'password';
+  readonly typePassword = 'password';
 
-  typeText = 'text';
+  readonly typeText = 'text';
 
   isPasswordShown = false;
 
