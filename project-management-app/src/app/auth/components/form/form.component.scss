@@ -12,4 +12,8 @@
   background-color: $form-bg;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+
+  @media screen and (max-width: $tablet) {
+    padding: 30px;
+  }
 }

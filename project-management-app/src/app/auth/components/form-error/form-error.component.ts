@@ -8,7 +8,7 @@ import { AbstractControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormErrorComponent {
-  @Input() field: AbstractControl | null = null;
+  @Input() control: AbstractControl | null = null;
 
   @Input() errors: string[] = [];
 }
