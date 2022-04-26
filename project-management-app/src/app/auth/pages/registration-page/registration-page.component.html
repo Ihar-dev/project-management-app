@@ -1,6 +1,7 @@
 <div class="container">
   <app-form [form]="form">
-    <h2 class="form__title">Sign up</h2>
+    <app-form-title [title]="title"></app-form-title>
+
     <app-form-field [control]="form.controls[controlName]" [placeholder]="'Enter your name'"></app-form-field>
     <app-form-error [control]="form.controls[controlName]" [errors]="formErrors[controlName]"></app-form-error>
 
@@ -15,6 +16,6 @@
     <app-form-error [control]="form.controls[controlPasswordConfirm]" [errors]="formErrors[controlPasswordConfirm]">
     </app-form-error>
 
-    <app-form-btn [text]="'Sign up'" [isDisabled]="!form.valid"></app-form-btn>
+    <app-form-btn [text]="title" [isDisabled]="!form.valid"></app-form-btn>
   </app-form>
 </div>

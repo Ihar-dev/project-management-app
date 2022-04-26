@@ -11,6 +11,7 @@ import { FormFieldPasswordComponent } from './components/form-field-password/for
 import { FormBtnComponent } from './components/form-btn/form-btn.component';
 import { FormComponent } from './components/form/form.component';
 import { FormErrorComponent } from './components/form-error/form-error.component';
+import { FormTitleComponent } from './components/form-title/form-title.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FormErrorComponent } from './components/form-error/form-error.component
     FormComponent,
     FormErrorComponent,
     FormFieldPasswordComponent,
+    FormTitleComponent,
   ],
   imports: [
     CommonModule,

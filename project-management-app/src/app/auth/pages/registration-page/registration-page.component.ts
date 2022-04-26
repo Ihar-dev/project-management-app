@@ -6,6 +6,7 @@ import { TValidationError } from '../../shared/models/validation-error.model';
 const MIN_LENGTH_NAME = 2;
 const MIN_LENGTH_LOGIN = 8;
 const MIN_LENGTH_PASSWORD = 8;
+const FORM_TITLE = 'Sign up';
 
 const ERRORS_MESSAGES: TValidationError = {
   name: [
@@ -76,6 +77,8 @@ export class RegistrationPageComponent {
   readonly controlPassword = 'password';
 
   readonly controlPasswordConfirm = 'confirmPassword';
+
+  readonly title = FORM_TITLE;
 
   constructor(
     private fb: FormBuilder,

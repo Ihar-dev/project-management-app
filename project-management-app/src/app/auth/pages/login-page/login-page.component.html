@@ -1,1 +1,13 @@
-<p>login-page works!</p>
+<div class="container">
+  <app-form [form]="form">
+    <app-form-title [title]="title"></app-form-title>
+
+    <app-form-field [control]="form.controls[controlLogin]" [placeholder]="'Enter login'"></app-form-field>
+    <app-form-error [control]="form.controls[controlLogin]" [errors]="formErrors[controlLogin]"></app-form-error>
+
+    <app-form-field-password [control]="form.controls[controlPassword]"></app-form-field-password>
+    <app-form-error [control]="form.controls[controlPassword]" [errors]="formErrors[controlPassword]"></app-form-error>
+
+    <app-form-btn [text]="title" [isDisabled]="!form.valid"></app-form-btn>
+  </app-form>
+</div>
