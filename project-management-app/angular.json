@@ -37,7 +37,8 @@
                         "scripts": [],
                         "stylePreprocessorOptions": {
                             "includePaths": [
-                                "src/style-abstracts/"
+                                "src/scss/abstracts",
+                                "src/scss/components"
                             ]
                         }
                     },
