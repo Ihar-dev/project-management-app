@@ -16,6 +16,10 @@
     padding: 30px;
   }
 
+  @media screen and (max-width: $mobile) {
+    padding: 20px;
+  }
+
   &__fields {
     display: flex;
     flex-direction: column;

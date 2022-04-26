@@ -17,8 +17,9 @@
     right: -176px;
     width: 184px;
     padding: 12px 16px;
-    background-color: $error-bg;
+    font-size: 16px;
     color: $form-bg;
+    background-color: $error-bg;
     border-radius: $border-radius;
     border-top-left-radius: 0;
 
@@ -34,11 +35,27 @@
       border-bottom: 8px solid transparent;
       border-left: 8px solid transparent;
     }
+
+    @media screen and (max-width: $tablet) {
+      top: -128px;
+      right: 16px;
+      min-height: 64px;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: $border-radius;
+
+      &::before {
+        content: "";
+        top: auto;
+        right: 0;
+        bottom: -16px;
+        left: auto;
+      }
+    }
   }
 }
 
 @keyframes showError {
   to {
-    opacity: 1;
+    opacity: 0.95;
   }
 }
