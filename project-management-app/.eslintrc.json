@@ -1,34 +1,50 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "plugins": ["import"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates",
-        "airbnb-base",
-        "airbnb-typescript/base",
-        "prettier"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "no-console": "off",
+        "linebreak-style": "off",
+        "@typescript-eslint/lines-between-class-members": ["off"],
+        "arrow-parens": "off",
+        "no-plusplus": "off",
+        "max-len": ["error", { "code": 130 }]
+      }
     },
-    "plugins": [
-        "@typescript-eslint"
-    ],
-    "rules": {
-      "@angular-eslint/no-empty-lifecycle-method": "off",
-      "import/prefer-default-export": "off",
-      "class-methods-use-this": "off",
-      "no-console": "off",
-      "linebreak-style": "off",
-      "@typescript-eslint/lines-between-class-members": ["off"],
-      "arrow-parens": "off",
-      "no-plusplus": "off",
-      "max-len": ["error", { "code": 130 }]
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
     }
+  ]
 }
