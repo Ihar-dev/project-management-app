@@ -8,6 +8,8 @@
     <app-form-field-password [control]="form.controls[controlPassword]"></app-form-field-password>
     <app-form-error [control]="form.controls[controlPassword]" [errors]="formErrors[controlPassword]"></app-form-error>
 
-    <app-form-btn [text]="title" [isDisabled]="!form.valid"></app-form-btn>
+    <app-form-submit>
+      <app-button [isDisabled]="!form.valid"></app-button>
+    </app-form-submit>
   </app-form>
 </div>

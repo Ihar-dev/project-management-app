@@ -16,6 +16,8 @@
     <app-form-error [control]="form.controls[controlPasswordConfirm]" [errors]="formErrors[controlPasswordConfirm]">
     </app-form-error>
 
-    <app-form-btn [text]="title" [isDisabled]="!form.valid"></app-form-btn>
+    <app-form-submit>
+      <app-button [isDisabled]="!form.valid"></app-button>
+    </app-form-submit>
   </app-form>
 </div>
