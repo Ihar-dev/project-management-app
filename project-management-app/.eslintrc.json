@@ -6,7 +6,7 @@
       "files": ["*.ts"],
       "plugins": ["import"],
       "parserOptions": {
-        "project": ["../project-management-app/tsconfig.json"],
+        "project": ["./tsconfig.json"],
         "createDefaultProgram": true
       },
       "extends": [
