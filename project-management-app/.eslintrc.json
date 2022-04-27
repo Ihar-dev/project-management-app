@@ -11,7 +11,10 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "prettier"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -38,7 +41,8 @@
         "@typescript-eslint/lines-between-class-members": ["off"],
         "arrow-parens": "off",
         "no-plusplus": "off",
-        "max-len": ["error", { "code": 130 }]
+        "max-len": ["error", { "code": 130 }],
+        "spaced-comment": ["off"]
       }
     },
     {
