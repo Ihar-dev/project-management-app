@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../shared/material.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -25,12 +25,6 @@ import { FormSubmitComponent } from './components/form-submit/form-submit.compon
     FormTitleComponent,
     FormSubmitComponent,
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    SharedModule,
-  ],
+  imports: [CommonModule, AuthRoutingModule, MaterialModule, ReactiveFormsModule, SharedModule],
 })
 export class AuthModule {}

@@ -34,13 +34,10 @@
                             "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
                             "src/styles.scss"
                         ],
-                        "scripts": [],
                         "stylePreprocessorOptions": {
-                            "includePaths": [
-                                "src/scss/abstracts",
-                                "src/scss/components"
-                            ]
-                        }
+                            "includePaths": ["src/scss/abstracts"]
+                        },
+                        "scripts": []
                     },
                     "configurations": {
                         "production": {
@@ -108,9 +105,21 @@
                         ],
                         "scripts": []
                     }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "src/**/*.ts",
+                            "src/**/*.html"
+                        ]
+                    }
                 }
             }
         }
     },
-    "defaultProject": "project-management-app"
+    "defaultProject": "project-management-app",
+    "cli": {
+        "defaultCollection": "@angular-eslint/schematics"
+    }
 }
