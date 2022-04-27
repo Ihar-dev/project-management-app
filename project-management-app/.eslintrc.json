@@ -41,7 +41,7 @@
         "@typescript-eslint/lines-between-class-members": ["off"],
         "arrow-parens": "off",
         "no-plusplus": "off",
-        "max-len": ["error", { "code": 130 }],
+        "max-len": ["error", { "code": 100 }],
         "spaced-comment": ["off"]
       }
     },
