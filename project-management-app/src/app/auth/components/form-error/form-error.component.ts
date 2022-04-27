@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { TFormError } from '../../shared/models/validation-error.model';
 
@@ -7,12 +7,8 @@ import { TFormError } from '../../shared/models/validation-error.model';
   templateUrl: './form-error.component.html',
   styleUrls: ['./form-error.component.scss'],
 })
-export class FormErrorComponent implements OnInit {
+export class FormErrorComponent {
   @Input() control: AbstractControl | null = null;
 
   @Input() errors: TFormError[] = [];
-
-  ngOnInit(): void {
-    console.log('errors');
-  }
 }

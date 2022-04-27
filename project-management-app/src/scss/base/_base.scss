@@ -1,5 +1,7 @@
+@import "variables";
+
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 html {
@@ -19,4 +21,8 @@ html {
   @media only screen and (max-width: 50em) {
     font-size: 25%; //1rem=4px;
   }
+}
+
+body {
+  background-color: $main-bg;
 }

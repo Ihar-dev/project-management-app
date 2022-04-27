@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
+const DEFAULT_PLACEHOLDER_TEXT = 'Password';
 @Component({
   selector: 'app-form-field-password',
   templateUrl: './form-field-password.component.html',
@@ -20,7 +21,7 @@ export class FormFieldPasswordComponent {
     this.controlValue = <FormControl>value;
   }
 
-  @Input() placeholder = 'Password';
+  @Input() placeholder = DEFAULT_PLACEHOLDER_TEXT;
 
   togglePasswordVisibility(): void {
     this.isPasswordShown = !this.isPasswordShown;
