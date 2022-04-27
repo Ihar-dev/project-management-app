@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
-const FORM_TITLE = 'Log in';
+const FORM_TITLE = 'Sign in';
 const ERRORS_MESSAGES: TValidationError = {
   login: [
     {

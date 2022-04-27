@@ -1,4 +1,4 @@
-<div class="container">
+<app-auth-main>
   <app-form [form]="form">
     <app-form-title [title]="title"></app-form-title>
 
@@ -9,7 +9,8 @@
     <app-form-error [control]="form.controls[controlLogin]" [errors]="formErrors[controlLogin]"></app-form-error>
 
     <app-form-field-password [control]="form.controls[controlPassword]"></app-form-field-password>
-    <app-form-error [control]="form.controls[controlPassword]" [errors]="formErrors[controlPassword]"></app-form-error>
+    <app-form-error [control]="form.controls[controlPassword]" [errors]="formErrors[controlPassword]">
+    </app-form-error>
 
     <app-form-field-password [control]="form.controls[controlPasswordConfirm]" [placeholder]="'Confirm password'">
     </app-form-field-password>
@@ -20,4 +21,4 @@
       <app-button [isDisabled]="!form.valid"></app-button>
     </app-form-submit>
   </app-form>
-</div>
+</app-auth-main>

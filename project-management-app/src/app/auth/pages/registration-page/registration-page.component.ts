@@ -10,7 +10,7 @@ const FORM_TITLE = 'Sign up';
 
 const ERRORS_MESSAGES: TValidationError = {
   name: [
-    { type: 'required', message: 'Please enter your name.' },
+    { type: 'required', message: 'Please enter a name.' },
     {
       type: 'minlength',
       message: `The min length is ${MIN_LENGTH_NAME} symbols.`,
@@ -80,32 +80,20 @@ export class RegistrationPageComponent {
 
   readonly title = FORM_TITLE;
 
-  constructor(
-    private fb: FormBuilder,
-    private validFormService: ValidationFormService
-  ) {
+  constructor(private fb: FormBuilder, private validFormService: ValidationFormService) {
     this.form = this.fb.group(
       {
-        name: [
-          '',
-          [Validators.required, Validators.minLength(MIN_LENGTH_NAME)],
-        ],
-        login: [
-          '',
-          [Validators.required, Validators.minLength(MIN_LENGTH_LOGIN)],
-        ],
+        name: ['', [Validators.required, Validators.minLength(MIN_LENGTH_NAME)]],
+        login: ['', [Validators.required, Validators.minLength(MIN_LENGTH_LOGIN)]],
         password: [
           '',
-          Validators.compose([
-            Validators.required,
-            this.validFormService.validatePassword(),
-          ]),
+          Validators.compose([Validators.required, this.validFormService.validatePassword()]),
         ],
         confirmPassword: ['', [Validators.required]],
       },
       {
         validators: this.validFormService.confirmPassword(),
-      }
+      },
     );
   }
 }

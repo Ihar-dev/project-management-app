@@ -5,6 +5,7 @@ $border-radius: 20px;
 $main-bg: #fbfbfd;
 $form-bg: #fff;
 $error-bg: #f44336;
+$theme-primary: #673ab7;
 
 //shadows & filters
 $box-shadow: 2px 4px 13px 0 rgba(0, 0, 0, 0.1);
@@ -14,3 +15,7 @@ $mobile: 48em;
 $tablet: 76.8em;
 $laptop: 102.4em;
 $desktop: 120em;
+
+//backgrounds
+$auth-form-bg: url("../../../../assets/images/auth_module/form_bg.png") top left / cover no-repeat;
+$auth-purple-bg: linear-gradient(318deg, rgba(103, 58, 183, 1) 21%, rgba(216, 141, 189, 1) 100%);
