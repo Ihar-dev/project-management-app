@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 import { ValidationFormService } from '../../services/validation-form.service';
+import { TRegisterData } from '../../shared/models/register-data.model';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
 const MIN_LENGTH_NAME = 2;
@@ -80,7 +82,11 @@ export class RegistrationPageComponent {
 
   readonly title = FORM_TITLE;
 
-  constructor(private fb: FormBuilder, private validFormService: ValidationFormService) {
+  constructor(
+    private fb: FormBuilder,
+    private validFormService: ValidationFormService,
+    private authService: AuthService,
+  ) {
     this.form = this.fb.group(
       {
         name: ['', [Validators.required, Validators.minLength(MIN_LENGTH_NAME)]],
@@ -95,5 +101,12 @@ export class RegistrationPageComponent {
         validators: this.validFormService.confirmPassword(),
       },
     );
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      const { confirmPassword, ...signUpData } = this.form.value;
+      this.authService.signUp(<TRegisterData>signUpData);
+    }
   }
 }

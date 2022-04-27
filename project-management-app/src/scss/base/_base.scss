@@ -4,6 +4,12 @@
   font-family: "Roboto", sans-serif;
 }
 
+html,
+body {
+  min-height: 100vh;
+  overflow: auto;
+}
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
