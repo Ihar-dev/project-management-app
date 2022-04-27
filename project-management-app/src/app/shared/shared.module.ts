@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { StickyHeaderDirective } from './directives/sticky-header.directive';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [StickyHeaderDirective],
+  exports: [StickyHeaderDirective],
+  imports: [CommonModule],
 })
-export class SharedModule { }
+export class SharedModule {}
