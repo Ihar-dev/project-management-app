@@ -12,7 +12,7 @@ export class ValidationFormService {
       }
       const regexpUpLowerCase = /^(?=.*?[A-Z])(?=.*?[a-z]).*$/;
       const regexpDigits = /^(?=.*?\d).*$/;
-      const regexpSpecialCharacters = /^(?=.*[!@#$%^&?[\]\]]).*$/;
+      const regexpSpecialCharacters = /^(?=.*[!@#$%^&?[\]]).*$/;
       const regexpMinLength = /^.{8,}$/;
 
       if (!control.value.match(regexpUpLowerCase)) {
