@@ -27,14 +27,14 @@ body {
   background: $auth-purple-bg;
 }
 
-@keyframes showForm {
+@keyframes scaleUp {
   to {
     opacity: 1;
     transform: scaleY(1);
   }
 }
 
-@keyframes showFields {
+@keyframes showUp {
   to {
     opacity: 1;
   }

@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "pretty-quick": "cd .. && pretty-quick",
+    "pretty-quick": "pretty-quick",
     "prepare": "cd .. && husky install project-management-app/.husky"
   },
   "private": true,
