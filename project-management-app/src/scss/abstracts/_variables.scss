@@ -1,11 +1,17 @@
 //dimensions
 $border-radius: 20px;
 
-//colors
+//main colors
+$theme-primary: #673ab7;
+$theme-accent: #ffd740;
+
+//block colors
 $main-bg: #fbfbfd;
 $form-bg: #fff;
 $error-bg: #f44336;
-$theme-primary: #673ab7;
+
+//font colors
+$font-white: rgba(255, 255, 255, 0.95);
 
 //shadows & filters
 $box-shadow: 2px 4px 13px 0 rgba(0, 0, 0, 0.1);

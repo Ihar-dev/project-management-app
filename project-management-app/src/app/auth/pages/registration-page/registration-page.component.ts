@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ValidationFormService } from '../../services/validation-form.service';
-import { TRegisterData } from '../../shared/models/register-data.model';
+import { TSignupData } from '../../shared/models/register-data.model';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
 const MIN_LENGTH_NAME = 2;
@@ -106,7 +106,8 @@ export class RegistrationPageComponent {
   onSubmit(): void {
     if (this.form.valid) {
       const { confirmPassword, ...signUpData } = this.form.value;
-      this.authService.signUp(<TRegisterData>signUpData);
+      this.authService.signUp(<TSignupData>signUpData);
+      this.form.reset();
     }
   }
 

@@ -1,5 +1,5 @@
 <app-auth-main>
-  <app-form [form]="form">
+  <app-form [form]="form" (submit)="onSubmit()">
     <app-form-title [title]="title"></app-form-title>
 
     <app-form-field [control]="controlLogin" [placeholder]="'Enter login'"></app-form-field>

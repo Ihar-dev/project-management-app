@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { TSigninData } from '../../shared/models/login-data.model';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
 const FORM_TITLE = 'Sign in';
@@ -34,11 +36,19 @@ export class LoginPageComponent {
 
   readonly title = FORM_TITLE;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.form = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
+  }
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      const signInData = this.form.value;
+      this.authService.signIn(<TSigninData>signInData);
+      this.form.reset();
+    }
   }
 
   get controlLogin(): AbstractControl {
