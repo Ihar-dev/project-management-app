@@ -4,10 +4,12 @@ import { CoreRoutingModule } from './core-routing.module';
 import { HeaderComponent } from './header/header/header.component';
 import { NotFoundComponent } from './page/not-found/not-found.component';
 import { LogoComponent } from './header/logo/logo.component';
+import { MaterialModule } from '../shared/material.module';
+import { UserBoxComponent } from './header/user-box/user-box.component';
 
 @NgModule({
-  declarations: [HeaderComponent, NotFoundComponent, LogoComponent],
-  imports: [SharedModule, CoreRoutingModule],
+  declarations: [HeaderComponent, NotFoundComponent, LogoComponent, UserBoxComponent],
+  imports: [SharedModule, CoreRoutingModule, MaterialModule],
   exports: [HeaderComponent],
 })
 export class CoreModule {}

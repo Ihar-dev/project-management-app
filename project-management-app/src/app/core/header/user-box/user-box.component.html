@@ -1,0 +1,9 @@
+<div class="user-box">
+  <button class="btn" mat-icon-button [matMenuTriggerFor]="menu" color="primary">
+    <mat-icon class="icon">account_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button mat-menu-item>Edit profile</button>
+    <button mat-menu-item>Logout</button>
+  </mat-menu>
+</div>
