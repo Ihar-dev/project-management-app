@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
 const FORM_TITLE = 'Sign in';
@@ -28,13 +28,9 @@ export class LoginPageComponent {
 
   readonly formErrors = ERRORS_MESSAGES;
 
-  readonly controlName = 'name';
+  readonly controlLoginKey = 'login';
 
-  readonly controlLogin = 'login';
-
-  readonly controlPassword = 'password';
-
-  readonly controlPasswordConfirm = 'confirmPassword';
+  readonly controlPasswordKey = 'password';
 
   readonly title = FORM_TITLE;
 
@@ -43,5 +39,13 @@ export class LoginPageComponent {
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
+  }
+
+  get controlLogin(): AbstractControl {
+    return this.form.controls[this.controlLoginKey];
+  }
+
+  get controlPassword(): AbstractControl {
+    return this.form.controls[this.controlPasswordKey];
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { ValidationFormService } from '../../services/validation-form.service';
 import { TRegisterData } from '../../shared/models/register-data.model';
@@ -72,13 +72,13 @@ export class RegistrationPageComponent {
 
   readonly formErrors = ERRORS_MESSAGES;
 
-  readonly controlName = 'name';
+  readonly controlNameKey = 'name';
 
-  readonly controlLogin = 'login';
+  readonly controlLoginKey = 'login';
 
-  readonly controlPassword = 'password';
+  readonly controlPasswordKey = 'password';
 
-  readonly controlPasswordConfirm = 'confirmPassword';
+  readonly controlPasswordConfirmKey = 'confirmPassword';
 
   readonly title = FORM_TITLE;
 
@@ -103,10 +103,26 @@ export class RegistrationPageComponent {
     );
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.form.valid) {
       const { confirmPassword, ...signUpData } = this.form.value;
       this.authService.signUp(<TRegisterData>signUpData);
     }
+  }
+
+  get controlName(): AbstractControl {
+    return this.form.controls[this.controlNameKey];
+  }
+
+  get controlLogin(): AbstractControl {
+    return this.form.controls[this.controlLoginKey];
+  }
+
+  get controlPassword(): AbstractControl {
+    return this.form.controls[this.controlPasswordKey];
+  }
+
+  get controlPasswordConfirm(): AbstractControl {
+    return this.form.controls[this.controlPasswordConfirmKey];
   }
 }

@@ -16,6 +16,7 @@ import { FormErrorComponent } from './components/form-error/form-error.component
 import { FormTitleComponent } from './components/form-title/form-title.component';
 import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { AuthMainComponent } from './components/auth-main/auth-main.component';
+import { BgColorDirective } from './components/auth-main/bg-color.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AuthMainComponent } from './components/auth-main/auth-main.component';
     FormTitleComponent,
     FormSubmitComponent,
     AuthMainComponent,
+    BgColorDirective,
   ],
   imports: [CommonModule, AuthRoutingModule, MaterialModule, ReactiveFormsModule, SharedModule],
 })
