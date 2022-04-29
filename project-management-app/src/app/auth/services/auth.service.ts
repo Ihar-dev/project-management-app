@@ -46,5 +46,7 @@ export class AuthService {
     this.router.navigate(['']);
   }
 
-  isAuthenticated() {}
+  isAuthenticated(): boolean {
+    return !!this.lsService.getItem<string>(USER_TOKEN_KEY);
+  }
 }

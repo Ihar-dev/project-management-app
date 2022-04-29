@@ -24,31 +24,3 @@ html {
     font-size: 43.75%; //1rem=7px;
   }
 }
-
-body {
-  background-color: $main-bg;
-}
-
-.purple-bg {
-  background: $auth-purple-bg;
-}
-
-@keyframes scaleUp {
-  to {
-    opacity: 1;
-    transform: scaleY(1);
-  }
-}
-
-@keyframes showUp {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes goUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
