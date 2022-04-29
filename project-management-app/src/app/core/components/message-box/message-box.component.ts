@@ -14,7 +14,7 @@ const MESSAGE_DISAPPEAR_TIME = 10000;
 export class MessageBoxComponent implements OnInit, OnDestroy {
   message: string | MessagesDefault = ERROR_MESSAGE;
 
-  isMessageBoxShown: boolean = true;
+  isMessageBoxShown: boolean = false;
 
   subs = Subscription.EMPTY;
 
