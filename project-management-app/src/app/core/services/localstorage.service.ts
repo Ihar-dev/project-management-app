@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { MessagesDefault } from 'src/app/shared/models/messages-type';
+import { MessageBoxService } from './message-box.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalstorageService {
+  constructor(private messageService: MessageBoxService) {}
+
   getItem<T>(key: string): T | null {
     try {
       const res = localStorage.getItem(key);
@@ -11,7 +15,7 @@ export class LocalstorageService {
         return <T>JSON.parse(res);
       }
     } catch (err) {
-      console.error(err);
+      this.handleError(err);
     }
 
     return null;
@@ -21,7 +25,7 @@ export class LocalstorageService {
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (err) {
-      console.error(err);
+      this.handleError(err);
     }
   }
 
@@ -31,5 +35,10 @@ export class LocalstorageService {
 
   clear(): void {
     localStorage.clear();
+  }
+
+  private handleError(err: unknown): void {
+    this.messageService.showMessage(MessagesDefault.error);
+    console.error(err);
   }
 }
