@@ -5,6 +5,7 @@ import { MessagesDefault, MessageState } from 'src/app/shared/models/messages-ty
 
 const ERROR_MESSAGE = MessagesDefault.error;
 const MESSAGE_DISAPPEAR_TIME = 10000;
+const MESSAGE_LENGTH_MAX = 50;
 
 @Component({
   selector: 'app-message-box',
@@ -16,9 +17,9 @@ export class MessageBoxComponent implements OnInit, OnDestroy {
 
   isMessageBoxShown: boolean = false;
 
-  subs = Subscription.EMPTY;
+  private subs = Subscription.EMPTY;
 
-  timeoutId: ReturnType<typeof setTimeout> | null = null;
+  private timeoutId: ReturnType<typeof setTimeout> | null = null;
 
   constructor(private messageService: MessageBoxService) {}
 
@@ -28,15 +29,15 @@ export class MessageBoxComponent implements OnInit, OnDestroy {
     );
   }
 
-  toggleMessage(messageState: MessageState): void {
+  private toggleMessage(messageState: MessageState): void {
     this.isMessageBoxShown = messageState.isShown;
-    this.message = messageState.message;
+    this.message = messageState.message.substring(0, MESSAGE_LENGTH_MAX);
     if (this.isMessageBoxShown) {
       this.hideMessageDeffered();
     }
   }
 
-  hideMessageDeffered(): void {
+  private hideMessageDeffered(): void {
     this.timeoutId = setTimeout(() => {
       this.hideMessage();
     }, MESSAGE_DISAPPEAR_TIME);

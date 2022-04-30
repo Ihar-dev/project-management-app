@@ -12,7 +12,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
 
   isShown: boolean = false;
 
-  subs = Subscription.EMPTY;
+  private subs = Subscription.EMPTY;
 
   ngOnInit(): void {
     this.subs = this.loaderService.spinnerVisibility$.subscribe((value) => {

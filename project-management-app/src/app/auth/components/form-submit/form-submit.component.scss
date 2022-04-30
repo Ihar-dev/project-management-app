@@ -1,5 +1,12 @@
-.form__submit {
+@import "variables";
+
+.form-submit {
   width: 160px;
   height: 60px;
-  margin-bottom: 2rem;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: $mobile) {
+    width: 130px;
+    height: 50px;
+  }
 }

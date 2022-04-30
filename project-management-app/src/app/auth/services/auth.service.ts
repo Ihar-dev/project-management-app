@@ -26,15 +26,15 @@ export class AuthService {
     private messageService: MessageBoxService,
   ) {}
 
-  signUp(data: TSignupData) {
+  signUp(data: TSignupData): void {
     this.http.post<UserDataResponce>(this.signUpUrl, JSON.stringify(data)).subscribe((res) => {
       this.lsService.setItem(USER_DATA_KEY, new User(res));
       this.messageService.showMessage(MessagesDefault.signedUp);
-      this.router.navigate(['auth/signin']);
+      this.navigate('auth', 'signin');
     });
   }
 
-  signIn(data: TSigninData) {
+  signIn(data: TSigninData): void {
     this.http.post<TTokenResponce>(this.signInUrl, JSON.stringify(data)).subscribe(({ token }) => {
       this.lsService.setItem(USER_TOKEN_KEY, token);
       this.router.navigate(['']);
@@ -43,10 +43,14 @@ export class AuthService {
 
   signOut(): void {
     this.lsService.clear();
-    this.router.navigate(['']);
+    this.navigate('');
   }
 
   isAuthenticated(): boolean {
     return !!this.lsService.getItem<string>(USER_TOKEN_KEY);
+  }
+
+  private navigate(...paths: string[]): void {
+    this.router.navigate(paths);
   }
 }

@@ -11,6 +11,10 @@ body {
   background: $auth-purple-bg;
 }
 
+.white-bg {
+  background: $main-bg;
+}
+
 //autocomplete
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

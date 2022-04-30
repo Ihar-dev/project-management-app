@@ -5,13 +5,17 @@
 }
 
 .form {
-  padding: 12rem 8rem;
+  padding: 120px 80px;
   font-size: 4rem;
   background-color: $form-bg;
   border-radius: 0 $border-radius $border-radius 0;
 
-  @media screen and (max-width: $tablet) {
+  @media screen and (max-width: $laptop) {
     border-radius: $border-radius;
+    padding: 60px 30px;
+  }
+
+  @media screen and (max-width: $tablet) {
     box-shadow: $box-shadow;
     transform: scaleY(0.8);
     opacity: 0.1;
@@ -19,7 +23,7 @@
   }
 
   @media screen and (max-width: $mobile) {
-    padding: 6rem 3rem;
+    padding: 40px 20px;
   }
 
   &__fields {

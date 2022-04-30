@@ -17,11 +17,15 @@ export class MessageBoxService {
 
   showMessage(message: string | MessagesDefault): void {
     this.isMessageShown = true;
-    this.messageState$.next({ isShown: this.isMessageShown, message });
+    this.setState({ isShown: this.isMessageShown, message });
   }
 
   hideMessage(): void {
     this.isMessageShown = false;
-    this.messageState$.next({ isShown: this.isMessageShown, message: '' });
+    this.setState({ isShown: this.isMessageShown, message: '' });
+  }
+
+  private setState(state: MessageState): void {
+    this.messageState$.next(state);
   }
 }

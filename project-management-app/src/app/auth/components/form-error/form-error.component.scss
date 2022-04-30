@@ -15,8 +15,8 @@
     position: absolute;
     top: -52px;
     right: -176px;
-    width: 18.4rem;
-    padding: 1.5rem;
+    width: 184px;
+    padding: 15px;
     font-size: 2rem;
     color: $form-bg;
     background-color: $error-bg;
@@ -39,7 +39,7 @@
     @media screen and (max-width: $tablet) {
       top: -128px;
       right: 16px;
-      min-height: 6.4rem;
+      min-height: 64px;
       border-bottom-right-radius: 0;
       border-top-left-radius: $border-radius;
 
