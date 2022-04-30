@@ -1,0 +1,21 @@
+@import "variables";
+@import "mixins";
+
+.btn {
+  font-size: 2.4rem;
+  font-weight: 300;
+  height: 5rem;
+  padding: 0 2.3rem;
+  border-radius: 50rem;
+  line-height: 2.4rem;
+
+  &-icon {
+    @extend .btn;
+    padding: 0;
+    text-align: center;
+    background-color: $color-primary;
+    color: #fff;
+  }
+
+  @include btn-shadow-style;
+}

@@ -1,2 +1,45 @@
 @import "scss/base/null-style";
 @import "scss/base/base";
+
+@import "scss/abstracts/variables";
+@import "scss/abstracts/mixins";
+
+.mat-slide-toggle.slide-toggle {
+  background-color: $color-primary;
+  color: #fff;
+  padding: 1rem 2rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  border-radius: 5rem;
+
+  @include btn-shadow-style;
+
+  &.mat-checked .mat-slide-toggle-bar {
+    background-color: $color-accent;
+  }
+
+  &.mat-checked .mat-slide-toggle-thumb {
+    background-color: $color-white-2;
+  }
+
+  .mat-slide-toggle-bar {
+    background-color: $color-white-2;
+  }
+
+  .mat-slide-toggle-thumb {
+    background-color: $color-accent;
+  }
+}
+
+.user-menu .mat-menu-content:not(:empty) {
+  padding: 0;
+
+  .mat-menu-item:hover:not([disabled]),
+  .mat-menu-item.cdk-program-focused:not([disabled]),
+  .mat-menu-item.cdk-keyboard-focused:not([disabled]),
+  .mat-menu-item-highlighted:not([disabled]) {
+    transition: all 0.2s;
+    background-color: $color-primary-transparent;
+  }
+}

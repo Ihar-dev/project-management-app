@@ -2,8 +2,8 @@
   <button class="btn" mat-icon-button [matMenuTriggerFor]="menu" color="primary">
     <mat-icon class="icon">account_circle</mat-icon>
   </button>
-  <mat-menu #menu="matMenu" xPosition="before">
-    <button mat-menu-item>Edit profile</button>
-    <button mat-menu-item>Logout</button>
+  <mat-menu #menu="matMenu" xPosition="before" class="user-menu">
+    <button mat-menu-item routerLink="/edit-profile">Edit profile</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
   </mat-menu>
 </div>

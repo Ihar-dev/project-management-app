@@ -1,5 +1,6 @@
 <div appStickyHeader class="header">
   <app-logo></app-logo>
-  <button class="btn" mat-raised-button color="primary">Create new board</button>
+  <app-create-button></app-create-button>
   <app-user-box></app-user-box>
+  <mat-slide-toggle class="slide-toggle" (change)="onChange()">En\Ru</mat-slide-toggle>
 </div>
