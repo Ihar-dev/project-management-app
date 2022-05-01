@@ -1,3 +1,46 @@
-@import 'scss/base/null-style';
-@import 'scss/base/base';
+@import "scss/base/null-style";
+@import "scss/base/base";
+@import "scss/components/components";
+@import "variables";
 
+body {
+  background-color: $main-bg;
+}
+
+.purple-bg {
+  background: $auth-purple-bg;
+}
+
+.white-bg {
+  background: $main-bg;
+}
+
+//autocomplete
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: $font-black;
+  -webkit-box-shadow: 0 0 0px 1000px $form-bg inset;
+  box-shadow: 0 0 0px 1000px $form-bg inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@keyframes scaleUp {
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes showUp {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes goUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
