@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 import { UserBoxComponent } from './user-box.component';
 
@@ -8,9 +9,9 @@ describe('UserBoxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserBoxComponent ]
-    })
-    .compileComponents();
+      declarations: [UserBoxComponent],
+      imports: [MaterialModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {

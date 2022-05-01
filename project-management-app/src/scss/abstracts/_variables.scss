@@ -1,7 +1,31 @@
-$shadow-color: rgba(60, 60, 60, 0.4);
-$color-white-2: #f4f3f6;
-$color-primary: #673ab7;
-$color-primary-transparent: #673ab766;
-$color-accent: #ffd740;
+//dimensions
+$border-radius: 20px;
 
+//main colors
+$theme-primary: #673ab7;
+$theme-primary-transparent: #673ab766;
+$theme-accent: #ffd740;
+$color-white-2: #f4f3f6;
+
+//block colors
+$main-bg: #fbfbfd;
+$form-bg: #fff;
+$error-bg: #f44336;
+
+//font colors
+$font-white: rgba(255, 255, 255, 0.95);
+$font-black: #000;
+
+//shadows & filters
+$box-shadow: 2px 4px 13px 0 rgba(0, 0, 0, 0.1);
+$shadow-color: rgba(60, 60, 60, 0.4);
+
+//breakpoints
 $mobile: 48em;
+$tablet: 76.8em;
+$laptop: 102.4em;
+$desktop: 120em;
+
+//backgrounds
+$auth-form-bg: url("../../../../assets/images/auth_module/form_bg.png") top left / cover no-repeat;
+$auth-purple-bg: linear-gradient(318deg, rgba(103, 58, 183, 1) 21%, rgba(216, 141, 189, 1) 100%);

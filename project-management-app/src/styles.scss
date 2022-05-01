@@ -5,7 +5,7 @@
 @import "scss/abstracts/mixins";
 
 .mat-slide-toggle.slide-toggle {
-  background-color: $color-primary;
+  background-color: $theme-primary;
   color: #fff;
   padding: 1rem 2rem;
   height: 5rem;
@@ -16,7 +16,7 @@
   @include btn-shadow-style;
 
   &.mat-checked .mat-slide-toggle-bar {
-    background-color: $color-accent;
+    background-color: $theme-accent;
   }
 
   &.mat-checked .mat-slide-toggle-thumb {
@@ -28,7 +28,7 @@
   }
 
   .mat-slide-toggle-thumb {
-    background-color: $color-accent;
+    background-color: $theme-accent;
   }
 }
 
@@ -40,6 +40,6 @@
   .mat-menu-item.cdk-keyboard-focused:not([disabled]),
   .mat-menu-item-highlighted:not([disabled]) {
     transition: all 0.2s;
-    background-color: $color-primary-transparent;
+    background-color: $theme-primary-transparent;
   }
 }

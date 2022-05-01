@@ -9,7 +9,13 @@ import { UserBoxComponent } from './header/user-box/user-box.component';
 import { CreateButtonComponent } from './header/create-button/create-button.component';
 
 @NgModule({
-  declarations: [HeaderComponent, NotFoundComponent, LogoComponent, UserBoxComponent, CreateButtonComponent],
+  declarations: [
+    HeaderComponent,
+    NotFoundComponent,
+    LogoComponent,
+    UserBoxComponent,
+    CreateButtonComponent,
+  ],
   imports: [SharedModule, CoreRoutingModule, MaterialModule],
   exports: [HeaderComponent],
 })
