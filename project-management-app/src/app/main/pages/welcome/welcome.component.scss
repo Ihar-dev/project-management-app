@@ -1,6 +1,81 @@
+@import "mixins";
+
 :host {
   display: block;
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 100%;
   background: linear-gradient(to bottom right, #02C1CA, #415789);
+}
+
+.welcome-main-img {
+  position: relative;
+  @include background-image-block("../../../../assets/images/png/welcome-main-img.png", 100%, 0);
+  left: 10%;
+  opacity: 0;
+  transition: opacity 2s;
+}
+
+.welcome-main-img.active {
+  opacity: 1;
+}
+
+.welcome-arrows {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/welcome-arrows.svg", 89%, 0);
+  left: 105%;
+  transition: left 1.2s;
+}
+
+.welcome-top-cube {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/top-cube.svg", 100%, 0);
+  top: -20%;
+  left: 47%;
+  transition: top 1.2s;
+}
+
+.welcome-top-cube.active {
+  top: -10%;
+}
+
+@media screen and (orientation: landscape) {
+  .welcome-main-img {
+    width: calc(80vh * 940 / 788);
+    height: 80vh;
+    top: 21%;
+  }
+
+  .welcome-arrows.active {
+    width: 30vh;
+    height: 20vh;
+    left: 58%;
+    top: 35%;
+  }
+
+  .welcome-top-cube.active {
+    width: 30vh;
+    height: 25vh;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .welcome-main-img {
+    width: 80vw;
+    height: calc(80vw * 788 / 940);
+    top: 33%;
+  }
+
+  .welcome-arrows.active {
+    width: 30vw;
+    height: 20vw;
+    left: 67%;
+    top: 35%;
+  }
+
+  .welcome-top-cube.active {
+    width: 42vw;
+    height: 35vw;
+  }
 }
