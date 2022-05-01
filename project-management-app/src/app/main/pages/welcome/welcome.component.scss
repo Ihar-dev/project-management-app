@@ -2,6 +2,29 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Niconne&family=Poppins:wght@500;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
+%display-pattern {
+  opacity: 0;
+  transition: opacity 0.2s 1.5s;
+  z-index: 1000;
+}
+
+%normal-text-pattern {
+  font-size: 3rem;
+  line-height: 4rem;
+  font-weight: 500;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+%after-text-pattern {
+  position: absolute;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -28%;
+}
+
 :host {
   display: block;
   position: relative;
@@ -69,10 +92,10 @@
   opacity: 0;
   transition: opacity 0.2s 1.5s;
   z-index: 500;
-}
 
-.welcome_grid.active {
-  opacity: 1;
+  &.active {
+    opacity: 1;
+  }
 }
 
 h1 {
@@ -82,13 +105,77 @@ h1 {
   font-weight: 700;
   color: white;
   font-family: 'Poppins', sans-serif;
-  opacity: 0;
-  transition: opacity 0.2s 1.5s;
-  z-index: 1000;
+  @extend %display-pattern;
+
+  &.active {
+    opacity: 1;
+  }
 }
 
-h1.active {
-  opacity: 1;
+p {
+  position: absolute;
+  text-align: right;
+  @extend %normal-text-pattern;
+  @extend %display-pattern;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.welcome_team-container {
+  position: absolute;
+  @extend %flex-column-pattern;
+  @extend %display-pattern;
+  row-gap: 1rem;
+
+  p {
+    position: relative;
+    text-align: center;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  .welcome_team-inner-container {
+    position: relative;
+    @extend %flex-normal-pattern;
+
+    .team-img {
+      position: relative;;
+    }
+
+    .welcome_ihar-img {
+      @include background-image-block("../../../../assets/images/jpeg/ihar-img.jpg", 100%, 0);
+
+      &::after {
+        content: "Ihar";
+        @extend %normal-text-pattern;
+        @extend %after-text-pattern;
+      }
+    }
+
+    .welcome_tetiana-img {
+      @include background-image-block("../../../../assets/images/jpeg/tetiana-img.jpg", 100%, 0);
+
+      &::after {
+        content: "Tetiana";
+        @extend %normal-text-pattern;
+        @extend %after-text-pattern;
+      }
+    }
+
+    .welcome_ilia-img {
+      @include background-image-block("../../../../assets/images/jpeg/ilia-img.jpg", 100%, 0);
+
+      &::after {
+        content: "Ilia";
+        @extend %normal-text-pattern;
+        @extend %after-text-pattern;
+      }
+    }
+  }
 }
 
 @media screen and (orientation: landscape) {
@@ -102,7 +189,7 @@ h1.active {
     width: 30vh;
     height: 20vh;
     left: 58%;
-    top: 19%;
+    top: 10%;
   }
 
   .welcome_top-cube.active {
@@ -141,6 +228,35 @@ h1.active {
   h1 {
     left: 20%;
     top: 4%;
+  }
+
+  p {
+    right: 20%;
+    top: 62%;
+  }
+
+  .welcome_team-container {
+    width: 54vh;
+    height: 23vh;
+    top: 31%;
+    right: 14%;
+
+    p {
+      top: auto;
+      right: auto;
+     }
+
+    .welcome_team-inner-container {
+      width: 54vh;
+      height: 17vh;
+
+      .team-img {
+        width: 17vh;
+        height: 17vh;
+        border-radius: 17vh;
+      }
+    }
+
   }
 }
 
@@ -194,5 +310,33 @@ h1.active {
   h1 {
     left: 12%;
     top: 11%;
+  }
+
+  p {
+    right: 3%;
+    top: 38%;
+  }
+
+  .welcome_team-container {
+    width: 44vw;
+    height: 19vw;
+    top: 77%;
+    right: 49%;
+
+    p {
+     top: auto;
+     right: auto;
+    }
+
+    .welcome_team-inner-container {
+      width: 44vw;
+      height: 14vw;
+
+      .team-img {
+        width: 14vw;
+        height: 14vw;
+        border-radius: 14vw;
+      }
+    }
   }
 }
