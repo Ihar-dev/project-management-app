@@ -1,0 +1,6 @@
+<div class="message-box" *ngIf="isMessageBoxShown">
+  <p class="message-box__text">{{message}}</p>
+  <button mat-button class="message-box__btn" (click)="hideMessage()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
