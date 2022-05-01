@@ -1,0 +1,61 @@
+@import "variables";
+
+:host {
+  width: 100%;
+}
+
+.error {
+  height: 0;
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  animation: showError 0.3s forwards ease-in;
+
+  &__message {
+    position: absolute;
+    top: -52px;
+    right: -176px;
+    width: 184px;
+    padding: 15px;
+    font-size: 2rem;
+    color: $form-bg;
+    background-color: $error-bg;
+    border-radius: $border-radius;
+    border-top-left-radius: 0;
+
+    &::before {
+      content: "";
+      width: 0px;
+      height: 0px;
+      position: absolute;
+      top: 0;
+      left: -16px;
+      border-top: 8px solid $error-bg;
+      border-right: 8px solid $error-bg;
+      border-bottom: 8px solid transparent;
+      border-left: 8px solid transparent;
+    }
+
+    @media screen and (max-width: $tablet) {
+      top: -128px;
+      right: 16px;
+      min-height: 64px;
+      border-bottom-right-radius: 0;
+      border-top-left-radius: $border-radius;
+
+      &::before {
+        content: "";
+        top: auto;
+        right: 0;
+        bottom: -16px;
+        left: auto;
+      }
+    }
+  }
+}
+
+@keyframes showError {
+  to {
+    opacity: 0.95;
+  }
+}
