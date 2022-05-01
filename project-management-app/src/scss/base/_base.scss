@@ -15,12 +15,20 @@ html {
   scroll-behavior: smooth;
   font-size: 62.5%; //1 rem = 10px
 
+  /* 1200px  */
+  @media only screen and (max-width: $desktop) {
+    font-size: 55%; //1rem=9px;
+  }
   /* 1024px  */
+  @media only screen and (max-width: $laptop) {
+    font-size: 45%; //1rem=7px;
+  }
+  /* 768px  */
   @media only screen and (max-width: $tablet) {
-    font-size: 50%; //1rem=8px;
+    font-size: 37.5%; //1rem=6px;
   }
   /* 480px  */
   @media only screen and (max-width: $mobile) {
-    font-size: 43.75%; //1rem=7px;
+    font-size: 25%; //1rem=4px;
   }
 }
