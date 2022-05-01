@@ -6,6 +6,8 @@ $theme-primary: #673ab7;
 $theme-primary-transparent: #673ab766;
 $theme-accent: #ffd740;
 $color-white-2: #f4f3f6;
+$color-grey: #bdcbd4;
+$color-grey-dark: #747691;
 
 //block colors
 $main-bg: #fbfbfd;
@@ -21,11 +23,10 @@ $box-shadow: 2px 4px 13px 0 rgba(0, 0, 0, 0.1);
 $shadow-color: rgba(60, 60, 60, 0.4);
 
 //breakpoints
-$mobile: 48em;
-$tablet: 76.8em;
-$laptop: 102.4em;
-$desktop: 120em;
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1200px;
 
 //backgrounds
-$auth-form-bg: url("../../../../assets/images/auth_module/form_bg.png") top left / cover no-repeat;
 $auth-purple-bg: linear-gradient(318deg, rgba(103, 58, 183, 1) 21%, rgba(216, 141, 189, 1) 100%);

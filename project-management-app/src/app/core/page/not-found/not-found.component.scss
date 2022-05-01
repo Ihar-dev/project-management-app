@@ -22,17 +22,17 @@
 }
 
 .btn {
-  color: #bdcbd4;
+  color: $color-grey;
   font-size: 3rem;
   font-weight: 300;
   border-radius: 2rem;
-  border: 2px solid #bdcbd4;
+  border: 2px solid $color-grey;
   padding: 1rem 2rem;
   background: none;
   transition: all 0.4s;
 
   &:hover {
-    background-color: #bdcbd4;
-    color: #747691;
+    background-color: $color-grey;
+    color: $color-grey-dark;
   }
 }

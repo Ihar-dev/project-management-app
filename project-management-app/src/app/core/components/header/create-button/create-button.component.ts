@@ -13,10 +13,14 @@ export class CreateButtonComponent implements OnInit {
 
   @HostListener('window:resize')
   onResize(): void {
-    this.windowWidth = window.innerWidth;
+    this.setWidth();
   }
 
   ngOnInit(): void {
+    this.setWidth();
+  }
+
+  setWidth(): void {
     this.windowWidth = window.innerWidth;
   }
 
