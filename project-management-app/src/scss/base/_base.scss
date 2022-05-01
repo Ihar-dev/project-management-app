@@ -1,5 +1,13 @@
+@import "variables";
+
 * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+html,
+body {
+  min-height: 100vh;
+  overflow: auto;
 }
 
 html {
@@ -7,16 +15,12 @@ html {
   scroll-behavior: smooth;
   font-size: 62.5%; //1 rem = 10px
 
-  /* 1440px  */
-  @media only screen and (max-width: 90em) {
+  /* 1024px  */
+  @media only screen and (max-width: $tablet) {
     font-size: 50%; //1rem=8px;
   }
-  /* 1120px  */
-  @media only screen and (max-width: 70em) {
-    font-size: 37.5%; //1rem=6px;
-  }
-  /* 800px  */
-  @media only screen and (max-width: 50em) {
-    font-size: 25%; //1rem=4px;
+  /* 480px  */
+  @media only screen and (max-width: $mobile) {
+    font-size: 43.75%; //1rem=7px;
   }
 }

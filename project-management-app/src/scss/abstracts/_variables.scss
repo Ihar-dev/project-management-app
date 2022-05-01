@@ -1,0 +1,27 @@
+//dimensions
+$border-radius: 20px;
+
+//main colors
+$theme-primary: #673ab7;
+$theme-accent: #ffd740;
+
+//block colors
+$main-bg: #fbfbfd;
+$form-bg: #fff;
+$error-bg: #f44336;
+
+//font colors
+$font-white: rgba(255, 255, 255, 0.95);
+$font-black: #000;
+
+//shadows & filters
+$box-shadow: 2px 4px 13px 0 rgba(0, 0, 0, 0.1);
+
+//breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$laptop: 1024px;
+$desktop: 1200px;
+
+//backgrounds
+$auth-purple-bg: linear-gradient(318deg, rgba(103, 58, 183, 1) 21%, rgba(216, 141, 189, 1) 100%);

@@ -1,0 +1,28 @@
+<div class="container">
+  <app-auth-main>
+    <app-form [form]="form" (submit)="onSubmit()">
+      <app-form-title [title]="title"></app-form-title>
+
+      <app-form-field [control]="controlName" [placeholder]="'Enter your name'"></app-form-field>
+      <app-form-error [control]="controlName" [errors]="formErrors[controlNameKey]"></app-form-error>
+
+      <app-form-field [control]="controlLogin" [placeholder]="'Enter login'"></app-form-field>
+      <app-form-error [control]="controlLogin" [errors]="formErrors[controlLoginKey]"></app-form-error>
+
+      <app-form-field-password [control]="controlPassword"></app-form-field-password>
+      <app-form-error [control]="controlPassword" [errors]="formErrors[controlPasswordKey]">
+      </app-form-error>
+
+      <app-form-field-password [control]="controlPasswordConfirm" [placeholder]="'Confirm password'">
+      </app-form-field-password>
+      <app-form-error [control]="controlPasswordConfirm" [errors]="formErrors[controlPasswordConfirmKey]">
+      </app-form-error>
+
+      <app-form-submit>
+        <app-button [isDisabled]="!form.valid"></app-button>
+      </app-form-submit>
+
+      <a mat-button href="#" [routerLink]="'../signin'" color="primary">Already have an account? Sign in</a>
+    </app-form>
+  </app-auth-main>
+</div>

@@ -1,0 +1,15 @@
+@import "variables";
+
+:host {
+  width: 100%;
+}
+
+.form-field {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+
+  &__input {
+    font-size: 2rem;
+  }
+}
