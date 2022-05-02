@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MainRoutingModule } from './main-routing.module';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-
+import { MaterialModule } from '../shared/material.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { WelcomeComponent } from './pages/welcome/welcome.component';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    MaterialModule,
   ]
 })
 export class MainModule { }
