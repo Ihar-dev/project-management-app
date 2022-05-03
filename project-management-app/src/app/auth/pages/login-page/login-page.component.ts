@@ -5,7 +5,7 @@ import { FormControlNames } from '../../shared/constants';
 import { TSigninData } from '../../shared/models/login-data.model';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
-const FORM_TITLE = 'Sign in';
+const FORM_TITLE = 'Log in';
 const ERRORS_MESSAGES: TValidationError = {
   login: [
     {

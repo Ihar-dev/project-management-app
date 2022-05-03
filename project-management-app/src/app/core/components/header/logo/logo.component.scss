@@ -1,0 +1,16 @@
+@import "variables";
+@import "mixins";
+
+.header__logo {
+  display: block;
+  width: $logo-size;
+  height: $logo-size;
+  border-radius: 100rem;
+  @include btn-shadow-style;
+}
+
+.logo__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
