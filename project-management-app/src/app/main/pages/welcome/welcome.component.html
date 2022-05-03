@@ -18,9 +18,18 @@
   <div class="welcome_team-container" [class.active]="pageActivation">
     <p [class.active]="pageActivation">Our team</p>
     <div class="welcome_team-inner-container">
-      <div class="welcome_ihar-img team-img"></div>
-      <div class="welcome_tetiana-img team-img"></div>
-      <div class="welcome_ilia-img team-img"></div>
+      <div class="welcome_team-img-container">
+        <div class="welcome_ihar-img team-img"></div>
+        <p [class.active]="pageActivation">Ihar</p>
+      </div>
+      <div class="welcome_team-img-container">
+        <div class="welcome_tetiana-img team-img"></div>
+        <p [class.active]="pageActivation">Tetiana</p>
+      </div>
+      <div class="welcome_team-img-container">
+        <div class="welcome_ilia-img team-img"></div>
+        <p [class.active]="pageActivation">Ilia</p>
+      </div>
     </div>
   </div>
   <p [class.active]="pageActivation">Take your company to<br>
