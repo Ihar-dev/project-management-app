@@ -1,10 +1,14 @@
 @import "variables";
 @import "mixins";
 
+:host {
+  position: relative;
+}
+
 .header {
   position: relative;
   z-index: 50;
-  padding: 1.5rem 3rem 2.5rem 3rem;
+  padding: 1.5rem 3rem 2rem 3rem;
   border-bottom: 2px solid $color-white-2;
   transition: all 0.3s ease-in-out;
   background-color: $form-bg;
@@ -14,13 +18,43 @@
   width: 100%;
   font-size: 2.4rem;
   font-weight: 300;
+  margin-top: -$header-indent;
 
   &.sticky {
     background-color: $color-white-2;
     position: fixed;
-    top: 0;
-    left: 0;
-    padding: 1.5rem 3rem 2rem 3rem;
+    padding: 1rem 3rem 1.5rem 3rem;
     box-shadow: 0px 4px 6px 2px $shadow-color;
+    top: $header-indent;
+  }
+}
+
+::ng-deep {
+  .slide-toggle.mat-slide-toggle {
+    @include btn-shadow-style;
+
+    background-color: $theme-primary;
+    color: $font-white;
+    padding: 1rem 2rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    border-radius: 5rem;
+
+    &.mat-checked .mat-slide-toggle-bar {
+      background-color: $theme-accent;
+    }
+
+    &.mat-checked .mat-slide-toggle-thumb {
+      background-color: $color-white-2;
+    }
+
+    & .mat-slide-toggle-bar {
+      background-color: $color-white-2;
+    }
+
+    & .mat-slide-toggle-thumb {
+      background-color: $theme-accent;
+    }
   }
 }

@@ -2,6 +2,8 @@
 @import "mixins";
 
 .btn {
+  @include btn-shadow-style;
+
   font-size: 2.4rem;
   font-weight: 300;
   height: 5rem;
@@ -9,13 +11,20 @@
   border-radius: 50rem;
   line-height: 2.4rem;
 
-  &-icon {
+  @media only screen and (max-width: $mobile) {
+    display: none;
+  }
+
+  &--icon {
     @extend .btn;
+
+    display: none;
     padding: 0;
     text-align: center;
     background-color: $theme-primary;
-    color: #fff;
+    color: $form-bg;
+    @media only screen and (max-width: $mobile) {
+      display: block;
+    }
   }
-
-  @include btn-shadow-style;
 }

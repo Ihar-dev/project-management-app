@@ -1,15 +1,15 @@
 @import "variables";
 @import "mixins";
 
-.header-logo {
+.header__logo {
   display: block;
-  width: 6rem;
-  height: 6rem;
+  width: $logo-size;
+  height: $logo-size;
   border-radius: 100rem;
   @include btn-shadow-style;
 }
 
-.logo-img {
+.logo__img {
   display: block;
   width: 100%;
   height: 100%;

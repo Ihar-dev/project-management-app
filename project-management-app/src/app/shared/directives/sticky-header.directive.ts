@@ -1,39 +1,36 @@
-import { Directive, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Renderer2, HostListener } from '@angular/core';
 
-const options = {
-  root: null,
-  rootMargin: '0px',
-  threshold: 1,
-};
+const START_POSITION = 0;
+const CLASS = 'sticky';
+const html = document.querySelector('html');
 
 @Directive({
   selector: '[appStickyHeader]',
 })
-export class StickyHeaderDirective implements AfterViewInit {
+export class StickyHeaderDirective {
+  scrollY = START_POSITION;
+
   constructor(private element: ElementRef, private render: Renderer2) {}
 
-  ngAfterViewInit(): void {
-    const anchor = this.render.createElement('div');
-    this.render.insertBefore(
-      this.render.parentNode(this.element.nativeElement),
-      anchor,
-      this.element.nativeElement,
-    );
+  @HostListener('window:scroll')
+  onScroll(): void {
+    this.setScrollY();
+    this.changeClass();
+  }
 
-    const intersectionHandler: IntersectionObserverCallback = (
-      entries: IntersectionObserverEntry[],
-    ) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.render.removeClass(this.element.nativeElement, 'sticky');
-        } else {
-          this.render.addClass(this.element.nativeElement, 'sticky');
-        }
-      });
-    };
+  changeClass(): void {
+    if (this.scrollY || this.htmlTopValue) {
+      this.render.addClass(this.element.nativeElement, CLASS);
+    } else {
+      this.render.removeClass(this.element.nativeElement, CLASS);
+    }
+  }
 
-    const observer = new IntersectionObserver(intersectionHandler, options);
+  setScrollY(): void {
+    this.scrollY = window.scrollY;
+  }
 
-    observer.observe(anchor);
+  get htmlTopValue(): string {
+    return html?.style.top || '';
   }
 }

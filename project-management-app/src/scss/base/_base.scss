@@ -25,3 +25,12 @@ html {
     font-size: 43.75%; //1rem=7px;
   }
 }
+
+body {
+  padding-top: $header-indent;
+  padding-bottom: 7rem;
+
+  @media only screen and (max-width: $mobile) {
+    padding-bottom: 12.4rem;
+  }
+}
