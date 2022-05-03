@@ -1,6 +1,6 @@
 <div class="column">
-  <div class="column__header">
-    <div class="column__title" (click)="onClickTitle()" appClickStopPropagation>
+  <div class="column__header" (click)="onClickTitle()" appClickStopPropagation>
+    <div class="column__title">
       <h3 class="column__title--no-edit" *ngIf="!editMode">
         <mat-icon class="column__title__icon">flare</mat-icon>
         <span>{{column?.title || title}}</span>
@@ -12,7 +12,7 @@
         <input matInput #inputTitle type="text" [value]="column?.title || title">
       </div>
     </div>
-    <app-button-board-delete title="Delete column"></app-button-board-delete>
+    <app-button-board-delete title="Delete column" appClickStopPropagation></app-button-board-delete>
   </div>
 
   <div class="column__content">
