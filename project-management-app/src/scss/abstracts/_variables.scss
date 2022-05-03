@@ -1,9 +1,17 @@
 //dimensions
 $border-radius: 20px;
+$header-indent: 11rem;
+$logo-size: 5rem;
+$user-button-size: 5rem;
 
 //main colors
 $theme-primary: #673ab7;
+$theme-primary-transparent: #673ab766;
 $theme-accent: #ffd740;
+$color-white-2: #f4f3f6;
+$color-grey: #bdcbd4;
+$color-grey-dark: #747691;
+$color-pink: #d88dbd;
 
 //block colors
 $main-bg: #fbfbfd;
@@ -16,6 +24,7 @@ $font-black: #000;
 
 //shadows & filters
 $box-shadow: 2px 4px 13px 0 rgba(0, 0, 0, 0.1);
+$shadow-color: rgba(60, 60, 60, 0.4);
 
 //breakpoints
 $mobile: 480px;
@@ -24,4 +33,11 @@ $laptop: 1024px;
 $desktop: 1200px;
 
 //backgrounds
-$auth-purple-bg: linear-gradient(318deg, rgba(103, 58, 183, 1) 21%, rgba(216, 141, 189, 1) 100%);
+$auth-purple-bg: linear-gradient(318deg, $theme-primary 21%, $color-pink 100%);
+$dialog-confirmation-bg: linear-gradient(
+  318deg,
+  $theme-primary 0%,
+  $color-white-2 20%,
+  $color-white-2 80%,
+  $theme-primary 100%
+);

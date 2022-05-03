@@ -5,9 +5,16 @@ import { RegistrationPageComponent } from './pages/registration-page/registratio
 
 const routes: Routes = [
   {
-    path: 'signin',
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login',
+  },
+
+  {
+    path: 'login',
     component: LoginPageComponent,
   },
+
   {
     path: 'signup',
     component: RegistrationPageComponent,
