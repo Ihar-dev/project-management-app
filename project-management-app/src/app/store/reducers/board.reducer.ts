@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Board } from 'src/app/models/board.model';
+import { Board } from 'src/app/shared/models/board.model';
 import { BoardActions } from '../actions/board.action';
 
 export interface State {

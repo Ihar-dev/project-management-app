@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { Board } from 'src/app/models/board.model';
+import { Board } from 'src/app/shared/models/board.model';
 import { State } from '../reducers/board.reducer';
 
 export namespace BoardSelectors {
