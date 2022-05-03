@@ -1,0 +1,63 @@
+@import "variables";
+
+.column {
+  width: 300px;
+  position: relative;
+  border-radius: 20px;
+  padding: 15px 10px;
+  margin-right: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid $font-white;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: $font-white;
+
+    &__icon {
+      margin-right: 10px;
+    }
+
+    &--no-edit {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__content {
+    padding: 0 8px;
+    height: 100%;
+    max-height: calc(100vh - 416px);
+    overflow-y: auto;
+
+    &::-webkit-scrollbar-button {
+      display: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: $border-radius;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: $border-radius;
+    }
+  }
+
+  &__btn--add-task {
+    width: 100%;
+    color: $font-black;
+    background-color: $theme-accent;
+    border-radius: $border-radius;
+  }
+}

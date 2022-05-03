@@ -1,0 +1,22 @@
+<div class="column">
+  <div class="column__header">
+    <div class="column__title" (click)="onClickTitle()" appClickStopPropagation>
+      <h3 class="column__title--no-edit" *ngIf="!editMode">
+        <mat-icon class="column__title__icon">flare</mat-icon>
+        <span>{{column?.title || title}}</span>
+      </h3>
+      <div class="column__title--edit" *ngIf="editMode">
+
+        <button (click)="onCancelEditing()" appClickStopPropagation>Cancel</button>
+        <button (click)="onSubmitEditing(inputTitle.value)" appClickStopPropagation>Submit</button>
+        <input matInput #inputTitle type="text" [value]="column?.title || title">
+      </div>
+    </div>
+    <app-button-board-delete title="Delete column"></app-button-board-delete>
+  </div>
+
+  <div class="column__content">
+    <app-task *ngFor="let task of column?.tasks" [task]="task"></app-task>
+  </div>
+  <app-button-board-create text="Add task"></app-button-board-create>
+</div>

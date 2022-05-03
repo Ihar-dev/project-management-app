@@ -1,0 +1,64 @@
+@import "variables";
+
+.board {
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: $font-white;
+  }
+
+  &__btn {
+    &--back {
+      min-width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      padding: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    &--add-column {
+      min-width: 180px;
+      height: 36px;
+      border-radius: $border-radius;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    padding: 20px 20px 0;
+    background-color: $board-main-bg;
+    border-top: 2px solid $theme-accent;
+    border-radius: $border-radius;
+
+    &--scrollable {
+      height: 100%;
+      width: 100%;
+      padding-bottom: 10px;
+      display: flex;
+      overflow-y: hidden;
+      overflow-x: auto;
+
+      &::-webkit-scrollbar {
+        height: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: $border-radius;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: $border-radius;
+      }
+    }
+  }
+}

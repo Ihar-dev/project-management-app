@@ -1,0 +1,36 @@
+@import "variables";
+
+.task {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-radius: $border-radius;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    flex: 0 1 80%;
+    font-size: 2rem;
+  }
+
+  &__title,
+  &__description {
+    word-break: break-word;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__add-btn {
+      min-width: 30px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

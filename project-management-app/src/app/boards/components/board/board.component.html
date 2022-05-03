@@ -1,0 +1,17 @@
+<div class="board">
+  <div class="board__header">
+    <h2 class="board__title">
+      <button mat-stroked-button class="board__btn--back">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      {{board?.title || title}}
+    </h2>
+    <app-button-board-create text="Add column"></app-button-board-create>
+  </div>
+
+  <div class="board__content">
+    <div class="board__content--scrollable">
+      <app-column *ngFor="let columnItem of board?.columns" [column]="columnItem"></app-column>
+    </div>
+  </div>
+</div>
