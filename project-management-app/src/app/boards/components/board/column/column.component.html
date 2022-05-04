@@ -3,20 +3,17 @@
     <div class="column__title">
       <h3 class="column__title--no-edit" *ngIf="!editMode">
         <mat-icon class="column__title__icon">flare</mat-icon>
-        <span>{{column?.title || title}}</span>
+        <span class="column__title__text">{{column?.title || title}}</span>
       </h3>
       <div class="column__title--edit" *ngIf="editMode">
-
         <div class="edit">
           <div class="edit__actions">
             <button class="edit__btn" (click)="onCancelEditing()" appClickStopPropagation>Cancel</button>
             <button class="edit__btn" (click)="onSubmitEditing(inputTitle.value)"
               appClickStopPropagation>Submit</button>
           </div>
-
           <input class="edit__input" #inputTitle type="text" [value]="column?.title || title" autofocus>
         </div>
-
       </div>
     </div>
     <app-button-board-delete title="Delete column" appClickStopPropagation></app-button-board-delete>

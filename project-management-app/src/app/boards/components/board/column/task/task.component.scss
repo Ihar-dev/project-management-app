@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 .task {
   margin-bottom: 20px;
@@ -6,9 +7,7 @@
   border-radius: $border-radius;
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @extend %flex-normal-pattern;
   }
 
   &__title {
@@ -23,9 +22,7 @@
   }
 
   &__actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @extend %flex-normal-pattern;
 
     &__add-btn {
       min-width: 30px;

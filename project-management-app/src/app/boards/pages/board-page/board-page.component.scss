@@ -1,7 +1,14 @@
 @import "variables";
 
 .board-page {
-  height: 100%;
   padding: 10px 3%;
-  background: $auth-purple-bg;
+  height: calc(100vh - 210px);
+
+  @media screen and (max-width: $tablet) {
+    height: calc(100vh - 186px);
+  }
+
+  @media screen and (max-width: $mobile) {
+    height: calc(100vh - 243px);
+  }
 }
