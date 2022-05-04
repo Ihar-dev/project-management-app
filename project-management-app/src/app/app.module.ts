@@ -3,11 +3,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './interceptors';
 import * as boardReducer from './store/reducers/board.reducer';
+import { BoardEffects } from './store/effects/board.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +20,7 @@ import * as boardReducer from './store/reducers/board.reducer';
     HttpClientModule,
     CoreModule,
     StoreModule.forRoot({ board: boardReducer.reducer }, {}),
+    EffectsModule.forRoot([BoardEffects]),
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],

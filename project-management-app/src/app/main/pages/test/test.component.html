@@ -1,0 +1,22 @@
+<input type="text" placeholder="Board Title" [(ngModel)]="boardTitle" />
+<button mat-stroked-button (click)="addBoard()">create board</button>
+<ul *ngIf="checkBoardsLength | async; else emptyBoards" class="board-list">
+  <li *ngFor="let board of boards$ | async" class="board">
+    <h2>{{ board.title }}</h2>
+    <input type="text" placeholder="Board Title" [(ngModel)]="renameTitle" />
+    <button mat-stroked-button (click)="renameBoard(board.id || '')">Rename</button>
+    <h3>id: {{ board.id }}</h3>
+    <button mat-stroked-button (click)="getBoardById(board.id || '')">get full info</button>
+    <hr />
+    <input type="text" placeholder="columns Title" [(ngModel)]="columnTitle" />
+    <button mat-stroked-button (click)="addColumn(board.id || '')">create column</button>
+    <p>Columns</p>
+    <p *ngIf="board.columns">{{ board.columns.length }}</p>
+    <ul *ngIf="board.columns">
+      <li *ngFor="let column of board.columns">{{ column.title }}</li>
+    </ul>
+    <button mat-stroked-button (click)="deleteBoard(board.id || '')">delete this board</button>
+  </li>
+</ul>
+
+<ng-template #emptyBoards> BOARDS ARE EMPTY </ng-template>
