@@ -6,6 +6,12 @@
     align-items: center;
     justify-content: space-between;
     margin-bottom: 15px;
+
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+      align-items: baseline;
+      gap: 10px;
+    }
   }
 
   &__title {
@@ -28,15 +34,15 @@
     }
 
     &--add-column {
-      min-width: 180px;
-      height: 36px;
-      border-radius: $border-radius;
+      @media screen and (max-width: $mobile) {
+        align-self: center;
+      }
     }
   }
 
   &__content {
     width: 100%;
-    padding: 20px 20px 0;
+    padding: 2rem 2rem 0;
     background-color: $board-main-bg;
     border-top: 2px solid $theme-accent;
     border-radius: $border-radius;
@@ -45,9 +51,20 @@
       height: 100%;
       width: 100%;
       padding-bottom: 10px;
-      display: flex;
+      display: grid;
+      grid-auto-columns: 300px;
+      grid-auto-flow: column;
+      grid-gap: 15px;
       overflow-y: hidden;
       overflow-x: auto;
+
+      @media screen and (max-width: $tablet) {
+        grid-auto-columns: 280px;
+      }
+
+      @media screen and (max-width: $mobile) {
+        grid-auto-columns: 256px;
+      }
 
       &::-webkit-scrollbar {
         height: 10px;

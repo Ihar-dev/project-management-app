@@ -29,6 +29,12 @@ export const boardMock: IBoard = {
       id: '7b0b41b3-c01e-4139-998f-3ff25d20dc4f',
       title: 'Done',
       order: 1,
+      tasks: [],
+    },
+    {
+      id: '7b0b41b3-c01e-4139-998f-3ff25d20dc4f',
+      title: 'Done',
+      order: 1,
       tasks: [
         {
           id: '6e3abe9c-ceb1-40fa-9a04-eb2b2184daf9',

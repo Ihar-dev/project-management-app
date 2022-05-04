@@ -1,7 +1,7 @@
 @import "variables";
 
 .column {
-  width: 300px;
+  width: 100%;
   position: relative;
   border-radius: 20px;
   padding: 15px 10px;
@@ -20,7 +20,6 @@
 
   &__title {
     font-size: 2rem;
-    font-weight: 500;
     line-height: 2.2rem;
     color: $font-white;
     width: 100%;
@@ -32,11 +31,13 @@
     &--no-edit {
       display: flex;
       align-items: center;
+      font-weight: 500;
+      line-height: 2.2rem;
     }
   }
 
   &__content {
-    padding: 0 8px;
+    padding: 0 0.8rem;
     height: 100%;
     max-height: calc(100vh - 416px);
     overflow-y: auto;

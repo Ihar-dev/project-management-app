@@ -2,7 +2,7 @@
 
 .task {
   margin-bottom: 20px;
-  padding: 15px;
+  padding: 1.5rem;
   border-radius: $border-radius;
 
   &__header {
@@ -13,7 +13,8 @@
 
   &__title {
     flex: 0 1 80%;
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 500;
   }
 
   &__title,
