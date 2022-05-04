@@ -1,0 +1,34 @@
+@import "variables";
+@import "mixins";
+
+.author-list {
+  display: flex;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  &__item {
+    @include btn-shadow-style;
+    background-color: $color-white-2;
+    border-radius: 5rem;
+
+    &:hover {
+      background-color: $theme-accent;
+    }
+  }
+
+  &__link {
+    display: block;
+    width: max-content;
+    height: 100%;
+    padding: 0.5rem 2rem;
+    font-size: 2.2rem;
+    backface-visibility: hidden;
+    color: $font-black;
+  }
+
+  @media only screen and(max-width: $tablet) {
+    column-gap: 1.2rem;
+  }
+}
