@@ -1,20 +1,28 @@
 @import "variables";
 
+
+:host{
+  flex-grow: 1;
+  display: flex;
+}
+
 .block {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
   gap: 2.5rem;
   width: 100%;
+  background-color: $color-white;
+  min-height: 60vh;
+  overflow: hidden;
 
   &__img {
     max-width: 90rem;
     width: 100%;
-    height: 50rem;
+    height: 40vh;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;

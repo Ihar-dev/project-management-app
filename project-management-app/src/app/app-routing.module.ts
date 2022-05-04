@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () => import('./boards/boards.module').then((m) => m.BoardsModule),
   },
   {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+  },
+  { path: '', redirectTo: 'main/welcome', pathMatch: 'full' },
+  {
     path: '**',
     component: NotFoundComponent,
   },

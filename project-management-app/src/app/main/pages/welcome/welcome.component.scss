@@ -1,0 +1,374 @@
+@import "mixins";
+@import "variables";
+
+%display-pattern {
+  opacity: 0;
+  transition: opacity 0.5s 1.5s;
+  z-index: 1000;
+}
+
+%normal-text-pattern {
+  font-weight: 500;
+  color: $font-white;
+  font-family: 'Poppins', sans-serif;
+}
+
+%opacity-pattern {
+  background-color: $theme-primary-transparent;
+  border-radius: 0.5vh;
+  padding: 0.5vh;
+}
+
+:host {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  flex-grow: 1;
+  background: $auth-purple-bg;
+}
+
+.welcome_main-img {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/png/welcome-main-img.png", 100%, 0);
+  left: 10%;
+  transform: scale(0);
+  transition: transform 0.5s cubic-bezier(0.2, 0.19, 0.58, 1.24);
+}
+
+.welcome_main-img.active {
+  transform: scale(1);
+}
+
+.welcome_arrows {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/welcome-arrows.svg", 89%, 0);
+  left: 105%;
+  transition: left 1s 0.5s;
+}
+
+.welcome_top-cube {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/welcome-top-cube.svg", 100%, 0);
+  top: -30%;
+  left: 47%;
+  transition: top 0.7s 0.3s;
+}
+
+.welcome_top-cube.active {
+  top: -10%;
+}
+
+.welcome_left-cube {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/welcome-left-cube.svg", 100%, 0);
+  left: -50%;
+  transition: left 0.7s 0.3s;
+}
+
+.welcome_left-bottom-cube {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/welcome-left-bottom-cube.svg", 100%, 0);
+  top: 120%;
+  transition: top 0.7s 0.3s;
+}
+
+.welcome_right-bottom-cube {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/svg/welcome-right-bottom-cube.svg", 100%, 0);
+  top: 120%;
+  transition: top 0.7s 0.3s;
+}
+
+.welcome_grid {
+  position: absolute;
+  @include background-image-block("../../../../assets/images/png/welcome-grid.png", 100%, 0);
+  opacity: 0;
+  transition: opacity 0.2s 1.5s;
+  z-index: 500;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+h1 {
+  position: absolute;
+  font-weight: 700;
+  color: $font-white;
+  font-family: 'Poppins', sans-serif;
+  @extend %display-pattern;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+p {
+  position: absolute;
+  text-align: right;
+  @extend %normal-text-pattern;
+  @extend %display-pattern;
+  @extend %opacity-pattern;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.welcome_team-container {
+  position: absolute;
+  @extend %flex-column-pattern;
+  @extend %display-pattern;
+
+  .welcome_team-img-container {
+    @extend %flex-column-pattern;
+  }
+
+  p {
+    position: relative;
+    text-align: center;
+    background-color: transparent;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  .welcome_team-inner-container {
+    position: relative;
+    @extend %flex-normal-pattern;
+
+    .team-img {
+      position: relative;;
+    }
+
+    .welcome_ihar-img {
+      @include background-image-block("../../../../assets/images/jpeg/ihar-img.jpg", 102%, 0);
+    }
+
+    .welcome_tetiana-img {
+      @include background-image-block("../../../../assets/images/jpeg/tetiana-img.jpg", 102%, 0);
+    }
+
+    .welcome_ilia-img {
+      @include background-image-block("../../../../assets/images/jpeg/ilia-img.jpg", 102%, 0);
+    }
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .welcome_main-img {
+    width: calc(80vh * 940 / 788);
+    height: 80vh;
+    top: 21%;
+  }
+
+  .welcome_arrows.active {
+    width: 30vh;
+    height: 20vh;
+    left: 58%;
+    top: 10%;
+  }
+
+  .welcome_top-cube.active {
+    width: 30vh;
+    height: 25vh;
+  }
+
+  .welcome_left-cube.active {
+    width: 43vh;
+    height: 37vh;
+    top: 22%;
+    left: -4%;
+  }
+
+  .welcome_left-bottom-cube.active {
+    width: 15vh;
+    height: 13vh;
+    top: 78%;
+    left: 8%;
+  }
+
+  .welcome_right-bottom-cube.active {
+    width: 63vh;
+    height: 53vh;
+    top: 58%;
+    right: -13%;
+  }
+
+  .welcome_grid.active {
+    width: 15vh;
+    height: 14vh;
+    top: 30%;
+    right: 65%;
+  }
+
+  h1 {
+    left: 20%;
+    top: 4%;
+    font-size: 6vh;
+    line-height: 7vh;
+  }
+
+  p {
+    right: 20%;
+    top: 62%;
+    font-size: 2.8vh;
+    line-height: 3.7vh;
+  }
+
+  .welcome_team-container {
+    width: 54vh;
+    height: 27vh;
+    top: 31%;
+    right: 14%;
+    row-gap: 3vh;
+
+    p {
+      top: auto;
+      right: auto;
+     }
+
+    .welcome_team-inner-container {
+      width: 54vh;
+      height: 17vh;
+
+      .team-img {
+        width: 17vh;
+        height: 17vh;
+        border-radius: 8.5vh;
+      }
+
+      .welcome_team-img-container {
+        width: 18vh;
+        height: 22vh;
+      }
+    }
+  }
+
+  .welcome_buttons-container {
+    width: 20vh;
+    height: 9vh;
+    row-gap: 2vh;
+    right: 4%;
+    top: 6%;
+  }
+}
+
+@media screen and (orientation: portrait) {
+
+  .welcome_main-img {
+    width: 80vw;
+    height: calc(80vw * 788 / 940);
+    top: 33%;
+  }
+
+  .welcome_arrows.active {
+    width: 30vw;
+    height: 20vw;
+    left: 67%;
+    top: 23%;
+  }
+
+  .welcome_top-cube.active {
+    width: 42vw;
+    height: 35vw;
+  }
+
+  .welcome_left-cube.active {
+    width: 38vw;
+    height: 32vw;
+    top: 34%;
+    left: -9%;
+  }
+
+  .welcome_left-bottom-cube.active {
+    width: 15vw;
+    height: 13vw;
+    top: 67%;
+    left: 4%;
+  }
+
+  .welcome_right-bottom-cube.active {
+    width: 50vw;
+    height: 42vw;
+    top: 76%;
+    right: -16%;
+  }
+
+  .welcome_grid.active {
+    width: 17vw;
+    height: 17vw;
+    top: 34%;
+    right: 51%;
+  }
+
+  h1 {
+    left: 10%;
+    top: 11%;
+    font-size: 6vw;
+    line-height: 7vw;
+  }
+
+  p {
+    right: 3%;
+    top: 41%;
+    font-size: 3vw;
+    line-height: 4vw;
+  }
+
+  .welcome_team-container {
+    width: 47vw;
+    height: 27vw;
+    top: 77%;
+    right: 49%;
+    row-gap: 3vw;
+
+    p {
+     top: auto;
+     right: auto;
+    }
+
+    .welcome_team-inner-container {
+      width: 48vw;
+      height: 14vw;
+
+      .team-img {
+        width: 14vw;
+        height: 14vw;
+        border-radius: 7vw;
+      }
+
+      .welcome_team-img-container {
+        width: 15vw;
+        height: 20vw;
+      }
+    }
+  }
+
+  .welcome_buttons-container {
+    flex-direction: column;
+    width: 10vw;
+    height: 20vw;
+    row-gap: 2vw;
+    right: 4%;
+    top: 6%;
+  }
+}
+
+.welcome_buttons-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @extend %display-pattern;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.welcome_button {
+  @include btn-shadow-style;
+}

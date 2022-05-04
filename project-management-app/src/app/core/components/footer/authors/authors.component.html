@@ -1,0 +1,5 @@
+<ul class="author-list">
+  <li class="author-list__item" *ngFor="let author of authorList">
+    <a [href]="author.link" class="author-list__link" target="_blank">{{ author.name }}</a>
+  </li>
+</ul>
