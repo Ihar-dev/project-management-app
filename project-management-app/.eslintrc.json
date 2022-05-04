@@ -1,12 +1,20 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
-      "plugins": ["import"],
+      "files": [
+        "*.ts"
+      ],
+      "plugins": [
+        "import"
+      ],
       "parserOptions": {
-        "project": ["./tsconfig.json"],
+        "project": [
+          "./tsconfig.json"
+        ],
         "createDefaultProgram": true
       },
       "extends": [
@@ -38,16 +46,32 @@
         "class-methods-use-this": "off",
         "no-console": "off",
         "linebreak-style": "off",
-        "@typescript-eslint/lines-between-class-members": ["off"],
+        "@typescript-eslint/lines-between-class-members": [
+          "off"
+        ],
         "arrow-parens": "off",
         "no-plusplus": "off",
-        "spaced-comment": ["off"]
+        "spaced-comment": [
+          "off"
+        ]
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:ngrx/recommended"
+      ]
     }
   ]
 }

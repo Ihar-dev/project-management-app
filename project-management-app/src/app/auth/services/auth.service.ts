@@ -30,7 +30,7 @@ export class AuthService {
     this.http.post<UserDataResponce>(this.signUpUrl, JSON.stringify(data)).subscribe((res) => {
       this.lsService.setItem(USER_DATA_KEY, new User(res));
       this.messageService.showMessage(MessagesDefault.signedUp);
-      this.navigate('auth', 'signin');
+      this.navigate('auth', 'login');
     });
   }
 
