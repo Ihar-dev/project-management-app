@@ -22,7 +22,7 @@
     font-size: 2rem;
     line-height: 2.2rem;
     color: $font-white;
-    width: 100%;
+    width: 85%;
 
     &__icon {
       margin-right: 10px;
@@ -39,8 +39,16 @@
   &__content {
     padding: 0 0.8rem;
     height: 100%;
-    max-height: calc(100vh - 416px);
+    max-height: calc(100vh - 395px);
     overflow-y: auto;
+
+    @media screen and (max-width: $tablet) {
+      max-height: calc(100vh - 361px);
+    }
+
+    @media screen and (max-width: $mobile) {
+      max-height: calc(100vh - 424px);
+    }
 
     &::-webkit-scrollbar-button {
       display: none;
@@ -63,5 +71,37 @@
     color: $font-black;
     background-color: $theme-accent;
     border-radius: $border-radius;
+  }
+}
+
+.edit {
+  display: flex;
+  justify-content: space-between;
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__btn {
+    line-height: 15px;
+    color: $theme-accent;
+    background-color: transparent;
+    border: none;
+    transition: text-decoration 0.5s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0 14px;
+    font-size: 2rem;
+    color: $font-white;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: $border-radius;
+    border: none;
   }
 }

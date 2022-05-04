@@ -7,9 +7,16 @@
       </h3>
       <div class="column__title--edit" *ngIf="editMode">
 
-        <button (click)="onCancelEditing()" appClickStopPropagation>Cancel</button>
-        <button (click)="onSubmitEditing(inputTitle.value)" appClickStopPropagation>Submit</button>
-        <input matInput #inputTitle type="text" [value]="column?.title || title">
+        <div class="edit">
+          <div class="edit__actions">
+            <button class="edit__btn" (click)="onCancelEditing()" appClickStopPropagation>Cancel</button>
+            <button class="edit__btn" (click)="onSubmitEditing(inputTitle.value)"
+              appClickStopPropagation>Submit</button>
+          </div>
+
+          <input class="edit__input" #inputTitle type="text" [value]="column?.title || title" autofocus>
+        </div>
+
       </div>
     </div>
     <app-button-board-delete title="Delete column" appClickStopPropagation></app-button-board-delete>

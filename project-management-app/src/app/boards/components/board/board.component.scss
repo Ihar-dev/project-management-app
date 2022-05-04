@@ -56,14 +56,14 @@
       grid-auto-flow: column;
       grid-gap: 15px;
       overflow-y: hidden;
-      overflow-x: auto;
+      overflow-x: scroll;
 
       @media screen and (max-width: $tablet) {
         grid-auto-columns: 280px;
       }
 
       @media screen and (max-width: $mobile) {
-        grid-auto-columns: 256px;
+        grid-auto-columns: 271px;
       }
 
       &::-webkit-scrollbar {
