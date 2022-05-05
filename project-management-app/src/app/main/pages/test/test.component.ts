@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map, Observable, of } from 'rxjs';
-import { Board } from 'src/app/shared/models/board.model';
+import { IBoard } from 'src/app/shared/models/board.model';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
@@ -16,9 +16,9 @@ export class TestComponent implements OnInit {
 
   columnTitle = '';
 
-  renameTitle = '';
+  newBoardTitle = '';
 
-  boards$: Observable<Board[]> = of([]);
+  boards$: Observable<IBoard[]> = of([]);
 
   constructor(private store: Store) {}
 
@@ -49,18 +49,28 @@ export class TestComponent implements OnInit {
   }
 
   renameBoard(id: string) {
-    this.store.dispatch(BoardActions.putBoard({ id, board: { title: this.renameTitle } }));
+    this.store.dispatch(BoardActions.putBoard({ id, board: { title: this.newBoardTitle } }));
   }
 
   get checkBoardsLength(): Observable<boolean> {
     return this.boards$.pipe(map((array) => array.length > 0));
   }
 
-  addColumn(id: string): void {
+  addColumn(boardID: string, columnsLength: number = 0): void {
+    const order = columnsLength + 1;
     this.store.dispatch(
       ColumnActions.addColumn({
-        id,
-        column: { title: this.boardTitle },
+        boardID,
+        column: { title: this.columnTitle, order },
+      }),
+    );
+  }
+
+  deleteColumn(boardID: string, columnID: string): void {
+    this.store.dispatch(
+      ColumnActions.deleteColumn({
+        boardID,
+        columnID,
       }),
     );
   }

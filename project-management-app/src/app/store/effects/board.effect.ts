@@ -1,9 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { BoardDbService } from 'src/app/shared/services/board-db.service';
+import { EffectsHandlerService } from 'src/app/shared/services/effects-handler.service';
 import { BoardActions } from '../actions/board.action';
+
+enum Operation {
+  GetBoards = 'Get boards',
+  AddBoard = 'Add board',
+  DeleteBoard = 'Delete board',
+  GetBoardByID = 'Get board by id',
+  PutBoard = 'Update board',
+}
 
 @Injectable()
 export class BoardEffects {
@@ -13,7 +21,7 @@ export class BoardEffects {
       mergeMap(() =>
         this.dbService.getBoards().pipe(
           map((boards) => BoardActions.getBoardsSuccess({ boards })),
-          catchError(() => EMPTY),
+          catchError(this.handler.handleError(Operation.GetBoards)),
         ),
       ),
     ),
@@ -25,7 +33,7 @@ export class BoardEffects {
       mergeMap((action) =>
         this.dbService.addBoard(action.board).pipe(
           map((board) => BoardActions.addBoardSuccess({ board })),
-          catchError(() => EMPTY),
+          catchError(this.handler.handleError(Operation.AddBoard)),
         ),
       ),
     ),
@@ -35,9 +43,10 @@ export class BoardEffects {
     this.actions$.pipe(
       ofType(BoardActions.deleteBoard),
       mergeMap((action) =>
-        this.dbService
-          .deleteBoard(action.id)
-          .pipe(map(() => BoardActions.deleteBoardSuccess({ id: action.id }))),
+        this.dbService.deleteBoard(action.id).pipe(
+          map(() => BoardActions.deleteBoardSuccess({ ...action })),
+          catchError(this.handler.handleError(Operation.DeleteBoard)),
+        ),
       ),
     ),
   );
@@ -46,9 +55,10 @@ export class BoardEffects {
     this.actions$.pipe(
       ofType(BoardActions.getBoardsById),
       mergeMap((action) =>
-        this.dbService
-          .getBoardByID(action.id)
-          .pipe(map((board) => BoardActions.getBoardsByIdSuccess({ board }))),
+        this.dbService.getBoardByID(action.id).pipe(
+          map((board) => BoardActions.getBoardsByIdSuccess({ board })),
+          catchError(this.handler.handleError(Operation.GetBoardByID)),
+        ),
       ),
     ),
   );
@@ -57,12 +67,17 @@ export class BoardEffects {
     this.actions$.pipe(
       ofType(BoardActions.putBoard),
       mergeMap((action) =>
-        this.dbService
-          .renameBoard(action.id, action.board)
-          .pipe(map((board) => BoardActions.putBoardSuccess({ board }))),
+        this.dbService.renameBoard(action.id, action.board).pipe(
+          map((board) => BoardActions.putBoardSuccess({ board })),
+          catchError(this.handler.handleError(Operation.PutBoard)),
+        ),
       ),
     ),
   );
 
-  constructor(private actions$: Actions, private dbService: BoardDbService) {}
+  constructor(
+    private actions$: Actions,
+    private dbService: BoardDbService,
+    private handler: EffectsHandlerService,
+  ) {}
 }

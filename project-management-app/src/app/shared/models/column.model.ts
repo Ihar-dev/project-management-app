@@ -1,6 +1,8 @@
-export interface Column {
-  id?: string;
+import { ITask } from './task.model';
+
+export interface IColumn {
+  id: string;
   title: string;
-  order?: number;
-  tasks?: [];
+  order: number;
+  tasks: ITask[];
 }

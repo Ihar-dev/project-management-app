@@ -1,8 +1,7 @@
-import { Column } from './column.model';
+import { IColumn } from './column.model';
 
-export interface Board {
-  id?: string;
+export interface IBoard {
+  id: string;
   title: string;
-  description?: string;
-  columns?: Column[];
+  columns?: IColumn[];
 }

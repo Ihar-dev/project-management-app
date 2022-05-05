@@ -1,9 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { Board } from 'src/app/shared/models/board.model';
+import { IBoard } from 'src/app/shared/models/board.model';
 import { BoardActions } from '../actions/board.action';
+import { ColumnActions } from '../actions/column.action';
 
 export interface State {
-  boards: Board[];
+  boards: IBoard[];
 }
 
 const initialState: State = {
@@ -36,8 +37,10 @@ const boardReducer = createReducer(
 
   on(BoardActions.getBoardsByIdSuccess, (state, { board }): State => {
     const newBoards = state.boards.slice();
-    const idx = newBoards.findIndex((oldBoard: Board) => oldBoard.id === board.id);
-    newBoards.splice(idx, 1, board);
+    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === board.id);
+    if (idx !== -1) {
+      newBoards.splice(idx, 1, board);
+    }
     return {
       ...state,
       boards: newBoards,
@@ -46,12 +49,45 @@ const boardReducer = createReducer(
 
   on(BoardActions.putBoardSuccess, (state, { board }): State => {
     const newBoards = state.boards.slice();
-    const idx = newBoards.findIndex((oldBoard: Board) => oldBoard.id === board.id);
-    newBoards[idx] = {
-      ...newBoards[idx],
-      title: board.title,
-    };
+    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === board.id);
+    if (idx !== -1) {
+      newBoards[idx] = {
+        ...newBoards[idx],
+        title: board.title,
+      };
+    }
+
     return { ...state, boards: newBoards };
+  }),
+
+  on(ColumnActions.addColumnSuccess, (state, { boardID, column }): State => {
+    const newBoards = state.boards.slice();
+    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === boardID);
+    if (idx !== -1) {
+      newBoards[idx] = {
+        ...newBoards[idx],
+        columns: newBoards[idx].columns?.concat(column),
+      };
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(ColumnActions.deleteColumnSuccess, (state, { boardID, columnID }): State => {
+    const newBoards = state.boards.slice();
+    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === boardID);
+    if (idx !== -1) {
+      newBoards[idx] = {
+        ...newBoards[idx],
+        columns: newBoards[idx].columns?.filter((column) => column.id !== columnID),
+      };
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
   }),
 );
 

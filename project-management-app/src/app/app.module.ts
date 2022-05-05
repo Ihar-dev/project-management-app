@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './interceptors';
 import * as boardReducer from './store/reducers/board.reducer';
 import { BoardEffects } from './store/effects/board.effect';
+import { ColumnEffects } from './store/effects/column.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,7 @@ import { BoardEffects } from './store/effects/board.effect';
     HttpClientModule,
     CoreModule,
     StoreModule.forRoot({ board: boardReducer.reducer }, {}),
-    EffectsModule.forRoot([BoardEffects]),
+    EffectsModule.forRoot([BoardEffects, ColumnEffects]),
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
