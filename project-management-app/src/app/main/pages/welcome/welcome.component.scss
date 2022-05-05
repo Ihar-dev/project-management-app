@@ -326,7 +326,7 @@ p {
 
     .welcome_team-inner-container {
       width: 48vw;
-      height: 14vw;
+      height: 19vw;
 
       .team-img {
         width: 14vw;
@@ -336,7 +336,7 @@ p {
 
       .welcome_team-img-container {
         width: 15vw;
-        height: 20vw;
+        height: 23vw;
       }
     }
   }
@@ -365,4 +365,16 @@ p {
 
 .welcome_button {
   @include btn-shadow-style;
+}
+
+@media only screen and (max-width: $mobile) {
+  p {
+    font-size: 2rem;
+    line-height: 2.6rem;
+  }
+
+  h1 {
+    font-size: 3.2rem;
+    line-height: 3.7rem;
+  }
 }
