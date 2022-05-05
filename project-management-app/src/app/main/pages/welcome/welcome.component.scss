@@ -7,12 +7,6 @@
   z-index: 1000;
 }
 
-%normal-text-pattern {
-  font-weight: 500;
-  color: $font-white;
-  font-family: 'Poppins', sans-serif;
-}
-
 %opacity-pattern {
   background-color: $theme-primary-transparent;
   border-radius: 0.5vh;
@@ -25,7 +19,7 @@
   overflow: hidden;
   width: 100%;
   flex-grow: 1;
-  background: $auth-purple-bg;
+  background: $purple-bg;
 }
 
 .welcome_main-img {

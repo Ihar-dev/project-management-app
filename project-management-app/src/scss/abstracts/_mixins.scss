@@ -1,9 +1,17 @@
+@import "variables";
+
 @mixin background-image-block($url, $per, $rad) {
   background-image: url($url);
   background-size: $per;
   border-radius: $rad;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+%normal-text-pattern {
+  font-weight: 500;
+  color: $font-white;
+  font-family: 'Poppins', sans-serif;
 }
 
 %flex-column-pattern {
