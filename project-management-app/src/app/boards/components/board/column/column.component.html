@@ -1,26 +1,29 @@
 <div class="column">
-  <div class="column__header" (click)="onClickTitle()" appClickStopPropagation>
-    <div class="column__title">
-      <h3 class="column__title--no-edit" *ngIf="!editMode">
-        <mat-icon class="column__title__icon">flare</mat-icon>
-        <span class="column__title__text">{{column?.title || title}}</span>
-      </h3>
-      <div class="column__title--edit" *ngIf="editMode">
-        <div class="edit">
-          <div class="edit__actions">
-            <button class="edit__btn" (click)="onCancelEditing()" appClickStopPropagation>Cancel</button>
-            <button class="edit__btn" (click)="onSubmitEditing(inputTitle.value)"
-              appClickStopPropagation>Submit</button>
+  <div class="column__scrollable">
+    <div class="column__header" (click)="onClickTitle()" appClickStopPropagation>
+      <div class="column__title">
+        <h3 class="column__title--no-edit" *ngIf="!editMode">
+          <mat-icon class="column__title__icon">flare</mat-icon>
+          <span class="column__title__text">{{column?.title || title}}</span>
+        </h3>
+        <div class="column__title--edit" *ngIf="editMode">
+          <div class="edit">
+            <div class="edit__actions">
+              <button class="edit__btn" (click)="onCancelEditing()" appClickStopPropagation>Cancel</button>
+              <button class="edit__btn" (click)="onSubmitEditing(inputTitle.value)"
+                appClickStopPropagation>Submit</button>
+            </div>
+            <input class="edit__input" #inputTitle type="text" [value]="column?.title || title" autofocus>
           </div>
-          <input class="edit__input" #inputTitle type="text" [value]="column?.title || title" autofocus>
         </div>
       </div>
+      <app-button-board-delete title="Delete column" appClickStopPropagation></app-button-board-delete>
     </div>
-    <app-button-board-delete title="Delete column" appClickStopPropagation></app-button-board-delete>
-  </div>
 
-  <div class="column__content">
-    <app-task *ngFor="let task of column?.tasks" [task]="task"></app-task>
+    <div class="column__content">
+      <app-task *ngFor="let task of column?.tasks" [task]="task"></app-task>
+    </div>
   </div>
   <app-button-board-create text="Add task"></app-button-board-create>
+
 </div>

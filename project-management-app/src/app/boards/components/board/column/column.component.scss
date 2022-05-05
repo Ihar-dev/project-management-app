@@ -16,29 +16,45 @@
 .column {
   width: 100%;
   position: relative;
-  border-radius: 20px;
-  padding: 15px 10px;
-  margin-right: 20px;
-  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: $border-radius;
+  padding: 1.5rem 1rem;
+  margin-right: 2rem;
+  background-color: $board-column-bg;
+
+  &__scrollable {
+    @include scrollbar(8px);
+
+    margin-bottom: 1rem;
+    max-height: calc(100vh - 350px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    @media screen and (max-width: $tablet) {
+      max-height: calc(100vh - 307px);
+    }
+
+    @media screen and (max-width: $mobile) {
+      max-height: calc(100vh - 362px);
+    }
+  }
 
   &__header {
     @extend %flex-normal-pattern;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+
+    padding-bottom: 1rem;
+    margin: 0 1rem 2rem;
     border-bottom: 1px solid $font-white;
     cursor: pointer;
   }
 
   &__title {
+    width: 85%;
     font-size: 2rem;
     line-height: 2.2rem;
     color: $font-white;
-    width: 85%;
-    overflow: hidden;
-    white-space: nowrap;
 
     &__icon {
-      margin-right: 10px;
+      margin-right: 1rem;
     }
 
     &--no-edit {
@@ -49,40 +65,14 @@
     }
 
     &__text {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
+      word-break: break-word;
     }
   }
 
   &__content {
     padding: 0 0.8rem;
     height: 100%;
-    max-height: calc(100vh - 395px);
     overflow-y: auto;
-
-    @media screen and (max-width: $tablet) {
-      max-height: calc(100vh - 361px);
-    }
-
-    @media screen and (max-width: $mobile) {
-      max-height: calc(100vh - 424px);
-    }
-
-    &::-webkit-scrollbar-button {
-      display: none;
-    }
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      background-color: rgba(0, 0, 0, 0.1);
-      border-radius: $border-radius;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: $border-radius;
-    }
   }
 
   &__btn--add-task {
@@ -107,11 +97,12 @@
   }
 
   &__btn {
+    font-size: 14px;
     line-height: 15px;
     color: $theme-accent;
     background-color: transparent;
     border: none;
-    transition: text-decoration 0.5s;
+    transition: all 0.5s;
 
     &:hover {
       text-decoration: underline;
@@ -120,10 +111,10 @@
 
   &__input {
     width: 100%;
-    padding: 0 14px;
+    padding: 0 1.4rem;
     font-size: 2rem;
     color: $font-white;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: $board-column-title-input;
     border-radius: $border-radius;
     border: none;
     opacity: 0;
