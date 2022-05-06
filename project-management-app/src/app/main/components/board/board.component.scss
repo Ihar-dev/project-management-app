@@ -14,4 +14,13 @@
   text-align: center;
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover, &:focus {
+    border-color: #ffd740;
+    color: #ffd740;
+    box-shadow: 0 0.8rem 0.8rem -0.4rem rgba(255, 215, 64, 0.5);
+    transform: translateY(-0.6rem);
+  }
 }
