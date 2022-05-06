@@ -42,15 +42,15 @@ export class TestComponent implements OnInit {
     this.store.dispatch(BoardActions.getBoards());
   }
 
-  deleteBoard(id: string) {
+  deleteBoard(id: string): void  {
     this.store.dispatch(BoardActions.deleteBoard({ id }));
   }
 
-  getBoardById(id: string) {
+  getBoardById(id: string): void  {
     this.store.dispatch(BoardActions.getBoardsById({ id }));
   }
 
-  renameBoard(id: string) {
+  renameBoard(id: string): void  {
     this.store.dispatch(BoardActions.putBoard({ id, board: { title: this.newBoardTitle } }));
   }
 
@@ -81,10 +81,7 @@ export class TestComponent implements OnInit {
   }
 
   findLastOrder(array: IColumn[] | ITask[] | undefined): number {
-    if(!array) {
-      return 1;
-    }
-    if(!array.length) {
+    if(!array || !array.length) {
       return 1;
     }
     return array[array.length - 1].order + 1 || 1
