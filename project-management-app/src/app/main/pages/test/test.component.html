@@ -10,7 +10,7 @@
       <button mat-stroked-button (click)="getBoardById(board.id)">get full info</button>
       <hr />
       <input type="text" placeholder="columns Title" [(ngModel)]="columnTitle" />
-      <button mat-stroked-button (click)="addColumn(board.id, board.columns?.length)">
+      <button mat-stroked-button (click)="addColumn(board.id, {title: columnTitle, order: findLastOrder(board.columns)})">
         create column
       </button>
       <p>Columns</p>
@@ -23,7 +23,7 @@
             <button mat-button color="warn" (click)="deleteColumn(board.id, column.id)">
               delete
             </button>
-            <button mat-button color="accent">rename</button>
+            <button mat-button color="accent" (click)="renameColumn(board.id, {id:column.id, title: columnTitle, order: column.order})">rename</button>
           </li>
         </ul>
       </ng-container>

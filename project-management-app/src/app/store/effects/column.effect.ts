@@ -6,8 +6,9 @@ import { EffectsHandlerService } from 'src/app/shared/services/effects-handler.s
 import { ColumnActions } from '../actions/column.action';
 
 enum Operation {
-  AddBoard = 'Add column',
-  DeleteBoard = 'Delete column',
+  AddColumn = 'Add column',
+  DeleteColumn = 'Delete column',
+  PutColumn = 'Put column'
 }
 
 @Injectable()
@@ -17,10 +18,10 @@ export class ColumnEffects {
       ofType(ColumnActions.addColumn),
       mergeMap((action) =>
         this.dbService.addColumn(action.boardID, action.column).pipe(
-          mergeMap(async (column) =>
+          map((column) =>
             ColumnActions.addColumnSuccess({ boardID: action.boardID, column }),
           ),
-          catchError(this.handler.handleError(Operation.AddBoard)),
+          catchError(this.handler.handleError(Operation.AddColumn)),
         ),
       ),
     ),
@@ -32,11 +33,21 @@ export class ColumnEffects {
       mergeMap((action) =>
         this.dbService.deleteColumn(action.boardID, action.columnID).pipe(
           map(() => ColumnActions.deleteColumnSuccess({ ...action })),
-          catchError(this.handler.handleError(Operation.AddBoard)),
+          catchError(this.handler.handleError(Operation.DeleteColumn)),
         ),
       ),
     ),
   );
+
+  putBoard$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(ColumnActions.putColumn),
+    mergeMap((action) => this.dbService.renameColumn(action.boardID, {...action.column}).pipe(
+      map((column) => ColumnActions.putColumnSuccess({boardID: action.boardID, column})),
+      catchError(this.handler.handleError(Operation.DeleteColumn))
+    )
+    ))
+  )
 
   constructor(
     private actions$: Actions,

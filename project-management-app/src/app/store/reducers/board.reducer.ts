@@ -11,6 +11,14 @@ const initialState: State = {
   boards: [],
 };
 
+function copyThat<T>(array: T[]): T[] {
+  return array.slice()
+};
+
+function findIndexByID(boards: IBoard[], boardID: string): number {
+  return boards.findIndex((board: IBoard) => board.id === boardID);
+}
+
 const boardReducer = createReducer(
   initialState,
   on(
@@ -36,8 +44,8 @@ const boardReducer = createReducer(
   ),
 
   on(BoardActions.getBoardsByIdSuccess, (state, { board }): State => {
-    const newBoards = state.boards.slice();
-    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === board.id);
+    const newBoards = copyThat(state.boards);
+    const idx = findIndexByID(newBoards, board.id);
     if (idx !== -1) {
       newBoards.splice(idx, 1, board);
     }
@@ -48,8 +56,8 @@ const boardReducer = createReducer(
   }),
 
   on(BoardActions.putBoardSuccess, (state, { board }): State => {
-    const newBoards = state.boards.slice();
-    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === board.id);
+    const newBoards = copyThat(state.boards);
+    const idx = findIndexByID(newBoards, board.id);
     if (idx !== -1) {
       newBoards[idx] = {
         ...newBoards[idx],
@@ -61,8 +69,8 @@ const boardReducer = createReducer(
   }),
 
   on(ColumnActions.addColumnSuccess, (state, { boardID, column }): State => {
-    const newBoards = state.boards.slice();
-    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === boardID);
+    const newBoards = copyThat(state.boards);
+    const idx = findIndexByID(newBoards, boardID);
     if (idx !== -1) {
       newBoards[idx] = {
         ...newBoards[idx],
@@ -76,8 +84,8 @@ const boardReducer = createReducer(
   }),
 
   on(ColumnActions.deleteColumnSuccess, (state, { boardID, columnID }): State => {
-    const newBoards = state.boards.slice();
-    const idx = newBoards.findIndex((oldBoard: IBoard) => oldBoard.id === boardID);
+    const newBoards = copyThat(state.boards);
+    const idx = findIndexByID(newBoards, boardID);
     if (idx !== -1) {
       newBoards[idx] = {
         ...newBoards[idx],
@@ -94,3 +102,4 @@ const boardReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return boardReducer(state, action);
 }
+

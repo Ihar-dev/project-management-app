@@ -6,6 +6,8 @@ enum ColumnAction {
   AddColumnSuccess = '[column] ADD_COLUMN_SUCCESS',
   DeleteColumn = '[column] DELETE_COLUMN',
   DeleteColumnSuccess = '[column] DELETE_COLUMN_SUCCESS',
+  PutColumn = '[column] PUT_COLUMN',
+  PutColumnSuccess = '[column] PUT_COLUMN_SUCCESS',
 }
 
 export namespace ColumnActions {
@@ -26,4 +28,13 @@ export namespace ColumnActions {
     ColumnAction.DeleteColumnSuccess,
     props<{ boardID: string; columnID: string }>(),
   );
+
+  export const putColumn = createAction(
+    ColumnAction.PutColumn,
+    props<{ boardID: string, column: Partial<IColumn>}>(),
+  )
+  export const putColumnSuccess = createAction(
+    ColumnAction.PutColumnSuccess,
+    props<{ boardID: string, column: IColumn}>(),
+  )
 }

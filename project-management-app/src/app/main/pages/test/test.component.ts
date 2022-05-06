@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { IBoard } from 'src/app/shared/models/board.model';
+import { IColumn } from 'src/app/shared/models/column.model';
+import { ITask } from 'src/app/shared/models/task.model';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
@@ -52,16 +54,12 @@ export class TestComponent implements OnInit {
     this.store.dispatch(BoardActions.putBoard({ id, board: { title: this.newBoardTitle } }));
   }
 
-  get checkBoardsLength(): Observable<boolean> {
-    return this.boards$.pipe(map((array) => array.length > 0));
-  }
 
-  addColumn(boardID: string, columnsLength: number = 0): void {
-    const order = columnsLength + 1;
+  addColumn(boardID: string, column:Partial<IColumn>): void {
     this.store.dispatch(
       ColumnActions.addColumn({
         boardID,
-        column: { title: this.columnTitle, order },
+        column,
       }),
     );
   }
@@ -73,5 +71,22 @@ export class TestComponent implements OnInit {
         columnID,
       }),
     );
+  }
+
+  renameColumn(boardID: string, column: Partial<IColumn>): void {
+    this.store.dispatch(ColumnActions.putColumn({
+      boardID,
+      column
+    }))
+  }
+
+  findLastOrder(array: IColumn[] | ITask[] | undefined): number {
+    if(!array) {
+      return 1;
+    }
+    if(!array.length) {
+      return 1;
+    }
+    return array[array.length - 1].order + 1 || 1
   }
 }
