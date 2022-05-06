@@ -1,7 +1,7 @@
 <p (click)="boardRout($event)">
-  <mat-icon> business</mat-icon>
+  <mat-icon (click)="boardRout($event)"> business</mat-icon>
   &nbsp;{{ board?.title }}
 </p>
-<button mat-fab color="primary" class="board__delete-button">
+<button (click)="openDialog()" mat-fab color="primary" class="board__delete-button">
   <mat-icon>delete_forever</mat-icon>
 </button>

@@ -26,6 +26,6 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     DialogConfirmationComponent,
   ],
   imports: [SharedModule, CoreRoutingModule],
-  exports: [HeaderComponent, MessageBoxComponent, LoaderComponent, FooterComponent, DialogConfirmationComponent],
+  exports: [HeaderComponent, MessageBoxComponent, LoaderComponent, FooterComponent],
 })
 export class CoreModule {}
