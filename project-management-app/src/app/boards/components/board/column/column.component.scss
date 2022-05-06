@@ -25,16 +25,16 @@
     @include scrollbar(8px);
 
     margin-bottom: 1rem;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 338px);
     overflow-y: auto;
     overflow-x: hidden;
 
     @media screen and (max-width: $tablet) {
-      max-height: calc(100vh - 307px);
+      max-height: calc(100vh - 282px);
     }
 
     @media screen and (max-width: $mobile) {
-      max-height: calc(100vh - 362px);
+      max-height: calc(100vh - 338px);
     }
   }
 

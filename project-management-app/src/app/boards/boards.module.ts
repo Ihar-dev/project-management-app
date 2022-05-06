@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MaterialModule } from '../shared/material.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { BoardsRoutingModule } from './boards-routing.module';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
@@ -24,6 +24,6 @@ import { TaskMemberComponent } from './components/board/column/task/task-member/
     ButtonBoardCreateComponent,
     TaskMemberComponent,
   ],
-  imports: [CommonModule, BoardsRoutingModule, MaterialModule, MatSlideToggleModule],
+  imports: [CommonModule, BoardsRoutingModule, MaterialModule, SharedModule],
 })
 export class BoardsModule {}
