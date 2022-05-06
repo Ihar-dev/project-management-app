@@ -46,6 +46,26 @@ const MOCK_BOARDS: BoardsModel = [
     "id": "64578db4-bacc-4f91-b70a-53ba3d28ba52",
     "title": "My Super Important Board#10"
   },
+  {
+    "id": "64578db4-bacc-4f91-b70a-53ba3d28ba52",
+    "title": "My Super Important Board#11"
+  },
+  {
+    "id": "64578db4-bacc-4f91-b70a-53ba3d28ba52",
+    "title": "My Super Important Board#12"
+  },
+  {
+    "id": "64578db4-bacc-4f91-b70a-53ba3d28ba52",
+    "title": "My Super Important Board#13"
+  },
+  {
+    "id": "64578db4-bacc-4f91-b70a-53ba3d28ba52",
+    "title": "My Super Important Board#14"
+  },
+  {
+    "id": "64578db4-bacc-4f91-b70a-53ba3d28ba52",
+    "title": "My Super Important Board#15"
+  },
 ];
 
 export {
