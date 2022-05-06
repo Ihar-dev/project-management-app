@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { BoardsModel, MOCK_BOARDS } from '../../models/mock-boards.model';
+import { BoardsModel, BoardModel, MOCK_BOARDS } from '../../models/mock-boards.model';
 
 @Component({
   selector: 'app-main',
@@ -10,7 +11,13 @@ import { BoardsModel, MOCK_BOARDS } from '../../models/mock-boards.model';
 export class MainComponent implements OnInit {
   public boards: BoardsModel = MOCK_BOARDS;
 
+  constructor(private readonly router: Router) {}
+
   ngOnInit(): void {
+  }
+
+  public boardRout(event: Event, board: BoardModel): void {
+    if (event.target === event.currentTarget) this.router.navigate([`/board/${board.id}`]);
   }
 
 }

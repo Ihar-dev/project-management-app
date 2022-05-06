@@ -2,9 +2,10 @@
 @import "variables";
 
 :host {
+  position: relative;
   @extend %flex-centre-pattern;
   width: 100%;
-  padding: 6rem;
+  padding: 7rem;
   border-radius: 1rem;
   @extend %normal-text-pattern;
   font-size: 4rem;
@@ -13,12 +14,19 @@
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: margin-top 0.3s, margin-bottom 0.3s, box-shadow 0.3s;
 
   &:hover, &:focus {
-    border-color: #ffd740;
+    border: solid 1px #ffd740;
     color: #ffd740;
     box-shadow: 0 0.8rem 0.8rem -0.4rem rgba(255, 215, 64, 0.5);
-    transform: translateY(-0.6rem);
+    margin-top: -0.6rem;
+    margin-bottom: 0.6rem;
   }
+}
+
+.board__delete-button {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
