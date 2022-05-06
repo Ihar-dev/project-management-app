@@ -10,13 +10,13 @@
 
 @media screen and (orientation: landscape) {
   .main__container {
-    background-image: url("../../../../assets/images/jpeg/board-back-landscape.jpg");
+    background: url("../../../../assets/images/png/board-back-landscape.png"), linear-gradient(318deg, $theme-primary 21%, $theme-primary-transparent 100%);
   }
 }
 
 @media screen and (orientation: portrait) {
   .main__container {
-    background-image: url("../../../../assets/images/jpeg/board-back-portrait.jpg");
+    background: url("../../../../assets/images/png/board-back-portrait.png"), linear-gradient(318deg, $theme-primary 21%, $theme-primary-transparent 100%);
   }
 }
 
