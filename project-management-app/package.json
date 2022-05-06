@@ -25,6 +25,7 @@
     "@angular/router": "~13.3.0",
     "@ngrx/effects": "^13.2.0",
     "@ngrx/store": "^13.2.0",
+    "@ngrx/store-devtools": "^13.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "rxjs": "~7.5.0",
