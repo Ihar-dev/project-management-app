@@ -10,7 +10,7 @@
 %normal-text-pattern {
   font-weight: 500;
   color: $font-white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 %opacity-pattern {
@@ -25,7 +25,7 @@
   overflow: hidden;
   width: 100%;
   flex-grow: 1;
-  background: $auth-purple-bg;
+  background: $purple-bg;
 }
 
 .welcome_main-img {
@@ -68,14 +68,22 @@
 
 .welcome_left-bottom-cube {
   position: absolute;
-  @include background-image-block("../../../../assets/images/svg/welcome-left-bottom-cube.svg", 100%, 0);
+  @include background-image-block(
+    "../../../../assets/images/svg/welcome-left-bottom-cube.svg",
+    100%,
+    0
+  );
   top: 120%;
   transition: top 0.7s 0.3s;
 }
 
 .welcome_right-bottom-cube {
   position: absolute;
-  @include background-image-block("../../../../assets/images/svg/welcome-right-bottom-cube.svg", 100%, 0);
+  @include background-image-block(
+    "../../../../assets/images/svg/welcome-right-bottom-cube.svg",
+    100%,
+    0
+  );
   top: 120%;
   transition: top 0.7s 0.3s;
 }
@@ -96,7 +104,7 @@ h1 {
   position: absolute;
   font-weight: 700;
   color: $font-white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   @extend %display-pattern;
 
   &.active {
@@ -140,7 +148,7 @@ p {
     @extend %flex-normal-pattern;
 
     .team-img {
-      position: relative;;
+      position: relative;
     }
 
     .welcome_ihar-img {
@@ -228,7 +236,7 @@ p {
     p {
       top: auto;
       right: auto;
-     }
+    }
 
     .welcome_team-inner-container {
       width: 54vh;
@@ -257,7 +265,6 @@ p {
 }
 
 @media screen and (orientation: portrait) {
-
   .welcome_main-img {
     width: 80vw;
     height: calc(80vw * 788 / 940);
@@ -326,8 +333,8 @@ p {
     row-gap: 3vw;
 
     p {
-     top: auto;
-     right: auto;
+      top: auto;
+      right: auto;
     }
 
     .welcome_team-inner-container {

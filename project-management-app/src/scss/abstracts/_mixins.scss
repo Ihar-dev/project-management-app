@@ -33,3 +33,21 @@
     box-shadow: 1px 1px 6px 1px $shadow-color;
   }
 }
+
+@mixin scrollbar($width: 100%, $height: 100%) {
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+    background-color: $board-column-scrollbar;
+    border-radius: $border-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $board-column-scrollbar-thumb;
+    border-radius: $border-radius;
+  }
+}

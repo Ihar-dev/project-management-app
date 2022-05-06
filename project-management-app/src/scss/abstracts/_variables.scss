@@ -1,5 +1,5 @@
 //dimensions
-$border-radius: 20px;
+$border-radius: 2rem;
 $header-indent: 11rem;
 $logo-size: 5rem;
 $user-button-size: 5rem;
@@ -18,6 +18,12 @@ $color-pink: #d88dbd;
 $main-bg: #fbfbfd;
 $form-bg: #fff;
 $error-bg: #f44336;
+$board-main-bg: #bd93cd;
+$board-column-bg: rgba(0, 0, 0, 0.3);
+$board-column-scrollbar: rgba(0, 0, 0, 0.1);
+$board-column-scrollbar-thumb: rgba(0, 0, 0, 0.3);
+$board-column-title-input: rgba(0, 0, 0, 0.3);
+$board-btn-bg-back: rgba(0, 0, 0, 0.2);
 
 //font colors
 $font-white: rgba(255, 255, 255, 0.95);
@@ -34,7 +40,7 @@ $laptop: 1024px;
 $desktop: 1200px;
 
 //backgrounds
-$auth-purple-bg: linear-gradient(318deg, $theme-primary 21%, $color-pink 100%);
+$purple-bg: linear-gradient(318deg, $theme-primary 21%, $color-pink 100%);
 $dialog-confirmation-bg: linear-gradient(
   318deg,
   $theme-primary 0%,

@@ -1,0 +1,97 @@
+@import "variables";
+@import "mixins";
+
+:host,
+.board {
+  height: 100%;
+}
+
+.board {
+  &__header {
+    @extend %flex-normal-pattern;
+
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+
+    @media screen and (max-width: $mobile) {
+      flex-direction: column;
+      align-items: baseline;
+      gap: 1rem;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 3rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: $font-white;
+    width: 80%;
+
+    @media screen and (max-width: $tablet) {
+      width: 56%;
+    }
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+
+    &__text {
+      width: 80%;
+
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  &__btn {
+    &--back {
+      min-width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      padding: 0;
+      background-color: $board-btn-bg-back;
+    }
+
+    &--add-column {
+      @media screen and (max-width: $mobile) {
+        align-self: center;
+      }
+    }
+  }
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    padding: 2rem 2rem 0;
+    background-color: $board-main-bg;
+    border-top: 2px solid $theme-accent;
+    border-radius: $border-radius;
+
+    &--scrollable {
+      @include scrollbar(100%, 10px);
+
+      height: 100%;
+      width: 100%;
+      padding-bottom: 1rem;
+      display: grid;
+      grid-auto-columns: 300px;
+      grid-auto-flow: column;
+      grid-gap: 15px;
+      overflow-y: hidden;
+      overflow-x: scroll;
+
+      @media screen and (max-width: $tablet) {
+        grid-auto-columns: 280px;
+      }
+
+      @media screen and (max-width: $mobile) {
+        grid-auto-columns: 271px;
+      }
+    }
+  }
+}
