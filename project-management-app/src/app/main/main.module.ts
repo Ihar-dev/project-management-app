@@ -7,12 +7,14 @@ import { MainRoutingModule } from './main-routing.module';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { MaterialModule } from '../shared/material.module';
 import { MainComponent } from './pages/main/main.component';
+import { BoardComponent } from './components/board/board.component';
 
 
 @NgModule({
   declarations: [
     WelcomeComponent,
     MainComponent,
+    BoardComponent,
   ],
   imports: [
     CommonModule,

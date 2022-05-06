@@ -8,9 +8,23 @@
   position: relative;
 }
 
+@media screen and (orientation: landscape) {
+  .main__container {
+    background-image: url("../../../../assets/images/jpeg/board-back-landscape.jpg");
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .main__container {
+    background-image: url("../../../../assets/images/jpeg/board-back-portrait.jpg");
+  }
+}
+
 .main__container {
   flex-grow: 1;
-  background: linear-gradient(318deg, $theme-primary 21%, $theme-primary-transparent 100%);
+  //background: linear-gradient(318deg, $theme-primary 21%, $theme-primary-transparent 100%);
+  background-position: bottom;
+  background-size: cover;
   @extend %flex-column-pattern;
 
   h1 {
