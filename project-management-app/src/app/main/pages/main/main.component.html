@@ -2,6 +2,6 @@
 <div class="main__container">
   <h1>Boards</h1>
   <div class="main__inner-container">
-    <app-board *ngFor="let board of boards" [board]="board"></app-board>
+    <app-board routerLink="/boards/{{ board.id }}" *ngFor="let board of boards" [board]="board"></app-board>
   </div>
 </div>

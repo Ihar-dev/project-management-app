@@ -8,6 +8,12 @@
   background-position: center;
 }
 
+%big-text-pattern {
+  font-weight: 700;
+  color: $font-white;
+  font-family: 'Poppins', sans-serif;
+}
+
 %normal-text-pattern {
   font-weight: 500;
   color: $font-white;

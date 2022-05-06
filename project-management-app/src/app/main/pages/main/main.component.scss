@@ -28,7 +28,7 @@
   background-size: cover;
 
   h1 {
-    @extend %normal-text-pattern;
+    @extend %big-text-pattern;
     margin: 1rem;
     font-size: 5rem;
     line-height: 9rem;

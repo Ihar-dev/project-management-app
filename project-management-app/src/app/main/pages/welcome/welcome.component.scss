@@ -88,9 +88,7 @@
 
 h1 {
   position: absolute;
-  font-weight: 700;
-  color: $font-white;
-  font-family: 'Poppins', sans-serif;
+  @extend %big-text-pattern;
   @extend %display-pattern;
 
   &.active {
