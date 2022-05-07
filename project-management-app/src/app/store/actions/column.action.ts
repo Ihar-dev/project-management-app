@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IColumnRequest } from 'src/app/shared/models/column-request.model';
 import { IColumn } from 'src/app/shared/models/column.model';
 
 enum ColumnAction {
@@ -13,7 +14,7 @@ enum ColumnAction {
 export namespace ColumnActions {
   export const addColumn = createAction(
     ColumnAction.AddColumn,
-    props<{ boardID: string; column: Partial<IColumn> }>(),
+    props<{ boardID: string; column: IColumnRequest }>(),
   );
   export const addColumnSuccess = createAction(
     ColumnAction.AddColumnSuccess,
@@ -31,10 +32,10 @@ export namespace ColumnActions {
 
   export const putColumn = createAction(
     ColumnAction.PutColumn,
-    props<{ boardID: string, column: Partial<IColumn>}>(),
-  )
+    props<{ boardID: string; column: Partial<IColumn> }>(),
+  );
   export const putColumnSuccess = createAction(
     ColumnAction.PutColumnSuccess,
-    props<{ boardID: string, column: IColumn}>(),
-  )
+    props<{ boardID: string; column: IColumn }>(),
+  );
 }

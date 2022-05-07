@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IBoardRequest } from 'src/app/shared/models/board-request.model';
 import { IBoard } from 'src/app/shared/models/board.model';
 
 enum BoardAction {
@@ -15,7 +16,7 @@ enum BoardAction {
 }
 
 export namespace BoardActions {
-  export const addBoard = createAction(BoardAction.AddBoard, props<{ board: Partial<IBoard> }>());
+  export const addBoard = createAction(BoardAction.AddBoard, props<{ board: IBoardRequest }>());
   export const addBoardSuccess = createAction(
     BoardAction.AddBoardSuccess,
     props<{ board: IBoard }>(),
@@ -41,7 +42,7 @@ export namespace BoardActions {
 
   export const putBoard = createAction(
     BoardAction.PutBoard,
-    props<{ id: string; board: Partial<IBoard> }>(),
+    props<{ id: string; board: IBoardRequest }>(),
   );
   export const putBoardSuccess = createAction(
     BoardAction.PutBoardSuccess,

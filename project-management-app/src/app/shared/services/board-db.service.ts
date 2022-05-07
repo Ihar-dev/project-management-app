@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IBoardRequest } from '../models/board-request.model';
 import { IBoard } from '../models/board.model';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class BoardDbService {
     return this.http.get<IBoard[]>(this.boardsUrl);
   }
 
-  addBoard(board: Partial<IBoard>): Observable<IBoard> {
+  addBoard(board: IBoardRequest): Observable<IBoard> {
     return this.http.post<IBoard>(this.boardsUrl, board);
   }
 
@@ -27,7 +28,7 @@ export class BoardDbService {
     return this.http.get<IBoard>(`${this.boardsUrl}/${id}`);
   }
 
-  renameBoard(id: string, board: Partial<IBoard>): Observable<IBoard> {
+  updateBoard(id: string, board: IBoardRequest): Observable<IBoard> {
     return this.http.put<IBoard>(`${this.boardsUrl}/${id}`, board);
   }
 }

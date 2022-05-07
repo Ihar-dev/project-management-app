@@ -1,7 +1,10 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { IBoard } from 'src/app/shared/models/board.model';
+import { IColumn } from 'src/app/shared/models/column.model';
+import { ITask } from 'src/app/shared/models/task.model';
 import { BoardActions } from '../actions/board.action';
 import { ColumnActions } from '../actions/column.action';
+import { TaskActions } from '../actions/task.action';
 
 export interface State {
   boards: IBoard[];
@@ -12,11 +15,19 @@ const initialState: State = {
 };
 
 function copyThat<T>(array: T[]): T[] {
-  return array.slice()
-};
+  return array.slice();
+}
 
-function findIndexByID(boards: IBoard[], boardID: string): number {
-  return boards.findIndex((board: IBoard) => board.id === boardID);
+function findIndexByID<T extends { id: string }>(array: T[], id: string): number {
+  return array.findIndex((element) => element.id === id);
+}
+
+function filterOutID<T extends { id: string }>(array: T[], id: string): T[] {
+  return array.filter((element) => element.id !== id);
+}
+
+function replaceElementInIndex<T>(array: T[], newElement: T, index: number): T[] {
+  return [...array.slice(0, index), newElement, ...array.slice(index + 1)];
 }
 
 const boardReducer = createReducer(
@@ -39,7 +50,7 @@ const boardReducer = createReducer(
     BoardActions.deleteBoardSuccess,
     (state, { id }): State => ({
       ...state,
-      boards: state.boards.filter((board) => board.id !== id),
+      boards: filterOutID(state.boards, id),
     }),
   ),
 
@@ -72,9 +83,10 @@ const boardReducer = createReducer(
     const newBoards = copyThat(state.boards);
     const idx = findIndexByID(newBoards, boardID);
     if (idx !== -1) {
+      const newColumn: IColumn = { ...column, tasks: [] };
       newBoards[idx] = {
         ...newBoards[idx],
-        columns: newBoards[idx].columns?.concat(column),
+        columns: newBoards[idx].columns.concat(newColumn),
       };
     }
     return {
@@ -89,8 +101,110 @@ const boardReducer = createReducer(
     if (idx !== -1) {
       newBoards[idx] = {
         ...newBoards[idx],
-        columns: newBoards[idx].columns?.filter((column) => column.id !== columnID),
+        columns: filterOutID(newBoards[idx].columns, columnID),
       };
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(ColumnActions.putColumnSuccess, (state, { boardID, column }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, column.id);
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        title: column.title,
+        order: column.order,
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: newColumns,
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(TaskActions.AddTaskSuccess, (state, { boardID, columnID, task }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, columnID);
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        tasks: columns[columnIndex].tasks.concat(task),
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: newColumns,
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(TaskActions.DeleteTaskSuccess, (state, { boardID, columnID, taskID }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, columnID);
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        tasks: filterOutID(columns[columnIndex].tasks, taskID),
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: newColumns,
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(TaskActions.PutTaskSuccess, (state, { boardID, columnID, task }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, columnID);
+      const { tasks } = columns[columnIndex];
+      const taskIndex = findIndexByID(tasks, task.id);
+      const currTask: ITask = {
+        ...tasks[taskIndex],
+        title: task.title,
+        order: task.order,
+        userId: task.userId,
+        description: task.description,
+      };
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        tasks: replaceElementInIndex(tasks, currTask, taskIndex),
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: newColumns,
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
     }
     return {
       ...state,
@@ -102,4 +216,3 @@ const boardReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return boardReducer(state, action);
 }
-

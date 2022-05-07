@@ -12,6 +12,7 @@ import { httpInterceptorProviders } from './interceptors';
 import * as boardReducer from './store/reducers/board.reducer';
 import { BoardEffects } from './store/effects/board.effect';
 import { ColumnEffects } from './store/effects/column.effect';
+import { TaskEffects } from './store/effects/task.effect';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -23,7 +24,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     CoreModule,
     StoreModule.forRoot({ board: boardReducer.reducer }, {}),
-    EffectsModule.forRoot([BoardEffects, ColumnEffects]),
+    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [httpInterceptorProviders],

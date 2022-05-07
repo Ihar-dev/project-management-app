@@ -10,7 +10,10 @@
       <button mat-stroked-button (click)="getBoardById(board.id)">get full info</button>
       <hr />
       <input type="text" placeholder="columns Title" [(ngModel)]="columnTitle" />
-      <button mat-stroked-button (click)="addColumn(board.id, {title: columnTitle, order: findLastOrder(board.columns)})">
+      <button
+        mat-stroked-button
+        (click)="addColumn(board.id, { title: columnTitle, order: findLastOrder(board.columns) })"
+      >
         create column
       </button>
       <p>Columns</p>
@@ -18,12 +21,79 @@
       <ng-container *ngIf="board.columns">
         <p>{{ board.columns.length }}</p>
         <ul>
-          <li *ngFor="let column of board.columns">
-            {{ column.title }}
+          <li
+            *ngFor="let column of board.columns"
+            style="background-color: #ccc; margin-bottom: 10px; padding: 5px"
+          >
+            <h3>{{ column.title }}</h3>
             <button mat-button color="warn" (click)="deleteColumn(board.id, column.id)">
               delete
             </button>
-            <button mat-button color="accent" (click)="renameColumn(board.id, {id:column.id, title: columnTitle, order: column.order})">rename</button>
+            <button
+              mat-button
+              color="accent"
+              (click)="
+                renameColumn(board.id, { id: column.id, title: columnTitle, order: column.order })
+              "
+            >
+              rename
+            </button>
+
+            <hr />
+
+            <input type="text" placeholder="task title" [(ngModel)]="taskTitle" />
+            <input type="text" placeholder="task description" [(ngModel)]="taskDescription" />
+
+            <button
+              mat-button
+              color="primary"
+              (click)="
+                addTask(board.id, column.id, {
+                  title: taskTitle,
+                  description: taskDescription,
+                  order: findLastOrder(column.tasks),
+                  userId: '1be26d36-9753-4236-b277-87137ef33e7a'
+                })
+              "
+            >
+              add task
+            </button>
+            <ng-container *ngIf="column.tasks">
+              <ul>
+                <li
+                  *ngFor="let task of column.tasks"
+                  style="background-color: rgb(98, 150, 163); margin-bottom: 5px; padding: 5px"
+                >
+                  <h3>TITLE: {{ task.title }}</h3>
+                  <h4>DESCRIPTION: {{ task.description }}</h4>
+                  <button
+                    mat-button
+                    color="warn"
+                    (click)="deleteTask(board.id, column.id, task.id)"
+                  >
+                    delete
+                  </button>
+                  <button
+                    mat-button
+                    color="accent"
+                    (click)="
+                      updateTask(board.id, column.id, task.id, {
+                        title: taskTitle,
+                        description: taskDescription,
+                        order: task.order,
+                        userId: task.userId,
+                        boardId: board.id,
+                        columnId: column.id
+                      })
+                    "
+                  >
+                    UPDATE
+                  </button>
+
+                  <hr />
+                </li>
+              </ul>
+            </ng-container>
           </li>
         </ul>
       </ng-container>

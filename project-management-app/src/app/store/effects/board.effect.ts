@@ -67,7 +67,7 @@ export class BoardEffects {
     this.actions$.pipe(
       ofType(BoardActions.putBoard),
       mergeMap((action) =>
-        this.dbService.renameBoard(action.id, action.board).pipe(
+        this.dbService.updateBoard(action.id, action.board).pipe(
           map((board) => BoardActions.putBoardSuccess({ board })),
           catchError(this.handler.handleError(Operation.PutBoard)),
         ),

@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { IBoard } from 'src/app/shared/models/board.model';
+import { IColumnRequest } from 'src/app/shared/models/column-request.model';
 import { IColumn } from 'src/app/shared/models/column.model';
+import { ITaskRequest } from 'src/app/shared/models/task-request.model';
 import { ITask } from 'src/app/shared/models/task.model';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { ColumnActions } from 'src/app/store/actions/column.action';
+import { TaskActions } from 'src/app/store/actions/task.action';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
 
 @Component({
@@ -19,6 +22,10 @@ export class TestComponent implements OnInit {
   columnTitle = '';
 
   newBoardTitle = '';
+
+  taskTitle = '';
+
+  taskDescription = '';
 
   boards$: Observable<IBoard[]> = of([]);
 
@@ -42,20 +49,19 @@ export class TestComponent implements OnInit {
     this.store.dispatch(BoardActions.getBoards());
   }
 
-  deleteBoard(id: string): void  {
+  deleteBoard(id: string): void {
     this.store.dispatch(BoardActions.deleteBoard({ id }));
   }
 
-  getBoardById(id: string): void  {
+  getBoardById(id: string): void {
     this.store.dispatch(BoardActions.getBoardsById({ id }));
   }
 
-  renameBoard(id: string): void  {
+  renameBoard(id: string): void {
     this.store.dispatch(BoardActions.putBoard({ id, board: { title: this.newBoardTitle } }));
   }
 
-
-  addColumn(boardID: string, column:Partial<IColumn>): void {
+  addColumn(boardID: string, column: IColumnRequest): void {
     this.store.dispatch(
       ColumnActions.addColumn({
         boardID,
@@ -74,16 +80,49 @@ export class TestComponent implements OnInit {
   }
 
   renameColumn(boardID: string, column: Partial<IColumn>): void {
-    this.store.dispatch(ColumnActions.putColumn({
-      boardID,
-      column
-    }))
+    this.store.dispatch(
+      ColumnActions.putColumn({
+        boardID,
+        column,
+      }),
+    );
+  }
+
+  addTask(boardID: string, columnID: string, task: Partial<ITaskRequest>): void {
+    this.store.dispatch(
+      TaskActions.AddTask({
+        boardID,
+        columnID,
+        task,
+      }),
+    );
+  }
+
+  deleteTask(boardID: string, columnID: string, taskID: string): void {
+    this.store.dispatch(
+      TaskActions.DeleteTask({
+        boardID,
+        columnID,
+        taskID,
+      }),
+    );
+  }
+
+  updateTask(boardID: string, columnID: string, taskID: string, task: ITaskRequest): void {
+    this.store.dispatch(
+      TaskActions.PutTask({
+        boardID,
+        columnID,
+        taskID,
+        task,
+      }),
+    );
   }
 
   findLastOrder(array: IColumn[] | ITask[] | undefined): number {
-    if(!array || !array.length) {
+    if (!array || !array.length) {
       return 1;
     }
-    return array[array.length - 1].order + 1 || 1
+    return array[array.length - 1].order + 1;
   }
 }

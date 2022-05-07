@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:4200/api/',
-  heroku: 'https://project-management-app-backend.herokuapp.com/',
+  baseUrl: 'https://project-management-app-backend.herokuapp.com/',
 };
 
 /*
