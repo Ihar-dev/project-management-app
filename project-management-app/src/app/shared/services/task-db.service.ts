@@ -24,9 +24,9 @@ export class TaskDbService {
     boardID: string,
     columnID: string,
     taskID: string,
-    task: ITaskRequest,
-  ): Observable<ITask> {
-    return this.http.put<ITask>(`${this.getUrl(boardID, columnID)}/${taskID}`, task);
+    task: Omit<ITaskRequest, 'id'>,
+  ): Observable<ITaskRequest> {
+    return this.http.put<ITaskRequest>(`${this.getUrl(boardID, columnID)}/${taskID}`, task);
   }
 
   private getUrl(boardID: string, columnID: string): string {

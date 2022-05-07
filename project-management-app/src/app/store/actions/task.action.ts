@@ -32,10 +32,10 @@ export namespace TaskActions {
 
   export const PutTask = createAction(
     TaskAction.PutTask,
-    props<{ boardID: string; columnID: string; taskID: string; task: ITaskRequest }>(),
+    props<{ boardID: string; columnID: string; taskID: string; task: Omit<ITaskRequest, 'id'> }>(),
   );
   export const PutTaskSuccess = createAction(
     TaskAction.PutTaskSuccess,
-    props<{ boardID: string; columnID: string; task: ITask }>(),
+    props<{ boardID: string; columnID: string; task: ITaskRequest }>(),
   );
 }

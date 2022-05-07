@@ -1,4 +1,5 @@
 export interface ITaskRequest {
+  id: string;
   title: string;
   order: number;
   description: string;

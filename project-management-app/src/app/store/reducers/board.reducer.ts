@@ -195,16 +195,35 @@ const boardReducer = createReducer(
         userId: task.userId,
         description: task.description,
       };
-      const currColumn: IColumn = {
-        ...columns[columnIndex],
-        tasks: replaceElementInIndex(tasks, currTask, taskIndex),
-      };
-      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
-      const currentBoard = {
-        ...newBoards[boardIndex],
-        columns: newColumns,
-      };
-      newBoards.splice(boardIndex, 1, currentBoard);
+      if (columnID === task.columnId) {
+        const currColumn: IColumn = {
+          ...columns[columnIndex],
+          tasks: replaceElementInIndex(tasks, currTask, taskIndex),
+        };
+        const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+        const currentBoard = {
+          ...newBoards[boardIndex],
+          columns: newColumns,
+        };
+        newBoards.splice(boardIndex, 1, currentBoard);
+      } else {
+        const currColumn: IColumn = {
+          ...columns[columnIndex],
+          tasks: filterOutID(columns[columnIndex].tasks, task.id),
+        };
+        const columnMovedToIndex = findIndexByID(columns, task.columnId);
+        const columnMovedTo = {
+          ...columns[columnMovedToIndex],
+          tasks: columns[columnMovedToIndex].tasks.concat(currTask),
+        };
+        const tempColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+        const newColumns = replaceElementInIndex(tempColumns, columnMovedTo, columnMovedToIndex);
+        const currentBoard = {
+          ...newBoards[boardIndex],
+          columns: newColumns,
+        };
+        newBoards.splice(boardIndex, 1, currentBoard);
+      }
     }
     return {
       ...state,

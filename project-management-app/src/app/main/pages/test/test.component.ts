@@ -108,7 +108,12 @@ export class TestComponent implements OnInit {
     );
   }
 
-  updateTask(boardID: string, columnID: string, taskID: string, task: ITaskRequest): void {
+  updateTask(
+    boardID: string,
+    columnID: string,
+    taskID: string,
+    task: Omit<ITaskRequest, 'id'>,
+  ): void {
     this.store.dispatch(
       TaskActions.PutTask({
         boardID,
