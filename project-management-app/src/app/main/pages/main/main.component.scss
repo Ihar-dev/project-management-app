@@ -1,0 +1,61 @@
+@import "mixins";
+@import "variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media screen and (orientation: landscape) {
+  .main__container {
+    background: url("../../../../assets/images/png/board-back-landscape.png"), $theme-primary-transparent;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  .main__container {
+    background: url("../../../../assets/images/png/board-back-portrait.png"), $theme-primary-transparent;
+  }
+}
+
+.main__container {
+  position: relative;
+  flex-grow: 1;
+  @extend %flex-column-pattern;
+  background-position: bottom;
+  background-size: cover;
+
+  h1 {
+    @extend %big-text-pattern;
+    margin: 1rem;
+    font-size: 5rem;
+    line-height: 9rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    border-radius: 1rem;
+    background-color: $theme-primary-transparent;
+    color: white;
+    transition: box-shadow 0.3s, color 0.3s;
+
+    &:hover, &:focus {
+      color: $theme-accent;
+      box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
+    }
+  }
+
+  .main__inner-container {
+    position: absolute;
+    width: calc(100% - 8rem);
+    height: calc(100% - 15rem);
+    @extend %flex-column-pattern;
+    @include scrollbar(10px, 100%);
+    margin: 11rem 4rem 4rem 4rem;
+    padding: 1rem 4rem 4rem 4rem;
+    row-gap: 3rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+}
