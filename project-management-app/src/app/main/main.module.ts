@@ -1,18 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
+import { FormsModule } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
-import { MaterialModule } from '../shared/material.module';
+import { TestComponent } from './pages/test/test.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    WelcomeComponent
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    MaterialModule,
-  ]
+  declarations: [WelcomeComponent, TestComponent],
+  imports: [MainRoutingModule, FormsModule, SharedModule],
 })
-export class MainModule { }
+export class MainModule {}
