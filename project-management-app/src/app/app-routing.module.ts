@@ -11,11 +11,7 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
   },
-  {
-    path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then((m) => m.WelcomeModule),
-  },
-  { path: '', redirectTo: '/welcome', pathMatch: 'full' },
+  { path: '', redirectTo: 'main/welcome', pathMatch: 'full' },
   {
     path: '**',
     component: NotFoundComponent,
