@@ -43,7 +43,8 @@
   }
 }
 
-.board__edit-button {
+.board__edit-button,
+.board__save-button {
   transition: transform 0.1s;
 
   &:hover {
