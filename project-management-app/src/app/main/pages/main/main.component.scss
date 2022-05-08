@@ -40,8 +40,8 @@
     transition: box-shadow 0.3s, color 0.3s;
 
     &:hover, &:focus {
-      color: #ffd740;
-      box-shadow: 0 0.8rem 0.8rem -0.4rem rgba(255, 215, 64, 0.5);
+      color: $theme-accent;
+      box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
     }
   }
 

@@ -1,6 +1,13 @@
 @import "mixins";
 @import "variables";
 
+%hover-pattern {
+  border: solid 1px $theme-accent;
+  color: $theme-accent;
+  box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
+  transform: translateY(-0.6rem);
+}
+
 :host {
   position: relative;
   @extend %flex-centre-pattern;
@@ -12,21 +19,34 @@
   line-height: 4.5rem;
   text-align: center;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: $board-color;
   cursor: pointer;
-  transition: margin-top 0.3s, margin-bottom 0.3s, box-shadow 0.3s;
-
-  &:hover, &:focus {
-    border: solid 1px #ffd740;
-    color: #ffd740;
-    box-shadow: 0 0.8rem 0.8rem -0.4rem rgba(255, 215, 64, 0.5);
-    margin-top: -0.6rem;
-    margin-bottom: 0.6rem;
-  }
+  border: 1px solid $board-color;
 }
 
 .board__delete-button {
   position: absolute;
   right: 1rem;
   top: 1rem;
+}
+
+.example-form-field {
+  display: inline-block;
+}
+
+:host,
+.board__delete-button {
+  transition: box-shadow 0.3s, transform 0.3s;
+
+  &:hover {
+    @extend %hover-pattern;
+  }
+}
+
+.board__edit-button {
+  transition: transform 0.1s;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 }

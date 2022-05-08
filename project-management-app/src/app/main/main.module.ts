@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CoreModule } from '../core/core.module';
 
@@ -20,7 +21,9 @@ import { BoardComponent } from './components/board/board.component';
     CommonModule,
     MainRoutingModule,
     MaterialModule,
-    CoreModule
+    CoreModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class MainModule { }
