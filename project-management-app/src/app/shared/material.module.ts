@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
@@ -19,6 +20,7 @@ const MaterialComponents = [
   MatMenuModule,
   MatSlideToggleModule,
   MatProgressSpinnerModule,
+  MatCardModule,
   MatDialogModule,
   FormsModule,
 ];

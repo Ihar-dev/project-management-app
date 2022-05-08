@@ -1,0 +1,13 @@
+@import "variables";
+
+.button-board-create {
+  min-width: 180px;
+  width: 100%;
+  height: 36px;
+  border-radius: $border-radius;
+  transition: filter 0.5s;
+
+  &:hover {
+    filter: brightness(1.3);
+  }
+}
