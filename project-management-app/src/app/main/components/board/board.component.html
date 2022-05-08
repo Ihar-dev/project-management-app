@@ -2,10 +2,10 @@
   <mat-icon *ngIf="!boardEditMode" (click)="boardEditMode = true" title="Edit" class="board__edit-button">edit</mat-icon>
   <span *ngIf="!boardEditMode">&nbsp; {{ board?.title }}</span>
   <form *ngIf="boardEditMode" class="example-form" [formGroup]="cardForm">
-    <mat-icon title="Save" (click)="boardNameChange(boardTitleInput.value)" #titleInput>save</mat-icon>
+    <mat-icon title="Save" (click)="boardNameChange(boardTitleInput.value)" #titleInput class="board__save-button">save</mat-icon>
     <span>&nbsp;</span>
     <mat-form-field appearance="fill">
-      <mat-label >board title editing</mat-label>
+      <mat-label>board title editing</mat-label>
       <input matInput type="text" formControlName="userTitle" #boardTitleInput>
       <button matSuffix mat-icon-button aria-label="Clear" (click)="boardTitleInput.value=''">
         <mat-icon>close</mat-icon>
