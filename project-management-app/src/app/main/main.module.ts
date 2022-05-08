@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 import { CoreModule } from '../core/core.module';
 import { MainRoutingModule } from './main-routing.module';
-import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { WelcomeComponent } from '../welcome/pages/welcome/welcome.component';
 import { MaterialModule } from '../shared/material.module';
 import { MainComponent } from './pages/main/main.component';
 import { BoardComponent } from './components/board/board.component';
