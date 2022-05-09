@@ -13,8 +13,8 @@ enum Operation {
 
 @Injectable()
 export class TaskEffects {
-  addTask$ = createEffect(() =>
-    this.actions$.pipe(
+  addTask$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(TaskActions.AddTask),
       mergeMap((action) =>
         this.dbService.addTask(action.boardID, action.columnID, action.task).pipe(
@@ -28,11 +28,11 @@ export class TaskEffects {
           catchError(this.handler.handleError(Operation.AddTask)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  deleteTask$ = createEffect(() =>
-    this.actions$.pipe(
+  deleteTask$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(TaskActions.DeleteTask),
       mergeMap((action) =>
         this.dbService.deleteTask(action.boardID, action.columnID, action.taskID).pipe(
@@ -40,11 +40,11 @@ export class TaskEffects {
           catchError(this.handler.handleError(Operation.DeleteTask)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  putTask$ = createEffect(() =>
-    this.actions$.pipe(
+  putTask$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(TaskActions.PutTask),
       mergeMap((action) =>
         this.dbService.updateTask(action.boardID, action.columnID, action.taskID, action.task).pipe(
@@ -58,8 +58,8 @@ export class TaskEffects {
           catchError(this.handler.handleError(Operation.PutTask)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
   constructor(
     private actions$: Actions,
