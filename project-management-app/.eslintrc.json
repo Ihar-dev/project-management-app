@@ -13,10 +13,10 @@
       "extends": [
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended",
         "airbnb-base",
         "airbnb-typescript/base",
-        "prettier",
-        "plugin:ngrx/recommended"
+        "prettier"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -44,17 +44,13 @@
         "arrow-parens": "off",
         "no-plusplus": "off",
         "spaced-comment": ["off"],
-        "prefer-effect-callback-in-block-statement": ["off"]
+        "ngrx/prefer-effect-callback-in-block-statement": "off"
       }
     },
     {
       "files": ["*.html"],
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
-    },
-    {
-      "files": ["*.ts"],
-      "extends": ["plugin:ngrx/recommended"]
     }
   ]
 }
