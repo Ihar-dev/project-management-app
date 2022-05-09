@@ -2,7 +2,9 @@
 <div class="main__container" (mousemove)="mouseMove()" (click)="mouseClick()">
   <h1>Boards</h1>
   <div class="main__inner-container">
-    <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"
-    [mouseExisting]="mouseExisting"></app-board>
+    <ng-container *ngIf="boards$ | async as boards">
+      <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"
+        [mouseExisting]="mouseExisting"></app-board>
+    </ng-container>
   </div>
 </div>

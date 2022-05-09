@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
+import { BoardActions } from 'src/app/store/actions/board.action';
 import { DialogConfirmationComponent, DialogData }
 from '../../../core/components/dialog-confirmation/dialog-confirmation.component';
-
 import { BoardModel } from '../../models/mock-boards.model';
 
 const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the board?';
@@ -18,10 +20,11 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 export class BoardComponent implements OnInit {
   @Input() public board: BoardModel | null = null;
   @Input() public mouseExisting = false;
+  private id = '';
   public cardForm: FormGroup;
   public boardEditMode = false;
 
-  constructor(private readonly router: Router, private readonly dialog: MatDialog) {}
+  constructor(private readonly router: Router, private readonly dialog: MatDialog, private readonly store: Store) {}
 
   ngOnInit(): void {
     this.cardForm = new FormGroup({
@@ -31,13 +34,13 @@ export class BoardComponent implements OnInit {
         Validators.maxLength(100),
       ]),
     });
+    if (this.board?.id) this.id = this.board?.id;
   }
 
   public boardNameChange(boardTitleInputValue: string): void {
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue) {
       this.boardEditMode = false;
-      if (this.board?.title) this.board.title = boardTitleInputValue;
-      //TODO method to change the board
+      this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue } }));
     }
   }
 

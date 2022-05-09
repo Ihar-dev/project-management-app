@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
-import { BoardsModel, BoardModel, MOCK_BOARDS } from '../../models/mock-boards.model';
+import { BoardSelectors } from 'src/app/store/selectors/board.selector';
+import { BoardActions } from 'src/app/store/actions/board.action';
+import { BoardModel, BoardsModel } from '../../models/mock-boards.model';
 
 @Component({
   selector: 'app-main',
@@ -9,12 +13,18 @@ import { BoardsModel, BoardModel, MOCK_BOARDS } from '../../models/mock-boards.m
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
-  public boards: BoardsModel = MOCK_BOARDS;
+  public boards$: Observable <BoardsModel>;
   public mouseExisting = false;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private store: Store) {}
 
   ngOnInit(): void {
+    this.getBoards();
+    this.boards$ = this.store.select(BoardSelectors.selectBoards);
+  }
+
+  public getBoards(): void {
+    this.store.dispatch(BoardActions.getBoards());
   }
 
   public boardRout(event: Event, board: BoardModel): void {
