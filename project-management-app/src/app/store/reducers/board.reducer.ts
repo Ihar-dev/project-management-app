@@ -54,7 +54,7 @@ const boardReducer = createReducer(
     }),
   ),
 
-  on(BoardActions.getBoardsByIdSuccess, (state, { board }): State => {
+  on(BoardActions.getBoardByIdSuccess, (state, { board }): State => {
     const newBoards = copyThat(state.boards);
     const idx = findIndexByID(newBoards, board.id);
     if (idx !== -1) {

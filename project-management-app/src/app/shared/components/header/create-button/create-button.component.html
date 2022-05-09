@@ -1,5 +1,7 @@
-<button class="btn" mat-raised-button color="primary">Create new board</button>
+<button class="btn" mat-raised-button color="primary" (click)="openCreateBoardDialog()">
+  Create new board
+</button>
 
-<button class="btn--icon" mat-icon-button color="primary">
+<button class="btn--icon" mat-icon-button color="primary" (click)="openCreateBoardDialog()">
   <mat-icon>note_add</mat-icon>
 </button>

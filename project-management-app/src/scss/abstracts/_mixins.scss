@@ -51,3 +51,20 @@
     border-radius: $border-radius;
   }
 }
+
+@mixin dialog-container-style {
+  ::ng-deep {
+    .mat-dialog-container {
+      border-radius: $border-radius;
+      background-image: $dialog-confirmation-bg;
+      background-size: 200%;
+      background-position: center center;
+      transition: all 0.5s;
+      opacity: 0.97;
+
+      &:hover {
+        background-size: 105%;
+      }
+    }
+  }
+}
