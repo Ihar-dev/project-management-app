@@ -44,7 +44,7 @@
         "arrow-parens": "off",
         "no-plusplus": "off",
         "spaced-comment": ["off"],
-        "prefer-effect-callback-in-block-statement": "off"
+        "prefer-effect-callback-in-block-statement": ["off"]
       }
     },
     {
