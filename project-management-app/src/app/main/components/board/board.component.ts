@@ -58,10 +58,13 @@ export class BoardComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Response) => {
       if (result) {
-        console.log(`Delete board ${this.board?.title}`);
-        //TODO method to delete the board
+        this.deleteBoard();
       }
     });
+  }
+
+  private deleteBoard(): void {
+    this.store.dispatch(BoardActions.deleteBoard({ id: this.id }));
   }
 
   public get userTitle(): AbstractControl | null {
