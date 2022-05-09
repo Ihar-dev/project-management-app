@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { catchError, EMPTY, Observable } from 'rxjs';
+import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 import { MessagesDefault } from 'src/app/shared/models/messages-type';
 import { MessageBoxService } from '../core/services/message-box.service';
 import { AuthService } from '../auth/services/auth.service';
@@ -22,8 +22,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {
           if (error.status === ErrorMessages.forbidden) {
-            this.auth.signOut();
-            return EMPTY;
+            return throwError(() => new Error(error.message));
           }
           this.messageBoxService.showMessage(ERROR_MESSAGE);
           console.log(error);

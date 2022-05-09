@@ -15,18 +15,29 @@
         <h2 class="user-info__name">UserName</h2>
         <div class="user-info__btn">
           <app-button text="Delete profile" color="warn"></app-button>
-
         </div>
       </div>
 
       <div class="user-data">
-        <form class="user-data__form">
+        <form class="user-data__form" [formGroup]="form">
           <app-form-title title="Edit profile"></app-form-title>
-          <app-form-field placeholder="Update name" label="Name"></app-form-field>
-          <app-form-field placeholder="Update login" label="Login"></app-form-field>
-          <app-form-field-password placeholder="Update password" label="New password"></app-form-field-password>
-          <app-form-field-password placeholder="Confirm password" label="Confirm new password">
+          <app-form-field label="Name" [control]="controlName"></app-form-field>
+          <app-form-error [control]="controlName" [errors]="formErrors[controlNameKey]"></app-form-error>
+
+          <app-form-field label="Login" [control]="controlLogin"></app-form-field>
+          <app-form-error [control]="controlLogin" [errors]="formErrors[controlLoginKey]"></app-form-error>
+
+          <app-form-field-password label="Current password" [control]="controlOldPassword"></app-form-field-password>
+          <app-form-error [control]="controlOldPassword" [errors]="formErrors[controlOldPasswordKey]"></app-form-error>
+
+          <app-form-field-password label="New password" [control]="controlPassword"></app-form-field-password>
+          <app-form-error [control]="controlPassword" [errors]="formErrors[controlPasswordKey]"></app-form-error>
+
+          <app-form-field-password label="Confirm new password" [control]="controlPasswordConfirm">
           </app-form-field-password>
+          <app-form-error [control]="controlPasswordConfirm" [errors]="formErrors[controlPasswordConfirmKey]">
+          </app-form-error>
+
           <app-form-submit>
             <app-button text="Submit" [isDisabled]="!form.valid"></app-button>
           </app-form-submit>

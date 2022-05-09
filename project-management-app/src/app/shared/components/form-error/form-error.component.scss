@@ -15,9 +15,9 @@
     position: absolute;
     top: -128px;
     right: 16px;
-    width: 184px;
-    padding: 15px;
-    font-size: 2rem;
+    width: 22.1rem;
+    padding: 1.5rem;
+    font-size: 1.8rem;
     color: $form-bg;
     background-color: $error-bg;
     border-radius: $border-radius;
@@ -37,7 +37,11 @@
     }
 
     @media screen and (max-width: $tablet) {
-      min-height: 64px;
+      // min-height: 64px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      font-size: 2rem;
     }
   }
 }

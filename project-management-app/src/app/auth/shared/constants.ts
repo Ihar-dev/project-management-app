@@ -7,6 +7,7 @@ export enum FormControlNames {
   login = 'login',
   password = 'password',
   confirmPassword = 'confirmPassword',
+  oldPassword = 'oldPassword',
 }
 
 export enum BackgroundColor {

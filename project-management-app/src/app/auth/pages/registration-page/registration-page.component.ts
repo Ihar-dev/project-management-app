@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { ValidationFormService } from '../../services/validation-form.service';
+import { ValidationFormService } from '../../../validators/validation-form.service';
 import { FormControlNames } from '../../shared/constants';
 import { TUserData } from '../../shared/models/register-data.model';
 import { TValidationError } from '../../../shared/models/validation-error.model';

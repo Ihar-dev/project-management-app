@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { ValidationFormService } from 'src/app/auth/services/validation-form.service';
+import { ValidationFormService } from 'src/app/validators/validation-form.service';
 import { FormControlNames } from 'src/app/auth/shared/constants';
 import { TValidationError } from 'src/app/shared/models/validation-error.model';
+import { PasswordAsyncValidator } from 'src/app/validators/passwordValidationAsync';
+import { UserService } from '../../services/user.service';
 
 const FORM_TITLE = 'Edit profile';
 const MIN_LENGTH_NAME = 2;
@@ -39,15 +40,15 @@ const ERRORS_MESSAGES: TValidationError = {
     },
     {
       type: 'upLowCase',
-      message: `Should include uppercase and lowercase letters.`,
+      message: `Include uppercase and lowercase letters.`,
     },
     {
       type: 'digits',
-      message: `Should include at least 1 digit.`,
+      message: `Include at least 1 digit.`,
     },
     {
       type: 'specialCharacters',
-      message: `Should include 1 special character (!@#$%^&?[]).`,
+      message: `Include 1 special character (!@#$%^&?[]).`,
     },
   ],
   confirmPassword: [
@@ -58,6 +59,16 @@ const ERRORS_MESSAGES: TValidationError = {
     {
       type: 'passwordMismatch',
       message: 'Passwords do not match!',
+    },
+  ],
+  oldPassword: [
+    {
+      type: 'required',
+      message: 'Please enter a password.',
+    },
+    {
+      type: 'wrongPass',
+      message: 'Wrong password!',
     },
   ],
 };
@@ -77,6 +88,8 @@ export class ProfilePageComponent {
 
   readonly controlPasswordKey = FormControlNames.password;
 
+  readonly controlOldPasswordKey = FormControlNames.oldPassword;
+
   readonly controlPasswordConfirmKey = FormControlNames.confirmPassword;
 
   readonly title = FORM_TITLE;
@@ -84,17 +97,26 @@ export class ProfilePageComponent {
   constructor(
     private fb: FormBuilder,
     private validFormService: ValidationFormService,
-    private authService: AuthService,
+    private userService: UserService,
+    private passwordAsyncValidator: PasswordAsyncValidator,
   ) {
     this.form = this.fb.group(
       {
         name: ['', [Validators.required, Validators.minLength(MIN_LENGTH_NAME)]],
         login: ['', [Validators.required, Validators.minLength(MIN_LENGTH_LOGIN)]],
-        password: [
+        oldPassword: [
           '',
-          Validators.compose([Validators.required, this.validFormService.validatePassword()]),
+
+          {
+            validators: Validators.required,
+            asyncValidators: [
+              this.passwordAsyncValidator.validate.bind(this.passwordAsyncValidator),
+            ],
+            updateOn: 'blur',
+          },
         ],
-        confirmPassword: ['', [Validators.required]],
+        password: ['', [this.validFormService.validatePassword()]],
+        confirmPassword: [''],
       },
       {
         validators: this.validFormService.confirmPassword(),
@@ -106,7 +128,7 @@ export class ProfilePageComponent {
     if (this.form.valid) {
       const { confirmPassword, ...userData } = this.form.value;
       this.form.reset();
-      this.authService.updateUser(userData);
+      this.userService.updateUser(userData);
     }
   }
 
@@ -120,6 +142,10 @@ export class ProfilePageComponent {
 
   get controlPassword(): AbstractControl {
     return this.form.controls[this.controlPasswordKey];
+  }
+
+  get controlOldPassword(): AbstractControl {
+    return this.form.controls[this.controlOldPasswordKey];
   }
 
   get controlPasswordConfirm(): AbstractControl {

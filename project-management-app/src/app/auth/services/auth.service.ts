@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { map, switchMap } from 'rxjs';
+
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 import { MessageBoxService } from 'src/app/core/services/message-box.service';
 
@@ -27,18 +29,25 @@ export class AuthService {
   ) {}
 
   signUp(data: TUserData): void {
-    this.http.post<UserDataResponce>(this.signUpUrl, JSON.stringify(data)).subscribe((res) => {
-      this.lsService.setItem(USER_DATA_KEY, new User(res));
+    this.http.post<UserDataResponce>(this.signUpUrl, JSON.stringify(data)).subscribe(() => {
       this.messageService.showMessage(MessagesDefault.signedUp);
       this.navigate('auth', 'login');
     });
   }
 
-  signIn(data: TSigninData): void {
-    this.http.post<TTokenResponce>(this.signInUrl, JSON.stringify(data)).subscribe(({ token }) => {
-      this.lsService.setItem(USER_TOKEN_KEY, token);
-      this.router.navigate(['']);
-    });
+  signIn(data: TSigninData) {
+    return this.http.post<TTokenResponce>(this.signInUrl, JSON.stringify(data)).pipe(
+      map(({ token }) => {
+        this.lsService.setItem(USER_TOKEN_KEY, token);
+        this.lsService.setItem('login', data.login);
+      }),
+      switchMap(() => this.http.get<User[]>('users')),
+      map((res) => {
+        const userData = res.find((user) => data.login === user.login);
+        if (userData) this.lsService.setItem(USER_DATA_KEY, new User(userData));
+        return data.login;
+      }),
+    );
   }
 
   signOut(): void {
@@ -48,16 +57,6 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.lsService.getItem<string>(USER_TOKEN_KEY);
-  }
-
-  updateUser(data: TUserData) {
-    const userData = this.lsService.getItem<User>(USER_DATA_KEY);
-    if (userData)
-      this.http
-        .put<User>(`users/${userData.id}`, JSON.stringify(data))
-        .subscribe((userDataUpdated) => {
-          this.lsService.setItem(USER_DATA_KEY, new User(userDataUpdated));
-        });
   }
 
   private navigate(...paths: string[]): void {

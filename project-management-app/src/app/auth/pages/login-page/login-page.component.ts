@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../services/auth.service';
 import { FormControlNames } from '../../shared/constants';
 import { TSigninData } from '../../shared/models/login-data.model';
@@ -37,7 +39,7 @@ export class LoginPageComponent {
 
   readonly title = FORM_TITLE;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.form = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -47,7 +49,9 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.form.valid) {
       const signInData = this.form.value;
-      this.authService.signIn(<TSigninData>signInData);
+      this.authService.signIn(<TSigninData>signInData).subscribe(() => {
+        this.router.navigate(['']);
+      });
       this.form.reset();
     }
   }

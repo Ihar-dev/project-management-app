@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { FormControlNames } from '../shared/constants';
+import { FormControlNames } from '../auth/shared/constants';
 
 @Injectable({
   providedIn: 'root',
