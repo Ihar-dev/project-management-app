@@ -1,0 +1,71 @@
+@import "variables";
+@import "mixins";
+
+:host {
+  flex-grow: 1;
+}
+
+.container {
+  padding-top: 0;
+  margin-top: -11.3rem;
+}
+
+.profile-page {
+  &__bg {
+    min-height: 20rem;
+    background-color: $board-column-title-input;
+  }
+
+  &__content {
+    position: relative;
+    padding: 0 2rem 2rem;
+    min-height: 50rem;
+    background-color: $profile-content-bg;
+    border-radius: $border-radius;
+  }
+}
+
+.user-info {
+  @extend %flex-normal-pattern;
+
+  padding-bottom: 1rem;
+  gap: 4rem;
+
+  &__name {
+    width: 100%;
+    font-size: 2.2rem;
+    font-weight: 600;
+  }
+
+  &__img {
+    color: $font-white;
+    &__icon {
+      margin-top: -4rem;
+      width: 14rem;
+      height: 14rem;
+      font-size: 14rem;
+      background-color: $profile-user-bg;
+      border-radius: 50%;
+    }
+  }
+
+  &__btn {
+    width: 15rem;
+    height: 5rem;
+  }
+}
+
+.user-data {
+  padding: 3rem 2rem;
+  border: 1px solid $profile-user-bg;
+  border-radius: $border-radius;
+  background-color: transparent;
+
+  &__form {
+    @extend %flex-column-pattern;
+
+    margin: 0 auto;
+    max-width: 55rem;
+    text-align: center;
+  }
+}

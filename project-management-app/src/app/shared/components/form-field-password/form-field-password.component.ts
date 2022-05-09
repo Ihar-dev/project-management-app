@@ -12,6 +12,8 @@ export class FormFieldPasswordComponent {
 
   readonly typeText = 'text';
 
+  @Input() label = '';
+
   isPasswordShown = false;
 
   controlValue = new FormControl();

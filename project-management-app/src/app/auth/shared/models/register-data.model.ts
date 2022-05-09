@@ -1,4 +1,4 @@
-export type TSignupData = {
+export type TUserData = {
   name: string;
   login: string;
   password: string;

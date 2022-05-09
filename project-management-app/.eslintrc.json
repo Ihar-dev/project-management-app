@@ -4,7 +4,8 @@
   "overrides": [
     {
       "files": ["*.ts"],
-      "plugins": ["import"],
+      "plugins": ["import", "ngrx"],
+      "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": ["./tsconfig.json"],
         "createDefaultProgram": true
@@ -14,7 +15,8 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "airbnb-base",
         "airbnb-typescript/base",
-        "prettier"
+        "prettier",
+        "plugin:ngrx/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -42,7 +44,7 @@
         "arrow-parens": "off",
         "no-plusplus": "off",
         "spaced-comment": ["off"],
-        "arrow-body-style": "off"
+        "prefer-effect-callback-in-block-statement": "off"
       }
     },
     {

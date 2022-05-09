@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/fo
 import { AuthService } from '../../services/auth.service';
 import { FormControlNames } from '../../shared/constants';
 import { TSigninData } from '../../shared/models/login-data.model';
-import { TValidationError } from '../../shared/models/validation-error.model';
+import { TValidationError } from '../../../shared/models/validation-error.model';
 
 const FORM_TITLE = 'Log in';
 const ERRORS_MESSAGES: TValidationError = {

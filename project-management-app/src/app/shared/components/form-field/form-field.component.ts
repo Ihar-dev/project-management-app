@@ -14,6 +14,8 @@ export class FormFieldComponent {
 
   @Input() type = INPUT_TYPE_DEFAULT;
 
+  @Input() label = '';
+
   controlValue = new FormControl();
 
   @Input()

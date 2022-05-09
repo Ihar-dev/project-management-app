@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
-import { TFormError } from '../../shared/models/validation-error.model';
+import { TFormError } from '../../models/validation-error.model';
 
 @Component({
   selector: 'app-form-error',

@@ -5,7 +5,7 @@ import { LocalstorageService } from 'src/app/core/services/localstorage.service'
 import { MessageBoxService } from 'src/app/core/services/message-box.service';
 
 import { MessagesDefault } from 'src/app/shared/models/messages-type';
-import { TSignupData } from '../shared/models/register-data.model';
+import { TUserData } from '../shared/models/register-data.model';
 import { User, UserDataResponce } from '../shared/models/user.model';
 import { USER_DATA_KEY, USER_TOKEN_KEY } from '../shared/constants';
 import { TSigninData } from '../shared/models/login-data.model';
@@ -26,7 +26,7 @@ export class AuthService {
     private messageService: MessageBoxService,
   ) {}
 
-  signUp(data: TSignupData): void {
+  signUp(data: TUserData): void {
     this.http.post<UserDataResponce>(this.signUpUrl, JSON.stringify(data)).subscribe((res) => {
       this.lsService.setItem(USER_DATA_KEY, new User(res));
       this.messageService.showMessage(MessagesDefault.signedUp);
@@ -48,6 +48,16 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return !!this.lsService.getItem<string>(USER_TOKEN_KEY);
+  }
+
+  updateUser(data: TUserData) {
+    const userData = this.lsService.getItem<User>(USER_DATA_KEY);
+    if (userData)
+      this.http
+        .put<User>(`users/${userData.id}`, JSON.stringify(data))
+        .subscribe((userDataUpdated) => {
+          this.lsService.setItem(USER_DATA_KEY, new User(userDataUpdated));
+        });
   }
 
   private navigate(...paths: string[]): void {

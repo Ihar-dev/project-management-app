@@ -9,7 +9,8 @@
   position: relative;
   margin: 0 auto;
 
-  &__input {
+  &__input,
+  &__label {
     font-size: 2rem;
   }
 }

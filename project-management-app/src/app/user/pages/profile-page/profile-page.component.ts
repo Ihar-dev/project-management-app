@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { ValidationFormService } from '../../services/validation-form.service';
-import { FormControlNames } from '../../shared/constants';
-import { TUserData } from '../../shared/models/register-data.model';
-import { TValidationError } from '../../../shared/models/validation-error.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { ValidationFormService } from 'src/app/auth/services/validation-form.service';
+import { FormControlNames } from 'src/app/auth/shared/constants';
+import { TValidationError } from 'src/app/shared/models/validation-error.model';
 
+const FORM_TITLE = 'Edit profile';
 const MIN_LENGTH_NAME = 2;
 const MIN_LENGTH_LOGIN = 8;
 const MIN_LENGTH_PASSWORD = 8;
-const FORM_TITLE = 'Sign up';
 
 const ERRORS_MESSAGES: TValidationError = {
   name: [
@@ -62,13 +61,12 @@ const ERRORS_MESSAGES: TValidationError = {
     },
   ],
 };
-
 @Component({
-  selector: 'app-registration-page',
-  templateUrl: './registration-page.component.html',
-  styleUrls: ['./registration-page.component.scss'],
+  selector: 'app-profile-page',
+  templateUrl: './profile-page.component.html',
+  styleUrls: ['./profile-page.component.scss'],
 })
-export class RegistrationPageComponent {
+export class ProfilePageComponent {
   form: FormGroup;
 
   readonly formErrors = ERRORS_MESSAGES;
@@ -106,9 +104,9 @@ export class RegistrationPageComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { confirmPassword, ...signUpData } = this.form.value;
-      this.authService.signUp(<TUserData>signUpData);
+      const { confirmPassword, ...userData } = this.form.value;
       this.form.reset();
+      this.authService.updateUser(userData);
     }
   }
 

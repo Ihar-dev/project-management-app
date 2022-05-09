@@ -1,0 +1,37 @@
+<app-header></app-header>
+
+<div class="profile-page">
+  <div class="profile-page__bg"></div>
+  <div class="container">
+
+    <div class="profile-page__content">
+      <div class="user-info">
+        <div class="user-info__img">
+          <mat-icon class="user-info__img__icon">
+            account_circle
+          </mat-icon>
+        </div>
+
+        <h2 class="user-info__name">UserName</h2>
+        <div class="user-info__btn">
+          <app-button text="Delete profile" color="warn"></app-button>
+
+        </div>
+      </div>
+
+      <div class="user-data">
+        <form class="user-data__form">
+          <app-form-title title="Edit profile"></app-form-title>
+          <app-form-field placeholder="Update name" label="Name"></app-form-field>
+          <app-form-field placeholder="Update login" label="Login"></app-form-field>
+          <app-form-field-password placeholder="Update password" label="New password"></app-form-field-password>
+          <app-form-field-password placeholder="Confirm password" label="Confirm new password">
+          </app-form-field-password>
+          <app-form-submit>
+            <app-button text="Submit" [isDisabled]="!form.valid"></app-button>
+          </app-form-submit>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
