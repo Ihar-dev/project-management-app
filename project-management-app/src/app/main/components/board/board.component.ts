@@ -17,6 +17,7 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 
 export class BoardComponent implements OnInit {
   @Input() public board: BoardModel | null = null;
+  @Input() public mouseExisting = false;
   public cardForm: FormGroup;
   public boardEditMode = false;
 

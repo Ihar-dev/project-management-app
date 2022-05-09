@@ -10,6 +10,7 @@ import { BoardsModel, BoardModel, MOCK_BOARDS } from '../../models/mock-boards.m
 })
 export class MainComponent implements OnInit {
   public boards: BoardsModel = MOCK_BOARDS;
+  public mouseExisting = false;
 
   constructor(private readonly router: Router) {}
 
@@ -20,4 +21,11 @@ export class MainComponent implements OnInit {
     if (event.target === event.currentTarget) this.router.navigate([`/boards/${board.id}`]);
   }
 
+  public mouseMove(): void {
+    this.mouseExisting = true;
+  }
+
+  public mouseClick(): void {
+    this.mouseExisting = false;
+  }
 }

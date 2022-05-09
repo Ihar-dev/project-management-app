@@ -1,7 +1,8 @@
 <div (click)="boardRout($event)">
-  <mat-icon *ngIf="!boardEditMode" (click)="boardEditMode = true" title="Edit" class="board__edit-button">edit</mat-icon>
-  <span *ngIf="!boardEditMode">&nbsp; {{ board?.title }}</span>
-  <form *ngIf="boardEditMode" [formGroup]="cardForm">
+  <mat-icon *ngIf="!boardEditMode" [class.hide]="mouseExisting" (click)="boardEditMode = true" title="Edit"
+  class="board__edit-button">edit</mat-icon>
+  <span [class.active]="!boardEditMode" class="board__title">&nbsp; {{ board?.title }}</span>
+  <form *ngIf="boardEditMode" [formGroup]="cardForm" class="board-form">
     <mat-icon title="Save" (click)="boardNameChange(boardTitleInput.value)" #titleInput class="board__save-button">save</mat-icon>
     <span>&nbsp;</span>
     <mat-form-field appearance="fill" class="board-input-form">
