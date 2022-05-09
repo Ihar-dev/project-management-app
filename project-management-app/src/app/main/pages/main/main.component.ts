@@ -17,7 +17,7 @@ export class MainComponent implements OnInit {
   }
 
   public boardRout(event: Event, board: BoardModel): void {
-    if (event.target === event.currentTarget) this.router.navigate([`/board/${board.id}`]);
+    if (event.target === event.currentTarget) this.router.navigate([`/boards/${board.id}`]);
   }
 
 }

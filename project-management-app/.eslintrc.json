@@ -53,7 +53,8 @@
         "no-plusplus": "off",
         "spaced-comment": [
           "off"
-        ]
+        ],
+        "arrow-body-style": "off"
       }
     },
     {

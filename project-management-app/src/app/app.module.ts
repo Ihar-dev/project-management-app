@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     CoreModule,
     StoreModule.forRoot({ board: boardReducer.reducer }, {}),
-    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects]),
+    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [httpInterceptorProviders],

@@ -41,7 +41,7 @@ export class BoardComponent implements OnInit {
   }
 
   public boardRout(event: Event): void {
-    if (event.target === event.currentTarget) this.router.navigate([`/board/${this.board?.id}`]);
+    if (event.target === event.currentTarget) this.router.navigate([`/boards/${this.board?.id}`]);
   }
 
   public openDialogToDeleteTheBoard(): void {
