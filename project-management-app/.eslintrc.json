@@ -41,7 +41,8 @@
         "@typescript-eslint/lines-between-class-members": ["off"],
         "arrow-parens": "off",
         "no-plusplus": "off",
-        "spaced-comment": ["off"]
+        "spaced-comment": ["off"],
+        "arrow-body-style": "off"
       }
     },
     {

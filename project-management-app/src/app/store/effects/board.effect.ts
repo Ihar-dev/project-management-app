@@ -15,8 +15,8 @@ enum Operation {
 
 @Injectable()
 export class BoardEffects {
-  getBoards$ = createEffect(() =>
-    this.actions$.pipe(
+  getBoards$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(BoardActions.getBoards),
       mergeMap(() =>
         this.dbService.getBoards().pipe(
@@ -24,11 +24,11 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.GetBoards)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  addBoard$ = createEffect(() =>
-    this.actions$.pipe(
+  addBoard$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(BoardActions.addBoard),
       mergeMap((action) =>
         this.dbService.addBoard(action.board).pipe(
@@ -36,11 +36,11 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.AddBoard)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  deleteBoard$ = createEffect(() =>
-    this.actions$.pipe(
+  deleteBoard$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(BoardActions.deleteBoard),
       mergeMap((action) =>
         this.dbService.deleteBoard(action.id).pipe(
@@ -48,11 +48,11 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.DeleteBoard)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  getBoardByID$ = createEffect(() =>
-    this.actions$.pipe(
+  getBoardByID$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(BoardActions.getBoardById),
       mergeMap((action) =>
         this.dbService.getBoardByID(action.id).pipe(
@@ -60,11 +60,11 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.GetBoardByID)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
-  putBoard$ = createEffect(() =>
-    this.actions$.pipe(
+  putBoard$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(BoardActions.putBoard),
       mergeMap((action) =>
         this.dbService.updateBoard(action.id, action.board).pipe(
@@ -72,8 +72,8 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.PutBoard)),
         ),
       ),
-    ),
-  );
+    );
+  });
 
   constructor(
     private actions$: Actions,

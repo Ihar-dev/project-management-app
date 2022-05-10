@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,6 +22,7 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatCardModule,
   MatDialogModule,
+  FormsModule,
 ];
 
 @NgModule({
