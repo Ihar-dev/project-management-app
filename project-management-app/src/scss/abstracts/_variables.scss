@@ -9,7 +9,7 @@ $theme-primary: #673ab7;
 $theme-primary-transparent: #673ab673;
 $theme-accent: #ffd740;
 $color-white: #fff;
-$color-white-2: #f4f3f6;
+$color-white-darken: #f4f3f6;
 $color-grey: #bdcbd4;
 $color-grey-dark: #747691;
 $color-pink: #d88dbd;
@@ -19,6 +19,7 @@ $main-bg: #fbfbfd;
 $form-bg: #fff;
 $error-bg: #f44336;
 $board-main-bg: #bd93cd;
+$board-main-bg-darken: #846790;
 $board-column-bg: rgba(0, 0, 0, 0.3);
 $board-column-scrollbar: rgba(0, 0, 0, 0.1);
 $board-column-scrollbar-thumb: rgba(0, 0, 0, 0.3);
@@ -46,7 +47,7 @@ $purple-bg: linear-gradient(318deg, $theme-primary 21%, $color-pink 100%);
 $dialog-confirmation-bg: linear-gradient(
   318deg,
   $theme-primary 0%,
-  $color-white-2 20%,
-  $color-white-2 80%,
+  $color-white-darken 20%,
+  $color-white-darken 80%,
   $color-pink 100%
 );

@@ -35,11 +35,11 @@ $icon-button-size: 4rem;
     text-align: center;
     width: 100%;
     color: $theme-primary;
-    border-bottom: 1px solid $theme-primary-transparent;
+    border-bottom: 1px solid $board-main-bg-darken;
     padding-right: 5rem;
 
     &:focus {
-      color: $theme-primary-transparent;
+      color: $board-main-bg-darken;
     }
   }
 
@@ -52,7 +52,7 @@ $icon-button-size: 4rem;
     transform: translateY(-50%);
 
     &__icon {
-      color: $theme-primary-transparent;
+      color: $board-main-bg-darken;
       font-size: $icon-button-size;
       line-height: $icon-button-size;
       width: $icon-button-size;
@@ -63,7 +63,7 @@ $icon-button-size: 4rem;
   &__alert {
     font-size: 2rem;
     text-align: center;
-    color: $theme-primary-transparent;
+    color: $board-main-bg-darken;
     margin-bottom: 4rem;
   }
 }

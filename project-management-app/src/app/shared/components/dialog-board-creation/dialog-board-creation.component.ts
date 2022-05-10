@@ -5,7 +5,7 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 
 const DEFAULT_TITLE = 'New board';
 
-const DEFAULT_ALERT = 'The name of the board must contain at least 2 characters';
+const DEFAULT_ALERT = 'The name of the board must contain at least 3 characters';
 
 @Component({
   selector: 'app-dialog-board-creation',
@@ -16,8 +16,6 @@ export class DialogBoardCreationComponent {
   boardTitle = DEFAULT_TITLE;
 
   alert = DEFAULT_ALERT;
-
-  showClearButton = true;
 
   constructor(
     private dialogRef: MatDialogRef<DialogBoardCreationComponent>,
@@ -50,6 +48,6 @@ export class DialogBoardCreationComponent {
   }
 
   get boardTitleValid(): boolean {
-    return this.boardTitle.length > 1;
+    return this.boardTitle.length > 2;
   }
 }

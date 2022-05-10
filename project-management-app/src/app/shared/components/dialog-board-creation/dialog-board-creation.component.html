@@ -8,15 +8,12 @@
       [(ngModel)]="boardTitle"
       (keyup)="notAllowStartWithSpace()"
       (keyup.enter)="createBoard()"
-      (focus)="showClearButton = true"
     />
     <button
       mat-icon-button
       class="clear-btn"
-      [class]="{ hidden: !showClearButton }"
       (click)="clearInput()"
       (mousedown)="preventDefault($event)"
-      appClickStopPropagation
     >
       <mat-icon class="clear-btn__icon">clear</mat-icon>
     </button>
