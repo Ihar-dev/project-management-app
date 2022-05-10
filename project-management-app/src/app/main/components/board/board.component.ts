@@ -39,8 +39,8 @@ export class BoardComponent implements OnInit {
   }
 
   public boardNameChange(event: MouseEvent, boardTitleInputValue: string): void {
-    this.inputStatus = false;
     event.stopImmediatePropagation();
+    this.inputStatus = false;
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue) {
       this.boardEditMode = false;
       this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue } }));

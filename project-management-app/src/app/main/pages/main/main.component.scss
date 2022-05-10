@@ -97,22 +97,31 @@
 
 .main__search-container {
   position: absolute;
+  @extend %flex-centre-pattern;
   bottom: 0;
   right: 0;
   width: calc(50%);
   height: 0;
   border-radius: 2rem 0 0 2rem;
   transform: translateY(100%);
-  @include scrollbar(10px, 90%);
+  @include scrollbar(8px);
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: $theme-primary;
+  background-color: #363062;
   transition: height 0.5s;
   z-index: 1000;
 
   &.active {
-    height: 55vh;
+    height: 500px;
     padding: 1rem;
+    padding: 2rem;
+  }
+
+  &.active .main__inner-search-container {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    border: solid 2px $board-main-bg;
   }
 }
 
@@ -124,5 +133,16 @@
       height: 45vh;
       padding: 1rem;
     }
+  }
+}
+
+.board-input-form {
+  font-size: 2rem;
+  width: 100%;
+}
+
+@media screen and (max-width: $mobile) {
+  .board-input-form {
+    width: 250px;
   }
 }

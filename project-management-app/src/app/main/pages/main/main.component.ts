@@ -40,12 +40,7 @@ export class MainComponent implements OnInit {
     this.mouseExisting = false;
   }
 
-  public searchMouseClick(event: MouseEvent) {
-    event.stopImmediatePropagation();
-    this.searchContainerDisplay = true;
-  }
-
-  public searchMouseMove(event: MouseEvent) {
-    event.stopImmediatePropagation();
+  public searchMouseClick() {
+    this.searchContainerDisplay = !this.searchContainerDisplay;
   }
 }
