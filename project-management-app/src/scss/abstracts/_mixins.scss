@@ -11,13 +11,13 @@
 %big-text-pattern {
   font-weight: 700;
   color: $font-white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 %normal-text-pattern {
   font-weight: 500;
   color: $font-white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 %flex-column-pattern {
@@ -75,5 +75,22 @@
   &::-webkit-scrollbar-thumb {
     background-color: $thumb-color;
     border-radius: $border-radius;
+  }
+}
+
+@mixin dialog-container-style {
+  ::ng-deep {
+    .mat-dialog-container {
+      border-radius: $border-radius;
+      background-image: $dialog-confirmation-bg;
+      background-size: 200%;
+      background-position: center;
+      transition: all 0.5s;
+      opacity: 0.97;
+
+      &:hover {
+        background-size: 105%;
+      }
+    }
   }
 }

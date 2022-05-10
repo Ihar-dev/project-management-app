@@ -53,10 +53,10 @@ export class BoardEffects {
 
   getBoardByID$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(BoardActions.getBoardsById),
+      ofType(BoardActions.getBoardById),
       mergeMap((action) =>
         this.dbService.getBoardByID(action.id).pipe(
-          map((board) => BoardActions.getBoardsByIdSuccess({ board })),
+          map((board) => BoardActions.getBoardByIdSuccess({ board })),
           catchError(this.handler.handleError(Operation.GetBoardByID)),
         ),
       ),

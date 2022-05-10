@@ -1,19 +1,7 @@
 @import "variables";
 @import "mixins";
 
-::ng-deep {
-  .mat-dialog-container {
-    border-radius: $border-radius;
-    background-image: $dialog-confirmation-bg;
-    background-size: 200%;
-    background-position: center center;
-    transition: all 0.5s;
-
-    &:hover {
-      background-size: 105%;
-    }
-  }
-}
+@include dialog-container-style;
 
 .dialog {
   &__title {
@@ -22,6 +10,7 @@
     margin-bottom: 2rem;
     text-align: center;
   }
+
   &__text {
     font-size: 2.3rem;
     color: $color-grey-dark;
