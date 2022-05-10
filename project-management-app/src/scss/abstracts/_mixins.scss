@@ -1,9 +1,23 @@
+@import "variables";
+
 @mixin background-image-block($url, $per, $rad) {
   background-image: url($url);
   background-size: $per;
   border-radius: $rad;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+%big-text-pattern {
+  font-weight: 700;
+  color: $font-white;
+  font-family: 'Poppins', sans-serif;
+}
+
+%normal-text-pattern {
+  font-weight: 500;
+  color: $font-white;
+  font-family: 'Poppins', sans-serif;
 }
 
 %flex-column-pattern {
@@ -17,6 +31,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+%flex-centre-pattern {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @mixin btn-shadow-style {

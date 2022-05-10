@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreRoutingModule } from './core-routing.module';
-import { NotFoundComponent } from './page/not-found/not-found.component';
 
+import { NotFoundComponent } from './page/not-found/not-found.component';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
