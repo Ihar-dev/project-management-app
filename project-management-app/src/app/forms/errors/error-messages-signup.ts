@@ -30,15 +30,15 @@ export const ERRORS_MESSAGES_SIGNUP: TValidationError = {
     },
     {
       type: 'upLowCase',
-      message: `Should include uppercase and lowercase letters.`,
+      message: `Include uppercase and lowercase letters.`,
     },
     {
       type: 'digits',
-      message: `Should include at least 1 digit.`,
+      message: `Include at least 1 digit.`,
     },
     {
       type: 'specialCharacters',
-      message: `Should include 1 special character (!@#$%^&?[]).`,
+      message: `Include 1 special character (!@#$%^&?[]).`,
     },
   ],
   confirmPassword: [

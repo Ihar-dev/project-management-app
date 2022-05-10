@@ -42,7 +42,6 @@ export class ProfilePageComponent {
         login: ['', [Validators.required, Validators.minLength(FormFieldLength.login)]],
         oldPassword: [
           '',
-
           {
             validators: Validators.required,
             asyncValidators: [

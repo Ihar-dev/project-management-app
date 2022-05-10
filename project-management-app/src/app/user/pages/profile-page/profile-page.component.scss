@@ -8,6 +8,10 @@
 .container {
   padding-top: 0;
   margin-top: -11.3rem;
+
+  @media screen and (max-width: $mobile) {
+    margin-top: -2rem;
+  }
 }
 
 .profile-page {
@@ -28,7 +32,7 @@
 .user-info {
   @extend %flex-normal-pattern;
 
-  padding-bottom: 1rem;
+  padding: 1rem;
   gap: 4rem;
 
   &__name {
@@ -39,6 +43,7 @@
 
   &__img {
     color: $font-white;
+
     &__icon {
       margin-top: -4rem;
       width: 14rem;
@@ -47,11 +52,22 @@
       background-color: $profile-user-bg;
       border-radius: 50%;
     }
+
+    @media screen and (max-width: $mobile) {
+      position: absolute;
+      top: -12rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   &__btn {
     width: 15rem;
     height: 5rem;
+
+    @media screen and (max-width: $mobile) {
+      width: 20rem;
+    }
   }
 }
 
