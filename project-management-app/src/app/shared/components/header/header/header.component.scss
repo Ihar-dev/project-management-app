@@ -1,13 +1,6 @@
 @import "variables";
 @import "mixins";
 
-$header-height: 9rem;
-
-:host {
-  position: relative;
-  margin-bottom: $header-height;
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -21,7 +14,7 @@ $header-height: 9rem;
   gap: 2rem;
   align-items: center;
   width: 100%;
-  height: $header-height;
+  height: 9rem;
   font-size: 2.4rem;
   font-weight: 300;
 
