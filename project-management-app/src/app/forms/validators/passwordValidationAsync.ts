@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AsyncValidator, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Observable, map, catchError, of, debounceTime, distinctUntilChanged } from 'rxjs';
-import { AuthService } from '../auth/services/auth.service';
-import { USER_DATA_KEY } from '../auth/shared/constants';
-import { User } from '../auth/shared/models/user.model';
-import { LocalstorageService } from '../core/services/localstorage.service';
+import { Observable, map, catchError, of } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { USER_DATA_KEY } from 'src/app/auth/shared/constants';
+import { User } from 'src/app/auth/shared/models/user.model';
+import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 
-const DEBOUNCE_TIME = 500;
 @Injectable({ providedIn: 'root' })
 export class PasswordAsyncValidator implements AsyncValidator {
   constructor(private authService: AuthService, private lsService: LocalstorageService) {}
@@ -16,8 +15,6 @@ export class PasswordAsyncValidator implements AsyncValidator {
 
     if (userData && control.value) {
       return this.authService.signIn({ login: userData.login, password: control.value }).pipe(
-        debounceTime(DEBOUNCE_TIME),
-        distinctUntilChanged(),
         map((res) => (res ? null : of({ wrongPass: true }))),
         catchError(() => of({ wrongPass: true })),
       );

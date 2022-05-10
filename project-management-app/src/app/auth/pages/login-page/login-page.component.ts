@@ -2,26 +2,12 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { FormControlNames } from 'src/app/forms/constants';
+import { ERRORS_MESSAGES_LOGIN } from 'src/app/forms/errors/error-messages-login';
 import { AuthService } from '../../services/auth.service';
-import { FormControlNames } from '../../shared/constants';
 import { TSigninData } from '../../shared/models/login-data.model';
-import { TValidationError } from '../../../shared/models/validation-error.model';
 
 const FORM_TITLE = 'Log in';
-const ERRORS_MESSAGES: TValidationError = {
-  login: [
-    {
-      type: 'required',
-      message: 'Please enter a login.',
-    },
-  ],
-  password: [
-    {
-      type: 'required',
-      message: 'Please enter a password.',
-    },
-  ],
-};
 
 @Component({
   selector: 'app-login-page',
@@ -31,7 +17,7 @@ const ERRORS_MESSAGES: TValidationError = {
 export class LoginPageComponent {
   form: FormGroup;
 
-  readonly formErrors = ERRORS_MESSAGES;
+  readonly formErrors = ERRORS_MESSAGES_LOGIN;
 
   readonly controlLoginKey = FormControlNames.login;
 

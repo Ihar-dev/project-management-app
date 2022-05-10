@@ -1,67 +1,12 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
+import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
+import { ERRORS_MESSAGES_SIGNUP } from 'src/app/forms/errors/error-messages-signup';
 import { AuthService } from '../../services/auth.service';
-import { ValidationFormService } from '../../../validators/validation-form.service';
-import { FormControlNames } from '../../shared/constants';
 import { TUserData } from '../../shared/models/register-data.model';
-import { TValidationError } from '../../../shared/models/validation-error.model';
 
-const MIN_LENGTH_NAME = 2;
-const MIN_LENGTH_LOGIN = 8;
-const MIN_LENGTH_PASSWORD = 8;
 const FORM_TITLE = 'Sign up';
-
-const ERRORS_MESSAGES: TValidationError = {
-  name: [
-    { type: 'required', message: 'Please enter a name.' },
-    {
-      type: 'minlength',
-      message: `The min length is ${MIN_LENGTH_NAME} symbols.`,
-    },
-  ],
-  login: [
-    {
-      type: 'required',
-      message: 'Please enter a login.',
-    },
-    {
-      type: 'minlength',
-      message: `The min length is ${MIN_LENGTH_LOGIN} symbols.`,
-    },
-  ],
-  password: [
-    {
-      type: 'required',
-      message: 'Please enter a password.',
-    },
-    {
-      type: 'minlength',
-      message: `The min length is ${MIN_LENGTH_PASSWORD} characters.`,
-    },
-    {
-      type: 'upLowCase',
-      message: `Should include uppercase and lowercase letters.`,
-    },
-    {
-      type: 'digits',
-      message: `Should include at least 1 digit.`,
-    },
-    {
-      type: 'specialCharacters',
-      message: `Should include 1 special character (!@#$%^&?[]).`,
-    },
-  ],
-  confirmPassword: [
-    {
-      type: 'required',
-      message: 'Please confirm a password.',
-    },
-    {
-      type: 'passwordMismatch',
-      message: 'Passwords do not match!',
-    },
-  ],
-};
 
 @Component({
   selector: 'app-registration-page',
@@ -71,7 +16,7 @@ const ERRORS_MESSAGES: TValidationError = {
 export class RegistrationPageComponent {
   form: FormGroup;
 
-  readonly formErrors = ERRORS_MESSAGES;
+  readonly formErrors = ERRORS_MESSAGES_SIGNUP;
 
   readonly controlNameKey = FormControlNames.name;
 
@@ -90,8 +35,8 @@ export class RegistrationPageComponent {
   ) {
     this.form = this.fb.group(
       {
-        name: ['', [Validators.required, Validators.minLength(MIN_LENGTH_NAME)]],
-        login: ['', [Validators.required, Validators.minLength(MIN_LENGTH_LOGIN)]],
+        name: ['', [Validators.required, Validators.minLength(FormFieldLength.name)]],
+        login: ['', [Validators.required, Validators.minLength(FormFieldLength.login)]],
         password: [
           '',
           Validators.compose([Validators.required, this.validFormService.validatePassword()]),

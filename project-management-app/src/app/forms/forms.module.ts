@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { MaterialModule } from './material.module';
+import { MaterialModule } from '../shared/material.module';
 
 import { FormFieldComponent } from './components/form-field/form-field.component';
 import { FormFieldPasswordComponent } from './components/form-field-password/form-field-password.component';
