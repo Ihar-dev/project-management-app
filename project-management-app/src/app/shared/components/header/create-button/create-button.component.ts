@@ -11,6 +11,6 @@ export class CreateButtonComponent {
   constructor(private dialog: MatDialog) {}
 
   openCreateBoardDialog(): void {
-    this.dialog.open(DialogBoardCreationComponent, { autoFocus: false });
+    this.dialog.open(DialogBoardCreationComponent);
   }
 }

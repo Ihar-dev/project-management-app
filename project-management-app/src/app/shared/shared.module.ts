@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { StickyHeaderDirective } from './directives/sticky-header.directive';
 import { ButtonComponent } from './components/button/button.component';
@@ -20,7 +20,7 @@ import { DialogBoardCreationComponent } from './components/dialog-board-creation
     CreateButtonComponent,
     DialogBoardCreationComponent,
   ],
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, FormsModule],
   exports: [
     CommonModule,
     MaterialModule,

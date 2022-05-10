@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { BoardActions } from 'src/app/store/actions/board.action';
 
-const DEFAULT_TITLE = 'Very efficient board';
+const DEFAULT_TITLE = 'New board';
 
 const DEFAULT_ALERT = 'The board title should not be blank';
 
@@ -14,24 +13,44 @@ const DEFAULT_ALERT = 'The board title should not be blank';
   styleUrls: ['./dialog-board-creation.component.scss'],
 })
 export class DialogBoardCreationComponent {
-  title: FormControl = this.formBuilder.control(DEFAULT_TITLE, [Validators.required]);
+  boardTitle = DEFAULT_TITLE;
 
   alert = DEFAULT_ALERT;
 
+  showClearButton = true;
+
   constructor(
-    private formBuilder: FormBuilder,
     private dialogRef: MatDialogRef<DialogBoardCreationComponent>,
     private store: Store,
   ) {}
 
   createBoard(): void {
-    if (this.title.valid) {
+    if (this.boardTitle.length > 0) {
       this.store.dispatch(
         BoardActions.addBoard({
-          board: { title: this.title.value },
+          board: { title: this.boardTitle },
         }),
       );
       this.dialogRef.close();
     }
+  }
+
+  notAllowStartWithSpace(): void {
+    if (this.boardTitle.trim() === '') {
+      this.boardTitle = this.boardTitle.trim();
+    }
+  }
+
+  clearInput(e: MouseEvent): void {
+    e.preventDefault();
+    this.boardTitle = '';
+  }
+
+  preventDefault(e: MouseEvent): void {
+    e.preventDefault();
+  }
+
+  get boardTitleValid(): boolean {
+    return this.boardTitle.length > 0;
   }
 }

@@ -1,22 +1,37 @@
-<div class="form">
-  <input
-    class="input"
-    type="text"
-    name="title"
-    [formControl]="title"
-    (keyup.enter)="createBoard()"
-  />
-  <p class="alert" [class]="{ hidden: title.valid }">{{ alert }}</p>
+<form class="form">
+  <h2 class="form__title">Enter a board name:</h2>
+  <div class="form__input-block">
+    <input
+      class="form__input"
+      type="text"
+      name="title"
+      [(ngModel)]="boardTitle"
+      (keyup)="notAllowStartWithSpace()"
+      (keyup.enter)="createBoard()"
+      (focus)="showClearButton = true"
+    />
+    <button
+      mat-icon-button
+      class="clear-btn"
+      [class]="{ hidden: !showClearButton }"
+      (click)="clearInput($event)"
+      (mousedown)="preventDefault($event)"
+      appClickStopPropagation
+    >
+      <mat-icon class="clear-btn__icon">clear</mat-icon>
+    </button>
+  </div>
+  <p class="form__alert" [class]="{ hidden: boardTitleValid }">{{ alert }}</p>
   <div class="btn-block">
     <button
       mat-raised-button
       color="primary"
       class="btn"
       (click)="createBoard()"
-      [disabled]="title.invalid"
+      [disabled]="!boardTitleValid"
     >
       Accept
     </button>
     <button mat-raised-button color="warn" class="btn" mat-dialog-close>Decline</button>
   </div>
-</div>
+</form>
