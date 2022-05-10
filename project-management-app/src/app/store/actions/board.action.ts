@@ -28,8 +28,8 @@ export namespace BoardActions {
     props<{ boards: IBoard[] }>(),
   );
 
-  export const getBoardsById = createAction(BoardAction.GetBoardByID, props<{ id: string }>());
-  export const getBoardsByIdSuccess = createAction(
+  export const getBoardById = createAction(BoardAction.GetBoardByID, props<{ id: string }>());
+  export const getBoardByIdSuccess = createAction(
     BoardAction.GetBoardByIDSuccess,
     props<{ board: IBoard }>(),
   );

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { filter, Observable, of, take, tap } from 'rxjs';
 import { IBoard } from 'src/app/shared/models/board.model';
 import { IColumnRequest } from 'src/app/shared/models/column-request.model';
 import { IColumn } from 'src/app/shared/models/column.model';
@@ -35,6 +35,18 @@ export class TestComponent implements OnInit {
     this.getBoards();
 
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
+
+    this.boards$
+      .pipe(
+        filter((boards) => boards.length > 0),
+        take(1),
+        tap((boards) =>
+          boards.forEach((board) =>
+            this.store.dispatch(BoardActions.getBoardById({ id: board.id })),
+          ),
+        ),
+      )
+      .subscribe();
   }
 
   addBoard(): void {
@@ -54,7 +66,7 @@ export class TestComponent implements OnInit {
   }
 
   getBoardById(id: string): void {
-    this.store.dispatch(BoardActions.getBoardsById({ id }));
+    this.store.dispatch(BoardActions.getBoardById({ id }));
   }
 
   renameBoard(id: string): void {
