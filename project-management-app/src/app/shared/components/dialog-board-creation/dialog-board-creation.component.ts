@@ -5,7 +5,7 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 
 const DEFAULT_TITLE = 'New board';
 
-const DEFAULT_ALERT = 'The board title should not be blank';
+const DEFAULT_ALERT = 'The name of the board must contain at least 2 characters';
 
 @Component({
   selector: 'app-dialog-board-creation',
@@ -25,7 +25,7 @@ export class DialogBoardCreationComponent {
   ) {}
 
   createBoard(): void {
-    if (this.boardTitle.length > 0) {
+    if (this.boardTitleValid) {
       this.store.dispatch(
         BoardActions.addBoard({
           board: { title: this.boardTitle },
@@ -41,8 +41,7 @@ export class DialogBoardCreationComponent {
     }
   }
 
-  clearInput(e: MouseEvent): void {
-    e.preventDefault();
+  clearInput(): void {
     this.boardTitle = '';
   }
 
@@ -51,6 +50,6 @@ export class DialogBoardCreationComponent {
   }
 
   get boardTitleValid(): boolean {
-    return this.boardTitle.length > 0;
+    return this.boardTitle.length > 1;
   }
 }
