@@ -20,6 +20,7 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 export class BoardComponent implements OnInit {
   @Input() public board: BoardModel | null = null;
   @Input() public mouseExisting = false;
+  public inputStatus = false;
   private id = '';
   public cardForm: FormGroup;
   public boardEditMode = false;
@@ -37,7 +38,9 @@ export class BoardComponent implements OnInit {
     if (this.board?.id) this.id = this.board?.id;
   }
 
-  public boardNameChange(boardTitleInputValue: string): void {
+  public boardNameChange(event: MouseEvent, boardTitleInputValue: string): void {
+    this.inputStatus = false;
+    event.stopImmediatePropagation();
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue) {
       this.boardEditMode = false;
       this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue } }));
@@ -69,5 +72,9 @@ export class BoardComponent implements OnInit {
 
   public get userTitle(): AbstractControl | null {
     return this.cardForm.get('userTitle');
+  }
+
+  public mouseMove(): void {
+    this.board?.title.trim();
   }
 }
