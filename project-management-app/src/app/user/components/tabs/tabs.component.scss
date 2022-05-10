@@ -1,0 +1,12 @@
+@import "variables";
+
+.tabs {
+  &__item {
+    max-width: 50%;
+    padding: 2rem;
+
+    @media screen and (max-width: $tablet) {
+      max-width: 100%;
+    }
+  }
+}

@@ -24,7 +24,7 @@
     position: relative;
     padding: 0 2rem 2rem;
     min-height: 50rem;
-    background-color: $profile-content-bg;
+    background-color: $form-bg;
     border-radius: $border-radius;
   }
 }
@@ -42,7 +42,7 @@
   }
 
   &__img {
-    color: $font-white;
+    color: $form-bg;
 
     &__icon {
       margin-top: -4rem;
@@ -72,11 +72,6 @@
 }
 
 .user-data {
-  padding: 3rem 2rem;
-  border: 1px solid $profile-user-bg;
-  border-radius: $border-radius;
-  background-color: transparent;
-
   &__form {
     @extend %flex-column-pattern;
 
