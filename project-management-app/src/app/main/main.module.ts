@@ -11,6 +11,7 @@ import { BoardComponent } from './components/board/board.component';
 import { TestComponent } from './pages/test/test.component';
 import { SharedModule } from '../shared/shared.module';
 import { MouseMoveStopPropagationDirective } from '../shared/directives/mouse-move-stop-propagation.directive';
+import { MouseClickStopPropagationDirective } from '../shared/directives/mouse-click-stop-propagation.directive';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MouseMoveStopPropagationDirective } from '../shared/directives/mouse-mo
     BoardComponent,
     TestComponent,
     MouseMoveStopPropagationDirective,
+    MouseClickStopPropagationDirective,
   ],
   imports: [
     CommonModule,

@@ -39,8 +39,4 @@ export class MainComponent implements OnInit {
   public mouseClick(): void {
     this.mouseExisting = false;
   }
-
-  public searchMouseClick() {
-    this.searchContainerDisplay = !this.searchContainerDisplay;
-  }
 }
