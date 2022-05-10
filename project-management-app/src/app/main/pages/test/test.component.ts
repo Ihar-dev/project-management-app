@@ -10,6 +10,11 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  DialogCreationComponent,
+  DialogInterface,
+} from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 
 @Component({
   selector: 'app-test',
@@ -27,9 +32,13 @@ export class TestComponent implements OnInit {
 
   taskDescription = '';
 
+  boardIdForColumn = '';
+
+  columnIdForTask = '';
+
   boards$: Observable<IBoard[]> = of([]);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getBoards();
@@ -52,7 +61,7 @@ export class TestComponent implements OnInit {
   addBoard(): void {
     this.store.dispatch(
       BoardActions.addBoard({
-        board: { title: this.boardTitle },
+        board: { title: this.boardTitle, description: 'EMPTY DESCRIPTION' },
       }),
     );
   }
@@ -70,7 +79,12 @@ export class TestComponent implements OnInit {
   }
 
   renameBoard(id: string): void {
-    this.store.dispatch(BoardActions.putBoard({ id, board: { title: this.newBoardTitle } }));
+    this.store.dispatch(
+      BoardActions.putBoard({
+        id,
+        board: { title: this.newBoardTitle, description: 'EMPTY DESCRIPTION' },
+      }),
+    );
   }
 
   addColumn(boardID: string, column: IColumnRequest): void {
@@ -141,5 +155,21 @@ export class TestComponent implements OnInit {
       return 1;
     }
     return array[array.length - 1].order + 1;
+  }
+
+  openCreateColumnDialog(): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{ type: 'column', boardID: this.boardIdForColumn },
+    });
+  }
+
+  openCreateTaskDialog(): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'task',
+        boardID: this.boardIdForColumn,
+        columnID: this.columnIdForTask,
+      },
+    });
   }
 }

@@ -1,8 +1,9 @@
-import { IBoard } from '../models/board.model';
+import { IBoard } from 'src/app/shared/models/board.model';
 
 export const boardMock: IBoard = {
   id: '9a111e19-24ec-43e1-b8c4-13776842b8d5',
   title: 'Homework tasks',
+  description: 'lorem description and some words',
   columns: [
     {
       id: '7b0b41b3-c01e-4139-998f-3ff25d20dc4f',
