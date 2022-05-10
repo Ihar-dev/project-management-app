@@ -1,6 +1,14 @@
 <app-header></app-header>
 <div class="main__container" (mousemove)="mouseMove()" (click)="mouseClick()">
-  <h1>Boards</h1>
+  <div class="main__header-container">
+    <h1>Boards</h1>
+    <button class="main__search-button" (click)="searchMouseClick($event)" (mousemove)="searchMouseMove($event)">
+      &dArr; Search &dArr;
+    </button>
+    <div [class.active]="searchContainerDisplay" class="main__search-container">
+
+    </div>
+  </div>
   <div class="main__inner-container">
     <ng-container *ngIf="boards$ | async as boards">
       <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"

@@ -34,7 +34,7 @@
     line-height: 9rem;
     padding-left: 6rem;
     padding-right: 6rem;
-    border-radius: 1rem;
+    border-radius: 2rem;
     background-color: $theme-primary-transparent;
     color: white;
     transition: box-shadow 0.3s, color 0.3s;
@@ -44,18 +44,85 @@
       box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
     }
   }
+}
 
-  .main__inner-container {
-    position: absolute;
-    width: calc(100% - 8rem);
-    height: calc(100% - 15rem);
-    @extend %flex-column-pattern;
-    @include scrollbar(10px, 100%);
-    margin: 11rem 4rem 4rem 4rem;
-    padding: 1rem 4rem 4rem 4rem;
-    row-gap: 3rem;
-    overflow-x: hidden;
-    overflow-y: scroll;
+.main__inner-container {
+  position: absolute;
+  width: calc(100% - 8rem);
+  height: calc(100% - 15rem);
+  @extend %flex-column-pattern;
+  @include scrollbar(10px, 100%);
+  margin: 11rem 4rem 4rem 4rem;
+  padding: 1rem 4rem 4rem 4rem;
+  row-gap: 3rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@media screen and (max-width: $tablet) {
+  .main__header-container {
+    flex-direction: column;
   }
 
+  .main__inner-container {
+    height: calc(100% - 22.5rem);
+    margin: 18.5rem 4rem 4rem 4rem;
+  }
+}
+
+.main__header-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 14rem);
+}
+
+.main__search-button {
+  border-radius: 1.5rem;
+  @extend %normal-text-pattern;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  padding: 1rem 2rem;
+  margin-right: 2rem;
+  text-align: center;
+  color: white;
+  background-color: $board-color;
+  transition: box-shadow 0.3s, transform 0.3s;
+
+  &:hover {
+    @extend %hover-pattern;
+  }
+}
+
+.main__search-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: calc(50%);
+  height: 0;
+  border-radius: 2rem 0 0 2rem;
+  transform: translateY(100%);
+  @include scrollbar(10px, 90%);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: $theme-primary;
+  transition: height 0.5s;
+  z-index: 1000;
+
+  &.active {
+    height: 55vh;
+    padding: 1rem;
+  }
+}
+
+@media screen and (max-width: $laptop) {
+  .main__search-container {
+    width: calc(100%);
+
+    &.active {
+      height: 45vh;
+      padding: 1rem;
+    }
+  }
 }

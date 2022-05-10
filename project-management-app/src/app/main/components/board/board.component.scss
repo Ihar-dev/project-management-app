@@ -1,13 +1,6 @@
 @import "mixins";
 @import "variables";
 
-%hover-pattern {
-  border: solid 1px $theme-accent;
-  color: $theme-accent;
-  box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
-  transform: translateY(-0.6rem);
-}
-
 :host {
   position: relative;
   @extend %flex-centre-pattern;

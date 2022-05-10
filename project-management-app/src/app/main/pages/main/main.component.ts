@@ -15,6 +15,7 @@ import { BoardModel, BoardsModel } from '../../models/mock-boards.model';
 export class MainComponent implements OnInit {
   public boards$: Observable <BoardsModel>;
   public mouseExisting = false;
+  public searchContainerDisplay = false;
 
   constructor(private readonly router: Router, private store: Store) {}
 
@@ -37,5 +38,14 @@ export class MainComponent implements OnInit {
 
   public mouseClick(): void {
     this.mouseExisting = false;
+  }
+
+  public searchMouseClick(event: MouseEvent) {
+    event.stopImmediatePropagation();
+    this.searchContainerDisplay = true;
+  }
+
+  public searchMouseMove(event: MouseEvent) {
+    event.stopImmediatePropagation();
   }
 }
