@@ -2,58 +2,29 @@
 <div class="main__container" (mousemove)="mouseMove()" (click)="mouseClick()">
   <div class="main__header-container" appMouseMoveStopPropagation appMouseClickStopPropagation>
     <h1>Boards</h1>
-    <button class="main__search-button" (click)="searchContainerDisplay = !searchContainerDisplay">
+    <button class="main__search-button" (click)="searchButtonClick()">
       &dArr; Search &dArr;
     </button>
     <div [class.active]="searchContainerDisplay" class="main__search-container">
       <div class="main__inner-search-container">
         <mat-form-field appearance="fill" class="board-input-form">
-          <mat-label>text for search</mat-label>
-          <input matInput type="text" #searchInput>
+          <mat-label>task search</mat-label>
+          <input matInput type="text" #searchInput (input)="taskSearch()" [(ngModel)]="dataForSearch">
           <button matSuffix mat-icon-button aria-label="Clear" (click)="searchInput.value=''">
             <mat-icon class="main__reset-button-icon">close</mat-icon>
           </button>
         </mat-form-field>
-        <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu" title="Make Search" class="main__make-search-button">
-          <mat-icon class="main__make-search-icon">search</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu" xPosition="after" class="user-menu">
-          <button mat-menu-item (click)="searchDisplay=true">Task Number Search</button>
-          <button mat-menu-item (click)="searchDisplay=true">Task Title Search</button>
-          <button mat-menu-item (click)="searchDisplay=true">Task User Search</button>
-          <button mat-menu-item (click)="searchDisplay=true">Task Description Search</button>
-        </mat-menu>
       </div>
       <div class="main__search-results-container" [class.active]="searchDisplay">
         <h2>Search Results</h2>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
-        <p>result</p>
+        <p *ngFor="let searchResult of searchResults">{{ searchResult }}</p>
       </div>
     </div>
   </div>
   <div class="main__inner-container">
-    <ng-container *ngIf="boards$ | async as boards">
-      <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"
-        [mouseExisting]="mouseExisting"></app-board>
-    </ng-container>
+    <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"
+      [mouseExisting]="mouseExisting"></app-board>
   </div>
 </div>
+
+

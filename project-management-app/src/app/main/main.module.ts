@@ -12,6 +12,7 @@ import { TestComponent } from './pages/test/test.component';
 import { SharedModule } from '../shared/shared.module';
 import { MouseMoveStopPropagationDirective } from '../shared/directives/mouse-move-stop-propagation.directive';
 import { MouseClickStopPropagationDirective } from '../shared/directives/mouse-click-stop-propagation.directive';
+import { RandomPhotoBackDirective } from '../shared/directives/random-photo-back.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MouseClickStopPropagationDirective } from '../shared/directives/mouse-c
     TestComponent,
     MouseMoveStopPropagationDirective,
     MouseClickStopPropagationDirective,
+    RandomPhotoBackDirective,
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,7 @@ import { MouseClickStopPropagationDirective } from '../shared/directives/mouse-c
     CoreModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ]
 })
 export class MainModule {}

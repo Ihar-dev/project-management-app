@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +24,7 @@ const MaterialComponents = [
   MatCardModule,
   MatDialogModule,
   FormsModule,
+  MatSelectModule,
 ];
 
 @NgModule({

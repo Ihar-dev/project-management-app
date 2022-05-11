@@ -5,7 +5,8 @@
   position: relative;
   @extend %flex-centre-pattern;
   width: 100%;
-  padding: 7rem;
+  height: 30rem;
+  overflow: hidden;
   border-radius: 1rem;
   @extend %normal-text-pattern;
   font-size: 4rem;
@@ -14,13 +15,38 @@
   color: white;
   background-color: $board-color;
   cursor: pointer;
-  border: 1px solid $board-color;
+  border: 1px solid transparent;
+
+  .board__photo-container {
+    position: absolute;
+    left: -5%;
+    top: 0;
+    width: 40%;
+    height: 100%;
+    transform: skewX(-4deg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .board__content-container {
+    position: absolute;
+    right: -5%;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    padding: 7rem;
+    transform: skewX(-4deg);
+    background-color: $theme-primary-transparent;
+    z-index: 1000;
+  }
 }
 
 .board__delete-button {
   position: absolute;
   right: 1rem;
   top: 1rem;
+  z-index: 1500;
 }
 
 .board__edit-button.hide {
@@ -44,6 +70,7 @@
 .board__edit-button,
 .board__save-button {
   transition: transform 0.3s;
+  position: relative;
 
   &:hover {
     transform: scale(1.5);
@@ -69,9 +96,19 @@
 }
 
 .board__title {
+  // position: relative;
   opacity: 0;
 
   &.active {
     opacity: 1;
   }
 }
+
+/* .board__edit-button,
+.board__save-button,
+.board-form,
+.board__title {
+  z-index: 2000;
+} */
+
+// background-color: $theme-primary-transparent;

@@ -36,6 +36,7 @@ export class BoardComponent implements OnInit {
       ]),
     });
     if (this.board?.id) this.id = this.board?.id;
+
   }
 
   public boardNameChange(event: MouseEvent, boardTitleInputValue: string): void {

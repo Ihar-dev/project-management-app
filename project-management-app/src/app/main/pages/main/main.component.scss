@@ -10,13 +10,7 @@
 
 @media screen and (orientation: landscape) {
   .main__container {
-    background: url("../../../../assets/images/png/board-back-landscape.png"), $theme-primary-transparent;
-  }
-}
-
-@media screen and (orientation: portrait) {
-  .main__container {
-    background: url("../../../../assets/images/png/board-back-portrait.png"), $theme-primary-transparent;
+    background: $purple-bg;
   }
 }
 
@@ -48,26 +42,20 @@
 }
 
 .main__inner-container {
-  position: absolute;
+  position: relative;
   width: calc(100% - 8rem);
-  height: calc(100% - 15rem);
+  height: auto;
   @extend %flex-column-pattern;
   @include scrollbar(10px, 100%);
-  margin: 11rem 4rem 4rem 4rem;
-  padding: 1rem 4rem 4rem 4rem;
+  margin: 4rem;
+  padding: 1rem;
   row-gap: 3rem;
   overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 @media screen and (max-width: $tablet) {
   .main__header-container {
     flex-direction: column;
-  }
-
-  .main__inner-container {
-    height: calc(100% - 22.5rem);
-    margin: 18.5rem 4rem 4rem 4rem;
   }
 }
 
@@ -101,8 +89,8 @@
   @extend %flex-column-pattern;
   row-gap: 2rem;
   bottom: 0;
-  right: 0;
-  width: calc(50%);
+  right: -3%;
+  width: 106%;
   height: 0;
   border-radius: 2rem 0 0 2rem;
   transform: translateY(100%);
@@ -111,7 +99,7 @@
   overflow-y: scroll;
   background-color: $theme-primary-transparent;
   transition: height 0.5s, padding 0.5s;
-  z-index: 1000;
+  z-index: 3000;
 
   &.active {
     height: 70vh;
@@ -121,7 +109,6 @@
 
 @media screen and (max-width: $laptop) {
   .main__search-container {
-    width: calc(100%);
 
     &.active {
       height: 45vh;
@@ -131,10 +118,13 @@
 
 .main__inner-search-container,
 .main__search-results-container {
+  position: relative;
   width: 100%;
   @extend %flex-column-pattern;
+  row-gap: 1.5rem;
   border-radius: 2rem;
   background-color: $color-white-2;
+  z-index: 4000;
 }
 
 .main__inner-search-container {
@@ -144,6 +134,7 @@
 .main__search-results-container {
   height: 0;
   margin: 2rem;
+  padding: 2rem;
   @extend %normal-text-pattern;
   color: $font-black;
   opacity: 0;
@@ -160,6 +151,7 @@
   }
 
   p {
+    align-self: flex-start;
     font-size: 2rem;
     line-height: 2.5rem;
   }
@@ -175,15 +167,21 @@
 }
 
 .main__make-search-button {
+  position: relative;
   width: 10rem;
   height: 10rem;
   margin-top: -2rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s, transform 0.3s;
+  z-index: 3000;
 
   &:hover {
     @extend %hover-grey-pattern;
   }
+}
+
+.user-menu {
+  position: relative;
 }
 
 .mat-menu-item {
