@@ -28,7 +28,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(AuthActions.AuthActionTypes.Login),
       mergeMap(({ userData }) =>
-        this.authService.signIn(userData).pipe(
+        this.authService.login(userData).pipe(
           map((data) => {
             if (data) {
               return AuthActions.loginSuccess({ user: new User(data) });

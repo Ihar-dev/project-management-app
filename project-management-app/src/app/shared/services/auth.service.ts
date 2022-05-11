@@ -33,8 +33,8 @@ export class AuthService {
       .pipe(map(() => data));
   }
 
-  signIn(data: TSigninData) {
-    return this.http.post<TTokenResponce>(this.signInUrl, JSON.stringify(data)).pipe(
+  login(data: TSigninData): Observable<User | null> {
+    return this.signIn(data).pipe(
       map(({ token }) => {
         this.lsService.setItem(USER_TOKEN_KEY, token);
       }),
@@ -53,6 +53,10 @@ export class AuthService {
         return null;
       }),
     );
+  }
+
+  signIn(data: TSigninData): Observable<TTokenResponce> {
+    return this.http.post<TTokenResponce>(this.signInUrl, JSON.stringify(data));
   }
 
   signOut(): void {

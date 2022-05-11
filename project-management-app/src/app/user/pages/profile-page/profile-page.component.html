@@ -10,14 +10,14 @@
           </mat-icon>
         </div>
 
-        <h2 class="user-info__name">UserName</h2>
+        <h2 class="user-info__name">{{profile?.name || 'Username'}}</h2>
         <div class="user-info__btn">
           <app-button text="Delete profile" color="warn"></app-button>
         </div>
       </div>
 
       <div class="user-data">
-        <app-tabs [profile]="profile"></app-tabs>
+        <app-tabs [profile]="profile" (updateData)="onUpdateData($event)"></app-tabs>
       </div>
     </div>
   </div>

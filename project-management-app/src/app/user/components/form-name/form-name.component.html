@@ -1,4 +1,4 @@
-<form class="form-name" [formGroup]="form">
+<form class="form-name" [formGroup]="form" (submit)="onSubmit()">
   <app-form-title [title]="title"></app-form-title>
   <app-form-field label="Name" [control]="controlName"></app-form-field>
   <app-form-error [control]="controlName" [errors]="formErrors[controlNameKey]"></app-form-error>

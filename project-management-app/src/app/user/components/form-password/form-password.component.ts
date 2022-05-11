@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { FormControlNames } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_EDIT_PROFILE_PASS } from 'src/app/forms/errors/error-messages-profile-pass';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
+import { TUserData } from 'src/app/shared/models/register-data.model';
 
 const FORM_TITLE = 'Change password';
 @Component({
@@ -12,6 +13,12 @@ const FORM_TITLE = 'Change password';
   styleUrls: ['./form-password.component.scss'],
 })
 export class FormPasswordComponent implements OnInit {
+  @Input() name: string = '';
+
+  @Input() login: string = '';
+
+  @Output() submitForm = new EventEmitter<TUserData>();
+
   form: FormGroup;
 
   readonly formErrors = ERRORS_MESSAGES_EDIT_PROFILE_PASS;
@@ -43,8 +50,8 @@ export class FormPasswordComponent implements OnInit {
             updateOn: 'blur',
           },
         ],
-        password: ['', [this.validFormService.validatePassword()]],
-        confirmPassword: [''],
+        password: ['', [Validators.required, this.validFormService.validatePassword()]],
+        confirmPassword: ['', [Validators.required]],
       },
       {
         validators: this.validFormService.confirmPassword(),
@@ -53,9 +60,12 @@ export class FormPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      console.log(this.form.value);
+    if (!this.form.valid) {
+      return;
     }
+    const { password } = this.form.value;
+    this.submitForm.emit({ name: this.name, login: this.login, password });
+    this.form.reset();
   }
 
   get controlOldPassword(): AbstractControl {

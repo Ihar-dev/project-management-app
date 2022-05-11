@@ -10,11 +10,9 @@ export const authReducer = createReducer(
     isAuthenticated: true,
   })),
 
-  on(AuthActions.authFailure, (state, { error }) => ({
+  on(AuthActions.authFailure, (state) => ({
     ...state,
-    profile: null,
-    isAuthenticated: false,
-    error,
+    ...authInitialState,
   })),
 
   on(AuthActions.logoutSuccess, (state) => ({

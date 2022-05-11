@@ -33,11 +33,12 @@ export class LoginPageComponent {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const signInData = this.form.value;
-      this.store.dispatch(login({ userData: <TSigninData>signInData }));
-      this.form.reset();
+    if (!this.form.valid) {
+      return;
     }
+    const signInData = this.form.value;
+    this.store.dispatch(login({ userData: <TSigninData>signInData }));
+    this.form.reset();
   }
 
   get controlLogin(): AbstractControl {

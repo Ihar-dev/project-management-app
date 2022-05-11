@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ReplaySubject, takeUntil } from 'rxjs';
+import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
+import { loginSuccess } from 'src/app/store/actions/auth.action';
 import { selectProfile } from 'src/app/store/selectors/auth.selector';
 import { UserService } from '../../services/user.service';
 
@@ -23,6 +25,14 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     this.profile$.pipe(takeUntil(this.destroyed$)).subscribe((userData) => {
       this.profile = userData;
     });
+  }
+
+  onUpdateData(userData: TUserData) {
+    const { name, login, password } = userData;
+    this.userService
+      .updateUser({ name, login, password }, this.profile?.id)
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((user) => this.store.dispatch(loginSuccess({ user })));
   }
 
   ngOnDestroy(): void {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { USER_DATA_KEY } from 'src/app/shared/constants';
 import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
@@ -19,13 +19,21 @@ export class UserService {
     return userData ? this.http.get<User>(`${this.usersUrl}/${userData.id}`) : of(null);
   }
 
-  updateUser(data: TUserData) {
-    const userData = this.lsService.getItem<User>(USER_DATA_KEY);
-    if (userData)
-      this.http
-        .put<User>(`${this.usersUrl}/${userData.id}`, JSON.stringify(data))
-        .subscribe((userDataUpdated) => {
-          this.lsService.setItem(USER_DATA_KEY, new User(userDataUpdated));
-        });
+  updateUser(data: TUserData, id: string = ''): Observable<User> {
+    let userId = id;
+    if (!userId) {
+      const userData = this.lsService.getItem<User>(USER_DATA_KEY);
+      if (userData) {
+        userId = userData.id;
+      }
+    }
+
+    return this.http.put<User>(`${this.usersUrl}/${id}`, JSON.stringify(data)).pipe(
+      map((userDataUpdated) => {
+        const user = new User(userDataUpdated);
+        this.lsService.setItem(USER_DATA_KEY, user);
+        return user;
+      }),
+    );
   }
 }

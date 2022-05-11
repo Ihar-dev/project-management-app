@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ERRORS_MESSAGES_EDIT_PROFILE_NAME } from 'src/app/forms/errors/error-messages-profile-name';
+import { TUserData } from 'src/app/shared/models/register-data.model';
 
 const FORM_TITLE = 'Update general data';
 @Component({
@@ -14,6 +15,8 @@ export class FormNameComponent implements OnInit {
   @Input() name: string = '';
 
   @Input() login: string = '';
+
+  @Output() submitForm = new EventEmitter<TUserData>();
 
   form: FormGroup;
 
@@ -45,9 +48,12 @@ export class FormNameComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      console.log(this.form.value);
+    if (!this.form.valid) {
+      return;
     }
+    const { name, login, oldPassword: password } = this.form.value;
+    this.submitForm.emit({ name, login, password });
+    this.form.reset();
   }
 
   get controlName(): AbstractControl {

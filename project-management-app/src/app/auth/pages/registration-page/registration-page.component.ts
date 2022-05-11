@@ -51,11 +51,12 @@ export class RegistrationPageComponent {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const { confirmPassword, ...signUpData } = this.form.value;
-      this.store.dispatch(signup({ userData: <TUserData>signUpData }));
-      this.form.reset();
+    if (!this.form.valid) {
+      return;
     }
+    const { confirmPassword, ...signUpData } = this.form.value;
+    this.store.dispatch(signup({ userData: <TUserData>signUpData }));
+    this.form.reset();
   }
 
   get controlName(): AbstractControl {
