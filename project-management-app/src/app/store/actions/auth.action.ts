@@ -16,7 +16,7 @@ export const signup = createAction(AuthActionTypes.Signup, props<{ userData: TUs
 
 export const login = createAction(AuthActionTypes.Login, props<{ userData: TSigninData }>());
 export const loginSuccess = createAction(AuthActionTypes.LoginSuccess, props<{ user: User }>());
-export const authFailure = createAction(AuthActionTypes.AuthFailure, props<{ error: Error }>());
+export const authFailure = createAction(AuthActionTypes.AuthFailure);
 
 export const logout = createAction(AuthActionTypes.Logout);
 export const logoutSuccess = createAction(AuthActionTypes.LogoutSuccess);

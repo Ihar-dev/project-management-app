@@ -34,7 +34,7 @@ export class AuthEffects {
               return AuthActions.loginSuccess({ user: new User(data) });
             }
 
-            return AuthActions.authFailure({ error: new Error('No user Found!') });
+            return AuthActions.authFailure();
           }),
         ),
       ),
