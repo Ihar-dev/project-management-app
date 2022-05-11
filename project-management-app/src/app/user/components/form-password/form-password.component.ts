@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { FormControlNames } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_EDIT_PROFILE_PASS } from 'src/app/forms/errors/error-messages-profile-pass';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
-import { UserService } from '../../services/user.service';
 
 const FORM_TITLE = 'Change password';
 @Component({
@@ -12,7 +11,7 @@ const FORM_TITLE = 'Change password';
   templateUrl: './form-password.component.html',
   styleUrls: ['./form-password.component.scss'],
 })
-export class FormPasswordComponent {
+export class FormPasswordComponent implements OnInit {
   form: FormGroup;
 
   readonly formErrors = ERRORS_MESSAGES_EDIT_PROFILE_PASS;
@@ -28,9 +27,10 @@ export class FormPasswordComponent {
   constructor(
     private fb: FormBuilder,
     private validFormService: ValidationFormService,
-    private userService: UserService,
     private passwordAsyncValidator: PasswordAsyncValidator,
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.form = this.fb.group(
       {
         oldPassword: [

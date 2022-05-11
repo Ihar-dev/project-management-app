@@ -1,7 +1,7 @@
 <mat-tab-group class="tabs" mat-align-tabs="start">
   <mat-tab label="Change general data">
     <div class="tabs__item">
-      <app-form-name></app-form-name>
+      <app-form-name [name]="profile?.name || ''" [login]="profile?.login || ''"></app-form-name>
     </div>
   </mat-tab>
   <mat-tab label="Change password">

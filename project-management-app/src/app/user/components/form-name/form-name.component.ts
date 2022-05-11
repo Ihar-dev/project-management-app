@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ERRORS_MESSAGES_EDIT_PROFILE_NAME } from 'src/app/forms/errors/error-messages-profile-name';
-import { UserService } from '../../services/user.service';
 
 const FORM_TITLE = 'Update general data';
 @Component({
@@ -11,7 +10,11 @@ const FORM_TITLE = 'Update general data';
   templateUrl: './form-name.component.html',
   styleUrls: ['./form-name.component.scss'],
 })
-export class FormNameComponent {
+export class FormNameComponent implements OnInit {
+  @Input() name: string = '';
+
+  @Input() login: string = '';
+
   form: FormGroup;
 
   readonly formErrors = ERRORS_MESSAGES_EDIT_PROFILE_NAME;
@@ -24,14 +27,12 @@ export class FormNameComponent {
 
   readonly title = FORM_TITLE;
 
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private passwordAsyncValidator: PasswordAsyncValidator,
-  ) {
+  constructor(private fb: FormBuilder, private passwordAsyncValidator: PasswordAsyncValidator) {}
+
+  ngOnInit(): void {
     this.form = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(FormFieldLength.name)]],
-      login: ['', [Validators.required, Validators.minLength(FormFieldLength.login)]],
+      name: [this.name, [Validators.required, Validators.minLength(FormFieldLength.name)]],
+      login: [this.login, [Validators.required, Validators.minLength(FormFieldLength.login)]],
       oldPassword: [
         '',
         {
