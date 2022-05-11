@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { CanActivate, CanLoad, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
@@ -24,13 +24,17 @@ export class AuthGuard implements CanActivate, CanLoad, OnDestroy {
     return this.handleUserAuth();
   }
 
-  canActivate(): boolean {
-    return this.handleUserAuth();
+  canActivate(route: ActivatedRouteSnapshot): boolean {
+    return this.handleUserAuth(route);
   }
 
-  handleUserAuth(): boolean {
+  handleUserAuth(route?: ActivatedRouteSnapshot): boolean {
     if (!this.isAuthenticated) {
       this.router.navigate(['welcome']);
+    } else if (this.isAuthenticated && route?.url[0].path === 'welcome') {
+      this.router.navigate(['main']);
+
+      return false;
     }
 
     return this.isAuthenticated;
