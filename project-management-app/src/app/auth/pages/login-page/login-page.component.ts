@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 
 import { FormControlNames } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_LOGIN } from 'src/app/forms/errors/error-messages-login';
-import { AuthService } from '../../services/auth.service';
-import { TSigninData } from '../../shared/models/login-data.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { TSigninData } from 'src/app/shared/models/login-data.model';
 
 const FORM_TITLE = 'Log in';
 

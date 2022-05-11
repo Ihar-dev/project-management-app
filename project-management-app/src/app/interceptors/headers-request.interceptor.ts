@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalstorageService } from '../core/services/localstorage.service';
-import { USER_TOKEN_KEY } from '../auth/shared/constants';
+import { USER_TOKEN_KEY } from '../shared/constants';
 
 const TOKEN_TYPE = 'Bearer';
 @Injectable()

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AsyncValidator, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Observable, map, catchError, of } from 'rxjs';
-import { AuthService } from 'src/app/auth/services/auth.service';
-import { USER_DATA_KEY } from 'src/app/auth/shared/constants';
-import { User } from 'src/app/auth/shared/models/user.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { USER_DATA_KEY } from 'src/app/shared/constants';
+import { User } from 'src/app/shared/models/user.model';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 
 @Injectable({ providedIn: 'root' })

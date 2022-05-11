@@ -9,13 +9,12 @@ import {
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 import { MessagesDefault } from 'src/app/shared/models/messages-type';
 import { MessageBoxService } from '../core/services/message-box.service';
-import { AuthService } from '../auth/services/auth.service';
 import { ErrorMessages } from '../shared/constants';
 
 const ERROR_MESSAGE = MessagesDefault.error;
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-  constructor(private messageBoxService: MessageBoxService, private auth: AuthService) {}
+  constructor(private messageBoxService: MessageBoxService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(

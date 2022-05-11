@@ -3,8 +3,8 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
 import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_SIGNUP } from 'src/app/forms/errors/error-messages-signup';
-import { AuthService } from '../../services/auth.service';
-import { TUserData } from '../../shared/models/register-data.model';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { TUserData } from 'src/app/shared/models/register-data.model';
 
 const FORM_TITLE = 'Sign up';
 

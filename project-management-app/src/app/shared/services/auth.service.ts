@@ -7,11 +7,11 @@ import { LocalstorageService } from 'src/app/core/services/localstorage.service'
 import { MessageBoxService } from 'src/app/core/services/message-box.service';
 
 import { MessagesDefault } from 'src/app/shared/models/messages-type';
-import { TUserData } from '../shared/models/register-data.model';
-import { User, UserDataResponce } from '../shared/models/user.model';
-import { USER_DATA_KEY, USER_TOKEN_KEY } from '../shared/constants';
-import { TSigninData } from '../shared/models/login-data.model';
-import { TTokenResponce } from '../shared/models/token-responce.model';
+import { TUserData } from '../models/register-data.model';
+import { User, UserDataResponce } from '../models/user.model';
+import { USER_DATA_KEY, USER_TOKEN_KEY } from '../constants';
+import { TSigninData } from '../models/login-data.model';
+import { TTokenResponce } from '../models/token-responce.model';
 
 @Injectable({
   providedIn: 'root',

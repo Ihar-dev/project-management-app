@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { USER_DATA_KEY } from 'src/app/auth/shared/constants';
-import { TUserData } from 'src/app/auth/shared/models/register-data.model';
-import { User } from 'src/app/auth/shared/models/user.model';
+import { USER_DATA_KEY } from 'src/app/shared/constants';
+import { TUserData } from 'src/app/shared/models/register-data.model';
+import { User } from 'src/app/shared/models/user.model';
 import { LocalstorageService } from 'src/app/core/services/localstorage.service';
 
 @Injectable({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve } from '@angular/router';
 import { catchError, EMPTY, Observable } from 'rxjs';
-import { User } from 'src/app/auth/shared/models/user.model';
+import { User } from 'src/app/shared/models/user.model';
 import { UserService } from '../services/user.service';
 
 @Injectable({
