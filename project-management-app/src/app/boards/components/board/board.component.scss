@@ -1,11 +1,6 @@
 @import "variables";
 @import "mixins";
 
-:host,
-.board {
-  height: 100%;
-}
-
 .board {
   &__header {
     @extend %flex-normal-pattern;
@@ -50,8 +45,8 @@
 
   &__btn {
     &--back {
-      min-width: 40px;
-      height: 40px;
+      min-width: 4rem;
+      height: 4rem;
       border-radius: 100%;
       padding: 0;
       background-color: $board-btn-bg-back;
@@ -66,7 +61,7 @@
 
   &__content {
     width: 100%;
-    height: 100%;
+
     padding: 2rem 2rem 0;
     background-color: $board-main-bg;
     border-top: 2px solid $theme-accent;
@@ -75,23 +70,14 @@
     &--scrollable {
       @include scrollbar(100%, 10px);
 
-      height: 100%;
       width: 100%;
       padding-bottom: 1rem;
       display: grid;
-      grid-auto-columns: 300px;
+      grid-auto-columns: 30rem;
       grid-auto-flow: column;
-      grid-gap: 15px;
+      grid-gap: 1.5rem;
       overflow-y: hidden;
       overflow-x: scroll;
-
-      @media screen and (max-width: $tablet) {
-        grid-auto-columns: 280px;
-      }
-
-      @media screen and (max-width: $mobile) {
-        grid-auto-columns: 271px;
-      }
     }
   }
 }
