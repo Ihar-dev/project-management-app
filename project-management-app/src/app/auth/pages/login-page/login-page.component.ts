@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { FormControlNames } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_LOGIN } from 'src/app/forms/errors/error-messages-login';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { TSigninData } from 'src/app/shared/models/login-data.model';
+import { Store } from '@ngrx/store';
+import { login } from 'src/app/store/actions/auth.action';
 
 const FORM_TITLE = 'Log in';
 
@@ -25,7 +25,7 @@ export class LoginPageComponent {
 
   readonly title = FORM_TITLE;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.form = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -35,9 +35,7 @@ export class LoginPageComponent {
   onSubmit(): void {
     if (this.form.valid) {
       const signInData = this.form.value;
-      this.authService.signIn(<TSigninData>signInData).subscribe(() => {
-        this.router.navigate(['']);
-      });
+      this.store.dispatch(login({ userData: <TSigninData>signInData }));
       this.form.reset();
     }
   }

@@ -3,8 +3,9 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
 import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_SIGNUP } from 'src/app/forms/errors/error-messages-signup';
-import { AuthService } from 'src/app/shared/services/auth.service';
 import { TUserData } from 'src/app/shared/models/register-data.model';
+import { Store } from '@ngrx/store';
+import { signup } from 'src/app/store/actions/auth.action';
 
 const FORM_TITLE = 'Sign up';
 
@@ -31,7 +32,7 @@ export class RegistrationPageComponent {
   constructor(
     private fb: FormBuilder,
     private validFormService: ValidationFormService,
-    private authService: AuthService,
+    private store: Store,
   ) {
     this.form = this.fb.group(
       {
@@ -52,7 +53,7 @@ export class RegistrationPageComponent {
   onSubmit(): void {
     if (this.form.valid) {
       const { confirmPassword, ...signUpData } = this.form.value;
-      this.authService.signUp(<TUserData>signUpData);
+      this.store.dispatch(signup({ userData: <TUserData>signUpData }));
       this.form.reset();
     }
   }
