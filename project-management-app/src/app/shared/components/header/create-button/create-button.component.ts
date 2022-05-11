@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogBoardCreationComponent } from 'src/app/shared/components/dialog-board-creation/dialog-board-creation.component';
+import {
+  DialogCreationComponent,
+  DialogInterface,
+} from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 
 @Component({
   selector: 'app-create-button',
@@ -11,6 +14,6 @@ export class CreateButtonComponent {
   constructor(private dialog: MatDialog) {}
 
   openCreateBoardDialog(): void {
-    this.dialog.open(DialogBoardCreationComponent);
+    this.dialog.open(DialogCreationComponent, { data: <DialogInterface>{ type: 'board' } });
   }
 }

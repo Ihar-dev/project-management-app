@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ITask } from 'src/app/boards/shared/models/task.model';
+import { ITask } from 'src/app/shared/models/task.model';
 
 const TASK_DEFAULT = 'Task title';
 

@@ -16,6 +16,13 @@ $icon-button-size: 4rem;
     text-align: center;
     margin-bottom: 3rem;
     font-weight: 300;
+
+    &--secondary {
+      @extend .form__title;
+
+      font-size: 2.9rem;
+      margin-bottom: 1rem;
+    }
   }
 
   &__input-block {
@@ -43,32 +50,49 @@ $icon-button-size: 4rem;
     }
   }
 
-  .clear-btn {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    text-align: center;
-    visibility: hidden;
-    transform: translateY(-50%);
-
-    &__icon {
-      color: $board-main-bg-darken;
-      font-size: $icon-button-size;
-      line-height: $icon-button-size;
-      width: $icon-button-size;
-      height: $icon-button-size;
-    }
-  }
-
   &__alert {
     font-size: 2rem;
     text-align: center;
     color: $board-main-bg-darken;
-    margin-bottom: 4rem;
+  }
+
+  &__textarea {
+    background-color: $board-main-bg;
+    resize: none;
+    width: 80%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid $board-main-bg-darken;
+    font-size: 2.2rem;
+    font-weight: 300;
+    display: block;
+    margin: 0 auto;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.clear-btn {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  text-align: center;
+  visibility: hidden;
+  transform: translateY(-50%);
+
+  &__icon {
+    color: $board-main-bg-darken;
+    font-size: $icon-button-size;
+    line-height: $icon-button-size;
+    width: $icon-button-size;
+    height: $icon-button-size;
   }
 }
 
 .btn-block {
+  margin-top: 4rem;
   display: flex;
   justify-content: center;
   gap: 3rem;

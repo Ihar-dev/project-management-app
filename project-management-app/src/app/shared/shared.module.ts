@@ -8,7 +8,7 @@ import { HeaderComponent } from './components/header/header/header.component';
 import { LogoComponent } from './components/header/logo/logo.component';
 import { UserBoxComponent } from './components/header/user-box/user-box.component';
 import { CreateButtonComponent } from './components/header/create-button/create-button.component';
-import { DialogBoardCreationComponent } from './components/dialog-board-creation/dialog-board-creation.component';
+import { DialogCreationComponent } from './components/dialog-creation/dialog-creation.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { DialogBoardCreationComponent } from './components/dialog-board-creation
     LogoComponent,
     UserBoxComponent,
     CreateButtonComponent,
-    DialogBoardCreationComponent,
+    DialogCreationComponent,
   ],
   imports: [CommonModule, MaterialModule, FormsModule],
   exports: [
@@ -27,7 +27,7 @@ import { DialogBoardCreationComponent } from './components/dialog-board-creation
     StickyHeaderDirective,
     ButtonComponent,
     HeaderComponent,
-    DialogBoardCreationComponent,
+    DialogCreationComponent,
   ],
 })
 export class SharedModule {}
