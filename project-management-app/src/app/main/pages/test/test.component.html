@@ -2,10 +2,18 @@
 
 <input type="text" placeholder="Board Title" [(ngModel)]="boardTitle" />
 <button mat-stroked-button (click)="addBoard()">create board</button>
+
+<input type="text" placeholder="Board id for column" [(ngModel)]="boardIdForColumn" />
+<button mat-stroked-button (click)="openCreateColumnDialog()">create column</button>
+
+<input type="text" placeholder="Column id for task" [(ngModel)]="columnIdForTask" />
+<button mat-stroked-button (click)="openCreateTaskDialog()">create task</button>
+
 <ng-container *ngIf="boards$ | async as boards">
   <ul *ngIf="boards.length; else emptyBoards" class="board-list">
     <li *ngFor="let board of boards" class="board">
-      <h2>{{ board.title }}</h2>
+      <h2 style="color: blueviolet">{{ board.title }}</h2>
+      <h4 style="font-size: 2rem">{{ board.description }}</h4>
       <input type="text" placeholder="Board Title" [(ngModel)]="newBoardTitle" />
       <button mat-stroked-button (click)="renameBoard(board.id)">Rename</button>
       <h3>id: {{ board.id }}</h3>
@@ -28,6 +36,7 @@
             style="background-color: rgb(109, 163, 102); margin-bottom: 10px; padding: 5px"
           >
             <h3>{{ column.title }}</h3>
+            <h3>{{ column.id }}</h3>
             <button mat-button color="warn" (click)="deleteColumn(board.id, column.id)">
               delete
             </button>
@@ -82,6 +91,7 @@
                       updateTask(board.id, column.id, task.id, {
                         title: taskTitle,
                         description: taskDescription,
+                        done: false,
                         order: task.order,
                         userId: task.userId,
                         boardId: board.id,
