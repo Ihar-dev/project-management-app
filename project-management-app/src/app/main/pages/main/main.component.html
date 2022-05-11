@@ -18,15 +18,35 @@
           <mat-icon class="main__make-search-icon">search</mat-icon>
         </button>
         <mat-menu #menu="matMenu" xPosition="after" class="user-menu">
-          <button mat-menu-item>Task Number Search</button>
-          <button mat-menu-item>Task Title Search</button>
-          <button mat-menu-item>Task User Search</button>
-          <button mat-menu-item>Task Description Search</button>
+          <button mat-menu-item (click)="searchDisplay=true">Task Number Search</button>
+          <button mat-menu-item (click)="searchDisplay=true">Task Title Search</button>
+          <button mat-menu-item (click)="searchDisplay=true">Task User Search</button>
+          <button mat-menu-item (click)="searchDisplay=true">Task Description Search</button>
         </mat-menu>
-
-
-
-
+      </div>
+      <div class="main__search-results-container" [class.active]="searchDisplay">
+        <h2>Search Results</h2>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
+        <p>result</p>
       </div>
     </div>
   </div>

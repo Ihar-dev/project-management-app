@@ -99,6 +99,7 @@
 .main__search-container {
   position: absolute;
   @extend %flex-column-pattern;
+  row-gap: 2rem;
   bottom: 0;
   right: 0;
   width: calc(50%);
@@ -108,24 +109,13 @@
   @include scrollbar(8px);
   overflow-x: hidden;
   overflow-y: scroll;
-  background-color: $color-white-2;
-  opacity: 0;
-  transition: height 0.5s;
+  background-color: $theme-primary-transparent;
+  transition: height 0.5s, padding 0.5s;
   z-index: 1000;
 
   &.active {
     height: 70vh;
-    padding: 1rem;
-    padding: 2rem;
-    opacity: 1;
-  }
-
-  &.active .main__inner-search-container {
-    width: 100%;
-    height: 100%;
-    @extend %flex-column-pattern;
-    border-radius: inherit;
-    border: solid 2px #363062;
+    padding: 3rem;
   }
 }
 
@@ -135,8 +125,43 @@
 
     &.active {
       height: 45vh;
-      padding: 1rem;
     }
+  }
+}
+
+.main__inner-search-container,
+.main__search-results-container {
+  width: 100%;
+  @extend %flex-column-pattern;
+  border-radius: 2rem;
+  background-color: $color-white-2;
+}
+
+.main__inner-search-container {
+  border: solid 2px $color-grey;
+}
+
+.main__search-results-container {
+  height: 0;
+  margin: 2rem;
+  @extend %normal-text-pattern;
+  color: $font-black;
+  opacity: 0;
+  transition: opacity 1s;
+
+  &.active {
+    opacity: 1;
+    height: max-content;
+  }
+
+  h2 {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+
+  p {
+    font-size: 2rem;
+    line-height: 2.5rem;
   }
 }
 
@@ -153,6 +178,7 @@
   width: 10rem;
   height: 10rem;
   margin-top: -2rem;
+  margin-bottom: 2rem;
   transition: box-shadow 0.3s, transform 0.3s;
 
   &:hover {

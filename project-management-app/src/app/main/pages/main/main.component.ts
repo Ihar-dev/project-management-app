@@ -16,6 +16,7 @@ export class MainComponent implements OnInit {
   public boards$: Observable <BoardsModel>;
   public mouseExisting = false;
   public searchContainerDisplay = false;
+  public searchDisplay = false;
 
   constructor(private readonly router: Router, private store: Store) {}
 
