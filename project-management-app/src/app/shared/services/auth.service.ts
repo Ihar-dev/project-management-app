@@ -19,6 +19,8 @@ export class AuthService {
 
   private readonly signInUrl = 'signin';
 
+  private readonly usersUrl = 'users';
+
   constructor(
     private http: HttpClient,
     private lsService: LocalstorageService,
@@ -36,7 +38,7 @@ export class AuthService {
       map(({ token }) => {
         this.lsService.setItem(USER_TOKEN_KEY, token);
       }),
-      switchMap(() => this.http.get<User[]>('users')),
+      switchMap(() => this.http.get<User[]>(this.usersUrl)),
       map((res) => {
         const userData = res.find((user) => data.login === user.login);
         if (userData) {
@@ -56,10 +58,6 @@ export class AuthService {
   signOut(): void {
     this.lsService.clear();
     this.navigate('');
-  }
-
-  isAuthenticated(): boolean {
-    return !!this.lsService.getItem<string>(USER_TOKEN_KEY);
   }
 
   private navigate(...paths: string[]): void {

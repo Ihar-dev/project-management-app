@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { isAuth } from 'src/app/store/selectors/auth.selector';
-import { StoreState } from 'src/app/store/store.model';
+import { logout } from 'src/app/store/actions/auth.action';
+import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 enum Localized {
   eng = 'eng',
@@ -16,11 +16,15 @@ enum Localized {
 export class HeaderComponent {
   localized = Localized.eng;
 
-  isAuth$ = this.store.select(isAuth);
+  isAuth$ = this.store.select(selectIsAuth);
 
-  constructor(private store: Store<StoreState>) {}
+  constructor(private store: Store) {}
 
   toggleLocalization(): void {
     this.localized = this.localized === Localized.eng ? Localized.ru : Localized.eng;
+  }
+
+  onLogout(): void {
+    this.store.dispatch(logout());
   }
 }

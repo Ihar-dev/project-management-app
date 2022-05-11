@@ -3,7 +3,7 @@
     <mat-icon class="icon">account_circle</mat-icon>
   </button>
   <mat-menu #menu="matMenu" xPosition="before" class="user-menu">
-    <button mat-menu-item routerLink="/edit-profile">Edit profile</button>
-    <button mat-menu-item (click)="logout()">Logout</button>
+    <button mat-menu-item routerLink="/profile">Edit profile</button>
+    <button mat-menu-item (click)="onLogoutClick()">Logout</button>
   </mat-menu>
 </div>

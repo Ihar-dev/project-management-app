@@ -46,7 +46,7 @@ export class AuthEffects {
       ofType(AuthActions.AuthActionTypes.Logout),
       map(() => {
         this.authService.signOut();
-        return AuthActions.logout();
+        return AuthActions.logoutSuccess();
       }),
     ),
   );
