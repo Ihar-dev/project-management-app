@@ -3,8 +3,8 @@
   <div class="board__content-container">
     <mat-icon *ngIf="!boardEditMode" [class.hide]="mouseExisting" (click)="boardEditMode=true;" title="Edit"
     class="board__edit-button" appMouseMoveStopPropagation appMouseClickStopPropagation>edit</mat-icon>
-  <span [class.active]="!boardEditMode" class="board__title">&nbsp; {{ board?.title!.substr(0, 100) }}</span>
-  <p [class.active]="!boardEditMode">&nbsp; {{ board?.description!.substr(0, 100) }}</p>
+  <span [class.active]="!boardEditMode" class="board__title">&nbsp; {{ board?.title!.substr(0, 50) }}</span>
+  <p [class.active]="!boardEditMode">&nbsp; {{ board?.description!.substr(0, 130) }}</p>
   <form *ngIf="boardEditMode" [formGroup]="cardForm" class="board-form" appMouseMoveStopPropagation
     appMouseClickStopPropagation>
     <mat-icon title="Save"
