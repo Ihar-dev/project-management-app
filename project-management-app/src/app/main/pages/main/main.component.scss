@@ -155,11 +155,13 @@
     background-color: $color-grey;
     padding: 1rem;
     border-radius: 1rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
     cursor: pointer;
+    transition: background-color 0.2s;
 
-    p {
-      font-size: 2rem;
-      line-height: 2.5rem;
+    &:hover {
+      background-color: $theme-primary-transparent;
     }
   }
 }

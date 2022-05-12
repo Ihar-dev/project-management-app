@@ -19,9 +19,7 @@
         <h2>Search Results</h2>
         <div *ngFor="let searchResult of searchResults" (click)="boardRout($event, searchResult.board)"
         class="main__search-result-container">
-          <p>
             {{ searchResults.indexOf(searchResult) + 1 + '. ' + searchResult.text }}
-          </p>
         </div>
       </div>
     </div>
