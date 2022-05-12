@@ -5,7 +5,7 @@
   position: relative;
   @extend %flex-centre-pattern;
   width: 100%;
-  height: 40rem;
+  height: 30rem;
   overflow: hidden;
   border-radius: 2rem;
   cursor: pointer;
@@ -60,9 +60,21 @@
   }
 }
 
+@media screen and (max-width: $notebook) {
+  :host {
+    height: 30rem;
+  }
+}
+
+@media screen and (max-width: $laptop) {
+  :host {
+    height: 40rem;
+  }
+}
+
 @media screen and (max-width: $tablet) {
   :host {
-    height: 50rem;
+    height: 45rem;
   }
 }
 

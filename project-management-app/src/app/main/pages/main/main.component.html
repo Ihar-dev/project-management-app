@@ -2,9 +2,7 @@
 <div class="main__container" (mousemove)="mouseMove()" (click)="mouseClick()">
   <div class="main__header-container" appMouseMoveStopPropagation appMouseClickStopPropagation>
     <h1>Boards</h1>
-    <button class="main__search-button" (click)="searchButtonClick();">
-      &dArr; Search &dArr;
-    </button>
+    <button class="main__search-button" (click)="searchButtonClick();" [innerHTML]="SearchTitle"></button>
     <div [class.active]="searchContainerDisplay" class="main__search-container">
       <div class="main__inner-search-container">
         <mat-form-field appearance="fill" class="board-input-form">

@@ -9,6 +9,11 @@ import { TaskSearchService } from '../../services/task-search.service';
 import { IBoard } from '../../../shared/models/board.model';
 import { SearchResult } from '../../models/search-result.model';
 
+enum SearchTitles {
+  Down = '&dArr; Search &dArr;',
+  Up = '&uArr; Search &uArr;',
+}
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -25,6 +30,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public searchContainerDisplay = false;
   public searchDisplay = false;
   public searchResults: SearchResult[] = [];
+  public SearchTitle: SearchTitles;
 
   constructor(private readonly router: Router, private store: Store, taskSearchService: TaskSearchService) {
     this.taskSearchService = taskSearchService;
@@ -42,6 +48,7 @@ export class MainComponent implements OnInit, OnDestroy {
         this.searchDisplay = true;
       } else this.searchDisplay = false;
     });
+    this.SearchTitle = SearchTitles.Down;
   }
 
   public taskSearch(): void {
@@ -51,13 +58,15 @@ export class MainComponent implements OnInit, OnDestroy {
 
   public searchButtonClick(): void {
     if (this.searchContainerDisplay) {
+      this.SearchTitle = SearchTitles.Down;
       this.searchContainerDisplay = false;
       this.searchDisplay = false;
       this.dataForSearch = '';
     }
     else {
-      this.boards.forEach((el: IBoard) => this.getBoardById(el.id));
+      this.SearchTitle = SearchTitles.Up;
       this.searchContainerDisplay = true;
+      this.boards.forEach((el: IBoard) => this.getBoardById(el.id));
     }
   }
 
