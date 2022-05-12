@@ -1,7 +1,7 @@
 <div class="board">
   <div class="board__header">
     <h2 class="board__title">
-      <button mat-stroked-button class="board__btn--back">
+      <button mat-stroked-button class="board__btn--back" (click)="onClickBack()">
         <mat-icon>arrow_back</mat-icon>
       </button>
       <span class="board__title__text">{{board?.title || title}}</span>
