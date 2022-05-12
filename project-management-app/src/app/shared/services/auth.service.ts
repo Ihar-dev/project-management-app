@@ -59,7 +59,7 @@ export class AuthService {
 
   signOut(): void {
     this.lsService.clear();
-    this.navigate('');
+    this.navigate('welcome');
   }
 
   private navigate(...paths: string[]): void {

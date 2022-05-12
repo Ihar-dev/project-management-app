@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { CanActivate, CanLoad, Router } from '@angular/router';
+import { CanLoad, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
@@ -7,7 +7,7 @@ import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate, CanLoad, OnDestroy {
+export class AuthGuard implements CanLoad, OnDestroy {
   isAuth$ = this.store.select(selectIsAuth);
 
   isAuthenticated = false;
@@ -21,14 +21,6 @@ export class AuthGuard implements CanActivate, CanLoad, OnDestroy {
   }
 
   canLoad(): boolean {
-    return this.handleUserAuth();
-  }
-
-  canActivate(): boolean {
-    return this.handleUserAuth();
-  }
-
-  handleUserAuth(): boolean {
     if (!this.isAuthenticated) {
       this.router.navigate(['welcome']);
     }
