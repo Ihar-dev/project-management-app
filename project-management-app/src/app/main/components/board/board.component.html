@@ -9,9 +9,11 @@
   <p [class.active]="!boardEditMode">&nbsp; {{ board?.description!.substr(0, 130) }}</p>
   <form *ngIf="boardEditMode" [formGroup]="cardForm" class="board-form" appMouseMoveStopPropagation
     appMouseClickStopPropagation>
-    <mat-icon title="Save"
-    (click)="boardNameChange($event, boardTitleInput.value=boardTitleInput.value.trim(), boardDescriptionInput.value=boardDescriptionInput.value.trim());"
-      #titleInput class="board__save-button">save</mat-icon>
+    <button mat-icon-button color="white">
+      <mat-icon title="Save"
+      (click)="boardNameChange($event, boardTitleInput.value=boardTitleInput.value.trim(), boardDescriptionInput.value=boardDescriptionInput.value.trim());"
+        #titleInput class="board__save-button">save</mat-icon>
+    </button>
     <span>&nbsp;</span>
     <mat-form-field appearance="fill" class="board-input-form">
       <mat-label>board title editing</mat-label>

@@ -44,6 +44,10 @@
   background: $board-blue-bg;
   z-index: 100;
 
+  &:hover {
+    color: $theme-accent;
+  }
+
   p {
     opacity: 0;
     font-size: 2rem;
