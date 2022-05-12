@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap } from 'rxjs/operators';
-import { User } from 'src/app/shared/models/user.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as AuthActions from '../actions/auth.action';
 
@@ -31,7 +30,7 @@ export class AuthEffects {
         this.authService.login(userData).pipe(
           map((data) => {
             if (data) {
-              return AuthActions.loginSuccess({ user: new User(data) });
+              return AuthActions.loginSuccess({ user: data });
             }
 
             return AuthActions.authFailure();
