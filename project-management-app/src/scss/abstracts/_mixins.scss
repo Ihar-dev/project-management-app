@@ -87,4 +87,17 @@
       }
     }
   }
+
+%hover-pattern {
+  border: solid 1px $theme-accent;
+  color: $theme-accent;
+  box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
+  transform: translateY(-0.6rem);
+}
+
+%hover-grey-pattern {
+  border: solid 1px $color-grey-dark;
+  color: $color-grey-dark;
+  box-shadow: 0 0.8rem 0.8rem -0.4rem $color-grey-dark;
+  transform: translateY(-0.6rem);
 }
