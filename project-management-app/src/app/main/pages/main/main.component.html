@@ -17,7 +17,9 @@
       </div>
       <div class="main__search-results-container" [class.active]="searchDisplay">
         <h2>Search Results</h2>
-        <p *ngFor="let searchResult of searchResults">{{ searchResult }}</p>
+        <p *ngFor="let searchResult of searchResults">
+          {{ searchResults.indexOf(searchResult) + 1 + '. ' }}{{ searchResult }}
+        </p>
       </div>
     </div>
   </div>
