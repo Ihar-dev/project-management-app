@@ -1,4 +1,4 @@
-<div (click)="boardRout($event)">
+<div (click)="boardRout()">
   <div class="board__photo-container" appRandomPhotoBack></div>
   <div class="board__content-container">
     <mat-icon *ngIf="!boardEditMode" [class.hide]="mouseExisting" (click)="boardEditMode=true;" title="Edit"
