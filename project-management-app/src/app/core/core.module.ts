@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CoreRoutingModule } from './core-routing.module';
 
+import { NotFoundComponent } from './page/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header/header.component';
+import { CreateButtonComponent } from './components/header/create-button/create-button.component';
 import { LogoComponent } from './components/header/logo/logo.component';
 import { UserBoxComponent } from './components/header/user-box/user-box.component';
-import { CreateButtonComponent } from './components/header/create-button/create-button.component';
-import { NotFoundComponent } from './page/not-found/not-found.component';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
@@ -20,13 +20,17 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     UserBoxComponent,
     CreateButtonComponent,
     NotFoundComponent,
+    HeaderComponent,
     MessageBoxComponent,
     LoaderComponent,
     FooterComponent,
     AuthorsComponent,
     DialogConfirmationComponent,
+    CreateButtonComponent,
+    LogoComponent,
+    UserBoxComponent,
   ],
   imports: [SharedModule, CoreRoutingModule],
-  exports: [HeaderComponent, MessageBoxComponent, LoaderComponent, FooterComponent],
+  exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent],
 })
 export class CoreModule {}

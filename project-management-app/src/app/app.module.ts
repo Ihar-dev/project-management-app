@@ -7,6 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './core/components/header/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './interceptors';
 import * as boardReducer from './store/reducers/board.reducer';
@@ -31,6 +32,7 @@ import { metaReducers } from './store/storage.metareducer';
     EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
+  exports: [HeaderComponent],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
