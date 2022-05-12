@@ -3,10 +3,12 @@
   <div class="board__content-container">
     <mat-icon *ngIf="!boardEditMode" [class.hide]="mouseExisting" (click)="boardEditMode=true;" title="Edit"
     class="board__edit-button" appMouseMoveStopPropagation appMouseClickStopPropagation>edit</mat-icon>
-  <span [class.active]="!boardEditMode" class="board__title">&nbsp; {{ board?.title }}</span>
+  <span [class.active]="!boardEditMode" class="board__title">&nbsp; {{ board?.title!.substr(0, 100) }}</span>
+  <p [class.active]="!boardEditMode">&nbsp; {{ board?.description!.substr(0, 100) }}</p>
   <form *ngIf="boardEditMode" [formGroup]="cardForm" class="board-form" appMouseMoveStopPropagation
     appMouseClickStopPropagation>
-    <mat-icon title="Save" (click)="boardNameChange($event, boardTitleInput.value=boardTitleInput.value.trim());"
+    <mat-icon title="Save"
+    (click)="boardNameChange($event, boardTitleInput.value=boardTitleInput.value.trim(), boardDescriptionInput.value=boardDescriptionInput.value.trim());"
       #titleInput class="board__save-button">save</mat-icon>
     <span>&nbsp;</span>
     <mat-form-field appearance="fill" class="board-input-form">
@@ -20,6 +22,20 @@
           is required</span>
         <span *ngIf="userTitle!.errors?.['minlength']">The title is too short</span>
         <span *ngIf="userTitle!.errors?.['maxlength']">The title is too long</span>
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="board-input-form">
+      <mat-label>board description editing</mat-label>
+      <input matInput type="text" formControlName="userDescription" #boardDescriptionInput (keypress)="inputStatus=true">
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="boardDescriptionInput.value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+      <div *ngIf="cardForm.controls['userDescription'].touched">
+        <span *ngIf="userDescription!.errors?.['required'] || inputStatus===false && !boardDescriptionInput.value.trim()">
+          The description is required
+        </span>
+        <span *ngIf="userDescription!.errors?.['minlength']">The description is too short</span>
+        <span *ngIf="userDescription!.errors?.['maxlength']">The description is too long</span>
       </div>
     </mat-form-field>
   </form>
