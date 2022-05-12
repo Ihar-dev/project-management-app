@@ -19,15 +19,7 @@ export class UserService {
     return userData ? this.http.get<User>(`${this.usersUrl}/${userData.id}`) : of(null);
   }
 
-  updateUser(data: TUserData, id: string = ''): Observable<User> {
-    let userId = id;
-    if (!userId) {
-      const userData = this.lsService.getItem<User>(USER_DATA_KEY);
-      if (userData) {
-        userId = userData.id;
-      }
-    }
-
+  updateUser(data: TUserData, id: string): Observable<User> {
     return this.http.put<User>(`${this.usersUrl}/${id}`, JSON.stringify(data)).pipe(
       map((userDataUpdated) => {
         const user = new User(userDataUpdated);

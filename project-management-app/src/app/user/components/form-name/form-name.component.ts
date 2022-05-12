@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective,
+  Validators,
+} from '@angular/forms';
 import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ERRORS_MESSAGES_EDIT_PROFILE_NAME } from 'src/app/forms/errors/error-messages-profile-name';
@@ -12,9 +18,23 @@ const FORM_TITLE = 'Update general data';
   styleUrls: ['./form-name.component.scss'],
 })
 export class FormNameComponent implements OnInit {
-  @Input() name: string = '';
+  @Input() set name(val: string) {
+    if (this.form) {
+      this.controlName.setValue(val);
+    }
+    this.nameVal = val;
+  }
 
-  @Input() login: string = '';
+  @Input() set login(val: string) {
+    if (this.form) {
+      this.controlLogin.setValue(val);
+    }
+    this.loginVal = val;
+  }
+
+  nameVal: string = '';
+
+  loginVal: string = '';
 
   @Output() submitForm = new EventEmitter<TUserData>();
 
@@ -34,8 +54,8 @@ export class FormNameComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: [this.name, [Validators.required, Validators.minLength(FormFieldLength.name)]],
-      login: [this.login, [Validators.required, Validators.minLength(FormFieldLength.login)]],
+      name: [this.nameVal, [Validators.required, Validators.minLength(FormFieldLength.name)]],
+      login: [this.loginVal, [Validators.required, Validators.minLength(FormFieldLength.login)]],
       oldPassword: [
         '',
         {
@@ -47,12 +67,13 @@ export class FormNameComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  onSubmit(formDirective: FormGroupDirective): void {
     if (!this.form.valid) {
       return;
     }
     const { name, login, oldPassword: password } = this.form.value;
     this.submitForm.emit({ name, login, password });
+    formDirective.resetForm();
     this.form.reset();
   }
 

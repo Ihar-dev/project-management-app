@@ -28,9 +28,11 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   onUpdateData(userData: TUserData) {
-    const { name, login, password } = userData;
+    if (!this.profile) {
+      return;
+    }
     this.userService
-      .updateUser({ name, login, password }, this.profile?.id)
+      .updateUser(userData, this.profile.id)
       .pipe(takeUntil(this.destroyed$))
       .subscribe((user) => this.store.dispatch(loginSuccess({ user })));
   }

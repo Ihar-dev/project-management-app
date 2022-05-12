@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+  FormGroupDirective,
+} from '@angular/forms';
 import { FormControlNames } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_EDIT_PROFILE_PASS } from 'src/app/forms/errors/error-messages-profile-pass';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
@@ -59,13 +65,14 @@ export class FormPasswordComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
+  onSubmit(formDirective: FormGroupDirective): void {
     if (!this.form.valid) {
       return;
     }
     const { password } = this.form.value;
     this.submitForm.emit({ name: this.name, login: this.login, password });
     this.form.reset();
+    formDirective.resetForm();
   }
 
   get controlOldPassword(): AbstractControl {
