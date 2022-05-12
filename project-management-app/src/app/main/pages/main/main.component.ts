@@ -7,6 +7,7 @@ import { BoardSelectors } from 'src/app/store/selectors/board.selector';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskSearchService } from '../../services/task-search.service';
 import { IBoard } from '../../../shared/models/board.model';
+import { SearchResult } from '../../models/search-result.model';
 
 @Component({
   selector: 'app-main',
@@ -23,7 +24,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public mouseExisting = false;
   public searchContainerDisplay = false;
   public searchDisplay = false;
-  public searchResults: string[] = [];
+  public searchResults: SearchResult[] = [];
 
   constructor(private readonly router: Router, private store: Store, taskSearchService: TaskSearchService) {
     this.taskSearchService = taskSearchService;
@@ -35,7 +36,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.boardsSubs = this.boards$.subscribe((boards: IBoard[]) => {
       this.boards = boards;
     });
-    this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe((results: string[]) => {
+    this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe((results: SearchResult[]) => {
       if (results.length) {
         this.searchResults = results;
         this.searchDisplay = true;

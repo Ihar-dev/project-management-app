@@ -150,10 +150,17 @@
     line-height: 5rem;
   }
 
-  p {
+  .main__search-result-container {
     align-self: flex-start;
-    font-size: 2rem;
-    line-height: 2.5rem;
+    background-color: $color-grey;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+
+    p {
+      font-size: 2rem;
+      line-height: 2.5rem;
+    }
   }
 }
 
