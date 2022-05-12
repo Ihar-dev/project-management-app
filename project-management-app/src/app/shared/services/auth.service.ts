@@ -42,7 +42,7 @@ export class AuthService {
       map((res) => {
         const userData = res.find((user) => data.login === user.login);
         if (userData) {
-          this.navigate('');
+          this.navigate('main');
           return new User(userData);
         }
 
@@ -63,6 +63,6 @@ export class AuthService {
   }
 
   private navigate(...paths: string[]): void {
-    this.router.navigate(paths);
+    this.router.navigate(paths, { replaceUrl: true });
   }
 }
