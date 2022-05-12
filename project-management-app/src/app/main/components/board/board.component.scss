@@ -42,7 +42,7 @@
   color: white;
   word-wrap: break-word;
   background: $board-blue-bg;
-  z-index: 1000;
+  z-index: 100;
 
   p {
     opacity: 0;
@@ -82,7 +82,7 @@
   position: absolute;
   right: 1rem;
   top: 1rem;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .board__edit-button.hide {

@@ -4,7 +4,7 @@
 %display-pattern {
   opacity: 0;
   transition: opacity 0.5s 1.5s;
-  z-index: 1000;
+  z-index: 100;
 }
 
 %opacity-pattern {
@@ -87,7 +87,7 @@
   @include background-image-block("../../../../assets/images/png/welcome-grid.png", 100%, 0);
   opacity: 0;
   transition: opacity 0.2s 1.5s;
-  z-index: 500;
+  z-index: 50;
 
   &.active {
     opacity: 1;

@@ -99,7 +99,7 @@
   overflow-y: scroll;
   background-color: $theme-primary-transparent;
   transition: height 0.5s, padding 0.5s;
-  z-index: 3000;
+  z-index: 300;
 
   &.active {
     height: 70vh;
@@ -124,7 +124,7 @@
   row-gap: 1.5rem;
   border-radius: 2rem;
   background-color: $color-white-darken;
-  z-index: 4000;
+  z-index: 400;
 }
 
 .main__inner-search-container {
@@ -182,7 +182,7 @@
   margin-top: -2rem;
   margin-bottom: 2rem;
   transition: box-shadow 0.3s, transform 0.3s;
-  z-index: 3000;
+  z-index: 300;
 
   &:hover {
     @extend %hover-grey-pattern;
