@@ -58,7 +58,6 @@ export class MainComponent implements OnInit, OnDestroy {
     else {
       this.boards.forEach((el: IBoard) => this.getBoardById(el.id));
       this.searchContainerDisplay = true;
-      // console.log(this.boards);
     }
   }
 
