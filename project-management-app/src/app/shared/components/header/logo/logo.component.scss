@@ -2,11 +2,12 @@
 @import "mixins";
 
 .header__logo {
+  @include btn-shadow-style;
   display: block;
   width: $logo-size;
   height: $logo-size;
   border-radius: 100rem;
-  @include btn-shadow-style;
+  cursor: pointer;
 }
 
 .logo__img {

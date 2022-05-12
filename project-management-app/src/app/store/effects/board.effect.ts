@@ -15,7 +15,6 @@ enum Operation {
 
 @Injectable()
 export class BoardEffects {
-
   getBoards$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(BoardActions.getBoards),
@@ -24,9 +23,9 @@ export class BoardEffects {
           map((boards) => BoardActions.getBoardsSuccess({ boards })),
           catchError(this.handler.handleError(Operation.GetBoards)),
         ),
-      )
-    )
-  })
+      ),
+    );
+  });
 
   addBoard$ = createEffect(() => {
     return this.actions$.pipe(
@@ -37,7 +36,7 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.AddBoard)),
         ),
       ),
-    )
+    );
   });
 
   deleteBoard$ = createEffect(() => {
@@ -49,19 +48,19 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.DeleteBoard)),
         ),
       ),
-    )
+    );
   });
 
   getBoardByID$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(BoardActions.getBoardsById),
+      ofType(BoardActions.getBoardById),
       mergeMap((action) =>
         this.dbService.getBoardByID(action.id).pipe(
-          map((board) => BoardActions.getBoardsByIdSuccess({ board })),
+          map((board) => BoardActions.getBoardByIdSuccess({ board })),
           catchError(this.handler.handleError(Operation.GetBoardByID)),
         ),
       ),
-    )
+    );
   });
 
   putBoard$ = createEffect(() => {
@@ -73,7 +72,7 @@ export class BoardEffects {
           catchError(this.handler.handleError(Operation.PutBoard)),
         ),
       ),
-    )
+    );
   });
 
   constructor(

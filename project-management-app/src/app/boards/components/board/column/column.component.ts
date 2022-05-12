@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IColumn } from 'src/app/boards/shared/models/column.model';
+import { IColumn } from 'src/app/shared/models/column.model';
 
 const TITLE_DEFAULT = 'Column title';
 @Component({

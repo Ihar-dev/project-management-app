@@ -10,7 +10,7 @@
 
   &__item {
     @include btn-shadow-style;
-    background-color: $color-white-2;
+    background-color: $color-white-darken;
     border-radius: 5rem;
 
     &:hover {

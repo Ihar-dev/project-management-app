@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { IBoard } from 'src/app/shared/models/board.model';
 import { boardMock } from '../../shared/mocks/board.mock';
-import { IBoard } from '../../shared/models/board.model';
 
 @Component({
   selector: 'app-board-page',
