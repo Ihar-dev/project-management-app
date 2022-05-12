@@ -1,0 +1,38 @@
+{
+  "button": {
+    "create-board": "Create new board",
+    "apply": "Apply",
+    "discard": "Discard",
+    "back-home": "Back to home page",
+    "submit": "Submit",
+    "home": "Home"
+  },
+
+  "user-menu": {
+    "edit-profile": "Edit profile",
+    "logout": "Logout"
+  },
+
+  "auth": {
+    "login-title": "Log in",
+    "signup-title": "Sign up",
+    "login-ph": "Enter login",
+    "password-ph": "Password",
+    "password-confirm-ph": "Confirm password",
+    "name-ph": "Enter your name",
+    "register-link": "Not registered yet? Sign up!",
+    "login-link": "Not registered yet? Sign up!",
+
+    "error": {
+      "login": "Please enter a login.",
+      "password": "Please enter a password.",
+      "name": "Please enter a name.",
+      "length": "The min length is {{length}} {length, plural, one {symbol} other {symbols}}.",
+      "password-upLowCase": "Should include uppercase and lowercase letters.",
+      "password-digits": "Should include at least 1 digit.",
+      "password-special": "Should include 1 special character (!@#$%^&?[]).",
+      "password-confirm": "Please confirm a password.",
+      "password-match": "Passwords do not match!"
+    }
+  }
+}

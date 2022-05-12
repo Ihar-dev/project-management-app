@@ -15,6 +15,7 @@ import { BoardEffects } from './store/effects/board.effect';
 import { ColumnEffects } from './store/effects/column.effect';
 import { TaskEffects } from './store/effects/task.effect';
 import { environment } from '../environments/environment';
+import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot({ board: boardReducer.reducer }, {}),
     EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    TranslocoRootModule,
   ],
   exports: [HeaderComponent],
   providers: [httpInterceptorProviders],

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 
 enum Localized {
-  eng = 'eng',
+  en = 'en',
   ru = 'ru',
 }
 
@@ -11,9 +12,12 @@ enum Localized {
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  localized = Localized.eng;
+  localized = Localized.en;
+
+  constructor(private transloco: TranslocoService) {}
 
   toggleLocalization(): void {
-    this.localized = this.localized === Localized.eng ? Localized.ru : Localized.eng;
+    this.localized = this.localized === Localized.en ? Localized.ru : Localized.en;
+    this.transloco.setActiveLang(this.localized);
   }
 }

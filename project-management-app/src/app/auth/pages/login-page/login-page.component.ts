@@ -5,18 +5,20 @@ import { FormControlNames } from '../../shared/constants';
 import { TSigninData } from '../../shared/models/login-data.model';
 import { TValidationError } from '../../shared/models/validation-error.model';
 
-const FORM_TITLE = 'Log in';
+const FORM_TITLE = 'login-title';
 const ERRORS_MESSAGES: TValidationError = {
   login: [
     {
       type: 'required',
       message: 'Please enter a login.',
+      transloco: 'login',
     },
   ],
   password: [
     {
       type: 'required',
       message: 'Please enter a password.',
+      transloco: 'password',
     },
   ],
 };

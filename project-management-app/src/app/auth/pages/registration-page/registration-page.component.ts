@@ -9,56 +9,73 @@ import { TValidationError } from '../../shared/models/validation-error.model';
 const MIN_LENGTH_NAME = 2;
 const MIN_LENGTH_LOGIN = 8;
 const MIN_LENGTH_PASSWORD = 8;
-const FORM_TITLE = 'Sign up';
+const FORM_TITLE = 'signup-title';
 
 const ERRORS_MESSAGES: TValidationError = {
   name: [
-    { type: 'required', message: 'Please enter a name.' },
+    {
+      type: 'required',
+      message: 'Please enter a name.',
+      transloco: 'name',
+    },
     {
       type: 'minlength',
       message: `The min length is ${MIN_LENGTH_NAME} symbols.`,
+      transloco: 'length',
+      length: MIN_LENGTH_NAME,
     },
   ],
   login: [
     {
       type: 'required',
       message: 'Please enter a login.',
+      transloco: 'login',
     },
     {
       type: 'minlength',
       message: `The min length is ${MIN_LENGTH_LOGIN} symbols.`,
+      transloco: 'length',
+      length: MIN_LENGTH_LOGIN,
     },
   ],
   password: [
     {
       type: 'required',
       message: 'Please enter a password.',
+      transloco: 'password',
     },
     {
       type: 'minlength',
       message: `The min length is ${MIN_LENGTH_PASSWORD} characters.`,
+      transloco: 'length',
+      length: MIN_LENGTH_PASSWORD,
     },
     {
       type: 'upLowCase',
       message: `Should include uppercase and lowercase letters.`,
+      transloco: 'password-upLowCase',
     },
     {
       type: 'digits',
       message: `Should include at least 1 digit.`,
+      transloco: 'password-digits',
     },
     {
       type: 'specialCharacters',
       message: `Should include 1 special character (!@#$%^&?[]).`,
+      transloco: 'password-special',
     },
   ],
   confirmPassword: [
     {
       type: 'required',
       message: 'Please confirm a password.',
+      transloco: 'password-confirm',
     },
     {
       type: 'passwordMismatch',
       message: 'Passwords do not match!',
+      transloco: 'password-match',
     },
   ],
 };

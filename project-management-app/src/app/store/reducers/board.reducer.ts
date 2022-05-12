@@ -73,6 +73,7 @@ const boardReducer = createReducer(
       newBoards[idx] = {
         ...newBoards[idx],
         title: board.title,
+        description: board.description,
       };
     }
 
@@ -192,6 +193,7 @@ const boardReducer = createReducer(
         ...tasks[taskIndex],
         title: task.title,
         order: task.order,
+        done: task.done,
         userId: task.userId,
         description: task.description,
       };

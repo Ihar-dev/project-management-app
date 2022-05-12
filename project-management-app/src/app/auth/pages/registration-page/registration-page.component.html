@@ -1,15 +1,15 @@
-<div class="container">
+<div class="container" *transloco="let t; read: 'auth'">
   <app-auth-main>
     <app-form [form]="form" (submit)="onSubmit()">
-      <app-form-title [title]="title"></app-form-title>
+      <app-form-title [title]="t(title)"></app-form-title>
 
-      <app-form-field [control]="controlName" [placeholder]="'Enter your name'"></app-form-field>
+      <app-form-field [control]="controlName" [placeholder]="t('name-ph')"></app-form-field>
       <app-form-error
         [control]="controlName"
         [errors]="formErrors[controlNameKey]"
       ></app-form-error>
 
-      <app-form-field [control]="controlLogin" [placeholder]="'Enter login'"></app-form-field>
+      <app-form-field [control]="controlLogin" [placeholder]="t('login-ph')"></app-form-field>
       <app-form-error
         [control]="controlLogin"
         [errors]="formErrors[controlLoginKey]"
@@ -21,7 +21,7 @@
 
       <app-form-field-password
         [control]="controlPasswordConfirm"
-        [placeholder]="'Confirm password'"
+        [placeholder]="'password-confirm-ph'"
       >
       </app-form-field-password>
       <app-form-error
@@ -34,9 +34,7 @@
         <app-button [isDisabled]="!form.valid"></app-button>
       </app-form-submit>
 
-      <a mat-button href="#" routerLink="../login" color="primary"
-        >Already have an account? Sign in</a
-      >
+      <a mat-button href="#" routerLink="../login" color="primary">{{ t("login-link") }}</a>
     </app-form>
   </app-auth-main>
 </div>

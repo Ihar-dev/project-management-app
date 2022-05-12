@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslocoModule } from '@ngneat/transloco';
 import { CoreRoutingModule } from './core-routing.module';
 
 import { NotFoundComponent } from './page/not-found/not-found.component';
@@ -26,7 +27,7 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     LogoComponent,
     UserBoxComponent,
   ],
-  imports: [SharedModule, CoreRoutingModule],
+  imports: [SharedModule, CoreRoutingModule, TranslocoModule],
   exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent],
 })
 export class CoreModule {}
