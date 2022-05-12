@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { PHOTOS } from '../models/background-photos.model';
 
@@ -7,13 +7,14 @@ import { PHOTOS } from '../models/background-photos.model';
 })
 export class RandomPhotoBackDirective implements OnInit {
 
-  constructor(private el: ElementRef) {
+  constructor(private renderer: Renderer2, private el: ElementRef) {
     this.el = el;
   }
 
   ngOnInit(): void {
     const position = Math.floor(Math.random() * PHOTOS.length);
     const {url} = PHOTOS[position];
-    this.el.nativeElement.style.backgroundImage = `url(${url})`;
+    const backGroundImage = `url(${url})`;
+    this.renderer.setStyle(this.el.nativeElement, 'background-image', backGroundImage);
   }
 }
