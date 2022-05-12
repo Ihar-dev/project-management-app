@@ -56,7 +56,7 @@
     color: $form-bg;
     transform: scale(0);
     opacity: 0.5;
-    animation: scale 0.8s 0.3s ease-in-out forwards;
+    animation: scaleUserImg 0.8s 0.3s ease-in-out forwards;
 
     &__icon {
       margin-top: -4rem;
@@ -70,8 +70,7 @@
     @media screen and (max-width: $tablet) {
       position: absolute;
       top: -12rem;
-      left: 50%;
-      transform: translateX(-50%);
+      left: calc(50% - 7.5rem);
     }
   }
 

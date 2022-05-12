@@ -10,6 +10,7 @@ import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ERRORS_MESSAGES_EDIT_PROFILE_NAME } from 'src/app/forms/errors/error-messages-profile-name';
 import { TUserData } from 'src/app/shared/models/register-data.model';
+import { User } from 'src/app/shared/models/user.model';
 
 const FORM_TITLE = 'Update general data';
 @Component({
@@ -18,18 +19,16 @@ const FORM_TITLE = 'Update general data';
   styleUrls: ['./form-name.component.scss'],
 })
 export class FormNameComponent implements OnInit {
-  @Input() set name(val: string) {
-    if (this.form) {
-      this.controlName.setValue(val);
+  @Input() set profile(val: User | null) {
+    if (!val) {
+      return;
     }
-    this.nameVal = val;
-  }
-
-  @Input() set login(val: string) {
     if (this.form) {
-      this.controlLogin.setValue(val);
+      this.controlLogin.setValue(val.login);
+      this.controlName.setValue(val.name);
     }
-    this.loginVal = val;
+    this.nameVal = val.name;
+    this.loginVal = val.login;
   }
 
   nameVal: string = '';

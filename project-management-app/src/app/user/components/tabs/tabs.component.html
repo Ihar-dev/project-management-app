@@ -1,7 +1,7 @@
 <mat-tab-group class="tabs" mat-align-tabs="start">
   <mat-tab label="Change general data">
     <div class="tabs__item">
-      <app-form-name [name]="profile?.name || ''" [login]="profile?.login || ''" (submitForm)="onSubmitForm($event)">
+      <app-form-name [profile]="profile" (submitForm)="onSubmitForm($event)">
       </app-form-name>
     </div>
   </mat-tab>
