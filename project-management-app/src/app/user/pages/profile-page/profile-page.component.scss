@@ -9,7 +9,7 @@
   padding-top: 0;
   margin-top: -11.3rem;
 
-  @media screen and (max-width: $mobile) {
+  @media screen and (max-width: $tablet) {
     margin-top: -2rem;
   }
 }
@@ -32,28 +32,34 @@
 .user-info {
   @extend %flex-normal-pattern;
 
-  padding: 1rem;
-  gap: 2rem;
+  padding: 20px 10px;
+  gap: 1.5rem;
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    justify-content: center;
+  }
 
   &__name {
     width: 100%;
-    font-size: 3.6rem;
+    font-size: 3.4rem;
     font-weight: 500;
+    word-break: break-all;
   }
 
   &__img {
     color: $form-bg;
 
     &__icon {
-      margin-top: -3rem;
-      width: 16rem;
-      height: 16rem;
-      font-size: 16rem;
+      margin-top: -4rem;
+      width: 15rem;
+      height: 15rem;
+      font-size: 15rem;
       background-color: $profile-user-bg;
       border-radius: 50%;
     }
 
-    @media screen and (max-width: $mobile) {
+    @media screen and (max-width: $tablet) {
       position: absolute;
       top: -12rem;
       left: 50%;
@@ -65,7 +71,7 @@
     width: 15rem;
     height: 5rem;
 
-    @media screen and (max-width: $mobile) {
+    @media screen and (max-width: $tablet) {
       width: 20rem;
     }
   }
