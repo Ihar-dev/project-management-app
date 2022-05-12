@@ -2,7 +2,7 @@ import { Action, ActionReducer, MetaReducer } from '@ngrx/store';
 import { AuthState } from './auth-state.model';
 import { StoreState } from './store.model';
 
-const lsAuthKey = 'auth-state';
+const lsAuthKey = '___auth-state___';
 
 function catchErr(err: unknown) {
   console.log(err);

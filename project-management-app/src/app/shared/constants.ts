@@ -3,4 +3,4 @@ export enum ErrorMessages {
   success = 200,
 }
 
-export const USER_TOKEN_KEY = 'user-token';
+export const USER_TOKEN_KEY = '___user-token___';
