@@ -55,6 +55,12 @@ export class DialogCreationComponent implements OnInit {
 
   dialogTitle = DialogTitle[this.data.type];
 
+  createEntity = {
+    board: this.createBoard,
+    column: this.createColumn,
+    task: this.createTask,
+  };
+
   constructor(
     private dialogRef: MatDialogRef<DialogCreationComponent>,
     private store: Store,
@@ -66,13 +72,7 @@ export class DialogCreationComponent implements OnInit {
   }
 
   create(): void {
-    if (this.data.type === 'board') {
-      this.createBoard();
-    } else if (this.data.type === 'column') {
-      this.createColumn();
-    } else {
-      this.createTask();
-    }
+    this.createEntity[this.data.type].call(this);
   }
 
   createBoard(): void {
