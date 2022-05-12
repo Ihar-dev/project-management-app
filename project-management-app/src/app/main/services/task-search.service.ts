@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { IBoard } from '../../boards/shared/models/board.model';
+import { IBoard } from '../../shared/models/board.model';
 
 @Injectable({
   providedIn: 'root'

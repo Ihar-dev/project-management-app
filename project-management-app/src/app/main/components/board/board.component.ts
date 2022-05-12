@@ -44,7 +44,7 @@ export class BoardComponent implements OnInit {
     this.inputStatus = false;
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue) {
       this.boardEditMode = false;
-      this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue } }));
+      this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue, description: '' } }));
     }
   }
 

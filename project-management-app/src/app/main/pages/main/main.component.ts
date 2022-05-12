@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskSearchService } from '../../services/task-search.service';
-import { IBoard } from '../../../boards/shared/models/board.model';
+import { IBoard } from '../../../shared/models/board.model';
 
 @Component({
   selector: 'app-main',
@@ -58,7 +58,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public getBoardById(id: string): void {
-    this.store.dispatch(BoardActions.getBoardsById({ id }));
+    this.store.dispatch(BoardActions.getBoardById({ id }));
   }
 
   public getBoards(): void {
