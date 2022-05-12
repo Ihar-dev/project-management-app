@@ -7,7 +7,7 @@ import { LocalstorageService } from 'src/app/core/services/localstorage.service'
 
 import { TUserData } from '../models/register-data.model';
 import { User, UserDataResponce } from '../models/user.model';
-import { USER_DATA_KEY, USER_TOKEN_KEY } from '../constants';
+import { USER_TOKEN_KEY } from '../constants';
 import { TSigninData } from '../models/login-data.model';
 import { TTokenResponce } from '../models/token-responce.model';
 
@@ -42,10 +42,8 @@ export class AuthService {
       map((res) => {
         const userData = res.find((user) => data.login === user.login);
         if (userData) {
-          const user = new User(userData);
-          this.lsService.setItem(USER_DATA_KEY, user);
           this.navigate('');
-          return user;
+          return new User(userData);
         }
 
         this.navigate('auth', 'login');
