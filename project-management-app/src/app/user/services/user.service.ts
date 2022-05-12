@@ -28,4 +28,8 @@ export class UserService {
       }),
     );
   }
+
+  deleteUser(id: string) {
+    return this.http.delete(`${this.usersUrl}/${id}`);
+  }
 }

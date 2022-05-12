@@ -12,7 +12,7 @@
 
         <h2 class="user-info__name">{{profile?.name || 'Username'}}</h2>
         <div class="user-info__btn">
-          <app-button text="Delete profile" color="warn"></app-button>
+          <app-button text="Delete profile" color="warn" (click)="onDelete()"></app-button>
         </div>
       </div>
 
