@@ -2,7 +2,7 @@
 <div class="main__container" (mousemove)="mouseMove()" (click)="mouseClick()">
   <div class="main__header-container" appMouseMoveStopPropagation appMouseClickStopPropagation>
     <h1>Boards</h1>
-    <button class="main__search-button" (click)="searchButtonClick()">
+    <button class="main__search-button" (click)="searchButtonClick();">
       &dArr; Search &dArr;
     </button>
     <div [class.active]="searchContainerDisplay" class="main__search-container">

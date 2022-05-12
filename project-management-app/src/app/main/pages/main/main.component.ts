@@ -49,7 +49,11 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public searchButtonClick(): void {
-    if (this.searchContainerDisplay) this.searchContainerDisplay = false;
+    if (this.searchContainerDisplay) {
+      this.searchContainerDisplay = false;
+      this.searchDisplay = false;
+      this.dataForSearch = '';
+    }
     else {
       this.boards.forEach((el: IBoard) => this.getBoardById(el.id));
       this.searchContainerDisplay = true;
