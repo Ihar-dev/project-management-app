@@ -19,10 +19,10 @@ import { TaskMemberComponent } from './components/board/column/task/task-member/
     BoardComponent,
     ColumnComponent,
     TaskComponent,
+    ClickStopPropagationDirective,
     ButtonBoardDeleteComponent,
     ButtonBoardCreateComponent,
     TaskMemberComponent,
-    ClickStopPropagationDirective,
   ],
   imports: [CommonModule, BoardsRoutingModule, MaterialModule, SharedModule],
 })
