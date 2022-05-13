@@ -5,11 +5,16 @@
   position: relative;
   @extend %flex-centre-pattern;
   width: 100%;
-  height: 30rem;
   overflow: hidden;
   border-radius: 2rem;
   cursor: pointer;
   border: 1px solid transparent;
+  height: 37rem;
+
+  .board-input-form {
+    font-size: 3rem;
+    width: 650px;
+  }
 
   .board__photo-container {
     position: absolute;
@@ -62,34 +67,53 @@
 
 @media screen and (max-width: $notebook) {
   :host {
-    height: 30rem;
+    height: 35rem;
+
+    .board-input-form {
+      width: 450px;
+    }
+  }
+}
+
+@media screen and (max-width: $desktop) {
+  .board-input-form {
+    width: 400px;
   }
 }
 
 @media screen and (max-width: $laptop) {
   :host {
-    height: 40rem;
+    height: 35rem;
   }
 }
 
 @media screen and (max-width: $tablet) {
   :host {
     height: 45rem;
+
+    .board-input-form {
+      width: 310px;
+    }
   }
 }
 
 @media screen and (max-width: $mobile) {
   :host {
     height: 52rem;
-  }
 
-  .board__content-container {
-    font-size: 3rem;
-    line-height: 3.5rem;
-    row-gap: 1rem;
+    .board-input-form {
+      width: 180px;
+    }
 
-    p {
-      padding-right: 0;
+
+    .board__content-container {
+      font-size: 3rem;
+      line-height: 3.5rem;
+      row-gap: 1rem;
+
+      p {
+        padding-right: 0;
+      }
     }
   }
 }
@@ -126,29 +150,6 @@
 
   &:hover {
     transform: scale(1.5);
-  }
-}
-
-.board-input-form {
-  font-size: 3rem;
-  width: 650px;
-}
-
-@media screen and (max-width: $desktop) {
-  .board-input-form {
-    width: 400px;
-  }
-}
-
-@media screen and (max-width: $tablet) {
-  .board-input-form {
-    width: 310px;
-  }
-}
-
-@media screen and (max-width: $mobile) {
-  .board-input-form {
-    width: 180px;
   }
 }
 
