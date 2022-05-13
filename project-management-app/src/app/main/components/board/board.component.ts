@@ -68,18 +68,6 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  public openBoard(): void {
-    if (this.board?.id) {
-      this.getBoardById(this.board.id);
-      this.boardHandlingService.setBoard(this.board);
-    }
-    if (!this.boardEditMode) this.router.navigate([`/boards/${this.board?.id}`]);
-  }
-
-  private getBoardById(id: string): void {
-    this.store.dispatch(BoardActions.getBoardById({ id }));
-  }
-
   public openDialogToDeleteTheBoard(): void {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: <DialogData>{

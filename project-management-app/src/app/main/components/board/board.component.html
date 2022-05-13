@@ -1,4 +1,3 @@
-<div (click)="openBoard()">
   <div class="board__photo-container" appRandomPhotoBack></div>
   <div class="board__content-container">
     <button mat-icon-button color="white" *ngIf="!boardEditMode" [class.hide]="mouseExisting"
@@ -24,7 +23,9 @@
           <span *ngIf="userTitle!.errors?.['required'] || inputStatus===false && !boardTitleInput.value.trim()">The
             title
             is required</span>
-          <span *ngIf="userTitle!.errors?.['minlength'] || inputStatus===false && boardTitleInput.value.trim().length<3">The title is too short</span>
+          <span
+            *ngIf="userTitle!.errors?.['minlength'] || inputStatus===false && boardTitleInput.value.trim().length<3">The
+            title is too short</span>
           <span *ngIf="userTitle!.errors?.['maxlength']">The title is too long</span>
         </div>
       </mat-form-field>
@@ -40,13 +41,15 @@
             *ngIf="userDescription!.errors?.['required'] || inputStatus===false && !boardDescriptionInput.value.trim()">
             The description is required
           </span>
-          <span *ngIf="userDescription!.errors?.['minlength'] || inputStatus===false && boardTitleInput.value.trim().length<3">The description is too short</span>
+          <span
+            *ngIf="userDescription!.errors?.['minlength'] || inputStatus===false && boardTitleInput.value.trim().length<3">The
+            description is too short</span>
           <span *ngIf="userDescription!.errors?.['maxlength']">The description is too long</span>
         </div>
       </mat-form-field>
     </form>
   </div>
-</div>
-<button (click)="openDialogToDeleteTheBoard()" mat-fab color="primary" class="board__delete-button">
-  <mat-icon>delete_forever</mat-icon>
-</button>
+  <button (click)="openDialogToDeleteTheBoard()" mat-fab color="primary" class="board__delete-button"
+  appMouseMoveStopPropagation appMouseClickStopPropagation>
+    <mat-icon>delete_forever</mat-icon>
+  </button>

@@ -33,5 +33,4 @@ export class BoardHandlingService {
   public setBoard(board: IBoard): void {
     this.board = board;
   }
-
 }
