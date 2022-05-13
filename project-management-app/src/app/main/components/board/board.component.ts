@@ -68,8 +68,7 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  public boardRout(): void {
-    console.log('click');
+  public openBoard(): void {
     if (this.board?.id) {
       this.getBoardById(this.board.id);
       this.boardHandlingService.setBoard(this.board);

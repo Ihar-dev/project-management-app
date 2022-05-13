@@ -48,10 +48,7 @@ export class MainComponent implements OnInit, OnDestroy {
       if (this.initialBoards.length !== boards.length) {
         this.initialBoards = boards;
         this.boards = boards;
-      } else {
-        this.boards = boards;
-        // console.log(boards);
-      }
+      } else this.boards = boards;
     });
     this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe((results: SearchResult[]) => {
       if (results.length) {
@@ -82,6 +79,10 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public openBoard(event: Event, board: IBoard): void {
+    if (board?.id) {
+      this.getBoardById(board.id);
+      this.boardHandlingService.setBoard(board);
+    }
     if (event.target === event.currentTarget) this.router.navigate([`/boards/${board.id}`]);
   }
 
