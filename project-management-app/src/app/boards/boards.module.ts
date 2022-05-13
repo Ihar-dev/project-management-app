@@ -12,6 +12,7 @@ import { ClickStopPropagationDirective } from './shared/directives/click-stop-pr
 import { ButtonBoardDeleteComponent } from './shared/components/button-board-delete/button-board-delete.component';
 import { ButtonBoardCreateComponent } from './shared/components/button-board-create/button-board-create.component';
 import { TaskMemberComponent } from './components/board/column/task/task-member/task-member.component';
+import { ColumnEditComponent } from './components/board/column/column-edit/column-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TaskMemberComponent } from './components/board/column/task/task-member/
     ButtonBoardDeleteComponent,
     ButtonBoardCreateComponent,
     TaskMemberComponent,
+    ColumnEditComponent,
   ],
   imports: [CommonModule, BoardsRoutingModule, MaterialModule, SharedModule],
 })

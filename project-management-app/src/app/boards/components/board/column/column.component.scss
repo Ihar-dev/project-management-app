@@ -6,7 +6,7 @@
   transform: scaleY(1%);
   transform-origin: top;
   animation: slideColumn 0.6s ease-in forwards;
-  @for $i from 0 through 100 {
+  @for $i from 0 through 10 {
     &:nth-of-type(#{$i}n) {
       animation-delay: #{$i * 0.2}s;
     }
@@ -23,18 +23,14 @@
 
   &__scrollable {
     @include scrollbar(8px);
-
+    max-height: calc(100vh - 38rem);
+    height: 100%;
     margin-bottom: 1rem;
-    max-height: calc(100vh - 338px);
     overflow-y: auto;
     overflow-x: hidden;
 
-    @media screen and (max-width: $tablet) {
-      max-height: calc(100vh - 282px);
-    }
-
     @media screen and (max-width: $mobile) {
-      max-height: calc(100vh - 338px);
+      max-height: calc(100vh - 50rem);
     }
   }
 
@@ -76,13 +72,12 @@
 
   &__content {
     padding: 0.8rem;
-    height: 100%;
     overflow-y: auto;
   }
 
   &__item:not(:last-child) {
     display: block;
-    margin-bottom: 2rem;
+    margin-bottom: 1.7rem;
   }
 
   &__btn--add-task {
@@ -90,67 +85,5 @@
     color: $font-black;
     background-color: $theme-accent;
     border-radius: $border-radius;
-  }
-}
-
-.edit {
-  display: flex;
-  justify-content: space-between;
-
-  &__actions {
-    display: flex;
-    flex-direction: column;
-    opacity: 0;
-    transform: translateY(-50%);
-    transform-origin: top;
-    animation: slideInput 0.4s linear forwards;
-  }
-
-  &__btn {
-    font-size: 14px;
-    line-height: 15px;
-    color: $theme-accent;
-    background-color: transparent;
-    border: none;
-    transition: all 0.5s;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  &__input {
-    width: 100%;
-    padding: 0 1.4rem;
-    font-size: 2rem;
-    color: $font-white;
-    background-color: $board-column-title-input;
-    border-radius: $border-radius;
-    border: none;
-    opacity: 0;
-    transform: scaleX(1%);
-    transform-origin: left;
-    animation: slideInput 0.4s linear forwards;
-  }
-}
-
-@keyframes slideColumn {
-  to {
-    opacity: 1;
-    transform: scaleY(100%);
-  }
-}
-
-@keyframes slideInput {
-  to {
-    opacity: 1;
-    transform: scaleX(100%);
-  }
-}
-
-@keyframes slideActions {
-  to {
-    opacity: 1;
-    transform: translateY(100%);
   }
 }
