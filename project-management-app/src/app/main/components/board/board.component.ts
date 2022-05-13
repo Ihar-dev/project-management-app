@@ -51,7 +51,10 @@ export class BoardComponent implements OnInit {
     event.stopImmediatePropagation();
     this.inputStatus = false;
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue &&
-    !this.cardForm.controls['userDescription'].invalid && boardDescriptionInputValue) {
+    !this.cardForm.controls['userDescription'].invalid && boardDescriptionInputValue &&
+    boardTitleInputValue.trim().length > 2 &&
+    boardDescriptionInputValue.trim().length > 2
+    ) {
       this.boardName = boardTitleInputValue;
       this.boardDescription = boardDescriptionInputValue;
       this.boardEditMode = false;

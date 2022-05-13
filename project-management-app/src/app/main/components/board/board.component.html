@@ -24,7 +24,7 @@
           <span *ngIf="userTitle!.errors?.['required'] || inputStatus===false && !boardTitleInput.value.trim()">The
             title
             is required</span>
-          <span *ngIf="userTitle!.errors?.['minlength']">The title is too short</span>
+          <span *ngIf="userTitle!.errors?.['minlength'] || inputStatus===false && boardTitleInput.value.trim().length<3">The title is too short</span>
           <span *ngIf="userTitle!.errors?.['maxlength']">The title is too long</span>
         </div>
       </mat-form-field>
@@ -40,7 +40,7 @@
             *ngIf="userDescription!.errors?.['required'] || inputStatus===false && !boardDescriptionInput.value.trim()">
             The description is required
           </span>
-          <span *ngIf="userDescription!.errors?.['minlength']">The description is too short</span>
+          <span *ngIf="userDescription!.errors?.['minlength'] || inputStatus===false && boardTitleInput.value.trim().length<3">The description is too short</span>
           <span *ngIf="userDescription!.errors?.['maxlength']">The description is too long</span>
         </div>
       </mat-form-field>
