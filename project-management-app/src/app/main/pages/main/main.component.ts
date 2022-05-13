@@ -41,7 +41,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.getBoards();
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
     this.boardsSubs = this.boards$.subscribe((boards: IBoard[]) => {
-      if (!this.initialBoards.length) {
+      if (this.initialBoards.length !== boards.length) {
         this.initialBoards = boards;
         this.boards = boards;
       } else this.boards = boards;
