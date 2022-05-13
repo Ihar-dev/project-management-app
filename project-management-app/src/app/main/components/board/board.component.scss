@@ -47,7 +47,7 @@
   color: white;
   word-wrap: break-word;
   background: $board-blue-bg;
-  z-index: 100;
+  z-index: 49;
 
   &:hover {
     color: $theme-accent;
@@ -122,7 +122,7 @@
   position: absolute;
   right: 1rem;
   top: 1rem;
-  z-index: 100;
+  z-index: 49;
 }
 
 .board__edit-button.hide {
