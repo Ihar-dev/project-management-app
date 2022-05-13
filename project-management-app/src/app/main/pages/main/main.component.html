@@ -1,8 +1,4 @@
 <div class="main__container">
   <h1>Boards</h1>
-  <app-board
-    (click)="boardRout($event, board)"
-    *ngFor="let board of boards"
-    [board]="board"
-  ></app-board>
+  <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"></app-board>
 </div>

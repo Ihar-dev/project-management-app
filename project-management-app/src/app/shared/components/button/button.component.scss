@@ -14,8 +14,4 @@
   &:disabled {
     cursor: not-allowed;
   }
-
-  @media screen and (max-width: $mobile) {
-    font-size: 0.6em;
-  }
 }

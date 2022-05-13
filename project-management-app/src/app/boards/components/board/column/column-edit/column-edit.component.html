@@ -1,0 +1,11 @@
+<div class="edit">
+  <div class="edit__actions">
+    <button class="edit__btn" (click)="onCancelEditing()" appClickStopPropagation>
+      Cancel
+    </button>
+    <button class="edit__btn" (click)="onSubmitEditing(inputTitle.value)" appClickStopPropagation>
+      Submit
+    </button>
+  </div>
+  <input class="edit__input" #inputTitle type="text" [value]="column?.title || ''" autofocus />
+</div>

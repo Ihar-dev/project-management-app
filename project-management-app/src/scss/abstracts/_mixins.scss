@@ -54,7 +54,13 @@
   }
 }
 
-@mixin scrollbar($width: 100%, $height: 100%) {
+@mixin scrollbar(
+  $width: 100%,
+  $height: 100%,
+  $scrollbar-radius: $border-radius,
+  $scrollbar-color: $board-column-scrollbar,
+  $thumb-color: $board-column-scrollbar-thumb
+) {
   &::-webkit-scrollbar-button {
     display: none;
   }
@@ -62,12 +68,12 @@
   &::-webkit-scrollbar {
     width: $width;
     height: $height;
-    background-color: $board-column-scrollbar;
-    border-radius: $border-radius;
+    background-color: $scrollbar-color;
+    border-radius: $scrollbar-radius;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $board-column-scrollbar-thumb;
+    background-color: $thumb-color;
     border-radius: $border-radius;
   }
 }
@@ -87,4 +93,10 @@
       }
     }
   }
+}
+
+@mixin animateScaleUp() {
+  transform: scaleY(0.8);
+  opacity: 0.1;
+  animation: scaleUp 0.6s forwards ease-in;
 }

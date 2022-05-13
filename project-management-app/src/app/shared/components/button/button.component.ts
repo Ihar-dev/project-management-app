@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 const BTN_TEXT_DEFAULT = 'Submit';
 
+const COLOR_DEFAULT = 'primary';
+
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
@@ -12,4 +14,6 @@ export class ButtonComponent {
   @Input() text = BTN_TEXT_DEFAULT;
 
   @Input() isDisabled = false;
+
+  @Input() color = COLOR_DEFAULT;
 }

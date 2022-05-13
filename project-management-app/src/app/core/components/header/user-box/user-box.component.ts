@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-user-box',
@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-box.component.scss'],
 })
 export class UserBoxComponent {
-  logout(): void {
-    // method for wipe user token /  logout / redirect to login-page
-    console.log('dont forget implement logout!');
+  @Output() logout = new EventEmitter<void>();
+
+  onLogoutClick(): void {
+    this.logout.emit();
   }
 }
