@@ -4,7 +4,7 @@ export enum FormFieldLength {
   password = 8,
 }
 
-export enum FormControlNames {
+export enum FormControlName {
   name = 'name',
   login = 'login',
   password = 'password',

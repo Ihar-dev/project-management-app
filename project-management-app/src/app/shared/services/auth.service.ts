@@ -3,33 +3,33 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map, Observable, switchMap } from 'rxjs';
 
-import { LocalstorageService } from 'src/app/core/services/localstorage.service';
+import { LocalStorageService } from 'src/app/core/services/localstorage.service';
 
 import { TUserData } from '../models/register-data.model';
-import { User, UserDataResponce } from '../models/user.model';
-import { USER_TOKEN_KEY } from '../constants';
+import { User, UserDataResponse } from '../models/user.model';
+import { Url, USER_TOKEN_KEY } from '../constants';
 import { TSigninData } from '../models/login-data.model';
-import { TTokenResponce } from '../models/token-responce.model';
+import { TTokenResponse } from '../models/token-response.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly signUpUrl = 'signup';
+  private readonly signUpUrl = Url.SIGN_UP;
 
-  private readonly signInUrl = 'signin';
+  private readonly signInUrl = Url.SIGN_IN;
 
-  private readonly usersUrl = 'users';
+  private readonly usersUrl = Url.USERS;
 
   constructor(
     private http: HttpClient,
-    private lsService: LocalstorageService,
+    private lsService: LocalStorageService,
     private router: Router,
   ) {}
 
   signUp(data: TUserData): Observable<TUserData> {
     return this.http
-      .post<UserDataResponce>(this.signUpUrl, JSON.stringify(data))
+      .post<UserDataResponse>(this.signUpUrl, JSON.stringify(data))
       .pipe(map(() => data));
   }
 
@@ -53,8 +53,8 @@ export class AuthService {
     );
   }
 
-  signIn(data: TSigninData): Observable<TTokenResponce> {
-    return this.http.post<TTokenResponce>(this.signInUrl, JSON.stringify(data));
+  signIn(data: TSigninData): Observable<TTokenResponse> {
+    return this.http.post<TTokenResponse>(this.signInUrl, JSON.stringify(data));
   }
 
   signOut(): void {

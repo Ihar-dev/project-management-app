@@ -7,13 +7,13 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LocalstorageService } from '../core/services/localstorage.service';
+import { LocalStorageService } from '../core/services/localstorage.service';
 import { USER_TOKEN_KEY } from '../shared/constants';
 
 const TOKEN_TYPE = 'Bearer';
 @Injectable()
 export class HeadersRequestInterceptor implements HttpInterceptor {
-  constructor(private lsStorage: LocalstorageService) {}
+  constructor(private lsStorage: LocalStorageService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const res = request.clone({

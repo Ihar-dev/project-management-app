@@ -6,7 +6,7 @@ import {
   AbstractControl,
   FormGroupDirective,
 } from '@angular/forms';
-import { FormControlNames } from 'src/app/forms/constants';
+import { FormControlName } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_EDIT_PROFILE_PASS } from 'src/app/forms/errors/error-messages-profile-pass';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
@@ -29,11 +29,11 @@ export class FormPasswordComponent implements OnInit {
 
   readonly formErrors = ERRORS_MESSAGES_EDIT_PROFILE_PASS;
 
-  readonly controlPasswordKey = FormControlNames.password;
+  readonly controlPasswordKey = FormControlName.password;
 
-  readonly controlOldPasswordKey = FormControlNames.oldPassword;
+  readonly controlOldPasswordKey = FormControlName.oldPassword;
 
-  readonly controlPasswordConfirmKey = FormControlNames.confirmPassword;
+  readonly controlPasswordConfirmKey = FormControlName.confirmPassword;
 
   readonly title = FORM_TITLE;
 

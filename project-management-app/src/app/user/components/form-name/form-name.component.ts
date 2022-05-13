@@ -6,7 +6,7 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
-import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
+import { FormControlName, FormFieldLength } from 'src/app/forms/constants';
 import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidationAsync';
 import { ERRORS_MESSAGES_EDIT_PROFILE_NAME } from 'src/app/forms/errors/error-messages-profile-name';
 import { TUserData } from 'src/app/shared/models/register-data.model';
@@ -41,11 +41,11 @@ export class FormNameComponent implements OnInit {
 
   readonly formErrors = ERRORS_MESSAGES_EDIT_PROFILE_NAME;
 
-  readonly controlNameKey = FormControlNames.name;
+  readonly controlNameKey = FormControlName.name;
 
-  readonly controlLoginKey = FormControlNames.login;
+  readonly controlLoginKey = FormControlName.login;
 
-  readonly controlOldPasswordKey = FormControlNames.oldPassword;
+  readonly controlOldPasswordKey = FormControlName.oldPassword;
 
   readonly title = FORM_TITLE;
 

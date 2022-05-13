@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
-import { FormControlNames, FormFieldLength } from 'src/app/forms/constants';
+import { FormControlName, FormFieldLength } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_SIGNUP } from 'src/app/forms/errors/error-messages-signup';
 import { TUserData } from 'src/app/shared/models/register-data.model';
 import { Store } from '@ngrx/store';
@@ -19,13 +19,13 @@ export class RegistrationPageComponent {
 
   readonly formErrors = ERRORS_MESSAGES_SIGNUP;
 
-  readonly controlNameKey = FormControlNames.name;
+  readonly controlNameKey = FormControlName.name;
 
-  readonly controlLoginKey = FormControlNames.login;
+  readonly controlLoginKey = FormControlName.login;
 
-  readonly controlPasswordKey = FormControlNames.password;
+  readonly controlPasswordKey = FormControlName.password;
 
-  readonly controlPasswordConfirmKey = FormControlNames.confirmPassword;
+  readonly controlPasswordConfirmKey = FormControlName.confirmPassword;
 
   readonly title = FORM_TITLE;
 

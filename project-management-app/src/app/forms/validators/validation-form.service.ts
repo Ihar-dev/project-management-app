@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-import { FormControlNames } from 'src/app/forms/constants';
+import { FormControlName } from 'src/app/forms/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -38,8 +38,8 @@ export class ValidationFormService {
 
   confirmPassword(): ValidatorFn {
     return (control: AbstractControl) => {
-      const passwordControl = control.get(FormControlNames.password);
-      const confirmPasswordControl = control.get(FormControlNames.confirmPassword);
+      const passwordControl = control.get(FormControlName.password);
+      const confirmPasswordControl = control.get(FormControlName.confirmPassword);
 
       if (!passwordControl || !confirmPasswordControl) {
         return null;

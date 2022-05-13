@@ -9,7 +9,7 @@ import {
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
 import { MessagesDefault } from 'src/app/shared/models/messages-type';
 import { MessageBoxService } from '../core/services/message-box.service';
-import { ErrorMessages } from '../shared/constants';
+import { ErrorMessage } from '../shared/constants';
 
 const ERROR_MESSAGE = MessagesDefault.error;
 @Injectable()
@@ -20,7 +20,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {
-          if (error.status === ErrorMessages.forbidden) {
+          if (error.status === ErrorMessage.forbidden) {
             return throwError(() => new Error(error.message));
           }
           this.messageBoxService.showMessage(ERROR_MESSAGE);

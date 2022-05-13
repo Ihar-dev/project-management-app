@@ -5,7 +5,7 @@ import { MessageBoxService } from './message-box.service';
 @Injectable({
   providedIn: 'root',
 })
-export class LocalstorageService {
+export class LocalStorageService {
   constructor(private messageService: MessageBoxService) {}
 
   getItem<T>(key: string): T | null {

@@ -1,4 +1,4 @@
-export type UserDataResponce = {
+export type UserDataResponse = {
   id: string;
   login: string;
   name: string;
@@ -11,7 +11,7 @@ export class User {
 
   name: string;
 
-  constructor(res: UserDataResponce) {
+  constructor(res: UserDataResponse) {
     this.name = res.name;
     this.login = res.login;
     this.id = res.id;

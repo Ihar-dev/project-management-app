@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
-import { FormControlNames } from 'src/app/forms/constants';
+import { FormControlName } from 'src/app/forms/constants';
 import { ERRORS_MESSAGES_LOGIN } from 'src/app/forms/errors/error-messages-login';
 import { TSigninData } from 'src/app/shared/models/login-data.model';
 import { Store } from '@ngrx/store';
@@ -19,9 +19,9 @@ export class LoginPageComponent {
 
   readonly formErrors = ERRORS_MESSAGES_LOGIN;
 
-  readonly controlLoginKey = FormControlNames.login;
+  readonly controlLoginKey = FormControlName.login;
 
-  readonly controlPasswordKey = FormControlNames.password;
+  readonly controlPasswordKey = FormControlName.password;
 
   readonly title = FORM_TITLE;
 
