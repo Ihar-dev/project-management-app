@@ -118,6 +118,16 @@ export class TestComponent implements OnInit {
     );
   }
 
+  renameColumnModal(boardID: string, column: IColumn): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'columnEdit',
+        boardID,
+        column,
+      },
+    });
+  }
+
   addTask(boardID: string, columnID: string, task: Partial<ITaskRequest>): void {
     this.store.dispatch(
       TaskActions.AddTask({
@@ -152,6 +162,17 @@ export class TestComponent implements OnInit {
         task,
       }),
     );
+  }
+
+  updateTaskModal(boardID: string, columnID: string, task: ITask): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'taskEdit',
+        boardID,
+        columnID,
+        task,
+      },
+    });
   }
 
   findLastOrder(array: IColumn[] | ITask[] | undefined): number {
