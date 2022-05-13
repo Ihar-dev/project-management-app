@@ -14,7 +14,7 @@
       </div>
       <div class="main__search-results-container" [class.active]="searchDisplay">
         <h2>Search Results</h2>
-        <div *ngFor="let searchResult of searchResults" (click)="boardRout($event, searchResult.board)"
+        <div *ngFor="let searchResult of searchResults" (click)="openBoard($event, searchResult.board)"
         class="main__search-result-container">
             {{ searchResults.indexOf(searchResult) + 1 + '. ' + searchResult.text }}
         </div>
@@ -22,7 +22,7 @@
     </div>
   </div>
   <div class="main__inner-container">
-    <app-board (click)="boardRout($event, board)" *ngFor="let board of initialBoards" [board]="board"
+    <app-board (click)="openBoard($event, board)" *ngFor="let board of initialBoards" [board]="board"
       [mouseExisting]="mouseExisting"></app-board>
   </div>
 </div>

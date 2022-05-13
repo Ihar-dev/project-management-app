@@ -8,6 +8,7 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskSearchService } from '../../services/task-search.service';
 import { IBoard } from '../../../shared/models/board.model';
 import { SearchResult } from '../../models/search-result.model';
+import { BoardHandlingService } from '../../services/board-handling.service';
 
 enum SearchTitles {
   Down = '&dArr; Search &dArr;',
@@ -21,6 +22,7 @@ enum SearchTitles {
 })
 export class MainComponent implements OnInit, OnDestroy {
   private readonly taskSearchService: TaskSearchService;
+  private readonly boardHandlingService: BoardHandlingService;
   public dataForSearch = '';
   private boardsSubs: Subscription;
   private searchResultsSubs: Subscription;
@@ -33,8 +35,10 @@ export class MainComponent implements OnInit, OnDestroy {
   public searchResults: SearchResult[] = [];
   public SearchTitle: SearchTitles;
 
-  constructor(private readonly router: Router, private store: Store, taskSearchService: TaskSearchService) {
+  constructor(private readonly router: Router, private store: Store,
+    taskSearchService: TaskSearchService, boardHandlingService: BoardHandlingService) {
     this.taskSearchService = taskSearchService;
+    this.boardHandlingService = boardHandlingService;
   }
 
   ngOnInit(): void {
@@ -44,7 +48,10 @@ export class MainComponent implements OnInit, OnDestroy {
       if (this.initialBoards.length !== boards.length) {
         this.initialBoards = boards;
         this.boards = boards;
-      } else this.boards = boards;
+      } else {
+        this.boards = boards;
+        // console.log(boards);
+      }
     });
     this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe((results: SearchResult[]) => {
       if (results.length) {
@@ -74,16 +81,16 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getBoardById(id: string): void {
+  public openBoard(event: Event, board: IBoard): void {
+    if (event.target === event.currentTarget) this.router.navigate([`/boards/${board.id}`]);
+  }
+
+  private getBoardById(id: string): void {
     this.store.dispatch(BoardActions.getBoardById({ id }));
   }
 
   public getBoards(): void {
     this.store.dispatch(BoardActions.getBoards());
-  }
-
-  public boardRout(event: Event, board: IBoard): void {
-    if (event.target === event.currentTarget) this.router.navigate([`/boards/${board.id}`]);
   }
 
   public mouseMove(): void {

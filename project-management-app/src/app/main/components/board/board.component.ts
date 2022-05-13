@@ -8,6 +8,7 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 import { DialogConfirmationComponent, DialogData }
 from '../../../core/components/dialog-confirmation/dialog-confirmation.component';
 import { IBoard } from '../../../shared/models/board.model';
+import { BoardHandlingService } from '../../services/board-handling.service';
 
 const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the board?';
 
@@ -18,6 +19,7 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 })
 
 export class BoardComponent implements OnInit {
+  private readonly boardHandlingService: BoardHandlingService;
   @Input() public board: IBoard | null = null;
   @Input() public mouseExisting = false;
   public inputStatus = false;
@@ -27,7 +29,10 @@ export class BoardComponent implements OnInit {
   public cardForm: FormGroup;
   public boardEditMode = false;
 
-  constructor(private readonly router: Router, private readonly dialog: MatDialog, private readonly store: Store) {}
+  constructor(private readonly router: Router, private readonly dialog: MatDialog,
+  boardHandlingService: BoardHandlingService, private readonly store: Store) {
+    this.boardHandlingService = boardHandlingService;
+  }
 
   ngOnInit(): void {
     this.cardForm = new FormGroup({
@@ -64,7 +69,16 @@ export class BoardComponent implements OnInit {
   }
 
   public boardRout(): void {
+    console.log('click');
+    if (this.board?.id) {
+      this.getBoardById(this.board.id);
+      this.boardHandlingService.setBoard(this.board);
+    }
     if (!this.boardEditMode) this.router.navigate([`/boards/${this.board?.id}`]);
+  }
+
+  private getBoardById(id: string): void {
+    this.store.dispatch(BoardActions.getBoardById({ id }));
   }
 
   public openDialogToDeleteTheBoard(): void {
