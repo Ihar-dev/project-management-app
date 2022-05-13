@@ -1,4 +1,29 @@
-<div class="main__container">
-  <h1>Boards</h1>
-  <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"></app-board>
+<app-header></app-header>
+<div class="main__container" (mousemove)="mouseMove()" (click)="mouseClick()">
+  <div class="main__header-container" appMouseMoveStopPropagation appMouseClickStopPropagation>
+    <h1>Boards</h1>
+    <button class="main__search-button" (click)="searchButtonClick();" [innerHTML]="SearchTitle"></button>
+    <div [class.active]="searchContainerDisplay" class="main__search-container">
+      <div class="main__inner-search-container">
+        <mat-form-field appearance="fill" class="board-input-form">
+          <mat-label>task search</mat-label>
+          <input matInput type="text" #searchInput (input)="taskSearch()" [(ngModel)]="dataForSearch">
+          <button matSuffix mat-icon-button aria-label="Clear" (click)="searchInput.value=''">
+            <mat-icon class="main__reset-button-icon">close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="main__search-results-container" [class.active]="searchDisplay">
+        <h2>Search Results</h2>
+        <div *ngFor="let searchResult of searchResults" (click)="boardRout($event, searchResult.board)"
+        class="main__search-result-container">
+            {{ searchResults.indexOf(searchResult) + 1 + '. ' + searchResult.text }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main__inner-container">
+    <app-board (click)="boardRout($event, board)" *ngFor="let board of initialBoards" [board]="board"
+      [mouseExisting]="mouseExisting"></app-board>
+  </div>
 </div>

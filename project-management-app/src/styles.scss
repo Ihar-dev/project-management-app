@@ -6,6 +6,19 @@
 
 @import "scss/components/components";
 
+@import "mixins";
+@import "variables";
+
+body {
+  @include scrollbar(14px);
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    background-color: $theme-primary-transparent;
+    border-radius: 0;
+  }
+}
+
 body {
   background: $purple-bg;
 }
