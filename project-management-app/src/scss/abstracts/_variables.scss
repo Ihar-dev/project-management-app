@@ -13,12 +13,14 @@ $color-white-darken: #f4f3f6;
 $color-grey: #bdcbd4;
 $color-grey-dark: #747691;
 $color-pink: #d88dbd;
+$blue-color: #363062;
 
 //block colors
 $main-bg: #fbfbfd;
 $form-bg: #fff;
 $error-bg: #f44336;
 $board-main-bg: #bd93cd;
+$board-blue-bg: #541690;
 $board-main-bg-darken: #846790;
 $board-column-bg: rgba(0, 0, 0, 0.3);
 $board-column-scrollbar: rgba(0, 0, 0, 0.1);
@@ -43,6 +45,7 @@ $mobile: 480px;
 $tablet: 768px;
 $laptop: 1024px;
 $desktop: 1200px;
+$notebook: 1440px;
 
 //backgrounds
 $purple-bg: linear-gradient(318deg, $theme-primary 21%, $color-pink 100%);
