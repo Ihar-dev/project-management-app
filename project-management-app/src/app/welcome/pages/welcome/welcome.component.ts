@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 @Component({
@@ -12,9 +13,10 @@ export class WelcomeComponent implements OnInit {
 
   isAuth$ = this.store.select(selectIsAuth);
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.authService.isUserAuthenticated();
     setTimeout(() => {
       this.pageActivation = true;
     });
