@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="main__inner-container">
-    <app-board (click)="boardRout($event, board)" *ngFor="let board of boards" [board]="board"
+    <app-board (click)="boardRout($event, board)" *ngFor="let board of initialBoards" [board]="board"
       [mouseExisting]="mouseExisting"></app-board>
   </div>
 </div>

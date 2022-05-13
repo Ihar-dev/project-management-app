@@ -26,6 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   private searchResultsSubs: Subscription;
   public boards$: Observable < IBoard[] >;
   public boards: IBoard[] = [];
+  public initialBoards: IBoard[] = [];
   public mouseExisting = false;
   public searchContainerDisplay = false;
   public searchDisplay = false;
@@ -40,7 +41,10 @@ export class MainComponent implements OnInit, OnDestroy {
     this.getBoards();
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
     this.boardsSubs = this.boards$.subscribe((boards: IBoard[]) => {
-      this.boards = boards;
+      if (!this.initialBoards.length) {
+        this.initialBoards = boards;
+        this.boards = boards;
+      } else this.boards = boards;
     });
     this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe((results: SearchResult[]) => {
       if (results.length) {
