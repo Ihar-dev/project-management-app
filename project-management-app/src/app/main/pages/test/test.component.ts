@@ -16,12 +16,16 @@ import {
   DialogInterface,
 } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 
+const USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent implements OnInit {
+  defaultUser = USER_ID;
+
   boardTitle = '';
 
   columnTitle = '';

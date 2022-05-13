@@ -139,11 +139,11 @@ export class DialogCreationComponent implements OnInit {
   }
 
   get titleValid(): boolean {
-    return this.title.length >= MIN_TITLE_LENGTH;
+    return this.title.trim().length >= MIN_TITLE_LENGTH;
   }
 
   get descriptionValid(): boolean {
-    return this.description.length >= MIN_TITLE_LENGTH;
+    return this.description.trim().length >= MIN_TITLE_LENGTH;
   }
 
   get boardID(): string {
