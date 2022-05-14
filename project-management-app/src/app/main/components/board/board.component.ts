@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -27,7 +26,7 @@ export class BoardComponent implements OnInit {
   public cardForm: FormGroup;
   public boardEditMode = false;
 
-  constructor(private readonly router: Router, private readonly dialog: MatDialog,
+  constructor(private readonly dialog: MatDialog,
   private readonly store: Store) {}
 
   ngOnInit(): void {
