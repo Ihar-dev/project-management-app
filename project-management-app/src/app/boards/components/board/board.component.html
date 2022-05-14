@@ -7,7 +7,7 @@
       <span class="board__title__text">{{board?.title || title}}</span>
     </h2>
     <div class="board__btn--add-column">
-      <app-button-board-create text="Add column"></app-button-board-create>
+      <app-button-board-create text="Add column" (click)="openCreateColumnDialog()"></app-button-board-create>
     </div>
   </div>
 
