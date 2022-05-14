@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { MessageBoxService } from 'src/app/core/services/message-box.service';
 import { ErrorMessage, MessageState } from 'src/app/shared/models/messages-type';
 
-const ERROR_MESSAGE = ErrorMessage.error;
+const ERROR_MESSAGE = ErrorMessage.default;
 const MESSAGE_DISAPPEAR_TIME = 10000;
 const MESSAGE_LENGTH_MAX = 50;
 
