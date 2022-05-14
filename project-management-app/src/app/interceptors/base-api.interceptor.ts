@@ -10,7 +10,7 @@ export class BaseApiInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (this.isAuth(request)) {
+    if (!this.isAuth(request)) {
       return EMPTY;
     }
     const res = request.clone({ url: `${environment.baseUrl}${request.url}` });
@@ -19,14 +19,13 @@ export class BaseApiInterceptor implements HttpInterceptor {
 
   private isAuth(request: HttpRequest<unknown>): boolean {
     if (
-      (request.url.includes(Url.SIGN_IN) ||
-        request.url.includes(Url.SIGN_UP) ||
-        request.url.includes(Url.USERS)) &&
-      this.authService.isUserAuthenticated()
+      request.url.includes(Url.SIGN_IN) ||
+      request.url.includes(Url.SIGN_UP) ||
+      request.url.includes(Url.USERS)
     ) {
       return true;
     }
 
-    return false;
+    return this.authService.isUserAuthenticated();
   }
 }
