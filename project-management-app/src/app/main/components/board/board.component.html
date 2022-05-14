@@ -1,4 +1,3 @@
-<div (click)="boardRout()">
   <div class="board__photo-container" appRandomPhotoBack></div>
   <div class="board__content-container">
     <button mat-icon-button color="white" *ngIf="!boardEditMode" [class.hide]="mouseExisting"
@@ -16,37 +15,44 @@
       <span>&nbsp;</span>
       <mat-form-field appearance="fill" class="board-input-form">
         <mat-label>board title editing</mat-label>
-        <input matInput type="text" formControlName="userTitle" #boardTitleInput (keypress)="inputStatus=true">
+        <input matInput type="text" formControlName="userTitle" #boardTitleInput (keypress)="editMode=true">
         <button matSuffix mat-icon-button aria-label="Clear" (click)="boardTitleInput.value=''">
           <mat-icon>close</mat-icon>
         </button>
         <div *ngIf="cardForm.controls['userTitle'].touched">
-          <span *ngIf="userTitle!.errors?.['required'] || inputStatus===false && !boardTitleInput.value.trim()">The
-            title
-            is required</span>
-          <span *ngIf="userTitle!.errors?.['minlength']">The title is too short</span>
+          <span *ngIf="userTitle!.errors?.['required'] || editMode===false && !boardTitleInput.value.trim()">
+            The title is required
+          </span>
+          <span *ngIf="userTitle!.errors?.['minlength'] ||
+          editMode===false && boardTitleInput.value.trim().length<inputMinLength && boardTitleInput.value">
+            The title is too short
+          </span>
           <span *ngIf="userTitle!.errors?.['maxlength']">The title is too long</span>
         </div>
       </mat-form-field>
       <mat-form-field appearance="fill" class="board-input-form">
         <mat-label>board description editing</mat-label>
         <input matInput type="text" formControlName="userDescription" #boardDescriptionInput
-          (keypress)="inputStatus=true">
+          (keypress)="editMode=true">
         <button matSuffix mat-icon-button aria-label="Clear" (click)="boardDescriptionInput.value=''">
           <mat-icon>close</mat-icon>
         </button>
         <div *ngIf="cardForm.controls['userDescription'].touched">
           <span
-            *ngIf="userDescription!.errors?.['required'] || inputStatus===false && !boardDescriptionInput.value.trim()">
+          *ngIf="userDescription!.errors?.['required'] ||
+          editMode===false && !boardDescriptionInput.value.trim()">
             The description is required
           </span>
-          <span *ngIf="userDescription!.errors?.['minlength']">The description is too short</span>
+          <span *ngIf="userDescription!.errors?.['minlength'] ||
+          editMode===false && boardTitleInput.value.trim().length<inputMinLength && boardDescriptionInput.value">
+            The description is too short
+          </span>
           <span *ngIf="userDescription!.errors?.['maxlength']">The description is too long</span>
         </div>
       </mat-form-field>
     </form>
   </div>
-</div>
-<button (click)="openDialogToDeleteTheBoard()" mat-fab color="primary" class="board__delete-button">
-  <mat-icon>delete_forever</mat-icon>
-</button>
+  <button (click)="openDialogToDeleteTheBoard()" mat-fab color="primary" class="board__delete-button"
+  appMouseMoveStopPropagation appMouseClickStopPropagation>
+    <mat-icon>delete_forever</mat-icon>
+  </button>

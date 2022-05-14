@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -20,25 +19,27 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 export class BoardComponent implements OnInit {
   @Input() public board: IBoard | null = null;
   @Input() public mouseExisting = false;
-  public inputStatus = false;
+  public readonly inputMinLength = 3;
+  public editMode = false;
   public boardName = '';
   public boardDescription = '';
   private id = '';
   public cardForm: FormGroup;
   public boardEditMode = false;
 
-  constructor(private readonly router: Router, private readonly dialog: MatDialog, private readonly store: Store) {}
+  constructor(private readonly dialog: MatDialog,
+  private readonly store: Store) {}
 
   ngOnInit(): void {
     this.cardForm = new FormGroup({
       userTitle: new FormControl(this.board?.title, [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(this.inputMinLength),
         Validators.maxLength(50),
       ]),
       userDescription: new FormControl(this.board?.description, [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(this.inputMinLength),
         Validators.maxLength(130),
       ]),
     });
@@ -49,19 +50,17 @@ export class BoardComponent implements OnInit {
 
   public boardNameChange(event: MouseEvent, boardTitleInputValue: string, boardDescriptionInputValue: string): void {
     event.stopImmediatePropagation();
-    this.inputStatus = false;
+    this.editMode = false;
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue &&
-    !this.cardForm.controls['userDescription'].invalid && boardDescriptionInputValue) {
+    !this.cardForm.controls['userDescription'].invalid && boardDescriptionInputValue &&
+    boardTitleInputValue.trim().length >= this.inputMinLength &&
+    boardDescriptionInputValue.trim().length >= this.inputMinLength) {
       this.boardName = boardTitleInputValue;
       this.boardDescription = boardDescriptionInputValue;
       this.boardEditMode = false;
       this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue,
       description: boardDescriptionInputValue } }));
     }
-  }
-
-  public boardRout(): void {
-    this.router.navigate([`/boards/${this.board?.id}`]);
   }
 
   public openDialogToDeleteTheBoard(): void {

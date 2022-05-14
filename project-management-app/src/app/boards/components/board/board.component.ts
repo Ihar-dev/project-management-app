@@ -1,6 +1,9 @@
 import { Location } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IBoard } from 'src/app/shared/models/board.model';
+
+import { BoardHandlingService } from '../../../main/services/board-handling.service';
 
 const TITLE_DEFAULT = 'Board title';
 
@@ -9,12 +12,26 @@ const TITLE_DEFAULT = 'Board title';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit, OnDestroy {
+  private readonly boardHandlingService: BoardHandlingService;
+  private boardSubs: Subscription;
   readonly title = TITLE_DEFAULT;
 
-  @Input() board: IBoard | null = null;
+  board: IBoard | null = null;
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, boardHandlingService: BoardHandlingService) {
+    this.boardHandlingService = boardHandlingService;
+  }
+
+  ngOnInit() {
+    this.boardSubs = this.boardHandlingService.board$.subscribe((board: IBoard) => {
+      this.board = board;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.boardSubs.unsubscribe();
+  }
 
   onClickBack(): void {
     this.location.back();
