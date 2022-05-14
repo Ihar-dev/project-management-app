@@ -20,12 +20,13 @@
           <mat-icon>close</mat-icon>
         </button>
         <div *ngIf="cardForm.controls['userTitle'].touched">
-          <span *ngIf="userTitle!.errors?.['required'] || editMode===false && !boardTitleInput.value.trim()">The
-            title
-            is required</span>
-          <span
-            *ngIf="userTitle!.errors?.['minlength'] || editMode===false && boardTitleInput.value.trim().length<3">The
-            title is too short</span>
+          <span *ngIf="userTitle!.errors?.['required'] || editMode===false && !boardTitleInput.value.trim()">
+            The title is required
+          </span>
+          <span *ngIf="userTitle!.errors?.['minlength'] ||
+          editMode===false && boardTitleInput.value.trim().length<inputMinLength && boardTitleInput.value">
+            The title is too short
+          </span>
           <span *ngIf="userTitle!.errors?.['maxlength']">The title is too long</span>
         </div>
       </mat-form-field>
@@ -38,12 +39,14 @@
         </button>
         <div *ngIf="cardForm.controls['userDescription'].touched">
           <span
-            *ngIf="userDescription!.errors?.['required'] || editMode===false && !boardDescriptionInput.value.trim()">
+          *ngIf="userDescription!.errors?.['required'] ||
+          editMode===false && !boardDescriptionInput.value.trim()">
             The description is required
           </span>
-          <span
-            *ngIf="userDescription!.errors?.['minlength'] || editMode===false && boardTitleInput.value.trim().length<3">The
-            description is too short</span>
+          <span *ngIf="userDescription!.errors?.['minlength'] ||
+          editMode===false && boardTitleInput.value.trim().length<inputMinLength && boardDescriptionInput.value">
+            The description is too short
+          </span>
           <span *ngIf="userDescription!.errors?.['maxlength']">The description is too long</span>
         </div>
       </mat-form-field>

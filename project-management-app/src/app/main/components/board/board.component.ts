@@ -19,6 +19,7 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 export class BoardComponent implements OnInit {
   @Input() public board: IBoard | null = null;
   @Input() public mouseExisting = false;
+  public readonly inputMinLength = 3;
   public editMode = false;
   public boardName = '';
   public boardDescription = '';
@@ -33,12 +34,12 @@ export class BoardComponent implements OnInit {
     this.cardForm = new FormGroup({
       userTitle: new FormControl(this.board?.title, [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(this.inputMinLength),
         Validators.maxLength(50),
       ]),
       userDescription: new FormControl(this.board?.description, [
         Validators.required,
-        Validators.minLength(3),
+        Validators.minLength(this.inputMinLength),
         Validators.maxLength(130),
       ]),
     });
@@ -52,9 +53,8 @@ export class BoardComponent implements OnInit {
     this.editMode = false;
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue &&
     !this.cardForm.controls['userDescription'].invalid && boardDescriptionInputValue &&
-    boardTitleInputValue.trim().length > 2 &&
-    boardDescriptionInputValue.trim().length > 2
-    ) {
+    boardTitleInputValue.trim().length >= this.inputMinLength &&
+    boardDescriptionInputValue.trim().length >= this.inputMinLength) {
       this.boardName = boardTitleInputValue;
       this.boardDescription = boardDescriptionInputValue;
       this.boardEditMode = false;
