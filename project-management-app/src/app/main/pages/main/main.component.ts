@@ -80,7 +80,7 @@ export class MainComponent implements OnInit, OnDestroy {
     if (board?.id) {
       this.getBoardById(board.id);
       this.boardHandlingService.setBoard(board);
-      this.router.navigate([`/boards/${board.id}`]);
+      this.router.navigate([`/board/${board.id}`]);
     }
   }
 
