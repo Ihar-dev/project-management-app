@@ -21,8 +21,6 @@ enum SearchTitles {
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, OnDestroy {
-  private readonly taskSearchService: TaskSearchService;
-  private readonly boardHandlingService: BoardHandlingService;
   public dataForSearch = '';
   private boardsSubs: Subscription;
   private searchResultsSubs: Subscription;
@@ -36,7 +34,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public SearchTitle: SearchTitles;
 
   constructor(private readonly router: Router, private store: Store,
-    taskSearchService: TaskSearchService, boardHandlingService: BoardHandlingService) {
+    private readonly taskSearchService: TaskSearchService, private readonly boardHandlingService: BoardHandlingService) {
     this.taskSearchService = taskSearchService;
     this.boardHandlingService = boardHandlingService;
   }
