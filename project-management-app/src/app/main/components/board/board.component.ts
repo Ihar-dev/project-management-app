@@ -20,7 +20,7 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 export class BoardComponent implements OnInit {
   @Input() public board: IBoard | null = null;
   @Input() public mouseExisting = false;
-  public inputStatus = false;
+  public editMode = false;
   public boardName = '';
   public boardDescription = '';
   private id = '';
@@ -50,7 +50,7 @@ export class BoardComponent implements OnInit {
 
   public boardNameChange(event: MouseEvent, boardTitleInputValue: string, boardDescriptionInputValue: string): void {
     event.stopImmediatePropagation();
-    this.inputStatus = false;
+    this.editMode = false;
     if (!this.cardForm.controls['userTitle'].invalid && boardTitleInputValue &&
     !this.cardForm.controls['userDescription'].invalid && boardDescriptionInputValue &&
     boardTitleInputValue.trim().length > 2 &&
