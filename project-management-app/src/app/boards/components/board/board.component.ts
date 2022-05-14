@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IBoard } from 'src/app/shared/models/board.model';
 
@@ -13,13 +14,13 @@ const TITLE_DEFAULT = 'Board title';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  private readonly boardHandlingService: BoardHandlingService;
   private boardSubs: Subscription;
   readonly title = TITLE_DEFAULT;
 
   board: IBoard | null = null;
 
-  constructor(private location: Location, boardHandlingService: BoardHandlingService) {
+  constructor(private location: Location, private readonly boardHandlingService: BoardHandlingService,
+  private readonly router: Router) {
     this.boardHandlingService = boardHandlingService;
   }
 
@@ -27,6 +28,10 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.boardSubs = this.boardHandlingService.board$.subscribe((board: IBoard) => {
       this.board = board;
     });
+    const { url } = this.router;
+    const urlArr = url.split('/');
+    const id = urlArr[urlArr.length - 1];
+    this.boardHandlingService.setBoardId(id);
   }
 
   ngOnDestroy(): void {
