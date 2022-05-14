@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MessageBoxService } from 'src/app/core/services/message-box.service';
-import { MessagesDefault, MessageState } from 'src/app/shared/models/messages-type';
+import { ErrorMessage, MessageState } from 'src/app/shared/models/messages-type';
 
-const ERROR_MESSAGE = MessagesDefault.error;
+const ERROR_MESSAGE = ErrorMessage.error;
 const MESSAGE_DISAPPEAR_TIME = 10000;
 const MESSAGE_LENGTH_MAX = 50;
 
@@ -13,7 +13,7 @@ const MESSAGE_LENGTH_MAX = 50;
   styleUrls: ['./message-box.component.scss'],
 })
 export class MessageBoxComponent implements OnInit, OnDestroy {
-  message: string | MessagesDefault = ERROR_MESSAGE;
+  message: string | ErrorMessage = ERROR_MESSAGE;
 
   isMessageBoxShown: boolean = false;
 

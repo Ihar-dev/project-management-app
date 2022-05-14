@@ -7,11 +7,11 @@ import {
   HttpErrorResponse,
 } from '@angular/common/http';
 import { catchError, EMPTY, Observable, throwError } from 'rxjs';
-import { MessagesDefault } from 'src/app/shared/models/messages-type';
+import { ErrorMessage } from 'src/app/shared/models/messages-type';
 import { MessageBoxService } from '../core/services/message-box.service';
 import { HttpError } from '../shared/constants';
 
-const ERROR_MESSAGE = MessagesDefault.error;
+const ERROR_MESSAGE = ErrorMessage.error;
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
   constructor(private messageBoxService: MessageBoxService) {}
