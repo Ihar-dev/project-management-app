@@ -41,8 +41,6 @@
   padding: 2rem 7rem 2rem 3rem;
   transform: skewX(-4deg);
   @extend %normal-text-pattern;
-  font-size: 4rem;
-  line-height: 4.5rem;
   text-align: center;
   color: white;
   word-wrap: break-word;
@@ -53,7 +51,20 @@
     color: $theme-accent;
   }
 
-  p {
+  .board__title {
+    opacity: 0;
+    width: 100%;
+    font-size: 4rem;
+    line-height: 4.5rem;
+    padding-right: 4rem;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  .board__description {
+    width: 100%;
     opacity: 0;
     font-size: 2rem;
     line-height: 2.5rem;
@@ -84,6 +95,20 @@
 @media screen and (max-width: $laptop) {
   :host {
     height: 35rem;
+
+    .board__content-container {
+      row-gap: 1rem;
+      
+      .board__title {
+        font-size: 3rem;
+        line-height: 3.5rem;
+      }
+
+      .board__description {
+        font-size: 2rem;
+        line-height: 2.2rem;
+      }
+    }
   }
 }
 
@@ -105,14 +130,21 @@
       width: 180px;
     }
 
-
     .board__content-container {
-      font-size: 3rem;
-      line-height: 3.5rem;
-      row-gap: 1rem;
+      .board__title {
+        width: 145%;
+        font-size: 2.5rem;
+        line-height: 2.7rem;
+        padding-right: 1rem;
+        padding-left: 2rem;
+      }
 
-      p {
-        padding-right: 0;
+      .board__description {
+        width: 155%;
+        font-size: 2rem;
+        line-height: 2.2rem;
+        padding-right: 2rem;
+        padding-left: 4rem;
       }
     }
   }
@@ -158,12 +190,4 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.board__title {
-  opacity: 0;
-
-  &.active {
-    opacity: 1;
-  }
 }
