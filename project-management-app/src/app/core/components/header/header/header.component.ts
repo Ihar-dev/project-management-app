@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { Store } from '@ngrx/store';
+import { logout } from 'src/app/store/actions/auth.action';
+import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 enum Localized {
   en = 'en',
@@ -14,10 +17,16 @@ enum Localized {
 export class HeaderComponent {
   localized = Localized.en;
 
-  constructor(private transloco: TranslocoService) {}
+  isAuth$ = this.store.select(selectIsAuth);
+
+  constructor(private store: Store, private transloco: TranslocoService) {}
 
   toggleLocalization(): void {
     this.localized = this.localized === Localized.en ? Localized.ru : Localized.en;
     this.transloco.setActiveLang(this.localized);
+  }
+
+  onLogout(): void {
+    this.store.dispatch(logout());
   }
 }

@@ -28,11 +28,12 @@
       "password": "Please enter a password.",
       "name": "Please enter a name.",
       "length": "The min length is {{length}} {length, plural, one {symbol} other {symbols}}.",
-      "password-upLowCase": "Should include uppercase and lowercase letters.",
-      "password-digits": "Should include at least 1 digit.",
-      "password-special": "Should include 1 special character (!@#$%^&?[]).",
+      "password-upLowCase": "Include uppercase and lowercase letters.",
+      "password-digits": "Include at least 1 digit.",
+      "password-special": "Include 1 special character (!@#$%^&?[]).",
       "password-confirm": "Please confirm a password.",
-      "password-match": "Passwords do not match!"
+      "password-match": "Passwords do not match!",
+      "password-wrong": "Wrong password!"
     }
   }
 }

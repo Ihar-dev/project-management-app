@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { IBoard } from 'src/app/shared/models/board.model';
 
@@ -12,4 +13,10 @@ export class BoardComponent {
   readonly title = TITLE_DEFAULT;
 
   @Input() board: IBoard | null = null;
+
+  constructor(private location: Location) {}
+
+  onClickBack(): void {
+    this.location.back();
+  }
 }

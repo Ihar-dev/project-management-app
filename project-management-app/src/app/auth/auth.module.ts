@@ -1,31 +1,15 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TranslocoModule } from '@ngneat/transloco';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '../forms/forms.module';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
-import { FormFieldComponent } from './components/form-field/form-field.component';
-import { FormFieldPasswordComponent } from './components/form-field-password/form-field-password.component';
-import { FormComponent } from './components/form/form.component';
-import { FormErrorComponent } from './components/form-error/form-error.component';
-import { FormTitleComponent } from './components/form-title/form-title.component';
-import { FormSubmitComponent } from './components/form-submit/form-submit.component';
 import { AuthMainComponent } from './components/auth-main/auth-main.component';
 
 @NgModule({
-  declarations: [
-    LoginPageComponent,
-    RegistrationPageComponent,
-    FormFieldComponent,
-    FormComponent,
-    FormErrorComponent,
-    FormFieldPasswordComponent,
-    FormTitleComponent,
-    FormSubmitComponent,
-    AuthMainComponent,
-  ],
-  imports: [AuthRoutingModule, ReactiveFormsModule, SharedModule, TranslocoModule],
+  declarations: [LoginPageComponent, RegistrationPageComponent, AuthMainComponent],
+  imports: [AuthRoutingModule, SharedModule, FormsModule, TranslocoModule],
 })
 export class AuthModule {}

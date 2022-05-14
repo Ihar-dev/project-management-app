@@ -7,27 +7,35 @@ import { ColumnActions } from 'src/app/store/actions/column.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
 import { IBoard } from '../../models/board.model';
+import { IColumn } from '../../models/column.model';
+import { ITask } from '../../models/task.model';
 
 const DEFAULT_USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
 
-type ItemType = 'board' | 'column' | 'task';
+type ItemType = 'board' | 'column' | 'task' | 'columnEdit' | 'taskEdit';
 
 export interface DialogInterface {
   type: ItemType;
   boardID?: string;
   columnID?: string;
+  column: IColumn;
+  task: ITask;
 }
 
 enum DialogTitle {
   board = 'Enter a board name:',
   column = 'Enter a column name:',
   task = 'Enter a task name:',
+  columnEdit = 'Edit a column name:',
+  taskEdit = 'Edit a task name:',
 }
 
 enum DefaultTitle {
   board = 'New board',
   column = 'New column',
   task = 'New task',
+  columnEdit = '',
+  taskEdit = '',
 }
 
 const MIN_TITLE_LENGTH = 3;
@@ -55,10 +63,16 @@ export class DialogCreationComponent implements OnInit {
 
   dialogTitle = DialogTitle[this.data.type];
 
+  currentColumn!: IColumn;
+
+  currentTask!: ITask;
+
   createEntity = {
     board: this.createBoard,
     column: this.createColumn,
     task: this.createTask,
+    columnEdit: this.editColumn,
+    taskEdit: this.editTask,
   };
 
   constructor(
@@ -69,6 +83,15 @@ export class DialogCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
+    if (this.data.column) {
+      this.currentColumn = this.data.column;
+      this.title = this.currentColumn.title;
+    }
+    if (this.data.task) {
+      this.currentTask = this.data.task;
+      this.title = this.currentTask.title;
+      this.description = this.currentTask.description;
+    }
   }
 
   create(): void {
@@ -117,6 +140,40 @@ export class DialogCreationComponent implements OnInit {
     }
   }
 
+  editColumn(): void {
+    if (this.titleValid) {
+      this.store.dispatch(
+        ColumnActions.putColumn({
+          boardID: this.boardID,
+          column: { ...this.currentColumn, title: this.title },
+        }),
+      );
+      this.dialogRef.close();
+    }
+  }
+
+  editTask(): void {
+    if (this.titleValid && this.descriptionValid) {
+      this.store.dispatch(
+        TaskActions.PutTask({
+          boardID: this.boardID,
+          columnID: this.columnID,
+          taskID: this.currentTask.id,
+          task: {
+            title: this.title,
+            description: this.description,
+            boardId: this.boardID,
+            columnId: this.columnID,
+            done: this.currentTask.done,
+            order: this.currentTask.order,
+            userId: this.currentTask.userId,
+          },
+        }),
+      );
+      this.dialogRef.close();
+    }
+  }
+
   notAllowStartWithSpace(): void {
     if (this.title.trim() === '') {
       this.clearInput();
@@ -139,11 +196,11 @@ export class DialogCreationComponent implements OnInit {
   }
 
   get titleValid(): boolean {
-    return this.title.length >= MIN_TITLE_LENGTH;
+    return this.title.trim().length >= MIN_TITLE_LENGTH;
   }
 
   get descriptionValid(): boolean {
-    return this.description.length >= MIN_TITLE_LENGTH;
+    return this.description.trim().length >= MIN_TITLE_LENGTH;
   }
 
   get boardID(): string {
@@ -155,7 +212,7 @@ export class DialogCreationComponent implements OnInit {
   }
 
   get needDescription(): boolean {
-    return this.data.type !== 'column';
+    return this.data.type !== 'column' && this.data.type !== 'columnEdit';
   }
 
   get takeNextColumnOrder(): number {

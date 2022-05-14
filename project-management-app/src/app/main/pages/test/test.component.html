@@ -38,13 +38,7 @@
             <button mat-button color="warn" (click)="deleteColumn(board.id, column.id)">
               delete
             </button>
-            <button
-              mat-button
-              color="accent"
-              (click)="
-                renameColumn(board.id, { id: column.id, title: columnTitle, order: column.order })
-              "
-            >
+            <button mat-button color="accent" (click)="renameColumnModal(board.id, column)">
               rename
             </button>
 
@@ -60,8 +54,9 @@
                 addTask(board.id, column.id, {
                   title: taskTitle,
                   description: taskDescription,
+                  done: false,
                   order: findLastOrder(column.tasks),
-                  userId: '1be26d36-9753-4236-b277-87137ef33e7a'
+                  userId: defaultUser
                 })
               "
             >
@@ -85,17 +80,7 @@
                   <button
                     mat-button
                     color="accent"
-                    (click)="
-                      updateTask(board.id, column.id, task.id, {
-                        title: taskTitle,
-                        description: taskDescription,
-                        done: false,
-                        order: task.order,
-                        userId: task.userId,
-                        boardId: board.id,
-                        columnId: column.id
-                      })
-                    "
+                    (click)="updateTaskModal(board.id, column.id, task)"
                   >
                     UPDATE
                   </button>

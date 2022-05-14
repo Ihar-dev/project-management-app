@@ -13,9 +13,8 @@ enum Operation {
 
 @Injectable()
 export class ColumnEffects {
-
-  addColumn$ = createEffect(() => {
-    return this.actions$.pipe(
+  addColumn$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(ColumnActions.addColumn),
       mergeMap((action) =>
         this.dbService.addColumn(action.boardID, action.column).pipe(
@@ -23,11 +22,11 @@ export class ColumnEffects {
           catchError(this.handler.handleError(Operation.AddColumn)),
         ),
       ),
-    )
-  });
+    ),
+  );
 
-  deleteColumn$ = createEffect(() => {
-    return this.actions$.pipe(
+  deleteColumn$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(ColumnActions.deleteColumn),
       mergeMap((action) =>
         this.dbService.deleteColumn(action.boardID, action.columnID).pipe(
@@ -35,11 +34,11 @@ export class ColumnEffects {
           catchError(this.handler.handleError(Operation.DeleteColumn)),
         ),
       ),
-    )
-  });
+    ),
+  );
 
-  putBoard$ = createEffect(() => {
-    return this.actions$.pipe(
+  putBoard$ = createEffect(() =>
+    this.actions$.pipe(
       ofType(ColumnActions.putColumn),
       mergeMap((action) =>
         this.dbService.updateColumn(action.boardID, { ...action.column }).pipe(
@@ -47,8 +46,8 @@ export class ColumnEffects {
           catchError(this.handler.handleError(Operation.DeleteColumn)),
         ),
       ),
-    )
-  });
+    ),
+  );
 
   constructor(
     private actions$: Actions,

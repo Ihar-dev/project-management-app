@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IColumn } from 'src/app/shared/models/column.model';
 
-const TITLE_DEFAULT = 'Column title';
 @Component({
   selector: 'app-column',
   templateUrl: './column.component.html',
@@ -11,8 +10,6 @@ export class ColumnComponent {
   @Input() column: IColumn | null = null;
 
   editMode: boolean = false;
-
-  readonly title = TITLE_DEFAULT;
 
   onClickTitle(): void {
     this.setEditMode(true);

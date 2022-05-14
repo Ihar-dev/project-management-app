@@ -1,6 +1,6 @@
 <main>
   <h1 [class.active]="pageActivation">Project<br>Management<br>App</h1>
-  <div class="welcome_buttons-container" [class.active]="pageActivation">
+  <div class="welcome_buttons-container" [class.active]="pageActivation" *ngIf="(isAuth$ | async) === false">
     <button mat-fab color="primary" title="log in" class="welcome_button" routerLink="/auth/login">
       <mat-icon>account_circle</mat-icon>
     </button>

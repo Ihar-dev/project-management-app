@@ -1,0 +1,15 @@
+<form class="form-name" [formGroup]="form" (submit)="onSubmit(formDirective)" #formDirective="ngForm">
+  <app-form-title [title]="title"></app-form-title>
+  <app-form-field label="Name" [control]="controlName"></app-form-field>
+  <app-form-error [control]="controlName" [errors]="formErrors[controlNameKey]"></app-form-error>
+
+  <app-form-field label="Login" [control]="controlLogin"></app-form-field>
+  <app-form-error [control]="controlLogin" [errors]="formErrors[controlLoginKey]"></app-form-error>
+
+  <app-form-field-password label="Current password" [control]="controlOldPassword"></app-form-field-password>
+  <app-form-error [control]="controlOldPassword" [errors]="formErrors[controlOldPasswordKey]"></app-form-error>
+
+  <app-form-submit>
+    <app-button text="Submit" [isDisabled]="!form.valid"></app-button>
+  </app-form-submit>
+</form>

@@ -1,0 +1,43 @@
+@import "variables";
+@import "mixins";
+
+.edit {
+  display: flex;
+  justify-content: space-between;
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(-50%);
+    transform-origin: top;
+    animation: slideInput 0.4s linear forwards;
+  }
+
+  &__btn {
+    font-size: 14px;
+    line-height: 15px;
+    color: $theme-accent;
+    background-color: transparent;
+    border: none;
+    transition: all 0.5s;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0 1.4rem;
+    font-size: 2rem;
+    color: $font-white;
+    background-color: $board-column-title-input;
+    border-radius: $border-radius;
+    border: none;
+    opacity: 0;
+    transform: scaleX(1%);
+    transform-origin: left;
+    animation: slideInput 0.4s linear forwards;
+  }
+}

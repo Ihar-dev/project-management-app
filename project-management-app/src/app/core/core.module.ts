@@ -16,6 +16,10 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
 
 @NgModule({
   declarations: [
+    HeaderComponent,
+    LogoComponent,
+    UserBoxComponent,
+    CreateButtonComponent,
     NotFoundComponent,
     HeaderComponent,
     MessageBoxComponent,

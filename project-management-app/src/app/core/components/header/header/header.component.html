@@ -1,6 +1,6 @@
-<div appStickyHeader class="header">
+<div appStickyHeader class="header" *ngIf="isAuth$ | async">
   <app-logo></app-logo>
   <app-create-button></app-create-button>
-  <app-user-box></app-user-box>
+  <app-user-box (logout)="onLogout()"></app-user-box>
   <mat-slide-toggle class="slide-toggle" (change)="toggleLocalization()">En\Ru</mat-slide-toggle>
 </div>

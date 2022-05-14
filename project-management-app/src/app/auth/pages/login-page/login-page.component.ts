@@ -1,27 +1,13 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { FormControlNames } from '../../shared/constants';
-import { TSigninData } from '../../shared/models/login-data.model';
-import { TValidationError } from '../../shared/models/validation-error.model';
+
+import { FormControlName } from 'src/app/forms/constants';
+import { ERRORS_MESSAGES_LOGIN } from 'src/app/forms/errors/error-messages-login';
+import { TSigninData } from 'src/app/shared/models/login-data.model';
+import { Store } from '@ngrx/store';
+import { login } from 'src/app/store/actions/auth.action';
 
 const FORM_TITLE = 'login-title';
-const ERRORS_MESSAGES: TValidationError = {
-  login: [
-    {
-      type: 'required',
-      message: 'Please enter a login.',
-      transloco: 'login',
-    },
-  ],
-  password: [
-    {
-      type: 'required',
-      message: 'Please enter a password.',
-      transloco: 'password',
-    },
-  ],
-};
 
 @Component({
   selector: 'app-login-page',
@@ -31,15 +17,15 @@ const ERRORS_MESSAGES: TValidationError = {
 export class LoginPageComponent {
   form: FormGroup;
 
-  readonly formErrors = ERRORS_MESSAGES;
+  readonly formErrors = ERRORS_MESSAGES_LOGIN;
 
-  readonly controlLoginKey = FormControlNames.login;
+  readonly controlLoginKey = FormControlName.login;
 
-  readonly controlPasswordKey = FormControlNames.password;
+  readonly controlPasswordKey = FormControlName.password;
 
   readonly title = FORM_TITLE;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.form = this.fb.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -47,11 +33,12 @@ export class LoginPageComponent {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const signInData = this.form.value;
-      this.authService.signIn(<TSigninData>signInData);
-      this.form.reset();
+    if (!this.form.valid) {
+      return;
     }
+    const signInData = this.form.value;
+    this.store.dispatch(login({ userData: <TSigninData>signInData }));
+    this.form.reset();
   }
 
   get controlLogin(): AbstractControl {
