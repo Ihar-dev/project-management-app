@@ -16,12 +16,16 @@ import {
   DialogInterface,
 } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 
+const USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.scss'],
 })
 export class TestComponent implements OnInit {
+  defaultUser = USER_ID;
+
   boardTitle = '';
 
   columnTitle = '';
@@ -114,6 +118,16 @@ export class TestComponent implements OnInit {
     );
   }
 
+  renameColumnModal(boardID: string, column: IColumn): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'columnEdit',
+        boardID,
+        column,
+      },
+    });
+  }
+
   addTask(boardID: string, columnID: string, task: Partial<ITaskRequest>): void {
     this.store.dispatch(
       TaskActions.AddTask({
@@ -148,6 +162,17 @@ export class TestComponent implements OnInit {
         task,
       }),
     );
+  }
+
+  updateTaskModal(boardID: string, columnID: string, task: ITask): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'taskEdit',
+        boardID,
+        columnID,
+        task,
+      },
+    });
   }
 
   findLastOrder(array: IColumn[] | ITask[] | undefined): number {
