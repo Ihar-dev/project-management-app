@@ -6,7 +6,7 @@
       <mat-icon>edit</mat-icon>
     </button>
     <span [class.active]="!boardEditMode" class="board__title">{{ boardName }}</span>
-    <p [class.active]="!boardEditMode">{{ boardDescription }}</p>
+    <p [class.active]="!boardEditMode" class="board__description">{{ boardDescription }}</p>
     <form *ngIf="boardEditMode" [formGroup]="cardForm" class="board-form" appMouseMoveStopPropagation
       appMouseClickStopPropagation>
       <mat-icon title="Save"

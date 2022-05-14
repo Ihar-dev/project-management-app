@@ -40,7 +40,7 @@ export class BoardComponent implements OnInit {
       userDescription: new FormControl(this.board?.description, [
         Validators.required,
         Validators.minLength(this.inputMinLength),
-        Validators.maxLength(130),
+        Validators.maxLength(120),
       ]),
     });
     if (this.board?.id) this.id = this.board?.id;
