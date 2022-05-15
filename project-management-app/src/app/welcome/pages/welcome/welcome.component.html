@@ -1,13 +1,31 @@
 <main>
-  <h1 [class.active]="pageActivation">Project<br>Management<br>App</h1>
-  <div class="welcome_buttons-container" [class.active]="pageActivation" *ngIf="(isAuth$ | async) === false">
+  <h1 [class.active]="pageActivation">Project<br />Management<br />App</h1>
+  <div
+    class="welcome_buttons-container"
+    [class.active]="pageActivation"
+    *ngIf="(isAuth$ | async) === false; else logoutBlock"
+  >
     <button mat-fab color="primary" title="log in" class="welcome_button" routerLink="/auth/login">
       <mat-icon>account_circle</mat-icon>
     </button>
-    <button mat-fab color="primary" title="sign up" class="welcome_button" routerLink="/auth/signup">
+    <button
+      mat-fab
+      color="primary"
+      title="sign up"
+      class="welcome_button"
+      routerLink="/auth/signup"
+    >
       <mat-icon>account_box</mat-icon>
     </button>
   </div>
+  <ng-template #logoutBlock>
+    <div class="welcome_buttons-container" [class.active]="pageActivation">
+      <button mat-fab color="primary" title="logout" class="welcome_button" (click)="onLogout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </ng-template>
+
   <div class="welcome_main-img" [class.active]="pageActivation"></div>
   <div class="welcome_arrows" [class.active]="pageActivation"></div>
   <div class="welcome_top-cube" [class.active]="pageActivation"></div>
@@ -32,6 +50,8 @@
       </div>
     </div>
   </div>
-  <p [class.active]="pageActivation">Take your company to<br>
-    the next level with a lot of<br>ideas and making great<br>progress</p>
+  <p [class.active]="pageActivation">
+    Take your company to<br />
+    the next level with a lot of<br />ideas and making great<br />progress
+  </p>
 </main>

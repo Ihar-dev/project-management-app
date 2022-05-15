@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 const CLASS_OPEN = 'open';
-const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome', '/auth/signup', '/auth/login'];
+const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome'];
 const PROFILE_PAGE = '/profile';
 
 @Component({

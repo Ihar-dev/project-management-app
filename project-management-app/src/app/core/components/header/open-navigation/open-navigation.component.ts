@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 const OPEN_CLASS = 'active';
-const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome', '/auth/signup', '/auth/login'];
+const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome'];
 
 @Component({
   selector: 'app-open-navigation',

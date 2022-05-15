@@ -1,5 +1,9 @@
 <ng-container *ngrxLet="isAuth$ as isAuth">
-  <div appStickyHeader class="header" [class]="{ transparent: hideHeader }">
+  <div
+    appStickyHeader
+    class="header"
+    [class]="{ transparent: hideHeader || (!isAuth && hideHeaderWithoutAuth) }"
+  >
     <app-logo *ngIf="isAuth"></app-logo>
     <app-create-button *ngIf="isAuth && !hideHeader"></app-create-button>
     <app-navigation #navigation (toggleNav)="openNavigation.rotateOpen()"></app-navigation>

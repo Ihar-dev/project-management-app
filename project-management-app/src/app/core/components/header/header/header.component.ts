@@ -9,7 +9,9 @@ enum Localized {
   ru = 'ru',
 }
 
-const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome', '/auth/signup', '/auth/login'];
+const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome'];
+
+const PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH = ['/auth/login', '/auth/signup'];
 
 @Component({
   selector: 'app-header',
@@ -33,5 +35,9 @@ export class HeaderComponent {
 
   get hideHeader(): boolean {
     return PAGE_WITH_TRANSPARENT_HEADER.some((url) => url === this.router.url);
+  }
+
+  get hideHeaderWithoutAuth(): boolean {
+    return PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH.some((url) => url === this.router.url);
   }
 }
