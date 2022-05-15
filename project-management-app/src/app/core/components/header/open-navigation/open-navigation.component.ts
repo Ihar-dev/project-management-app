@@ -1,6 +1,10 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 const OPEN_CLASS = 'active';
+const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome', '/auth/signup', '/auth/login'];
 
 @Component({
   selector: 'app-open-navigation',
@@ -9,7 +13,15 @@ const OPEN_CLASS = 'active';
 })
 export class OpenNavigationComponent implements OnInit {
   currentElement!: HTMLElement;
-  constructor(private render: Renderer2, private element: ElementRef) {}
+
+  isAuth$ = this.store.select(selectIsAuth);
+
+  constructor(
+    private render: Renderer2,
+    private element: ElementRef,
+    private router: Router,
+    private store: Store,
+  ) {}
 
   ngOnInit(): void {
     this.currentElement = this.element.nativeElement;
@@ -21,5 +33,9 @@ export class OpenNavigationComponent implements OnInit {
     } else {
       this.render.addClass(this.currentElement, OPEN_CLASS);
     }
+  }
+
+  get hiddenElement(): boolean {
+    return PAGE_WITH_TRANSPARENT_HEADER.some((url) => url === this.router.url);
   }
 }

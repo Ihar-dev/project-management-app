@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveComponentModule } from '@ngrx/component';
 import { CoreRoutingModule } from './core-routing.module';
 
 import { NotFoundComponent } from './page/not-found/not-found.component';
@@ -34,7 +35,7 @@ import { OpenNavigationComponent } from './components/header/open-navigation/ope
     NavigationComponent,
     OpenNavigationComponent,
   ],
-  imports: [SharedModule, CoreRoutingModule],
+  imports: [SharedModule, CoreRoutingModule, ReactiveComponentModule],
   exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent],
 })
 export class CoreModule {}
