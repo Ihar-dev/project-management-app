@@ -1,0 +1,51 @@
+@import "variables";
+
+:host {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+
+  @media only screen and (max-width: $laptop) {
+    position: absolute;
+    top: -10rem;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 502;
+    background-color: $color-white-darken;
+    justify-content: space-between;
+    padding: 0 7rem 0 2rem;
+    transition: top 0.4s;
+
+    &.open {
+      top: 0;
+    }
+  }
+
+  @media only screen and (max-width: $mobile) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.user-name {
+  display: block;
+  font-size: 2.5rem;
+  line-height: 3rem;
+  font-weight: 300;
+  padding: 0.5rem 1.5rem;
+  max-width: 20rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  border-radius: 0;
+  padding: 0.3rem 1.2rem;
+
+  &:not(:last-child) {
+    border-right: 1px solid $board-main-bg-darken;
+  }
+}
