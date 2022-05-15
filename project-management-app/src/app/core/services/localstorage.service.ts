@@ -38,7 +38,7 @@ export class LocalStorageService {
   }
 
   private handleError(err: unknown): void {
-    this.messageService.showMessage(ErrorMessage.error);
+    this.messageService.showMessage(ErrorMessage.default);
     console.error(err);
   }
 }

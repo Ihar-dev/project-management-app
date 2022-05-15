@@ -6,28 +6,26 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { catchError, EMPTY, Observable, throwError } from 'rxjs';
-import { ErrorMessage } from 'src/app/shared/models/messages-type';
-import { MessageBoxService } from '../core/services/message-box.service';
-import { HttpError } from '../shared/constants';
+import { catchError, Observable } from 'rxjs';
+import { HttpErrorService } from '../core/services/http-error.service';
 
-const ERROR_MESSAGE = ErrorMessage.error;
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
-  constructor(private messageBoxService: MessageBoxService) {}
+  constructor(private httpErrorService: HttpErrorService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     return next.handle(request).pipe(
       catchError((error) => {
         if (error instanceof HttpErrorResponse) {
-          if (error.status === HttpError.forbidden) {
-            return throwError(() => new Error(error.message));
-          }
-          this.messageBoxService.showMessage(ERROR_MESSAGE);
-          console.log(error);
+          this.logMessage(error);
         }
-        return EMPTY;
+        return this.httpErrorService.handleError(error);
       }),
     );
+  }
+
+  private logMessage(error: HttpErrorResponse): void {
+    const errorMessage = Array.isArray(error.message) ? error.message.join(',') : error.message;
+    console.log(errorMessage);
   }
 }
