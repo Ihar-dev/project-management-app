@@ -1,0 +1,21 @@
+@import "variables";
+
+$btn-size: 4rem;
+
+.btn-back {
+  display: block;
+  border-radius: $btn-size;
+  border: 1px solid $board-main-bg;
+  background-color: $color-pink-transparent;
+  z-index: 3;
+  width: $btn-size;
+  height: $btn-size;
+
+  &__icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: $btn-size;
+    line-height: 3.9rem;
+  }
+}

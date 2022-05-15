@@ -21,6 +21,7 @@
 
   &__form,
   &__abstract {
+    position: relative;
     flex: 0 1 50%;
   }
 
@@ -38,5 +39,11 @@
     @media screen and (max-width: $laptop) {
       display: none;
     }
+  }
+
+  &__btn-back {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
   }
 }
