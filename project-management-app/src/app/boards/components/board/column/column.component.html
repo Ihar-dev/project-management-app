@@ -11,7 +11,8 @@
             (submitEditing)="onSubmitEditing($event)"></app-column-edit>
         </div>
       </div>
-      <app-button-board-delete title="Delete column" (click)="openDialogToDeleteTheColumn()"
+      <app-button-board-delete title="Delete column"
+      (click)="boardHandlingService.openDialogToDelete('column', columnTitle, boardID, columnID)"
       appClickStopPropagation></app-button-board-delete>
     </div>
 
@@ -19,5 +20,6 @@
       <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"></app-task>
     </div>
   </div>
-  <app-button-board-create text="Add task" (click)="openCreateTaskDialog()"></app-button-board-create>
+  <app-button-board-create text="Add task"
+  (click)="boardHandlingService.openCreateTaskDialog(boardID, columnID)"></app-button-board-create>
 </div>
