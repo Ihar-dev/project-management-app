@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 
 const CLASS_OPEN = 'open';
 const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome', '/auth/signup', '/auth/login'];
+const PROFILE_PAGE = '/profile';
 
 @Component({
   selector: 'app-navigation',
@@ -50,5 +51,9 @@ export class NavigationComponent implements OnInit {
 
   get hiddenElement(): boolean {
     return PAGE_WITH_TRANSPARENT_HEADER.some((url) => url === this.router.url);
+  }
+
+  get activeLink(): boolean {
+    return PROFILE_PAGE === this.router.url;
   }
 }

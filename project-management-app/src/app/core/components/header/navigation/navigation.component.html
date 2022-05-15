@@ -3,7 +3,13 @@
     profile.name
   }}</span>
   <div class="nav-block">
-    <a class="btn" mat-button color="primary" routerLink="/profile" (click)="toggleNavigation()"
+    <a
+      class="btn"
+      [class]="{ active: activeLink }"
+      mat-button
+      color="primary"
+      routerLink="/profile"
+      (click)="toggleNavigation()"
       >Profile</a
     >
     <a class="btn" mat-button color="primary" routerLink="/welcome" (click)="toggleNavigation()"
