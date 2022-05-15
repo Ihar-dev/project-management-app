@@ -120,6 +120,8 @@ p {
   position: absolute;
   @extend %flex-column-pattern;
   @extend %display-pattern;
+  @extend %opacity-pattern;
+  padding: 0 1rem;
 
   .welcome_team-img-container {
     @extend %flex-column-pattern;
@@ -318,7 +320,7 @@ p {
   .welcome_team-container {
     width: 47vw;
     height: 27vw;
-    top: 77%;
+    bottom: 5%;
     right: 49%;
     row-gap: 3vw;
 
