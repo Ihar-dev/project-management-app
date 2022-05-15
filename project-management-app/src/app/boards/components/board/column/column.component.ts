@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IColumn } from 'src/app/shared/models/column.model';
 
-import { MatDialog } from '@angular/material/dialog';
+import { IColumn } from 'src/app/shared/models/column.model';
 import { BoardHandlingService } from '../../../../main/services/board-handling.service';
 
 @Component({
@@ -11,15 +10,15 @@ import { BoardHandlingService } from '../../../../main/services/board-handling.s
 })
 export class ColumnComponent implements OnInit {
   @Input() column: IColumn | null = null;
-  @Input() boardID = '';
+  @Input() public boardID = '';
   public columnID = '';
   public columnTitle = '';
 
   editMode: boolean = false;
 
-  constructor(private readonly dialog: MatDialog, public readonly boardHandlingService: BoardHandlingService) {
+  constructor(public readonly boardHandlingService: BoardHandlingService) {
       this.boardHandlingService = boardHandlingService;
-    }
+  }
 
   ngOnInit(): void {
     if (this.column?.id) this.columnID = this.column.id;

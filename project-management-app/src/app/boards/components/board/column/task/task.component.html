@@ -1,7 +1,9 @@
 <mat-card class="task">
   <mat-card-title class="task__header">
     <h4 class="task__title">{{task?.title || title}}</h4>
-    <app-button-board-delete title="Delete task"></app-button-board-delete>
+    <app-button-board-delete title="Delete task"
+    (click)="boardHandlingService.openDialogToDelete('task', taskTitle, boardID, columnID, taskID)">
+    </app-button-board-delete>
   </mat-card-title>
   <mat-card-content>
     <p class="task__description">{{ task?.description || ''}}</p>

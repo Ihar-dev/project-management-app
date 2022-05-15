@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { BoardActions } from 'src/app/store/actions/board.action';
+import { TaskActions } from 'src/app/store/actions/task.action';
 import { DialogCreationComponent, DialogInterface } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 import { DialogConfirmationComponent, DialogData }
 from '../../core/components/dialog-confirmation/dialog-confirmation.component';
@@ -13,6 +14,7 @@ import { BoardSelectors } from '../../store/selectors/board.selector';
 
 enum DeleteQuestions {
   column = 'Are you sure you would like to delete the column?',
+  task = 'Are you sure you would like to delete the task?',
 }
 
 @Injectable({
@@ -55,11 +57,14 @@ export class BoardHandlingService {
     this.store.dispatch(BoardActions.getBoards());
   }
 
-  public openDialogToDelete(entity: string, title: string, boardID: string, columnID: string): void {
+  public openDialogToDelete(entity: string, title: string, boardID: string, columnID: string, taskID: string): void {
     let question: string;
     switch (entity) {
       case 'column':
         question = DeleteQuestions.column;
+        break;
+      case 'task':
+        question = DeleteQuestions.task;
         break;
       default:
         question = '';
@@ -77,13 +82,16 @@ export class BoardHandlingService {
           case 'column':
             this.deleteColumn(boardID, columnID);
             break;
+          case 'task':
+            this.deleteTask(boardID, columnID, taskID);
+            break;
           default:
         }
       }
     });
   }
 
-  deleteColumn(boardID: string, columnID: string): void {
+  private deleteColumn(boardID: string, columnID: string): void {
     this.store.dispatch(
       ColumnActions.deleteColumn({
         boardID,
@@ -92,11 +100,21 @@ export class BoardHandlingService {
     );
   }
 
-  openCreateColumnDialog(boardID: string): void {
+  private deleteTask(boardID: string, columnID: string, taskID: string): void {
+    this.store.dispatch(
+      TaskActions.DeleteTask({
+        boardID,
+        columnID,
+        taskID,
+      }),
+    );
+  }
+
+  public openCreateColumnDialog(boardID: string): void {
     this.dialog.open(DialogCreationComponent, { data: <DialogInterface> { type: 'column', boardID } });
   }
 
-  openCreateTaskDialog(boardID: string, columnID: string): void {
+  public openCreateTaskDialog(boardID: string, columnID: string): void {
     this.dialog.open(DialogCreationComponent,
     { data: <DialogInterface> { type: 'task', boardID, columnID } });
   }
