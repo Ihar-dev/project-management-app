@@ -4,11 +4,14 @@ import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/fo
 import { Store } from '@ngrx/store';
 
 import { BoardActions } from 'src/app/store/actions/board.action';
-import { DialogConfirmationComponent, DialogData }
-from '../../../core/components/dialog-confirmation/dialog-confirmation.component';
+import { BoardHandlingService } from '../../services/board-handling.service';
 import { IBoard } from '../../../shared/models/board.model';
 
-const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the board?';
+enum InputLimitations {
+  minLength = 3,
+  titleMaxLength = 50,
+  descriptionMaxLength = 120,
+}
 
 @Component({
   selector: 'app-board',
@@ -19,32 +22,35 @@ const DELETE_THE_BOARD_QUESTION = 'Are you sure you would like to delete the boa
 export class BoardComponent implements OnInit {
   @Input() public board: IBoard | null = null;
   @Input() public mouseExisting = false;
-  public readonly inputMinLength = 3;
+  public readonly inputMinLength = InputLimitations.minLength;
+  private readonly inputTitleMaxLength = InputLimitations.titleMaxLength;
+  private readonly inputDescriptionMaxLength = InputLimitations.descriptionMaxLength;
   public editMode = false;
   public boardName = '';
   public boardDescription = '';
-  private id = '';
+  public id = '';
   public cardForm: FormGroup;
   public boardEditMode = false;
 
-  constructor(private readonly dialog: MatDialog, private readonly store: Store) {}
+  constructor(private readonly dialog: MatDialog, private readonly store: Store,
+  public readonly boardHandlingService: BoardHandlingService) {}
 
   ngOnInit(): void {
     this.cardForm = new FormGroup({
       userTitle: new FormControl(this.board?.title, [
         Validators.required,
         Validators.minLength(this.inputMinLength),
-        Validators.maxLength(50),
+        Validators.maxLength(this.inputTitleMaxLength),
       ]),
       userDescription: new FormControl(this.board?.description, [
         Validators.required,
         Validators.minLength(this.inputMinLength),
-        Validators.maxLength(120),
+        Validators.maxLength(this.inputDescriptionMaxLength),
       ]),
     });
-    if (this.board?.id) this.id = this.board?.id;
-    if (this.board?.title) this.boardName = this.board?.title;
-    if (this.board?.description) this.boardDescription = this.board?.description;
+    if (this.board?.id) this.id = this.board.id;
+    if (this.board?.title) this.boardName = this.board.title;
+    if (this.board?.description) this.boardDescription = this.board.description;
   }
 
   public boardNameChange(event: MouseEvent, boardTitleInputValue: string, boardDescriptionInputValue: string): void {
@@ -60,25 +66,6 @@ export class BoardComponent implements OnInit {
       this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue,
       description: boardDescriptionInputValue } }));
     }
-  }
-
-  public openDialogToDeleteTheBoard(): void {
-    const dialogRef = this.dialog.open(DialogConfirmationComponent, {
-      data: <DialogData>{
-        h2: DELETE_THE_BOARD_QUESTION,
-        p: `${this.board?.title}`,
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result: Response) => {
-      if (result) {
-        this.deleteBoard();
-      }
-    });
-  }
-
-  private deleteBoard(): void {
-    this.store.dispatch(BoardActions.deleteBoard({ id: this.id }));
   }
 
   public get userTitle(): AbstractControl | null {

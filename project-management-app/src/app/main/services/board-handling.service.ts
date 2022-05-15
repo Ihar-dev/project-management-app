@@ -13,6 +13,7 @@ import { IBoard } from '../../shared/models/board.model';
 import { BoardSelectors } from '../../store/selectors/board.selector';
 
 enum DeleteQuestions {
+  board = 'Are you sure you would like to delete the board?',
   column = 'Are you sure you would like to delete the column?',
   task = 'Are you sure you would like to delete the task?',
 }
@@ -60,6 +61,9 @@ export class BoardHandlingService {
   public openDialogToDelete(entity: string, title: string, boardID: string, columnID: string, taskID: string): void {
     let question: string;
     switch (entity) {
+      case 'board':
+        question = DeleteQuestions.board;
+        break;
       case 'column':
         question = DeleteQuestions.column;
         break;
@@ -79,6 +83,9 @@ export class BoardHandlingService {
     dialogRef.afterClosed().subscribe((result: Response) => {
       if (result) {
         switch (entity) {
+          case 'board':
+            this.deleteBoard(boardID);
+            break;
           case 'column':
             this.deleteColumn(boardID, columnID);
             break;
@@ -89,6 +96,10 @@ export class BoardHandlingService {
         }
       }
     });
+  }
+
+  private deleteBoard(boardID: string): void {
+    this.store.dispatch(BoardActions.deleteBoard({ id: boardID }));
   }
 
   private deleteColumn(boardID: string, columnID: string): void {
