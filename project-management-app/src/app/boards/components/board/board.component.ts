@@ -2,8 +2,6 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { MatDialog } from '@angular/material/dialog';
-import { DialogCreationComponent, DialogInterface } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 
 import { IBoard } from 'src/app/shared/models/board.model';
 import { BoardHandlingService } from '../../../main/services/board-handling.service';
@@ -22,8 +20,8 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   board: IBoard | null = null;
 
-  constructor(private location: Location, private readonly boardHandlingService: BoardHandlingService,
-  private readonly router: Router, private readonly dialog: MatDialog) {
+  constructor(private location: Location, public readonly boardHandlingService: BoardHandlingService,
+  private readonly router: Router) {
     this.boardHandlingService = boardHandlingService;
   }
 
@@ -44,9 +42,5 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   onClickBack(): void {
     this.location.back();
-  }
-
-  openCreateColumnDialog(): void {
-    this.dialog.open(DialogCreationComponent, { data: <DialogInterface> { type: 'column', boardID: this.id } });
   }
 }

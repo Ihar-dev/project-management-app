@@ -92,6 +92,10 @@ export class BoardHandlingService {
     );
   }
 
+  openCreateColumnDialog(boardID: string): void {
+    this.dialog.open(DialogCreationComponent, { data: <DialogInterface> { type: 'column', boardID } });
+  }
+
   openCreateTaskDialog(boardID: string, columnID: string): void {
     this.dialog.open(DialogCreationComponent,
     { data: <DialogInterface> { type: 'task', boardID, columnID } });
