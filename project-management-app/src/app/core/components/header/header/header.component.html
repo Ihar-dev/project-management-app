@@ -1,6 +1,6 @@
 <ng-container *ngrxLet="isAuth$ as isAuth">
   <div appStickyHeader class="header" [class]="{ transparent: hideHeader }">
-    <app-logo></app-logo>
+    <app-logo *ngIf="isAuth"></app-logo>
     <app-create-button *ngIf="isAuth && !hideHeader"></app-create-button>
     <app-navigation #navigation (toggleNav)="openNavigation.rotateOpen()"></app-navigation>
     <mat-slide-toggle class="slide-toggle" (change)="toggleLocalization()">En\Ru</mat-slide-toggle>
