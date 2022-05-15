@@ -18,7 +18,8 @@
 
     <div class="column__content">
       <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"
-      [columnID]="columnID" [boardID]="boardID"></app-task>
+      (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
+      [columnID]="columnID" [boardID]="boardID" ></app-task>
     </div>
   </div>
   <app-button-board-create text="Add task"

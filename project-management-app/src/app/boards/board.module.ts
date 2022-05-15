@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { BoardRoutingModule } from './boards-routing.module';
+import { BoardRoutingModule } from './board-routing.module';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { BoardComponent } from './components/board/board.component';
 import { ColumnComponent } from './components/board/column/column.component';

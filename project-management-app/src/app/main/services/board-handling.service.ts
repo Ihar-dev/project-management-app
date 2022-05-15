@@ -7,6 +7,7 @@ import { ColumnActions } from 'src/app/store/actions/column.action';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
 import { DialogCreationComponent, DialogInterface } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
+import { ITask } from 'src/app/shared/models/task.model';
 import { DialogConfirmationComponent, DialogData }
 from '../../core/components/dialog-confirmation/dialog-confirmation.component';
 import { IBoard } from '../../shared/models/board.model';
@@ -95,6 +96,17 @@ export class BoardHandlingService {
           default:
         }
       }
+    });
+  }
+
+  public updateTaskModal(boardID: string, columnID: string, task: ITask): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'taskEdit',
+        boardID,
+        columnID,
+        task,
+      },
     });
   }
 
