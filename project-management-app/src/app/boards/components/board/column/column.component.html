@@ -11,7 +11,8 @@
             (submitEditing)="onSubmitEditing($event)"></app-column-edit>
         </div>
       </div>
-      <app-button-board-delete title="Delete column" appClickStopPropagation></app-button-board-delete>
+      <app-button-board-delete title="Delete column" (click)="openDialogToDeleteTheColumn()"
+      appClickStopPropagation></app-button-board-delete>
     </div>
 
     <div class="column__content">

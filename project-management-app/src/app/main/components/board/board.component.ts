@@ -27,8 +27,7 @@ export class BoardComponent implements OnInit {
   public cardForm: FormGroup;
   public boardEditMode = false;
 
-  constructor(private readonly dialog: MatDialog,
-  private readonly store: Store) {}
+  constructor(private readonly dialog: MatDialog, private readonly store: Store) {}
 
   ngOnInit(): void {
     this.cardForm = new FormGroup({
