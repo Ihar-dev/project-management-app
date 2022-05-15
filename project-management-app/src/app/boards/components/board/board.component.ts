@@ -17,7 +17,7 @@ const TITLE_DEFAULT = 'Board title';
 })
 export class BoardComponent implements OnInit, OnDestroy {
   private boardSubs: Subscription;
-  private id = '';
+  public id = '';
   readonly title = TITLE_DEFAULT;
 
   board: IBoard | null = null;

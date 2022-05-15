@@ -18,5 +18,5 @@
       <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"></app-task>
     </div>
   </div>
-  <app-button-board-create text="Add task"></app-button-board-create>
+  <app-button-board-create text="Add task" (click)="openCreateTaskDialog()"></app-button-board-create>
 </div>

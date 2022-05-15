@@ -13,7 +13,7 @@
 
   <div class="board__content">
     <div class="board__content--scrollable">
-      <app-column *ngFor="let columnItem of board?.columns" [column]="columnItem">
+      <app-column *ngFor="let columnItem of board?.columns" [column]="columnItem" [boardID]="id">
       </app-column>
     </div>
   </div>
