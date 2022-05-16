@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { IBoardRequest } from 'src/app/shared/models/board-request.model';
 import { IBoard } from 'src/app/shared/models/board.model';
 
-enum BoardAction {
+export enum BoardAction {
   AddBoard = '[board] ADD_BOARD',
   AddBoardSuccess = '[board] ADD_BOARD_SUCCESS',
   GetBoards = '[board] GET_BOARDS',

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { HttpErrorMessage } from 'src/app/shared/models/messages-type';
 
 export type MessageState = {
   isShown: boolean;
-  message: HttpErrorMessage;
+  message: string;
 };
 
 @Injectable({
@@ -13,12 +12,12 @@ export type MessageState = {
 export class MessageBoxService {
   private state: MessageState = {
     isShown: false,
-    message: HttpErrorMessage.default,
+    message: '',
   };
 
   messageState$ = new Subject<MessageState>();
 
-  showMessage(message: HttpErrorMessage): void {
+  showMessage(message: string): void {
     this.toggleShownState(true);
     this.state.message = message;
     this.setState(this.state);

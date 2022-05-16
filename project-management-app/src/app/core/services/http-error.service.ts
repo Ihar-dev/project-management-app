@@ -1,39 +1,26 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EMPTY, throwError } from 'rxjs';
-import { HttpErrorCode } from '../../shared/constants';
-import { HttpErrorMessage } from '../../shared/models/messages-type';
+import { EMPTY } from 'rxjs';
+import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
+import { HTTP_ERROR_MESSAGE_DEFAULT, TErrorHandler } from '../../shared/constants';
 import { MessageBoxService } from './message-box.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpErrorService {
+  private readonly messageDefault = HTTP_ERROR_MESSAGE_DEFAULT;
   constructor(private messageBoxService: MessageBoxService) {}
 
-  handleError(error: HttpErrorResponse) {
-    const statusCode = error.status;
-    let message: HttpErrorMessage;
+  handleError(errorMessages: IHttpErrorMessage[]): TErrorHandler {
+    return (error: HttpErrorResponse, storeAction: string) => {
+      const statusCode = error.status;
+      const currentError = errorMessages.find((err) => err.statusCode === statusCode);
+      const message = currentError ? currentError.message : this.messageDefault;
 
-    switch (statusCode) {
-      case HttpErrorCode.FORBIDDEN:
-      case HttpErrorCode.UNAUTHORIZED:
-        message = HttpErrorMessage.notFound;
-        this.messageBoxService.showMessage(message);
-        return throwError(() => new Error(HttpErrorMessage.default));
-      case HttpErrorCode.CONFLICT:
-        message = HttpErrorMessage.wrongData;
-        break;
-      case HttpErrorCode.NOT_FOUND:
-        message = HttpErrorMessage.notFound;
-        break;
-      default:
-        message = HttpErrorMessage.default;
-        break;
-    }
-
-    this.messageBoxService.showMessage(message);
-
-    return EMPTY;
+      console.log(`${storeAction}: ${error.message}`);
+      this.messageBoxService.showMessage(message);
+      return EMPTY;
+    };
   }
 }

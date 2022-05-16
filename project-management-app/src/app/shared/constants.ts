@@ -1,3 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 export enum HttpErrorCode {
   BAD_REQUEST = 400,
   UNAUTHORIZED = 401,
@@ -45,3 +48,7 @@ export enum TokenLimit {
   hourHalf = 1800000,
   minutesThree = 180000,
 }
+
+export const HTTP_ERROR_MESSAGE_DEFAULT = 'An error occured. Please try again later.';
+
+export type TErrorHandler = (error: HttpErrorResponse, storeAction: string) => Observable<never>;
