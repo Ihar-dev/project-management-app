@@ -17,9 +17,12 @@
     </div>
 
     <div class="column__content">
-      <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"
-      (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
-      [columnID]="columnID" [boardID]="boardID" ></app-task>
+
+      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+        <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"
+        (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
+        [columnID]="columnID" [boardID]="boardID" cdkDrag></app-task>
+      </div>
     </div>
   </div>
   <app-button-board-create text="Add task"

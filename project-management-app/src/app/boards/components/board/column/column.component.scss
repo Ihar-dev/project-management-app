@@ -2,8 +2,8 @@
 @import "mixins";
 
 :host {
-  opacity: 0;
-  transform: scaleY(1%);
+  opacity: 1;
+  transform: scaleY(100%);
   transform-origin: top;
   animation: slideColumn 0.6s ease-in forwards;
   @for $i from 0 through 10 {

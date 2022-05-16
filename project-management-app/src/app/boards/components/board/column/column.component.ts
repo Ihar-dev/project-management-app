@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { IColumn } from 'src/app/shared/models/column.model';
+import { ITask } from 'src/app/shared/models/task.model';
 import { BoardHandlingService } from '../../../../main/services/board-handling.service';
+import { DragDropService } from '../../../services/drag-drop.service';
 
 @Component({
   selector: 'app-column',
@@ -16,7 +19,12 @@ export class ColumnComponent implements OnInit {
 
   editMode: boolean = false;
 
-  constructor(public readonly boardHandlingService: BoardHandlingService) {}
+  constructor(public readonly boardHandlingService: BoardHandlingService,
+    public readonly dragDropService: DragDropService) {}
+
+  public drop(event: CdkDragDrop<ITask[]>) {
+    if (this.column) this.dragDropService.moveTask(event, this.boardID, this.column);
+  }
 
   ngOnInit(): void {
     if (this.column?.id) this.columnID = this.column.id;
