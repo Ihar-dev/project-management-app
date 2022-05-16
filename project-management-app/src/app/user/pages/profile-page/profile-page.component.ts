@@ -6,14 +6,18 @@ import { User } from 'src/app/shared/models/user.model';
 import { loginSuccess, logout } from 'src/app/store/actions/auth.action';
 import { selectProfile } from 'src/app/store/selectors/auth.selector';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { UserService } from '../../services/user.service';
 import {
   DialogConfirmationComponent,
   DialogData,
 } from '../../../core/components/dialog-confirmation/dialog-confirmation.component';
 
-const DELETE_ACCOUNT_QUESTION = 'Delete account';
-const DELETE_CONFIRM = 'Once you confirm, all of your account data will be permanently deleted.';
+const DELETE_ACCOUNT_QUESTION = { message: 'Delete account', transloco: 'profile.delete-title' };
+const DELETE_CONFIRM = {
+  message: 'Once you confirm, all of your account data will be permanently deleted.',
+  transloco: 'profile.delete-description',
+};
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -30,6 +34,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     private store: Store,
     private userService: UserService,
     private readonly dialog: MatDialog,
+    private translocoService: TranslocoService,
   ) {}
 
   ngOnInit(): void {
@@ -75,11 +80,13 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   private get deleteConfirmQues(): string {
-    return `${DELETE_ACCOUNT_QUESTION} ${this.profile?.name}?`;
+    return `${this.translocoService.translate(DELETE_ACCOUNT_QUESTION.transloco)} ${
+      this.profile?.name
+    }?`;
   }
 
   private get deleteConfirm(): string {
-    return DELETE_CONFIRM;
+    return this.translocoService.translate(DELETE_CONFIRM.transloco);
   }
 
   ngOnDestroy(): void {

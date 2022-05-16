@@ -55,6 +55,8 @@
     "new-password": "New password",
     "confirm-new-password": "Confirm new password",
     "name": "Name",
-    "login": "Login"
+    "login": "Login",
+    "delete-description": "Once you confirm, all of your account data will be permanently deleted.",
+    "delete-title": "Delete account"
   }
 }
