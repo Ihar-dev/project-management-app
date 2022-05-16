@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
-const BTN_TEXT_DEFAULT = 'Submit';
+const BTN_TEXT_DEFAULT = 'submit';
 
 const COLOR_DEFAULT = 'primary';
 

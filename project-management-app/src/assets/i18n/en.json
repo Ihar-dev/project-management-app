@@ -5,7 +5,8 @@
     "discard": "Discard",
     "back-home": "Back to home page",
     "submit": "Submit",
-    "home": "Home"
+    "home": "Home",
+    "delete-profile": "Delete profile"
   },
 
   "navigation": {
@@ -44,5 +45,16 @@
     "Tetiana": "Tetiana",
     "Ilia": "Ilia",
     "slogan": "Take your company to\nthe next level with a lot of\nideas and making great\nprogress"
+  },
+
+  "profile": {
+    "change-general": "Change general data",
+    "change-password": "Change password",
+    "update-general": "Update general data",
+    "current-password": "Current password",
+    "new-password": "New password",
+    "confirm-new-password": "Confirm new password",
+    "name": "Name",
+    "login": "Login"
   }
 }

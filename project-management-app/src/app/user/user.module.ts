@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TranslocoModule } from '@ngneat/transloco';
 
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '../forms/forms.module';
@@ -21,6 +22,7 @@ import { FormPasswordComponent } from './components/form-password/form-password.
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
+    TranslocoModule,
   ],
 })
 export class UserModule {}

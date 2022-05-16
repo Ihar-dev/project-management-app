@@ -1,1 +1,9 @@
-<button mat-raised-button class="btn" [color]="color" [disabled]="isDisabled">{{ text }}</button>
+<button
+  mat-raised-button
+  class="btn"
+  [color]="color"
+  [disabled]="isDisabled"
+  *transloco="let t; read: 'button'"
+>
+  {{ t(text) }}
+</button>

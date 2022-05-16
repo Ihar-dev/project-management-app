@@ -29,6 +29,10 @@
   font-size: 2.4rem;
   font-weight: 300;
 
+  @media only screen and (max-width: 1280px) {
+    gap: 1.2rem;
+  }
+
   &.sticky {
     background-color: $color-white-darken;
     box-shadow: 0px 4px 6px 2px $shadow-color;
