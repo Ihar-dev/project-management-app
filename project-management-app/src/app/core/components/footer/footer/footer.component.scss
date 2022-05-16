@@ -1,5 +1,9 @@
 @import "variables";
 
+:host {
+  margin-top: auto;
+}
+
 .footer {
   display: flex;
   width: 100%;
