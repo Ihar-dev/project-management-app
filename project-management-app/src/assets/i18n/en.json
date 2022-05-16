@@ -36,5 +36,13 @@
       "password-match": "Passwords do not match!",
       "password-wrong": "Wrong password!"
     }
+  },
+
+  "welcome": {
+    "our-team": "Our team",
+    "Ihar": "Ihar",
+    "Tetiana": "Tetiana",
+    "Ilia": "Ilia",
+    "slogan": "Take your company to\nthe next level with a lot of\nideas and making great\nprogress"
   }
 }
