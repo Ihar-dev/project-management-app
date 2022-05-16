@@ -8,9 +8,10 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
 import { DialogCreationComponent, DialogInterface } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 import { ITask } from 'src/app/shared/models/task.model';
+import { IColumn } from 'src/app/shared/models/column.model';
+import { IBoard } from '../../shared/models/board.model';
 import { DialogConfirmationComponent, DialogData }
 from '../../core/components/dialog-confirmation/dialog-confirmation.component';
-import { IBoard } from '../../shared/models/board.model';
 import { BoardSelectors } from '../../store/selectors/board.selector';
 
 enum DeleteQuestions {
@@ -97,6 +98,15 @@ export class BoardHandlingService {
         }
       }
     });
+  }
+
+  public renameColumn(boardID: string, column: Partial<IColumn>): void {
+    this.store.dispatch(
+      ColumnActions.putColumn({
+        boardID,
+        column,
+      }),
+    );
   }
 
   public updateTaskModal(boardID: string, columnID: string, task: ITask): void {

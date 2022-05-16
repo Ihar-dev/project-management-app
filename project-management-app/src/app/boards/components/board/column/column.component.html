@@ -7,7 +7,7 @@
           <span class="column__title__text">{{ column?.title || '' }}</span>
         </h3>
         <div class="column__title--edit" *ngIf="editMode">
-          <app-column-edit [column]="column" (cancelEditing)="onCancelEditing()"
+          <app-column-edit [column]="column" [boardID]="boardID" (cancelEditing)="onCancelEditing()"
             (submitEditing)="onSubmitEditing($event)"></app-column-edit>
         </div>
       </div>

@@ -18,9 +18,7 @@ export class TaskComponent implements OnInit {
 
   readonly title = TASK_DEFAULT;
 
-  constructor(public readonly boardHandlingService: BoardHandlingService) {
-    this.boardHandlingService = boardHandlingService;
-  }
+  constructor(public readonly boardHandlingService: BoardHandlingService) {}
 
   ngOnInit(): void {
     if (this.task?.id) this.taskID = this.task.id;

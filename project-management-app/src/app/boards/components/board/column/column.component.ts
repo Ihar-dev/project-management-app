@@ -16,9 +16,7 @@ export class ColumnComponent implements OnInit {
 
   editMode: boolean = false;
 
-  constructor(public readonly boardHandlingService: BoardHandlingService) {
-      this.boardHandlingService = boardHandlingService;
-  }
+  constructor(public readonly boardHandlingService: BoardHandlingService) {}
 
   ngOnInit(): void {
     if (this.column?.id) this.columnID = this.column.id;

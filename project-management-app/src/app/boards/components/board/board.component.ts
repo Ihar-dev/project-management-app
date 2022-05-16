@@ -21,9 +21,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   board: IBoard | null = null;
 
   constructor(private location: Location, public readonly boardHandlingService: BoardHandlingService,
-  private readonly router: Router) {
-    this.boardHandlingService = boardHandlingService;
-  }
+  private readonly router: Router) {}
 
   ngOnInit() {
     this.boardSubs = this.boardHandlingService.board$.subscribe((board: IBoard) => {
