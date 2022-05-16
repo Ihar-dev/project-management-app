@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ErrorMessage } from 'src/app/shared/models/messages-type';
+import { HttpErrorMessage } from 'src/app/shared/models/messages-type';
 import { MessageBoxService } from './message-box.service';
 
 @Injectable({
@@ -38,7 +38,7 @@ export class LocalStorageService {
   }
 
   private handleError(err: unknown): void {
-    this.messageService.showMessage(ErrorMessage.default);
+    this.messageService.showMessage(HttpErrorMessage.default);
     console.error(err);
   }
 }
