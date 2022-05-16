@@ -86,4 +86,8 @@
     background-color: $theme-accent;
     border-radius: $border-radius;
   }
+
+  .column__item {
+    cursor: pointer;
+  }
 }

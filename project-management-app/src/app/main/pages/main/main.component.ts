@@ -8,7 +8,6 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskSearchService } from '../../services/task-search.service';
 import { IBoard } from '../../../shared/models/board.model';
 import { SearchResult } from '../../models/search-result.model';
-import { BoardHandlingService } from '../../services/board-handling.service';
 
 enum SearchTitles {
   Down = '&dArr; Search &dArr;',
@@ -34,10 +33,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public SearchTitle: SearchTitles;
 
   constructor(private readonly router: Router, private store: Store,
-    private readonly taskSearchService: TaskSearchService, private readonly boardHandlingService: BoardHandlingService) {
-    this.taskSearchService = taskSearchService;
-    this.boardHandlingService = boardHandlingService;
-  }
+    private readonly taskSearchService: TaskSearchService) {}
 
   ngOnInit(): void {
     this.getBoards();
@@ -76,12 +72,8 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   }
 
-  public openBoard(board: IBoard): void {
-    if (board?.id) {
-      this.getBoardById(board.id);
-      this.boardHandlingService.setBoard(board);
-      this.router.navigate([`/boards/${board.id}`]);
-    }
+  public openBoard(id: string): void {
+    if (id) this.router.navigate([`/board/${id}`]);
   }
 
   private getBoardById(id: string): void {

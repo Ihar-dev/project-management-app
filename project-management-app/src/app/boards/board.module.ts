@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 
-import { BoardsRoutingModule } from './boards-routing.module';
+import { BoardRoutingModule } from './board-routing.module';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
 import { BoardComponent } from './components/board/board.component';
 import { ColumnComponent } from './components/board/column/column.component';
@@ -26,6 +26,6 @@ import { ColumnEditComponent } from './components/board/column/column-edit/colum
     TaskMemberComponent,
     ColumnEditComponent,
   ],
-  imports: [CommonModule, BoardsRoutingModule, MaterialModule, SharedModule],
+  imports: [CommonModule, BoardRoutingModule, MaterialModule, SharedModule],
 })
-export class BoardsModule {}
+export class BoardModule {}
