@@ -105,7 +105,13 @@ export class BoardHandlingService {
     });
   }
 
-  public renameColumn(boardID: string, column: Partial<IColumn>): void {
+  public renameColumn(boardID: string, column: IColumn, title: string) {
+    const newColumn = JSON.parse(JSON.stringify(column));
+    newColumn.title = title;
+    this.changeColumn(boardID, newColumn);
+  }
+
+  private changeColumn(boardID: string, column: IColumn): void {
     this.store.dispatch(
       ColumnActions.putColumn({
         boardID,

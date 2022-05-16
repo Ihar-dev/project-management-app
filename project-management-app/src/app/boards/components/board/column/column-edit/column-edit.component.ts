@@ -23,9 +23,7 @@ export class ColumnEditComponent {
   }
 
   onSubmitEditing(value: string): void {
-    const column = JSON.parse(JSON.stringify(this.column));
-    column.title = value;
-    this.boardHandlingService.renameColumn(this.boardID, column);
+    if (this.column) this.boardHandlingService.renameColumn(this.boardID, this.column, value);
     // this.submitEditing.emit(value);
   }
 }
