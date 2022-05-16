@@ -33,6 +33,7 @@ export class BoardHandlingService {
     description: '',
     columns: [],
   };
+  private columns = false;
 
   constructor(private readonly store: Store, private readonly dialog: MatDialog) {
     this.getBoards();
@@ -40,6 +41,10 @@ export class BoardHandlingService {
     this.boards$.subscribe((boards: IBoard[]) => {
       boards.forEach(board => {
         if (board.id === this.id) {
+          if (!board.columns && !this.columns) {
+            this.columns = true;
+            this.getBoardById(this.id);
+          }
           this.board = board;
           this.board$.next(this.board);
         }
