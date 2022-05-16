@@ -15,11 +15,12 @@
       (click)="boardHandlingService.openDialogToDelete('column', columnTitle, boardID, columnID, '')"
       appClickStopPropagation></app-button-board-delete>
     </div>
-
     <div class="column__content">
-
-      <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-        <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"
+      <div cdkDropList
+      [cdkDropListData]="columnTasks"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+        <app-task class="column__item" *ngFor="let task of columnTasks" [task]="task"
         (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
         [columnID]="columnID" [boardID]="boardID" cdkDrag></app-task>
       </div>
