@@ -1,34 +1,19 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CanLoad, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
-import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanLoad, OnDestroy {
-  isAuth$ = this.store.select(selectIsAuth);
-
-  isAuthenticated = false;
-
-  subs = Subscription.EMPTY;
-
-  constructor(private router: Router, private store: Store) {
-    this.subs = this.isAuth$.subscribe((val) => {
-      this.isAuthenticated = val;
-    });
-  }
+export class AuthGuard implements CanLoad {
+  constructor(private router: Router, private authService: AuthService) {}
 
   canLoad(): boolean {
-    if (!this.isAuthenticated) {
+    const isAuth = this.authService.isUserAuthenticated();
+    if (!isAuth) {
       this.router.navigate(['welcome']);
     }
 
-    return this.isAuthenticated;
-  }
-
-  ngOnDestroy(): void {
-    this.subs.unsubscribe();
+    return isAuth;
   }
 }

@@ -9,6 +9,7 @@ import {
 import { Observable } from 'rxjs';
 import { LocalStorageService } from '../core/services/localstorage.service';
 import { USER_TOKEN_KEY } from '../shared/constants';
+import { TTokenResponse } from '../shared/models/token-response.model';
 
 const TOKEN_TYPE = 'Bearer';
 @Injectable()
@@ -24,11 +25,11 @@ export class HeadersRequestInterceptor implements HttpInterceptor {
   }
 
   private getHeaders(request: HttpRequest<unknown>): HttpHeaders {
-    const authToken = this.lsStorage.getItem<string>(USER_TOKEN_KEY);
+    const authToken = this.lsStorage.getItem<TTokenResponse>(USER_TOKEN_KEY);
 
     let headers = new HttpHeaders()
       .set('Accept', 'application/json')
-      .set('Authorization', (authToken && `${TOKEN_TYPE} ${authToken}`) || '');
+      .set('Authorization', (authToken && `${TOKEN_TYPE} ${authToken.token}`) || '');
 
     // checking the request method. DELETE method should not be sent with a Content-Type header
     if (request.method !== 'DELETE') {

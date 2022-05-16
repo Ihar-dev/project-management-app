@@ -38,3 +38,10 @@ export enum Url {
   SIGN_IN = 'signin',
   USERS = 'users',
 }
+
+export enum TokenLimit {
+  day = 86400000,
+  hour = 3600000,
+  hourHalf = 1800000,
+  minutesThree = 180000,
+}
