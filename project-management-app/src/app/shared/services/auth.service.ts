@@ -1,31 +1,45 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, Observable, switchMap } from 'rxjs';
+import { map, Observable, Subscription, switchMap } from 'rxjs';
 
 import { LocalStorageService } from 'src/app/core/services/localstorage.service';
+import { Store } from '@ngrx/store';
+import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
+import { logout } from 'src/app/store/actions/auth.action';
 
 import { TUserData } from '../models/register-data.model';
 import { User, UserDataResponse } from '../models/user.model';
-import { Url, USER_TOKEN_KEY } from '../constants';
+import { TokenLimit, Url, USER_TOKEN_KEY } from '../constants';
 import { TSigninData } from '../models/login-data.model';
 import { TTokenResponse } from '../models/token-response.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService implements OnDestroy {
   private readonly signUpUrl = Url.SIGN_UP;
 
   private readonly signInUrl = Url.SIGN_IN;
 
   private readonly usersUrl = Url.USERS;
 
+  private isAuth$ = this.store.select(selectIsAuth);
+
+  private isAuthenticated = false;
+
+  private subs = Subscription.EMPTY;
+
   constructor(
     private http: HttpClient,
     private lsService: LocalStorageService,
     private router: Router,
-  ) {}
+    private store: Store,
+  ) {
+    this.subs = this.isAuth$.subscribe((val) => {
+      this.isAuthenticated = val;
+    });
+  }
 
   signUp(data: TUserData): Observable<TUserData> {
     return this.http
@@ -36,7 +50,7 @@ export class AuthService {
   login(data: TSigninData): Observable<User | null> {
     return this.signIn(data).pipe(
       map(({ token }) => {
-        this.lsService.setItem(USER_TOKEN_KEY, token);
+        this.saveToken(token);
       }),
       switchMap(() => this.http.get<User[]>(this.usersUrl)),
       map((res) => {
@@ -62,7 +76,45 @@ export class AuthService {
     this.navigate('welcome');
   }
 
+  isUserAuthenticated(): boolean {
+    if (!this.isAuthenticated) {
+      return false;
+    }
+    const tokenData = this.lsService.getItem<TTokenResponse>(USER_TOKEN_KEY);
+    if (tokenData && tokenData.exp) {
+      const isTokenActive = this.checkTokenExpiration(tokenData.exp);
+      if (isTokenActive) {
+        return true;
+      }
+    }
+
+    this.store.dispatch(logout());
+    return false;
+  }
+
+  private saveToken(token: string): void {
+    const tokenExp: TTokenResponse = {
+      token,
+      exp: this.getTokenExpDate(TokenLimit.day),
+    };
+    this.lsService.setItem(USER_TOKEN_KEY, tokenExp);
+  }
+
+  private getTokenExpDate(limit: TokenLimit): number {
+    return new Date().getTime() + limit;
+  }
+
+  private checkTokenExpiration(tokenExpDate: number): boolean {
+    const currentDate = new Date().getTime();
+
+    return currentDate - tokenExpDate < 0;
+  }
+
   private navigate(...paths: string[]): void {
     this.router.navigate(paths, { replaceUrl: true });
+  }
+
+  ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 }

@@ -8,8 +8,9 @@
     "home": "Домой"
   },
 
-  "user-menu": {
-    "edit-profile": "Редактировать профиль",
+  "navigation": {
+    "profile": "Профиль",
+    "about": "О приложении",
     "logout": "Выйти"
   },
 

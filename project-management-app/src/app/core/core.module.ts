@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TranslocoModule } from '@ngneat/transloco';
+import { ReactiveComponentModule } from '@ngrx/component';
 import { CoreRoutingModule } from './core-routing.module';
 
 import { NotFoundComponent } from './page/not-found/not-found.component';
@@ -13,6 +14,8 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { AuthorsComponent } from './components/footer/authors/authors.component';
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
+import { NavigationComponent } from './components/header/navigation/navigation.component';
+import { OpenNavigationComponent } from './components/header/open-navigation/open-navigation.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +33,10 @@ import { DialogConfirmationComponent } from './components/dialog-confirmation/di
     CreateButtonComponent,
     LogoComponent,
     UserBoxComponent,
+    NavigationComponent,
+    OpenNavigationComponent,
   ],
-  imports: [SharedModule, CoreRoutingModule, TranslocoModule],
+  imports: [SharedModule, CoreRoutingModule, ReactiveComponentModule, TranslocoModule],
   exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent],
 })
 export class CoreModule {}

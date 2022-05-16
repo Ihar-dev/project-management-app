@@ -8,8 +8,9 @@
     "home": "Home"
   },
 
-  "user-menu": {
-    "edit-profile": "Edit profile",
+  "navigation": {
+    "profile": "Profile",
+    "about": "About",
     "logout": "Logout"
   },
 

@@ -26,6 +26,10 @@ function filterOutID<T extends { id: string }>(array: T[], id: string): T[] {
   return array.filter((element) => element.id !== id);
 }
 
+function sortByOrder<T extends { order: number }>(array: T[]): T[] {
+  return array.sort((a, b) => a.order - b.order);
+}
+
 function replaceElementInIndex<T>(array: T[], newElement: T, index: number): T[] {
   return [...array.slice(0, index), newElement, ...array.slice(index + 1)];
 }
@@ -57,8 +61,17 @@ const boardReducer = createReducer(
   on(BoardActions.getBoardByIdSuccess, (state, { board }): State => {
     const newBoards = copyThat(state.boards);
     const idx = findIndexByID(newBoards, board.id);
+    const columns: IColumn[] = board.columns.map((col) => ({
+      ...col,
+      tasks: sortByOrder(copyThat(col.tasks)),
+    }));
+
+    const newBoard: IBoard = {
+      ...board,
+      columns: sortByOrder(columns),
+    };
     if (idx !== -1) {
-      newBoards.splice(idx, 1, board);
+      newBoards.splice(idx, 1, newBoard);
     }
     return {
       ...state,
@@ -87,7 +100,7 @@ const boardReducer = createReducer(
       const newColumn: IColumn = { ...column, tasks: [] };
       newBoards[idx] = {
         ...newBoards[idx],
-        columns: newBoards[idx].columns.concat(newColumn),
+        columns: sortByOrder([...newBoards[idx].columns, newColumn]),
       };
     }
     return {
@@ -102,7 +115,7 @@ const boardReducer = createReducer(
     if (idx !== -1) {
       newBoards[idx] = {
         ...newBoards[idx],
-        columns: filterOutID(newBoards[idx].columns, columnID),
+        columns: sortByOrder(filterOutID(newBoards[idx].columns, columnID)),
       };
     }
     return {
@@ -125,7 +138,7 @@ const boardReducer = createReducer(
       const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
       const currentBoard = {
         ...newBoards[boardIndex],
-        columns: newColumns,
+        columns: sortByOrder(newColumns),
       };
       newBoards.splice(boardIndex, 1, currentBoard);
     }
@@ -143,12 +156,12 @@ const boardReducer = createReducer(
       const columnIndex = findIndexByID(columns, columnID);
       const currColumn: IColumn = {
         ...columns[columnIndex],
-        tasks: columns[columnIndex].tasks.concat(task),
+        tasks: sortByOrder(columns[columnIndex].tasks.concat(task)),
       };
       const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
       const currentBoard = {
         ...newBoards[boardIndex],
-        columns: newColumns,
+        columns: sortByOrder(newColumns),
       };
       newBoards.splice(boardIndex, 1, currentBoard);
     }
@@ -166,7 +179,7 @@ const boardReducer = createReducer(
       const columnIndex = findIndexByID(columns, columnID);
       const currColumn: IColumn = {
         ...columns[columnIndex],
-        tasks: filterOutID(columns[columnIndex].tasks, taskID),
+        tasks: sortByOrder(filterOutID(columns[columnIndex].tasks, taskID)),
       };
       const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
       const currentBoard = {
@@ -200,7 +213,7 @@ const boardReducer = createReducer(
       if (columnID === task.columnId) {
         const currColumn: IColumn = {
           ...columns[columnIndex],
-          tasks: replaceElementInIndex(tasks, currTask, taskIndex),
+          tasks: sortByOrder(replaceElementInIndex(tasks, currTask, taskIndex)),
         };
         const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
         const currentBoard = {
@@ -211,12 +224,12 @@ const boardReducer = createReducer(
       } else {
         const currColumn: IColumn = {
           ...columns[columnIndex],
-          tasks: filterOutID(columns[columnIndex].tasks, task.id),
+          tasks: sortByOrder(filterOutID(columns[columnIndex].tasks, task.id)),
         };
         const columnMovedToIndex = findIndexByID(columns, task.columnId);
         const columnMovedTo = {
           ...columns[columnMovedToIndex],
-          tasks: columns[columnMovedToIndex].tasks.concat(currTask),
+          tasks: sortByOrder(columns[columnMovedToIndex].tasks.concat(currTask)),
         };
         const tempColumns = replaceElementInIndex(columns, currColumn, columnIndex);
         const newColumns = replaceElementInIndex(tempColumns, columnMovedTo, columnMovedToIndex);

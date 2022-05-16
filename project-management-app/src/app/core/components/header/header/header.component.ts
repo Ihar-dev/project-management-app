@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { logout } from 'src/app/store/actions/auth.action';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
@@ -8,6 +9,10 @@ enum Localized {
   en = 'en',
   ru = 'ru',
 }
+
+const PAGE_WITH_TRANSPARENT_HEADER = ['/welcome'];
+
+const PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH = ['/auth/login', '/auth/signup'];
 
 @Component({
   selector: 'app-header',
@@ -19,7 +24,7 @@ export class HeaderComponent {
 
   isAuth$ = this.store.select(selectIsAuth);
 
-  constructor(private store: Store, private transloco: TranslocoService) {}
+  constructor(private store: Store, private router: Router, private transloco: TranslocoService) {}
 
   toggleLocalization(): void {
     this.localized = this.localized === Localized.en ? Localized.ru : Localized.en;
@@ -28,5 +33,13 @@ export class HeaderComponent {
 
   onLogout(): void {
     this.store.dispatch(logout());
+  }
+
+  get hideHeader(): boolean {
+    return PAGE_WITH_TRANSPARENT_HEADER.some((url) => url === this.router.url);
+  }
+
+  get hideHeaderWithoutAuth(): boolean {
+    return PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH.some((url) => url === this.router.url);
   }
 }

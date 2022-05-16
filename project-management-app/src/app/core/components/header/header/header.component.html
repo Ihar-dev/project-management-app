@@ -1,6 +1,16 @@
-<div appStickyHeader class="header" *ngIf="isAuth$ | async">
-  <app-logo></app-logo>
-  <app-create-button></app-create-button>
-  <app-user-box (logout)="onLogout()"></app-user-box>
-  <mat-slide-toggle class="slide-toggle" (change)="toggleLocalization()">En\Ru</mat-slide-toggle>
-</div>
+<ng-container *ngrxLet="isAuth$ as isAuth">
+  <div
+    appStickyHeader
+    class="header"
+    [class]="{ transparent: hideHeader || (!isAuth && hideHeaderWithoutAuth) }"
+  >
+    <app-logo *ngIf="isAuth"></app-logo>
+    <app-create-button *ngIf="isAuth && !hideHeader"></app-create-button>
+    <app-navigation #navigation (toggleNav)="openNavigation.rotateOpen()"></app-navigation>
+    <mat-slide-toggle class="slide-toggle" (change)="toggleLocalization()">En\Ru</mat-slide-toggle>
+    <app-open-navigation
+      #openNavigation
+      (click)="navigation.toggleNavigation()"
+    ></app-open-navigation>
+  </div>
+</ng-container>

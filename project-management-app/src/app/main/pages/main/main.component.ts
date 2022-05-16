@@ -20,7 +20,6 @@ enum SearchTitles {
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, OnDestroy {
-  private readonly taskSearchService: TaskSearchService;
   public dataForSearch = '';
   private boardsSubs: Subscription;
   private searchResultsSubs: Subscription;
@@ -33,15 +32,14 @@ export class MainComponent implements OnInit, OnDestroy {
   public searchResults: SearchResult[] = [];
   public SearchTitle: SearchTitles;
 
-  constructor(private readonly router: Router, private store: Store, taskSearchService: TaskSearchService) {
-    this.taskSearchService = taskSearchService;
-  }
+  constructor(private readonly router: Router, private store: Store,
+    private readonly taskSearchService: TaskSearchService) {}
 
   ngOnInit(): void {
     this.getBoards();
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
     this.boardsSubs = this.boards$.subscribe((boards: IBoard[]) => {
-      if (!this.initialBoards.length) {
+      if (this.initialBoards.length !== boards.length) {
         this.initialBoards = boards;
         this.boards = boards;
       } else this.boards = boards;
@@ -74,16 +72,16 @@ export class MainComponent implements OnInit, OnDestroy {
     }
   }
 
-  public getBoardById(id: string): void {
+  public openBoard(id: string): void {
+    if (id) this.router.navigate([`/board/${id}`]);
+  }
+
+  private getBoardById(id: string): void {
     this.store.dispatch(BoardActions.getBoardById({ id }));
   }
 
   public getBoards(): void {
     this.store.dispatch(BoardActions.getBoards());
-  }
-
-  public boardRout(event: Event, board: IBoard): void {
-    if (event.target === event.currentTarget) this.router.navigate([`/boards/${board.id}`]);
   }
 
   public mouseMove(): void {

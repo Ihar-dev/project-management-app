@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, Observable, of, take, tap } from 'rxjs';
 import { BoardActions } from 'src/app/store/actions/board.action';
@@ -11,6 +12,8 @@ import { IColumn } from '../../models/column.model';
 import { ITask } from '../../models/task.model';
 
 const DEFAULT_USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
+
+const MAIN_PAGE = '/main';
 
 type ItemType = 'board' | 'column' | 'task' | 'columnEdit' | 'taskEdit';
 
@@ -78,6 +81,7 @@ export class DialogCreationComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<DialogCreationComponent>,
     private store: Store,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: DialogInterface,
   ) {}
 
@@ -106,6 +110,7 @@ export class DialogCreationComponent implements OnInit {
         }),
       );
       this.dialogRef.close();
+      this.router.navigateByUrl(MAIN_PAGE);
     }
   }
 
