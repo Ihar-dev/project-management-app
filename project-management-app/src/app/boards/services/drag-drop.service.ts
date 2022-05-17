@@ -67,10 +67,10 @@ export class DragDropService {
       if (maxOrder < column.order) maxOrder = column.order;
       if (minOrder > column.order) minOrder = column.order;
     });
-    console.log(newBoard);
     newBoard.columns.forEach((column: IColumn, index: number) => {
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       (minOrder > newBoard.columns.length) ? column.order = index + 1 : column.order = ++maxOrder;
+      this.updateColumn(boardID, column);
     });
   }
 
