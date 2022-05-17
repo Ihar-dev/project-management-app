@@ -17,7 +17,7 @@ export class HttpErrorService {
     const currentError = errorMessages.find((err) => err.statusCode === statusCode);
     const message = currentError ? currentError.message : this.messageDefault;
 
-    console.log(`${storeAction}: ${error.message}`);
+    console.log(`ERROR WITH ${storeAction}: ${error}`);
     this.messageBoxService.showMessage(message);
     return EMPTY;
   }
