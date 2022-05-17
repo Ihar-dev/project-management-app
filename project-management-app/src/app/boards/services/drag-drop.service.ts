@@ -58,7 +58,7 @@ export class DragDropService {
     );
   }
 
-  public moveColumn(event: CdkDragDrop<IColumn>, boardID: string, board: IBoard): void {
+  public moveColumn(event: CdkDragDrop<IColumn[]>, boardID: string, board: IBoard): void {
     const newBoard = JSON.parse(JSON.stringify(board));
     if (newBoard?.columns) moveItemInArray(newBoard.columns, event.previousIndex, event.currentIndex);
     let maxOrder = 0;

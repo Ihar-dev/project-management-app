@@ -11,7 +11,11 @@
       </app-button-board-create>
     </div>
   </div>
-  <div cdkDropList cdkDropListOrientation="horizontal" class="board__content board__content--scrollable"
+  <div
+    cdkDropList
+    [cdkDropListData]="columns"
+    cdkDropListOrientation="horizontal"
+    class="board__content board__content--scrollable"
     (cdkDropListDropped)="drop($event)">
     <app-column class="example-box" *ngFor="let columnItem of board?.columns" [column]="columnItem" [boardID]="id"
       cdkDrag>

@@ -20,6 +20,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   private boardSubs: Subscription;
   public id = '';
   readonly title = TITLE_DEFAULT;
+  public columns: IColumn[] = [];
 
   board: IBoard | null = null;
 
@@ -30,6 +31,7 @@ export class BoardComponent implements OnInit, OnDestroy {
     this.boardSubs = this.boardHandlingService.board$.subscribe((board: IBoard) => {
       this.board = board;
       this.id = board.id;
+      this.columns = board.columns;
     });
     const { url } = this.router;
     const urlArr = url.split('/');
@@ -46,7 +48,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
 
-  drop(event: CdkDragDrop<IColumn>) {
+  drop(event: CdkDragDrop<IColumn[]>) {
     if (this.board) this.dragDropService.moveColumn(event, this.id, this.board);
   }
 }
