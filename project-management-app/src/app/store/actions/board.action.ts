@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { IBoardRequest } from 'src/app/shared/models/board-request.model';
 import { IBoard } from 'src/app/shared/models/board.model';
@@ -13,6 +14,7 @@ export enum BoardAction {
   PutBoardSuccess = '[board] PUT_BOARD_SUCCESS',
   DeleteBoard = '[board] DELETE_BOARD',
   DeleteBoardSuccess = '[board] DELETE_BOARD_SUCCESS',
+  LoadBoardFailure = '[board] BOARD_FAILURE',
 }
 
 export namespace BoardActions {
@@ -47,5 +49,10 @@ export namespace BoardActions {
   export const putBoardSuccess = createAction(
     BoardAction.PutBoardSuccess,
     props<{ board: IBoard }>(),
+  );
+
+  export const loadBoardFailure = createAction(
+    BoardAction.LoadBoardFailure,
+    props<{ data: { error: HttpErrorResponse; actionType: BoardAction } }>(),
   );
 }

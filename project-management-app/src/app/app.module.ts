@@ -19,6 +19,7 @@ import { ColumnEffects } from './store/effects/column.effect';
 import { TaskEffects } from './store/effects/task.effect';
 import { environment } from '../environments/environment';
 import { metaReducers } from './store/storage.metareducer';
+import { ErrorEffects } from './store/effects/error.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,7 +30,7 @@ import { metaReducers } from './store/storage.metareducer';
     HttpClientModule,
     CoreModule,
     StoreModule.forRoot({ board: boardReducer.reducer, auth: auth.authReducer }, { metaReducers }),
-    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, AuthEffects]),
+    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, AuthEffects, ErrorEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   exports: [HeaderComponent],
