@@ -13,6 +13,7 @@ import { DragDropService } from '../../../services/drag-drop.service';
 })
 export class ColumnComponent implements OnInit {
   @Input() column: IColumn | null = null;
+  @Input() columns: IColumn[] = [];
   @Input() public boardID = '';
   public columnID = '';
   public columnTitle = '';
@@ -24,8 +25,9 @@ export class ColumnComponent implements OnInit {
     public readonly dragDropService: DragDropService) {}
 
   public drop(event: CdkDragDrop<ITask[]>) {
-    console.log(event.previousContainer === event.container);
-    if (this.column) this.dragDropService.moveTask(event, this.boardID, this.column);
+    if (event.previousContainer === event.container) {
+      if (this.column) this.dragDropService.moveTask(event, this.boardID, this.column);
+    } else if (this.column) this.dragDropService.moveTaskDifferentColumn(event, this.boardID, this.column, this.columns);
   }
 
   ngOnInit(): void {
