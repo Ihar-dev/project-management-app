@@ -47,17 +47,7 @@ export class DragDropService {
     });
     newColumn.forEach((task: ITask, index: number) => {
       if (task.id !== column.tasks[index].id) {
-        const taskID = task.id;
-        const newTask: Omit < ITaskRequest, 'id' > = {
-          title: task.title,
-          done: task.done,
-          order: task.order,
-          description: task.description,
-          userId: task.userId,
-          boardId: boardID,
-          columnId: columnID,
-        }
-        this.updateTask(boardID, columnID, taskID, newTask);
+        this.updateTask(boardID, columnID, task);
       }
     });
   }
@@ -115,9 +105,18 @@ export class DragDropService {
   private updateTask(
     boardID: string,
     columnID: string,
-    taskID: string,
-    task: Omit < ITaskRequest, 'id' > ,
+    oldTask: ITask ,
   ): void {
+    const taskID = oldTask.id;
+    const task: Omit < ITaskRequest, 'id' > = {
+      title: oldTask.title,
+      done: oldTask.done,
+      order: oldTask.order,
+      description: oldTask.description,
+      userId: oldTask.userId,
+      boardId: boardID,
+      columnId: columnID,
+    }
     this.store.dispatch(
       TaskActions.PutTask({
         boardID,
