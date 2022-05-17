@@ -52,8 +52,6 @@ export class DragDropService {
       if (event.currentIndex < index) this.updateTask(boardID, columnID, task);
     });
     const taskToDelete: ITask = event.previousContainer.data[event.previousIndex];
-    console.log(taskToDelete);
-    console.log(columns);
     columns.forEach((prevColumn: IColumn) => {
       prevColumn.tasks.forEach((task: ITask) => {
         if (task.id === taskToDelete.id) this.deleteTask(boardID, prevColumn.id, taskToDelete.id);
