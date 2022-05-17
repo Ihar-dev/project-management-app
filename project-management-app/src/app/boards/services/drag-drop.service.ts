@@ -63,14 +63,8 @@ export class DragDropService {
       event.currentIndex,
     );
     const prevTask = newTargetColumn[event.currentIndex];
-    const newTask: Partial < ITaskRequest > = {
-      title: prevTask.title,
-      done: prevTask.done,
-      order: prevTask.order,
-      description: prevTask.description,
-      userId: prevTask.userId,
-    };
-    this.addTask(boardID, columnID, newTask);
+
+    this.addTask(boardID, columnID, prevTask);
     newTargetColumn.map((task: ITask, index: number) => {
       task.order = index + 1;
       return task;
@@ -92,7 +86,14 @@ export class DragDropService {
     console.log(columns);
   }
 
-  addTask(boardID: string, columnID: string, task: Partial < ITaskRequest > ): void {
+  addTask(boardID: string, columnID: string, prevTask: ITask): void {
+    const task: Partial < ITaskRequest > = {
+      title: prevTask.title,
+      done: prevTask.done,
+      order: prevTask.order,
+      description: prevTask.description,
+      userId: prevTask.userId,
+    };
     this.store.dispatch(
       TaskActions.AddTask({
         boardID,
