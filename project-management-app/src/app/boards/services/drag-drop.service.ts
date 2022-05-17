@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import {
   Injectable
 } from '@angular/core';
@@ -29,12 +30,42 @@ import {
   ITaskRequest
 } from 'src/app/shared/models/task-request.model';
 
+import { BoardSelectors } from '../../store/selectors/board.selector';
+
 @Injectable({
   providedIn: 'root'
 })
 export class DragDropService {
+  private boards$: Observable < IBoard[] >;
+  private id = '';
+  private columnID = '';
+  private newColumn: ITask[] = [];
 
-  constructor(private readonly store: Store) {}
+  constructor(private readonly store: Store) {
+    this.boards$ = this.store.select(BoardSelectors.selectBoards);
+    this.boards$.subscribe((boards: IBoard[]) => {
+      boards.forEach(board => {
+        if (board.id === this.id) {
+          board.columns.forEach((column: IColumn) => {
+            if (column.id === this.columnID) {
+              console.log(column);
+              console.log(this.newColumn);
+
+/*               this.newColumn.forEach((task: ITask) => {
+
+                this.updateTask(this.id, this.columnID, task);
+
+
+
+              }); */
+
+
+            }
+          });
+        }
+      });
+    });
+  }
 
   public moveTask(event: CdkDragDrop < ITask[] > , boardID: string, column: IColumn): void {
     const columnID = column.id;
@@ -53,7 +84,9 @@ export class DragDropService {
   }
 
   public moveTaskDifferentColumn(event: CdkDragDrop < ITask[] > , boardID: string, column: IColumn, columns: IColumn[]): void {
+    this.id = boardID;
     const columnID = column.id;
+    this.columnID = columnID;
     const newTargetColumn = JSON.parse(JSON.stringify(event.container.data));
     const newPreviousColumn = JSON.parse(JSON.stringify(event.previousContainer.data));
     transferArrayItem(
@@ -63,44 +96,16 @@ export class DragDropService {
       event.currentIndex,
     );
     const prevTask = newTargetColumn[event.currentIndex];
-
-    this.addTask(boardID, columnID, prevTask);
     newTargetColumn.map((task: ITask, index: number) => {
       task.order = index + 1;
       return task;
     });
-    console.log(newTargetColumn);
-    console.log(column.tasks);
+    this.addTask(boardID, columnID, prevTask);
+    this.newColumn = newTargetColumn;
     newTargetColumn.forEach((task: ITask, index: number) => {
-      let hasItem = true;
-      if (!column.tasks[index]) hasItem = false;
-      if (hasItem) {
-        if (task.id !== column.tasks[index].id) {
-          console.log(task);
-        }
-      } else {
-        console.log(index);
-        console.log(task);
-      }
+      if (event.currentIndex < index) this.updateTask(boardID, columnID, task);
     });
     console.log(columns);
-  }
-
-  addTask(boardID: string, columnID: string, prevTask: ITask): void {
-    const task: Partial < ITaskRequest > = {
-      title: prevTask.title,
-      done: prevTask.done,
-      order: prevTask.order,
-      description: prevTask.description,
-      userId: prevTask.userId,
-    };
-    this.store.dispatch(
-      TaskActions.AddTask({
-        boardID,
-        columnID,
-        task,
-      }),
-    );
   }
 
   private updateTask(
@@ -123,6 +128,23 @@ export class DragDropService {
         boardID,
         columnID,
         taskID,
+        task,
+      }),
+    );
+  }
+
+  addTask(boardID: string, columnID: string, prevTask: ITask): void {
+    const task: Partial < ITaskRequest > = {
+      title: prevTask.title,
+      done: prevTask.done,
+      order: prevTask.order,
+      description: prevTask.description,
+      userId: prevTask.userId,
+    };
+    this.store.dispatch(
+      TaskActions.AddTask({
+        boardID,
+        columnID,
         task,
       }),
     );
