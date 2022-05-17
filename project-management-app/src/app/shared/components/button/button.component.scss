@@ -8,8 +8,4 @@
   height: 100%;
   font-size: 2rem;
   border-radius: $border-radius;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
 }
