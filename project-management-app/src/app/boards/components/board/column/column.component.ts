@@ -24,6 +24,7 @@ export class ColumnComponent implements OnInit {
     public readonly dragDropService: DragDropService) {}
 
   public drop(event: CdkDragDrop<ITask[]>) {
+    console.log(event.previousContainer === event.container);
     if (this.column) this.dragDropService.moveTask(event, this.boardID, this.column);
   }
 
