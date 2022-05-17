@@ -120,6 +120,8 @@ p {
   position: absolute;
   @extend %flex-column-pattern;
   @extend %display-pattern;
+  @extend %opacity-pattern;
+  padding: 0 1rem;
 
   .welcome_team-img-container {
     @extend %flex-column-pattern;
@@ -248,11 +250,9 @@ p {
   }
 
   .welcome_buttons-container {
-    width: 20vh;
-    height: 9vh;
-    row-gap: 2vh;
-    right: 4%;
-    top: 6%;
+    gap: 2rem;
+    right: 5rem;
+    top: 10rem;
   }
 }
 
@@ -320,7 +320,7 @@ p {
   .welcome_team-container {
     width: 47vw;
     height: 27vw;
-    top: 77%;
+    bottom: 5%;
     right: 49%;
     row-gap: 3vw;
 
@@ -348,11 +348,9 @@ p {
 
   .welcome_buttons-container {
     flex-direction: column;
-    width: 10vw;
-    height: 20vw;
-    row-gap: 2vw;
-    right: 4%;
-    top: 6%;
+    right: 5rem;
+    top: 10rem;
+    gap: 2rem;
   }
 }
 

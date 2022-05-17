@@ -1,13 +1,24 @@
 @import "variables";
 @import "mixins";
 
+:host {
+  display: block;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 500;
+
+  &.sticky {
+    position: fixed;
+  }
+}
+
 .header {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 50;
+  z-index: 500;
   padding: 0 3rem;
-  border-bottom: 2px solid $color-white-darken;
   transition: all 0.3s ease-in-out;
   background-color: $form-bg;
   display: flex;
@@ -22,6 +33,19 @@
     background-color: $color-white-darken;
     box-shadow: 0px 4px 6px 2px $shadow-color;
     height: 7rem;
+  }
+
+  &.transparent {
+    background-color: transparent;
+    margin-bottom: -9rem;
+    box-shadow: none;
+    height: 9rem;
+  }
+}
+
+.slide-toggle {
+  @media only screen and (max-width: $laptop) {
+    margin-left: auto;
   }
 }
 

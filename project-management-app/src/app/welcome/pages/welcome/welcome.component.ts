@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { logout } from 'src/app/store/actions/auth.action';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 @Component({
@@ -20,5 +21,9 @@ export class WelcomeComponent implements OnInit {
     setTimeout(() => {
       this.pageActivation = true;
     });
+  }
+
+  onLogout(): void {
+    this.store.dispatch(logout());
   }
 }
