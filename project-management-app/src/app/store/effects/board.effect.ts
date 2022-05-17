@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
+import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { BoardDbService } from 'src/app/shared/services/board-db.service';
 import { BoardActions, BoardAction } from '../actions/board.action';
 
 @Injectable()
 export class BoardEffects {
-  errorMessages: ErrorMessages;
+  errorMessages: IHttpErrorMessage[] = ErrorMessages.boardMessages;
 
   getBoards$ = createEffect(() =>
     this.actions$.pipe(
@@ -16,7 +17,7 @@ export class BoardEffects {
         this.dbService.getBoards().pipe(
           map((boards) => BoardActions.getBoardsSuccess({ boards })),
           catchError((err) => [
-            BoardActions.loadBoardFailure({
+            BoardActions.boardError({
               data: { error: err, actionType: BoardAction.GetBoards, messages: this.errorMessages },
             }),
           ]),
@@ -32,7 +33,7 @@ export class BoardEffects {
         this.dbService.addBoard(action.board).pipe(
           map((board) => BoardActions.addBoardSuccess({ board })),
           catchError((err) => [
-            BoardActions.loadBoardFailure({
+            BoardActions.boardError({
               data: { error: err, actionType: BoardAction.AddBoard, messages: this.errorMessages },
             }),
           ]),
@@ -48,7 +49,7 @@ export class BoardEffects {
         this.dbService.deleteBoard(action.id).pipe(
           map(() => BoardActions.deleteBoardSuccess({ ...action })),
           catchError((err) => [
-            BoardActions.loadBoardFailure({
+            BoardActions.boardError({
               data: {
                 error: err,
                 actionType: BoardAction.DeleteBoard,
@@ -68,7 +69,7 @@ export class BoardEffects {
         this.dbService.getBoardByID(action.id).pipe(
           map((board) => BoardActions.getBoardByIdSuccess({ board })),
           catchError((err) => [
-            BoardActions.loadBoardFailure({
+            BoardActions.boardError({
               data: {
                 error: err,
                 actionType: BoardAction.GetBoardByID,
@@ -88,7 +89,7 @@ export class BoardEffects {
         this.dbService.updateBoard(action.id, action.board).pipe(
           map((board) => BoardActions.putBoardSuccess({ board })),
           catchError((err) => [
-            BoardActions.loadBoardFailure({
+            BoardActions.boardError({
               data: { error: err, actionType: BoardAction.PutBoard, messages: this.errorMessages },
             }),
           ]),
@@ -97,7 +98,5 @@ export class BoardEffects {
     ),
   );
 
-  constructor(private actions$: Actions, private dbService: BoardDbService) {
-    this.errorMessages = ErrorMessages.boardMessages;
-  }
+  constructor(private actions$: Actions, private dbService: BoardDbService) {}
 }
