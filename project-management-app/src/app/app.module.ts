@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { httpInterceptorProviders } from './interceptors';
 import * as boardReducer from './store/reducers/board.reducer';
 import * as auth from './store/reducers/auth.reducer';
+import * as usersReducer from './store/reducers/users.reducer';
 import { AuthEffects } from './store/effects/auth.effect';
 
 import { BoardEffects } from './store/effects/board.effect';
@@ -19,6 +20,7 @@ import { ColumnEffects } from './store/effects/column.effect';
 import { TaskEffects } from './store/effects/task.effect';
 import { environment } from '../environments/environment';
 import { metaReducers } from './store/storage.metareducer';
+import { UsersEffects } from './store/effects/users.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,8 +30,11 @@ import { metaReducers } from './store/storage.metareducer';
     BrowserAnimationsModule,
     HttpClientModule,
     CoreModule,
-    StoreModule.forRoot({ board: boardReducer.reducer, auth: auth.authReducer }, { metaReducers }),
-    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, AuthEffects]),
+    StoreModule.forRoot(
+      { board: boardReducer.reducer, auth: auth.authReducer, users: usersReducer.reducer },
+      { metaReducers },
+    ),
+    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, AuthEffects, UsersEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   exports: [HeaderComponent],

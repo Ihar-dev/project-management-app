@@ -3,9 +3,9 @@ import { Store } from '@ngrx/store';
 import { ReplaySubject, takeUntil } from 'rxjs';
 import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
-import { loginSuccess, logout } from 'src/app/store/actions/auth.action';
 import { selectProfile } from 'src/app/store/selectors/auth.selector';
 import { MatDialog } from '@angular/material/dialog';
+import { UsersActions } from 'src/app/store/actions/users.action';
 import { UserService } from '../../services/user.service';
 import {
   DialogConfirmationComponent,
@@ -42,10 +42,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     if (!this.profile) {
       return;
     }
-    this.userService
-      .updateUser(userData, this.profile.id)
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((user) => this.store.dispatch(loginSuccess({ user })));
+    this.store.dispatch(UsersActions.putUser({ data: userData, id: this.profile.id }));
   }
 
   onDelete(): void {
@@ -64,12 +61,7 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((result: Response) => {
         if (result && this.profile) {
-          this.userService
-            .deleteUser(this.profile.id)
-            .pipe(takeUntil(this.destroyed$))
-            .subscribe(() => {
-              this.store.dispatch(logout());
-            });
+          this.store.dispatch(UsersActions.deleteUser({ id: this.profile.id }));
         }
       });
   }

@@ -8,7 +8,7 @@ enum TaskAction {
   DeleteTask = '[Task] DELETE_TASK',
   DeleteTaskSuccess = '[Task] DELETE_TASK_SUCCESS',
   PutTask = '[Task] PUT_TASK',
-  PutTaskSuccess = '[column] PUT_TASK_SUCCESS',
+  PutTaskSuccess = '[Task] PUT_TASK_SUCCESS',
 }
 
 export namespace TaskActions {
