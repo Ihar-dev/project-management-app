@@ -15,7 +15,7 @@ export enum BoardAction {
   PutBoardSuccess = '[board] PUT_BOARD_SUCCESS',
   DeleteBoard = '[board] DELETE_BOARD',
   DeleteBoardSuccess = '[board] DELETE_BOARD_SUCCESS',
-  boardError = '[board] BOARD_FAILURE',
+  boardError = '[board] BOARD_ERROR',
 }
 
 export namespace BoardActions {

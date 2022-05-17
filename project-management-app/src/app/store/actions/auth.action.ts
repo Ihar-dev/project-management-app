@@ -6,20 +6,20 @@ import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
 
 export enum AuthActionType {
-  Signup = '[Auth] Signup',
-  Login = '[Auth] Login',
-  LoginSuccess = '[Auth] Login Success',
-  Logout = '[Auth] Logout',
-  LogoutSuccess = '[Auth] Logout Success',
-  AuthFailure = '[Auth] Auth Failure',
-  AuthError = '[Auth] Auth Error',
+  Signup = '[auth] SIGNUP',
+  Login = '[auth] LOGIN',
+  LoginSuccess = '[auth] LOGIN_SUCCESS',
+  LoginFailure = '[auth] LOGIN_FAILURE',
+  Logout = '[auth] Logout',
+  LogoutSuccess = '[auth] LOGOUT_SUCCESS',
+  AuthError = '[auth] AUTH_ERROR',
 }
 
 export const signup = createAction(AuthActionType.Signup, props<{ userData: TUserData }>());
 
 export const login = createAction(AuthActionType.Login, props<{ userData: TSigninData }>());
 export const loginSuccess = createAction(AuthActionType.LoginSuccess, props<{ user: User }>());
-export const authFailure = createAction(AuthActionType.AuthFailure);
+export const loginFailure = createAction(AuthActionType.LoginFailure);
 
 export const logout = createAction(AuthActionType.Logout);
 export const logoutSuccess = createAction(AuthActionType.LogoutSuccess);

@@ -44,7 +44,7 @@ export class AuthEffects {
               return AuthActions.loginSuccess({ user: data });
             }
 
-            return AuthActions.authFailure();
+            return AuthActions.loginFailure();
           }),
           catchError((err) => [
             AuthActions.authError({
