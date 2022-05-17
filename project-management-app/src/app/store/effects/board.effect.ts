@@ -17,7 +17,7 @@ export class BoardEffects {
           map((boards) => BoardActions.getBoardsSuccess({ boards })),
           catchError((err) => [
             BoardActions.loadBoardFailure({
-              data: { error: err, actionType: BoardAction.GetBoards },
+              data: { error: err, actionType: BoardAction.GetBoards, messages: this.errorMessages },
             }),
           ]),
         ),
@@ -33,7 +33,7 @@ export class BoardEffects {
           map((board) => BoardActions.addBoardSuccess({ board })),
           catchError((err) => [
             BoardActions.loadBoardFailure({
-              data: { error: err, actionType: BoardAction.AddBoard },
+              data: { error: err, actionType: BoardAction.AddBoard, messages: this.errorMessages },
             }),
           ]),
         ),
@@ -49,7 +49,11 @@ export class BoardEffects {
           map(() => BoardActions.deleteBoardSuccess({ ...action })),
           catchError((err) => [
             BoardActions.loadBoardFailure({
-              data: { error: err, actionType: BoardAction.DeleteBoard },
+              data: {
+                error: err,
+                actionType: BoardAction.DeleteBoard,
+                messages: this.errorMessages,
+              },
             }),
           ]),
         ),
@@ -65,7 +69,11 @@ export class BoardEffects {
           map((board) => BoardActions.getBoardByIdSuccess({ board })),
           catchError((err) => [
             BoardActions.loadBoardFailure({
-              data: { error: err, actionType: BoardAction.GetBoardByID },
+              data: {
+                error: err,
+                actionType: BoardAction.GetBoardByID,
+                messages: this.errorMessages,
+              },
             }),
           ]),
         ),
@@ -81,7 +89,7 @@ export class BoardEffects {
           map((board) => BoardActions.putBoardSuccess({ board })),
           catchError((err) => [
             BoardActions.loadBoardFailure({
-              data: { error: err, actionType: BoardAction.PutBoard },
+              data: { error: err, actionType: BoardAction.PutBoard, messages: this.errorMessages },
             }),
           ]),
         ),

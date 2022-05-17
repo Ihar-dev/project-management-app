@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { IBoardRequest } from 'src/app/shared/models/board-request.model';
 import { IBoard } from 'src/app/shared/models/board.model';
+import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
 
 export enum BoardAction {
   AddBoard = '[board] ADD_BOARD',
@@ -53,6 +54,8 @@ export namespace BoardActions {
 
   export const loadBoardFailure = createAction(
     BoardAction.LoadBoardFailure,
-    props<{ data: { error: HttpErrorResponse; actionType: BoardAction } }>(),
+    props<{
+      data: { error: HttpErrorResponse; actionType: BoardAction; messages: ErrorMessages };
+    }>(),
   );
 }

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap } from 'rxjs/operators';
+import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as AuthActions from '../actions/auth.action';
 
 @Injectable()
 export class AuthEffects {
+  errorMessages: ErrorMessages = ErrorMessages.authMessages;
+
   constructor(private actions$: Actions, private authService: AuthService) {}
 
   signup$ = createEffect(() =>
