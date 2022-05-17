@@ -12,25 +12,27 @@
         </div>
       </div>
       <app-button-board-delete title="Delete column"
-      (click)="boardHandlingService.openDialogToDelete('column', columnTitle, boardID, columnID, '')"
-      appClickStopPropagation></app-button-board-delete>
+        (click)="boardHandlingService.openDialogToDelete('column', columnTitle, boardID, columnID, '')"
+        appClickStopPropagation></app-button-board-delete>
     </div>
-    <div class="column__content">
-      
-      <div cdkDropList
-      [cdkDropListData]="columnTasks"
-      class="example-list"
-      cdkDropListSortingDisabled
+    <div
+      class="column__content"
+      cdkDropList
+      [cdkDropListData]="tasks"
       (cdkDropListDropped)="drop($event)">
 
-        <app-task class="column__item" *ngFor="let task of columnTasks" [task]="task"
+      <app-task
+        class="column__item"
+        *ngFor="let task of tasks"
+        [task]="task"
+        [columnID]="columnID"
+        [boardID]="boardID"
         (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
-        [columnID]="columnID" [boardID]="boardID" cdkDrag></app-task>
-
-      </div>
+        cdkDrag
+      ></app-task>
 
     </div>
   </div>
-  <app-button-board-create text="Add task"
-  (click)="boardHandlingService.openCreateTaskDialog(boardID, columnID)"></app-button-board-create>
+  <app-button-board-create text="Add task" (click)="boardHandlingService.openCreateTaskDialog(boardID, columnID)">
+  </app-button-board-create>
 </div>

@@ -16,7 +16,7 @@ export class ColumnComponent implements OnInit {
   @Input() public boardID = '';
   public columnID = '';
   public columnTitle = '';
-  public columnTasks: ITask[] = [];
+  public tasks: ITask[] = [];
 
   editMode: boolean = false;
 
@@ -31,7 +31,7 @@ export class ColumnComponent implements OnInit {
   ngOnInit(): void {
     if (this.column?.id) this.columnID = this.column.id;
     if (this.column?.title) this.columnTitle = this.column.title;
-    if (this.column?.tasks) this.columnTasks = this.column?.tasks;
+    if (this.column?.tasks) this.tasks = this.column?.tasks;
   }
 
   onClickTitle(): void {

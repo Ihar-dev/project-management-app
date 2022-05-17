@@ -23,6 +23,8 @@
   background-color: $board-column-bg;
 
   &__scrollable {
+    position: relative;
+    display: block;
     @include scrollbar(8px);
     max-height: calc(100vh - 38rem);
     height: 100%;
@@ -72,6 +74,7 @@
   }
 
   &__content {
+    display: block;
     padding: 0.8rem;
     overflow-y: auto;
   }
