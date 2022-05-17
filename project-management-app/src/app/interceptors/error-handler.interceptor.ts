@@ -12,7 +12,6 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
           return EMPTY;
         }
 
-        console.log(error);
         return throwError(() => error);
       }),
     );
