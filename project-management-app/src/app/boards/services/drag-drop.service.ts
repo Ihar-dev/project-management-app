@@ -64,25 +64,52 @@ export class DragDropService {
 
   public moveTaskDifferentColumn(event: CdkDragDrop < ITask[] > , boardID: string, column: IColumn, columns: IColumn[]): void {
     const columnID = column.id;
-    console.log(columnID);
-    console.log(columns);
     const newTargetColumn = JSON.parse(JSON.stringify(event.container.data));
-    if (event.previousContainer === event.container) {
-      moveItemInArray(newTargetColumn, event.previousIndex, event.currentIndex);
-    } else {
-      const newPreviousColumn = JSON.parse(JSON.stringify(event.previousContainer.data));
-      console.log(newPreviousColumn);
-      console.log(newTargetColumn);
-      transferArrayItem(
-        newPreviousColumn,
-        newTargetColumn,
-        event.previousIndex,
-        event.currentIndex,
-      );
-      console.log(newPreviousColumn);
-      console.log(newTargetColumn);
-    }
+    const newPreviousColumn = JSON.parse(JSON.stringify(event.previousContainer.data));
+    transferArrayItem(
+      newPreviousColumn,
+      newTargetColumn,
+      event.previousIndex,
+      event.currentIndex,
+    );
+    const prevTask = newTargetColumn[event.currentIndex];
+    const newTask: Partial < ITaskRequest > = {
+      title: prevTask.title,
+      done: prevTask.done,
+      order: prevTask.order,
+      description: prevTask.description,
+      userId: prevTask.userId,
+    };
+    this.addTask(boardID, columnID, newTask);
+    newTargetColumn.map((task: ITask, index: number) => {
+      task.order = index + 1;
+      return task;
+    });
+    console.log(newTargetColumn);
+    console.log(column.tasks);
+    newTargetColumn.forEach((task: ITask, index: number) => {
+      let hasItem = true;
+      if (!column.tasks[index]) hasItem = false;
+      if (hasItem) {
+        if (task.id !== column.tasks[index].id) {
+          console.log(task);
+        }
+      } else {
+        console.log(index);
+        console.log(task);
+      }
+    });
+    console.log(columns);
+  }
 
+  addTask(boardID: string, columnID: string, task: Partial < ITaskRequest > ): void {
+    this.store.dispatch(
+      TaskActions.AddTask({
+        boardID,
+        columnID,
+        task,
+      }),
+    );
   }
 
   private updateTask(
