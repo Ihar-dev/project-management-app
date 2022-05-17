@@ -1,14 +1,17 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
+import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { ITaskRequest } from 'src/app/shared/models/task-request.model';
 import { ITask } from 'src/app/shared/models/task.model';
 
-enum TaskAction {
+export enum TaskAction {
   AddTask = '[Task] ADD_TASK',
   AddTaskSuccess = '[Task] ADD_TASK_SUCCESS',
   DeleteTask = '[Task] DELETE_TASK',
   DeleteTaskSuccess = '[Task] DELETE_TASK_SUCCESS',
   PutTask = '[Task] PUT_TASK',
-  PutTaskSuccess = '[column] PUT_TASK_SUCCESS',
+  PutTaskSuccess = '[Task] PUT_TASK_SUCCESS',
+  TaskError = '[Task] TASK_ERROR',
 }
 
 export namespace TaskActions {
@@ -37,5 +40,11 @@ export namespace TaskActions {
   export const PutTaskSuccess = createAction(
     TaskAction.PutTaskSuccess,
     props<{ boardID: string; columnID: string; task: ITaskRequest }>(),
+  );
+  export const taskError = createAction(
+    TaskAction.TaskError,
+    props<{
+      data: { error: HttpErrorResponse; actionType: TaskAction; messages: IHttpErrorMessage[] };
+    }>(),
   );
 }

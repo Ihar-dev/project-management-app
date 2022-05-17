@@ -2,17 +2,14 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs';
 import { TaskDbService } from 'src/app/shared/services/task-db.service';
-import { EffectsHandlerService } from 'src/app/shared/services/effects-handler.service';
-import { TaskActions } from '../actions/task.action';
-
-enum Operation {
-  AddTask = 'Add task',
-  DeleteTask = 'Delete task',
-  PutTask = 'Put task',
-}
+import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
+import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
+import { TaskAction, TaskActions } from '../actions/task.action';
 
 @Injectable()
 export class TaskEffects {
+  errorMessages: IHttpErrorMessage[] = ErrorMessages.taskMessages;
+
   addTask$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TaskActions.AddTask),
@@ -25,7 +22,15 @@ export class TaskEffects {
               task,
             }),
           ),
-          catchError(this.handler.handleError(Operation.AddTask)),
+          catchError((err) => [
+            TaskActions.taskError({
+              data: {
+                error: err,
+                actionType: TaskAction.AddTask,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
         ),
       ),
     ),
@@ -37,7 +42,15 @@ export class TaskEffects {
       mergeMap((action) =>
         this.dbService.deleteTask(action.boardID, action.columnID, action.taskID).pipe(
           map(() => TaskActions.DeleteTaskSuccess({ ...action })),
-          catchError(this.handler.handleError(Operation.DeleteTask)),
+          catchError((err) => [
+            TaskActions.taskError({
+              data: {
+                error: err,
+                actionType: TaskAction.DeleteTask,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
         ),
       ),
     ),
@@ -55,15 +68,19 @@ export class TaskEffects {
               task,
             }),
           ),
-          catchError(this.handler.handleError(Operation.PutTask)),
+          catchError((err) => [
+            TaskActions.taskError({
+              data: {
+                error: err,
+                actionType: TaskAction.PutTask,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
         ),
       ),
     ),
   );
 
-  constructor(
-    private actions$: Actions,
-    private dbService: TaskDbService,
-    private handler: EffectsHandlerService,
-  ) {}
+  constructor(private actions$: Actions, private dbService: TaskDbService) {}
 }
