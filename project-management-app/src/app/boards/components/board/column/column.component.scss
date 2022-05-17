@@ -3,9 +3,6 @@
 
 :host {
   opacity: 1;
-  transform: scaleY(100%);
-  transform-origin: top;
-  animation: slideColumn 0.6s ease-in forwards;
   @for $i from 0 through 10 {
     &:nth-of-type(#{$i}n) {
       animation-delay: #{$i * 0.2}s;
