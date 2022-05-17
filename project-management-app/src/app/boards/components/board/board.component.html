@@ -17,7 +17,7 @@
     class="board__content board__content--scrollable"
     (cdkDropListDropped)="drop($event)"
     cdkDropListGroup>
-    <app-column class="example-box" *ngFor="let columnItem of columns"
+    <app-column class="columns-box" *ngFor="let columnItem of columns"
     [columns]="columns" [column]="columnItem" [boardID]="id" cdkDrag>
     </app-column>
   </div>

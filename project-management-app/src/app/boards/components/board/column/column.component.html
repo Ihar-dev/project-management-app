@@ -22,7 +22,7 @@
       (cdkDropListDropped)="drop($event)">
 
       <app-task
-        class="column__item"
+        class="column__item column-box"
         *ngFor="let task of tasks"
         [task]="task"
         [columnID]="columnID"
