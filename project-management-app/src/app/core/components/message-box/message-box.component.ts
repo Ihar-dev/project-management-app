@@ -7,7 +7,7 @@ import { HttpErrorService } from '../../services/http-error.service';
 const ERROR_MESSAGE = HTTP_ERROR_MESSAGE_DEFAULT;
 const MESSAGE_DISAPPEAR_TIME = 5000;
 const MESSAGE_LENGTH_MAX = 50;
-const DEBOUNCE_TIME = 100;
+const DEBOUNCE_TIME = 10;
 
 @Component({
   selector: 'app-message-box',
