@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs';
-import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
+import { columnMessages } from 'src/app/shared/errors';
 import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { ColumnDbService } from 'src/app/shared/services/column-db.service';
 import { ColumnAction, ColumnActions } from '../actions/column.action';
 
 @Injectable()
 export class ColumnEffects {
-  errorMessages: IHttpErrorMessage[] = ErrorMessages.columnMessages;
+  errorMessages: IHttpErrorMessage[] = columnMessages;
 
   addColumn$ = createEffect(() =>
     this.actions$.pipe(

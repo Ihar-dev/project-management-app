@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
+import { boardMessages } from 'src/app/shared/errors';
 import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { BoardDbService } from 'src/app/shared/services/board-db.service';
 import { BoardActions, BoardAction } from '../actions/board.action';
 
 @Injectable()
 export class BoardEffects {
-  errorMessages: IHttpErrorMessage[] = ErrorMessages.boardMessages;
+  errorMessages: IHttpErrorMessage[] = boardMessages;
 
   getBoards$ = createEffect(() =>
     this.actions$.pipe(

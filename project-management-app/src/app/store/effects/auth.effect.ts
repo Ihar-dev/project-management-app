@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
+import { authMessages } from 'src/app/shared/errors';
 import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import * as AuthActions from '../actions/auth.action';
 
 @Injectable()
 export class AuthEffects {
-  errorMessages: IHttpErrorMessage[] = ErrorMessages.authMessages;
+  errorMessages: IHttpErrorMessage[] = authMessages;
 
   constructor(private actions$: Actions, private authService: AuthService) {}
 

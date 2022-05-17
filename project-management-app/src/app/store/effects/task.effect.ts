@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, mergeMap } from 'rxjs';
 import { TaskDbService } from 'src/app/shared/services/task-db.service';
-import { ErrorMessages } from 'src/app/shared/models/error-messages.model';
 import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
+import { taskMessages } from 'src/app/shared/errors';
 import { TaskAction, TaskActions } from '../actions/task.action';
 
 @Injectable()
 export class TaskEffects {
-  errorMessages: IHttpErrorMessage[] = ErrorMessages.taskMessages;
+  errorMessages: IHttpErrorMessage[] = taskMessages;
 
   addTask$ = createEffect(() =>
     this.actions$.pipe(
