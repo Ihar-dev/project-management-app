@@ -41,14 +41,14 @@ export class MessageBoxComponent implements OnInit, OnDestroy {
         debounceTime(DEBOUNCE_TIME),
       )
       .subscribe((messageState) => {
-        this.showMessage(messageState);
+        this.setState(messageState);
       });
   }
 
-  private showMessage(state: MessageState): void {
+  private setState(state: MessageState): void {
     const currentState = state;
     currentState.message = currentState.message.substring(0, MESSAGE_LENGTH_MAX);
-    this.state = state;
+    this.state = currentState;
     if (this.state.isShown) {
       this.hideMessageDeffered();
     }
