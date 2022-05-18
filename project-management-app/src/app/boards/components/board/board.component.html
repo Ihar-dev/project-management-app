@@ -18,7 +18,7 @@
     (cdkDropListDropped)="drop($event)"
     cdkDropListGroup>
     <app-column class="columns-box" *ngFor="let columnItem of columns"
-    [columns]="columns" [column]="columnItem" [boardID]="id" cdkDrag>
+    [columns]="columns" [column]="columnItem" [boardID]="id" cdkDragLockAxis="x" cdkDrag>
     </app-column>
   </div>
 </div>

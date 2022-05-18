@@ -49,7 +49,7 @@ export class DragDropService {
     });
     this.addTask(boardID, columnID, prevTask);
     newTargetColumn.forEach((task: ITask, index: number) => {
-      if (event.currentIndex < index) this.updateTask(boardID, columnID, task);
+      if (event.currentIndex !== index) this.updateTask(boardID, columnID, task);
     });
     const taskToDelete: ITask = event.previousContainer.data[event.previousIndex];
     columns.forEach((prevColumn: IColumn) => {
