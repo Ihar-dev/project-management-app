@@ -1,0 +1,38 @@
+@import "variables";
+@import "mixins";
+
+:host {
+  margin-left: auto;
+}
+
+.btn {
+  position: relative;
+  width: $user-button-size;
+  height: $user-button-size;
+  font-size: $user-button-size;
+  display: flex;
+  align-items: center;
+  @include btn-shadow-style;
+
+  & .icon {
+    font-size: $user-button-size;
+    width: $user-button-size;
+    height: $user-button-size;
+    display: flex;
+    align-items: center;
+  }
+}
+
+::ng-deep {
+  .user-menu.mat-menu-panel .mat-menu-content:not(:empty) {
+    padding: 0;
+
+    .mat-menu-item:hover:not([disabled]),
+    .mat-menu-item.cdk-program-focused:not([disabled]),
+    .mat-menu-item.cdk-keyboard-focused:not([disabled]),
+    .mat-menu-item-highlighted:not([disabled]) {
+      transition: all 0.2s;
+      background-color: $theme-primary-transparent;
+    }
+  }
+}

@@ -1,0 +1,107 @@
+<section class="users" *ngIf="users$ | async as users">
+  <div class="user-card" *ngFor="let user of users">
+    <h4>login: {{ user.login }}</h4>
+    <h5>name: {{ user.name }}</h5>
+  </div>
+</section>
+<hr />
+<input type="text" placeholder="Board Title" [(ngModel)]="boardTitle" />
+<button mat-stroked-button (click)="addBoard()">create board</button>
+
+<input type="text" placeholder="Board id for column" [(ngModel)]="boardIdForColumn" />
+<button mat-stroked-button (click)="openCreateColumnDialog()">create column</button>
+
+<input type="text" placeholder="Column id for task" [(ngModel)]="columnIdForTask" />
+<button mat-stroked-button (click)="openCreateTaskDialog()">create task</button>
+
+<ng-container *ngIf="boards$ | async as boards">
+  <ul *ngIf="boards.length; else emptyBoards" class="board-list">
+    <li *ngFor="let board of boards" class="board">
+      <h2 style="color: blueviolet">{{ board.title }}</h2>
+      <h4 style="font-size: 2rem">{{ board.description }}</h4>
+      <input type="text" placeholder="Board Title" [(ngModel)]="newBoardTitle" />
+      <button mat-stroked-button (click)="renameBoard(board.id)">Rename</button>
+      <h3>id: {{ board.id }}</h3>
+      <button mat-stroked-button (click)="getBoardById(board.id)">get full info</button>
+      <hr />
+      <input type="text" placeholder="columns Title" [(ngModel)]="columnTitle" />
+      <button
+        mat-stroked-button
+        (click)="addColumn(board.id, { title: columnTitle, order: findLastOrder(board.columns) })"
+      >
+        create column
+      </button>
+      <p>Columns</p>
+
+      <ng-container *ngIf="board.columns">
+        <p>{{ board.columns.length }}</p>
+        <ul>
+          <li
+            *ngFor="let column of board.columns"
+            style="background-color: rgb(109, 163, 102); margin-bottom: 10px; padding: 5px"
+          >
+            <h3>{{ column.title }}</h3>
+            <h3>{{ column.id }}</h3>
+            <button mat-button color="warn" (click)="deleteColumn(board.id, column.id)">
+              delete
+            </button>
+            <button mat-button color="accent" (click)="renameColumnModal(board.id, column)">
+              rename
+            </button>
+
+            <hr />
+
+            <input type="text" placeholder="task title" [(ngModel)]="taskTitle" />
+            <input type="text" placeholder="task description" [(ngModel)]="taskDescription" />
+
+            <button
+              mat-button
+              color="primary"
+              (click)="
+                addTask(board.id, column.id, {
+                  title: taskTitle,
+                  description: taskDescription,
+                  done: false,
+                  order: findLastOrder(column.tasks),
+                  userId: defaultUser
+                })
+              "
+            >
+              add task
+            </button>
+            <ng-container *ngIf="column.tasks">
+              <ul>
+                <li
+                  *ngFor="let task of column.tasks"
+                  style="background-color: rgb(98, 150, 163); margin-bottom: 5px; padding: 5px"
+                >
+                  <h3>TITLE: {{ task.title }}</h3>
+                  <h4>DESCRIPTION: {{ task.description }}</h4>
+                  <button
+                    mat-button
+                    color="warn"
+                    (click)="deleteTask(board.id, column.id, task.id)"
+                  >
+                    delete
+                  </button>
+                  <button
+                    mat-button
+                    color="accent"
+                    (click)="updateTaskModal(board.id, column.id, task)"
+                  >
+                    UPDATE
+                  </button>
+
+                  <hr />
+                </li>
+              </ul>
+            </ng-container>
+          </li>
+        </ul>
+      </ng-container>
+      <button mat-stroked-button (click)="deleteBoard(board.id)">delete this board</button>
+    </li>
+  </ul>
+</ng-container>
+<a routerLink="/auth">login</a>
+<ng-template #emptyBoards> BOARDS ARE EMPTY </ng-template>

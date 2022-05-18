@@ -1,0 +1,17 @@
+<mat-card class="task">
+  <mat-card-title class="task__header">
+    <h4 class="task__title">{{task?.title || title}}</h4>
+    <app-button-board-delete title="Delete task" appClickStopPropagation
+    (click)="boardHandlingService.openDialogToDelete('task', taskTitle, boardID, columnID, taskID)">
+    </app-button-board-delete>
+  </mat-card-title>
+  <mat-card-content>
+    <p class="task__description">{{ task?.description || ''}}</p>
+  </mat-card-content>
+  <mat-card-actions class="task__actions">
+    <app-task-member name="Username"></app-task-member>
+    <button class="task__actions__add-btn" mat-button title="Add user to this task">
+      <mat-icon>add</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

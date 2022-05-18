@@ -1,0 +1,33 @@
+@import "variables";
+@import "mixins";
+
+.task {
+  padding: 1.5rem;
+  border-radius: $border-radius;
+
+  &__header {
+    @extend %flex-normal-pattern;
+  }
+
+  &__title {
+    flex: 0 1 80%;
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+
+  &__title,
+  &__description {
+    word-break: break-word;
+  }
+
+  &__actions {
+    @extend %flex-normal-pattern;
+
+    &__add-btn {
+      min-width: 3rem;
+      width: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
