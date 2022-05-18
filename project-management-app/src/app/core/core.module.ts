@@ -15,6 +15,7 @@ import { AuthorsComponent } from './components/footer/authors/authors.component'
 import { DialogConfirmationComponent } from './components/dialog-confirmation/dialog-confirmation.component';
 import { NavigationComponent } from './components/header/navigation/navigation.component';
 import { OpenNavigationComponent } from './components/header/open-navigation/open-navigation.component';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { OpenNavigationComponent } from './components/header/open-navigation/ope
     UserBoxComponent,
     NavigationComponent,
     OpenNavigationComponent,
+    PopupComponent,
   ],
   imports: [SharedModule, CoreRoutingModule, ReactiveComponentModule],
-  exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent],
+  exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent, PopupComponent],
 })
 export class CoreModule {}
