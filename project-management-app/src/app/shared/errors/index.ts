@@ -3,3 +3,5 @@ export { boardMessages } from './boardMessages';
 export { columnMessages } from './columnMessages';
 export { taskMessages } from './taskMessages';
 export { userMessages } from './userMessages';
+
+export const UNAUTHORIZED_MESSAGE = 'It seems you are not logged in. Please login.';

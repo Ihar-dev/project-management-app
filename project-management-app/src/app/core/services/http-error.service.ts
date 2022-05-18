@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { EMPTY, Observable, Subject } from 'rxjs';
+import { UNAUTHORIZED_MESSAGE } from 'src/app/shared/errors';
 import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { MessageState } from 'src/app/shared/models/message-state.model';
 import { logout } from 'src/app/store/actions/auth.action';
@@ -32,6 +33,7 @@ export class HttpErrorService {
 
   private isUnauth(code: number): boolean {
     if (code === HttpErrorCode.UNAUTHORIZED) {
+      this.showMessage(UNAUTHORIZED_MESSAGE);
       this.store.dispatch(logout());
       return true;
     }
