@@ -23,7 +23,9 @@ export class TaskComponent implements OnInit {
     task: null,
     users: [],
   }
-
+  public selectedUser: User;
+  public selectUserMode = false;
+  public userIcon = 'add';
   readonly title = TASK_DEFAULT;
 
   constructor(public readonly boardHandlingService: BoardHandlingService) {}
@@ -35,5 +37,21 @@ export class TaskComponent implements OnInit {
       task: this.task,
       users: this.users,
     }
+  }
+
+  public userSelectToggle(): void {
+    if (this.selectUserMode) {
+      this.selectUserMode = false;
+      this.userIcon = 'add';
+    } else {
+      this.selectUserMode = true;
+      this.userIcon = 'clear';
+    }
+  }
+
+  public setUser(selectedUserId: string): void {
+    this.selectUserMode = false;
+    this.userIcon = 'add';
+    this.boardHandlingService.updateTask(this.boardID, this.columnID, this.task, selectedUserId);
   }
 }

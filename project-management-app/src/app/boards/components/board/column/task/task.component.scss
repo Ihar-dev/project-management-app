@@ -22,6 +22,8 @@
   }
 
   &__user {
+    text-align: center;
+    width: 100%;
     font-size: 2rem;
   }
 
@@ -34,5 +36,11 @@
       display: flex;
       justify-content: center;
     }
+  }
+
+  &__user-form {
+    position: absolute;
+    bottom: -8px;
+    left: 0;
   }
 }
