@@ -21,9 +21,10 @@ export enum Url {
 
 export enum TokenLimit {
   day = 86400000,
+  hourSix = 21600000,
   hour = 3600000,
   hourHalf = 1800000,
-  minutesThree = 60000,
+  minute = 60000,
 }
 
 export const HTTP_ERROR_MESSAGE_DEFAULT = 'An error occured. Please try again later.';
