@@ -8,11 +8,16 @@ import { ITask } from 'src/app/shared/models/task.model';
 export class GetUserNameDirective implements OnInit {
   @Input() public appGetUserName: ITask | null;
 
-  constructor(private el: ElementRef, private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private el: ElementRef) {
     this.el = el;
   }
 
   ngOnInit(): void {
-    this.renderer.setValue(this.el.nativeElement, 'uuu');
+    const div = this.renderer.createElement('div');
+    const divText = this.renderer.createText('User Name');
+    this.renderer.appendChild(div, divText);
+    this.renderer.appendChild(this.el.nativeElement, div);
+
+
   }
 }
