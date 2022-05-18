@@ -15,6 +15,9 @@ import {
   DialogCreationComponent,
   DialogInterface,
 } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
+import { UsersActions } from 'src/app/store/actions/users.action';
+import { UsersSelectors } from 'src/app/store/selectors/users.selector';
+import { User } from 'src/app/shared/models/user.model';
 
 const USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
 
@@ -41,13 +44,16 @@ export class TestComponent implements OnInit {
   columnIdForTask = '';
 
   boards$: Observable<IBoard[]> = of([]);
+  users$: Observable<User[]> = of([]);
 
   constructor(private store: Store, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getBoards();
+    this.getUsers();
 
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
+    this.users$ = this.store.select(UsersSelectors.selectUsers);
 
     this.boards$
       .pipe(
@@ -196,5 +202,10 @@ export class TestComponent implements OnInit {
         columnID: this.columnIdForTask,
       },
     });
+  }
+
+  /*  users methods */
+  getUsers(): void {
+    this.store.dispatch(UsersActions.getAll());
   }
 }

@@ -2,15 +2,14 @@
 @import "mixins";
 
 :host {
-  opacity: 0;
-  transform: scaleY(1%);
-  transform-origin: top;
-  animation: slideColumn 0.6s ease-in forwards;
+  opacity: 1;
+  // animation: slideColumn 0.6s ease-in forwards;
   @for $i from 0 through 10 {
     &:nth-of-type(#{$i}n) {
       animation-delay: #{$i * 0.2}s;
     }
   }
+  cursor: pointer;
 }
 
 .column {
@@ -22,6 +21,8 @@
   background-color: $board-column-bg;
 
   &__scrollable {
+    position: relative;
+    display: block;
     @include scrollbar(8px);
     max-height: calc(100vh - 38rem);
     height: 100%;
@@ -71,6 +72,7 @@
   }
 
   &__content {
+    display: block;
     padding: 0.8rem;
     overflow-y: auto;
   }
@@ -90,4 +92,24 @@
   .column__item {
     cursor: pointer;
   }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.5;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .column-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
