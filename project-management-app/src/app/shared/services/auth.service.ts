@@ -80,6 +80,15 @@ export class AuthService implements OnDestroy {
     if (!this.isAuthenticated) {
       return false;
     }
+    if (this.isTokenActive()) {
+      return true;
+    }
+
+    this.store.dispatch(logout());
+    return false;
+  }
+
+  isTokenActive(): boolean {
     const tokenData = this.lsService.getItem<TTokenResponse>(USER_TOKEN_KEY);
     if (tokenData && tokenData.exp) {
       const isTokenActive = this.checkTokenExpiration(tokenData.exp);
@@ -87,15 +96,13 @@ export class AuthService implements OnDestroy {
         return true;
       }
     }
-
-    this.store.dispatch(logout());
     return false;
   }
 
   private saveToken(token: string): void {
     const tokenExp: TTokenResponse = {
       token,
-      exp: this.getTokenExpDate(TokenLimit.day),
+      exp: this.getTokenExpDate(TokenLimit.minutesThree),
     };
     this.lsService.setItem(USER_TOKEN_KEY, tokenExp);
   }
@@ -111,7 +118,9 @@ export class AuthService implements OnDestroy {
   }
 
   private navigate(...paths: string[]): void {
-    this.router.navigate(paths, { replaceUrl: true });
+    this.router.navigate(paths, {
+      replaceUrl: true,
+    });
   }
 
   ngOnDestroy(): void {

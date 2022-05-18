@@ -23,9 +23,12 @@ export enum TokenLimit {
   day = 86400000,
   hour = 3600000,
   hourHalf = 1800000,
-  minutesThree = 180000,
+  minutesThree = 60000,
 }
 
 export const HTTP_ERROR_MESSAGE_DEFAULT = 'An error occured. Please try again later.';
 
 export type TErrorHandler = (error: HttpErrorResponse, storeAction: string) => Observable<never>;
+
+export const TOKEN_EXP_QUERY_KEY = 'token';
+export const TOKEN_EXP_QUERY_VALUE = 'expired';
