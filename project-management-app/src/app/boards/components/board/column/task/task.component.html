@@ -10,6 +10,7 @@
   </mat-card-content>
   <mat-card-actions class="task__actions">
     <app-task-member name="Username"></app-task-member>
+    <div [appGetUserName] = "task"></div>
     <button class="task__actions__add-btn" mat-button title="Add user to this task">
       <mat-icon>add</mat-icon>
     </button>
