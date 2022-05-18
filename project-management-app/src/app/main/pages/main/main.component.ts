@@ -3,6 +3,9 @@ import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
+import { User } from 'src/app/shared/models/user.model';
+import { UsersActions } from 'src/app/store/actions/users.action';
+import { UsersSelectors } from 'src/app/store/selectors/users.selector';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskSearchService } from '../../services/task-search.service';
@@ -23,6 +26,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public dataForSearch = '';
   private boardsSubs: Subscription;
   private searchResultsSubs: Subscription;
+  private usersSubs: Subscription;
   public boards$: Observable<IBoard[]>;
   public boards: IBoard[] = [];
   public initialBoards: IBoard[] = [];
@@ -31,6 +35,8 @@ export class MainComponent implements OnInit, OnDestroy {
   public searchDisplay = false;
   public searchResults: SearchResult[] = [];
   public SearchTitle: SearchTitles;
+  private users$: Observable < User[] >;
+  public users: User[] = [];
 
   constructor(
     private readonly router: Router,
@@ -39,6 +45,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.getUsers();
     this.getBoards();
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
     this.boardsSubs = this.boards$.subscribe((boards: IBoard[]) => {
@@ -56,10 +63,14 @@ export class MainComponent implements OnInit, OnDestroy {
       },
     );
     this.SearchTitle = SearchTitles.Down;
+    this.users$ = this.store.select(UsersSelectors.selectUsers);
+    this.usersSubs = this.users$.subscribe((users: User[]) => {
+      this.users = users;
+    });
   }
 
   public taskSearch(): void {
-    if (this.dataForSearch) this.taskSearchService.filter(this.boards, this.dataForSearch);
+    if (this.dataForSearch) this.taskSearchService.filter(this.boards, this.dataForSearch, this.users);
     else this.searchDisplay = false;
   }
 
@@ -99,5 +110,10 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.boardsSubs.unsubscribe();
     this.searchResultsSubs.unsubscribe();
+    this.usersSubs.unsubscribe();
+  }
+
+  private getUsers(): void {
+    this.store.dispatch(UsersActions.getAll());
   }
 }
