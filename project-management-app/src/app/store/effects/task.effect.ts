@@ -82,5 +82,77 @@ export class TaskEffects {
     ),
   );
 
+  dragTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TaskActions.DragTask),
+      mergeMap((action) =>
+        this.dbService.updateTask(action.boardID, action.columnID, action.taskID, action.task).pipe(
+          map((task) =>
+            TaskActions.PutTaskSuccess({
+              boardID: action.boardID,
+              columnID: action.columnID,
+              task,
+            }),
+          ),
+          catchError((err) => [
+            TaskActions.taskError({
+              data: {
+                error: err,
+                actionType: TaskAction.PutTask,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
+        ),
+      ),
+    ),
+  );
+
+  dragDeleteTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TaskActions.DragDeleteTask),
+      mergeMap((action) =>
+        this.dbService.deleteTask(action.boardID, action.columnID, action.taskID).pipe(
+          map(() => TaskActions.DeleteTaskSuccess({ ...action })),
+          catchError((err) => [
+            TaskActions.taskError({
+              data: {
+                error: err,
+                actionType: TaskAction.DeleteTask,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
+        ),
+      ),
+    ),
+  );
+
+  dragAddTask$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TaskActions.DragAddTask),
+      mergeMap((action) =>
+        this.dbService.addTask(action.boardID, action.columnID, action.taskRequest).pipe(
+          map((task) =>
+            TaskActions.AddTaskSuccess({
+              boardID: action.boardID,
+              columnID: action.columnID,
+              task,
+            }),
+          ),
+          catchError((err) => [
+            TaskActions.taskError({
+              data: {
+                error: err,
+                actionType: TaskAction.AddTask,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
+        ),
+      ),
+    ),
+  );
+
   constructor(private actions$: Actions, private dbService: TaskDbService) {}
 }

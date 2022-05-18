@@ -34,6 +34,15 @@ function replaceElementInIndex<T>(array: T[], newElement: T, index: number): T[]
   return [...array.slice(0, index), newElement, ...array.slice(index + 1)];
 }
 
+function compareTasks(a: ITask, b: ITask): boolean {
+  return (
+    a.done === b.done &&
+    a.title === b.title &&
+    a.description === b.description &&
+    a.order === b.order
+  );
+}
+
 const boardReducer = createReducer(
   initialState,
   on(
@@ -148,7 +157,74 @@ const boardReducer = createReducer(
     };
   }),
 
+  on(ColumnActions.dragColumn, (state, { boardID, column }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, column.id);
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        title: column.title,
+        order: column.order,
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: sortByOrder(newColumns),
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
   on(TaskActions.AddTaskSuccess, (state, { boardID, columnID, task }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, columnID);
+      const doubleIndex = columns[columnIndex].tasks.findIndex((oldTask) =>
+        compareTasks(oldTask, task),
+      );
+      if (doubleIndex !== -1) {
+        const currColumn: IColumn = {
+          ...columns[columnIndex],
+          tasks: replaceElementInIndex(columns[columnIndex].tasks, task, doubleIndex),
+        };
+        const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+        const currentBoard = {
+          ...newBoards[boardIndex],
+          columns: sortByOrder(newColumns),
+        };
+        newBoards.splice(boardIndex, 1, currentBoard);
+
+        return {
+          ...state,
+          boards: newBoards,
+        };
+      }
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        tasks: sortByOrder(columns[columnIndex].tasks.concat(task)),
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: sortByOrder(newColumns),
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(TaskActions.DragAddTask, (state, { boardID, columnID, task }): State => {
     const newBoards = copyThat(state.boards);
     const boardIndex = findIndexByID(newBoards, boardID);
     if (boardIndex !== -1) {
@@ -172,6 +248,29 @@ const boardReducer = createReducer(
   }),
 
   on(TaskActions.DeleteTaskSuccess, (state, { boardID, columnID, taskID }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, columnID);
+      const currColumn: IColumn = {
+        ...columns[columnIndex],
+        tasks: sortByOrder(filterOutID(columns[columnIndex].tasks, taskID)),
+      };
+      const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+      const currentBoard = {
+        ...newBoards[boardIndex],
+        columns: newColumns,
+      };
+      newBoards.splice(boardIndex, 1, currentBoard);
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(TaskActions.DragDeleteTask, (state, { boardID, columnID, taskID }): State => {
     const newBoards = copyThat(state.boards);
     const boardIndex = findIndexByID(newBoards, boardID);
     if (boardIndex !== -1) {
@@ -225,6 +324,54 @@ const boardReducer = createReducer(
         const currColumn: IColumn = {
           ...columns[columnIndex],
           tasks: sortByOrder(filterOutID(columns[columnIndex].tasks, task.id)),
+        };
+        const columnMovedToIndex = findIndexByID(columns, task.columnId);
+        const columnMovedTo = {
+          ...columns[columnMovedToIndex],
+          tasks: sortByOrder(columns[columnMovedToIndex].tasks.concat(currTask)),
+        };
+        const tempColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+        const newColumns = replaceElementInIndex(tempColumns, columnMovedTo, columnMovedToIndex);
+        const currentBoard = {
+          ...newBoards[boardIndex],
+          columns: newColumns,
+        };
+        newBoards.splice(boardIndex, 1, currentBoard);
+      }
+    }
+    return {
+      ...state,
+      boards: newBoards,
+    };
+  }),
+
+  on(TaskActions.DragTask, (state, { boardID, columnID, taskID, task }): State => {
+    const newBoards = copyThat(state.boards);
+    const boardIndex = findIndexByID(newBoards, boardID);
+    if (boardIndex !== -1) {
+      const { columns } = newBoards[boardIndex];
+      const columnIndex = findIndexByID(columns, columnID);
+      const { tasks } = columns[columnIndex];
+      const taskIndex = findIndexByID(tasks, taskID);
+      const currTask: ITask = {
+        ...tasks[taskIndex],
+        order: task.order,
+      };
+      if (columnID === task.columnId) {
+        const currColumn: IColumn = {
+          ...columns[columnIndex],
+          tasks: sortByOrder(replaceElementInIndex(tasks, currTask, taskIndex)),
+        };
+        const newColumns = replaceElementInIndex(columns, currColumn, columnIndex);
+        const currentBoard = {
+          ...newBoards[boardIndex],
+          columns: newColumns,
+        };
+        newBoards.splice(boardIndex, 1, currentBoard);
+      } else {
+        const currColumn: IColumn = {
+          ...columns[columnIndex],
+          tasks: sortByOrder(filterOutID(columns[columnIndex].tasks, taskID)),
         };
         const columnMovedToIndex = findIndexByID(columns, task.columnId);
         const columnMovedTo = {

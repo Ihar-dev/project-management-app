@@ -70,5 +70,25 @@ export class ColumnEffects {
     ),
   );
 
+  dragBoard$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ColumnActions.dragColumn),
+      mergeMap((action) =>
+        this.dbService.updateColumn(action.boardID, { ...action.column }).pipe(
+          map((column) => ColumnActions.putColumnSuccess({ boardID: action.boardID, column })),
+          catchError((err) => [
+            ColumnActions.columnError({
+              data: {
+                error: err,
+                actionType: ColumnAction.PutColumn,
+                messages: this.errorMessages,
+              },
+            }),
+          ]),
+        ),
+      ),
+    ),
+  );
+
   constructor(private actions$: Actions, private dbService: ColumnDbService) {}
 }
