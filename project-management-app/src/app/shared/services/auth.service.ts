@@ -86,6 +86,8 @@ export class AuthService implements OnDestroy {
   }
 
   isUserAuthenticated(): boolean {
+    this.query = {};
+
     if (!this.isAuthenticated) {
       return false;
     }
@@ -93,7 +95,6 @@ export class AuthService implements OnDestroy {
       return true;
     }
 
-    this.setTokenExpQueries();
     this.store.dispatch(logout());
     return false;
   }
@@ -105,7 +106,9 @@ export class AuthService implements OnDestroy {
       if (isTokenActive) {
         return true;
       }
+      this.setTokenExpQueries();
     }
+
     return false;
   }
 
