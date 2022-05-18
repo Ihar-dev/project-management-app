@@ -21,6 +21,7 @@ import { TaskEffects } from './store/effects/task.effect';
 import { environment } from '../environments/environment';
 import { metaReducers } from './store/storage.metareducer';
 import { UsersEffects } from './store/effects/users.effects';
+import { ErrorEffects } from './store/effects/error.effect';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +35,14 @@ import { UsersEffects } from './store/effects/users.effects';
       { board: boardReducer.reducer, auth: auth.authReducer, users: usersReducer.reducer },
       { metaReducers },
     ),
-    EffectsModule.forRoot([BoardEffects, ColumnEffects, TaskEffects, AuthEffects, UsersEffects]),
+    EffectsModule.forRoot([
+      BoardEffects,
+      ColumnEffects,
+      TaskEffects,
+      AuthEffects,
+      ErrorEffects,
+      UsersEffects,
+    ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   exports: [HeaderComponent],

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -26,6 +27,6 @@ import { ColumnEditComponent } from './components/board/column/column-edit/colum
     TaskMemberComponent,
     ColumnEditComponent,
   ],
-  imports: [CommonModule, BoardRoutingModule, MaterialModule, SharedModule],
+  imports: [CommonModule, BoardRoutingModule, MaterialModule, SharedModule, DragDropModule],
 })
 export class BoardModule {}
