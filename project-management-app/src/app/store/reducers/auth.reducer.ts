@@ -10,7 +10,7 @@ export const authReducer = createReducer(
     isAuthenticated: true,
   })),
 
-  on(AuthActions.authFailure, (state) => ({
+  on(AuthActions.loginFailure, (state) => ({
     ...state,
     ...authInitialState,
   })),

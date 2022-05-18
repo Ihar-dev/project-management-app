@@ -17,13 +17,13 @@ enum SearchTitles {
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit, OnDestroy {
   public dataForSearch = '';
   private boardsSubs: Subscription;
   private searchResultsSubs: Subscription;
-  public boards$: Observable < IBoard[] >;
+  public boards$: Observable<IBoard[]>;
   public boards: IBoard[] = [];
   public initialBoards: IBoard[] = [];
   public mouseExisting = false;
@@ -32,8 +32,11 @@ export class MainComponent implements OnInit, OnDestroy {
   public searchResults: SearchResult[] = [];
   public SearchTitle: SearchTitles;
 
-  constructor(private readonly router: Router, private store: Store,
-    private readonly taskSearchService: TaskSearchService) {}
+  constructor(
+    private readonly router: Router,
+    private store: Store,
+    private readonly taskSearchService: TaskSearchService,
+  ) {}
 
   ngOnInit(): void {
     this.getBoards();
@@ -44,12 +47,14 @@ export class MainComponent implements OnInit, OnDestroy {
         this.boards = boards;
       } else this.boards = boards;
     });
-    this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe((results: SearchResult[]) => {
-      if (results.length) {
-        this.searchResults = results;
-        this.searchDisplay = true;
-      } else this.searchDisplay = false;
-    });
+    this.searchResultsSubs = this.taskSearchService.searchResults$.subscribe(
+      (results: SearchResult[]) => {
+        if (results.length) {
+          this.searchResults = results;
+          this.searchDisplay = true;
+        } else this.searchDisplay = false;
+      },
+    );
     this.SearchTitle = SearchTitles.Down;
   }
 
@@ -64,8 +69,7 @@ export class MainComponent implements OnInit, OnDestroy {
       this.searchContainerDisplay = false;
       this.searchDisplay = false;
       this.dataForSearch = '';
-    }
-    else {
+    } else {
       this.SearchTitle = SearchTitles.Up;
       this.searchContainerDisplay = true;
       this.boards.forEach((el: IBoard) => this.getBoardById(el.id));
