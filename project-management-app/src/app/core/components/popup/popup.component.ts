@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface IPopupData {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   isCancelBtn: boolean;
   isSuccessImg?: boolean;
   btnCancelText?: string;

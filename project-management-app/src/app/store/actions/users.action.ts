@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
 
-enum UsersAction {
+export enum UsersAction {
   GetAll = '[Users] GET_ALL',
   GetAllSuccess = '[Users] GET_ALL_SUCCESS',
   DeleteUser = '[Users] DELETE_USER',
