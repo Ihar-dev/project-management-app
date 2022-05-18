@@ -16,8 +16,13 @@
   }
 
   &__title,
-  &__description {
+  &__description,
+  &__user {
     word-break: break-word;
+  }
+
+  &__user {
+    font-size: 2rem;
   }
 
   &__actions {

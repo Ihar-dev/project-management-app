@@ -24,6 +24,7 @@
       <app-task
         class="column__item column-box"
         *ngFor="let task of tasks"
+        [users]="users"
         [task]="task"
         [columnID]="columnID"
         [boardID]="boardID"
