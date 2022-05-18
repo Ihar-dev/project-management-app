@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 import { ITask } from 'src/app/shared/models/task.model';
 
 @Directive({
-  selector: '[appGetUserName]'
+  selector: '[appGetUserName]',
 })
-export class GetUserNameDirective {
+export class GetUserNameDirective implements OnInit {
   @Input() public appGetUserName: ITask | null;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
@@ -15,5 +15,4 @@ export class GetUserNameDirective {
   ngOnInit(): void {
     this.renderer.setValue(this.el.nativeElement, 'uuu');
   }
-
 }
