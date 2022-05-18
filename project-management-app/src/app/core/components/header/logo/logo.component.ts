@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-const LOGO = '../../../assets/icon/kanban-2.png';
+const LOGO = '/dist/project-management-app/assets/icon/kanban-2.png';
 
 @Component({
   selector: 'app-logo',
