@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { EMPTY, Subject } from 'rxjs';
+import { EMPTY, Observable, Subject } from 'rxjs';
 import { IHttpErrorMessage } from 'src/app/shared/models/http-error-message.model';
 import { MessageState } from 'src/app/shared/models/message-state.model';
 import { logout } from 'src/app/store/actions/auth.action';
@@ -15,15 +15,14 @@ export class HttpErrorService {
 
   constructor(private store: Store) {}
 
-  handleError(error: HttpErrorResponse, storeAction: string, errorMessages: IHttpErrorMessage[]) {
+  handleError(error: HttpErrorResponse, errorMessages: IHttpErrorMessage[]): Observable<never> {
     const statusCode = error.status;
     if (this.isUnauth(statusCode)) {
       return EMPTY;
     }
     const currentError = errorMessages.find((err) => err.statusCode === statusCode);
-
-    console.log(`ERROR WITH ${storeAction}: ${error.error.message}`, error);
     this.showMessage(currentError?.message);
+
     return EMPTY;
   }
 
