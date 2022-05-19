@@ -2,7 +2,7 @@
 @import "mixins";
 
 .task {
-  padding: 1.5rem;
+  padding: 2.4rem;
   border-radius: $border-radius;
 
   &__header {
@@ -40,7 +40,8 @@
 
   &__user-form {
     position: absolute;
-    bottom: -8px;
-    left: 0;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }

@@ -12,12 +12,11 @@
     <app-task-member name="Username"></app-task-member>
     <div class="task__user" [appGetUserName] = "taskAndUsers"></div>
     <button class="task__actions__add-btn" mat-button title="Select User"
-    (click)="userSelectToggle()" appClickStopPropagation>
+    (click)="userSelectToggle()" *ngIf="!selectUserMode" appClickStopPropagation>
       <mat-icon>{{ userIcon }}</mat-icon>
     </button>
     <form class="task__user-form" *ngIf="selectUserMode" appClickStopPropagation>
       <mat-form-field appearance="fill" class="task__user-select">
-        <!-- <mat-label>select a user</mat-label> -->
         <mat-select [(ngModel)]="selectedUser" name="user" class="task__user-select">
           <mat-option *ngFor="let user of users" [value]="user.name" (click)="setUser(user.id)">
             {{user.name}}
