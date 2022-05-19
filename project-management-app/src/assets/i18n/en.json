@@ -111,6 +111,6 @@
     "empty-board": "No data here yet. You may add your first column!"
   },
 
-  "default-error": "22",
+  "default-error": "An error occurred. Please try again later.",
   "auth-error": "It seems you are not logged in. Please login."
 }

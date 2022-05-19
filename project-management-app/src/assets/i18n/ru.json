@@ -111,6 +111,6 @@
     "empty-board": "Пока здесь пусто. Вы можете создать вашу первую колонку!"
   },
 
-  "default-error": "22",
-  "auth-error": "It seems you are not logged in. Please login."
+  "default-error": "Произошла ошибка. Попробуйте позже.",
+  "auth-error": "Похоже что вы не вошли в аккаунт. Пожалуйста войдите."
 }
