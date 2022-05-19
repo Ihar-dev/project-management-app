@@ -20,8 +20,11 @@ const DELETE_CONFIRM = {
   message: 'Once you confirm, all of your account data will be permanently deleted.',
   transloco: 'profile.delete-description',
 };
-const UPDATE_TITLE = 'Your data has been successfully updated.';
-const UPDATE_BTN_TEXT = 'Ok';
+const UPDATE_TITLE = {
+  message: 'Your data has been successfully updated.',
+  transloco: 'update-title',
+};
+const UPDATE_BTN_TEXT = { message: 'Ok', transloco: 'update-btn' };
 const UPDATE_POPUP_DELAY = 2000;
 
 @Component({
@@ -88,10 +91,10 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     const dialogTimer = timer(UPDATE_POPUP_DELAY);
     const dialogRef = this.dialog.open(PopupComponent, {
       data: <IPopupData>{
-        title: UPDATE_TITLE,
+        title: this.translocoService.translate(UPDATE_TITLE.transloco),
         isCancelBtn: false,
         isSuccessImg: true,
-        btnSubmitText: UPDATE_BTN_TEXT,
+        btnSubmitText: this.translocoService.translate(UPDATE_BTN_TEXT.transloco),
       },
     });
 
