@@ -22,9 +22,9 @@ const DELETE_CONFIRM = {
 };
 const UPDATE_TITLE = {
   message: 'Your data has been successfully updated.',
-  transloco: 'update-title',
+  transloco: 'profile.update-title',
 };
-const UPDATE_BTN_TEXT = { message: 'Ok', transloco: 'update-btn' };
+const UPDATE_BTN_TEXT = { message: 'Ok', transloco: 'profile.update-btn' };
 const UPDATE_POPUP_DELAY = 2000;
 
 @Component({

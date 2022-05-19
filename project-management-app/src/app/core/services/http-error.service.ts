@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { UNAUTHORIZED_MESSAGE } from 'src/app/shared/errors';
@@ -14,7 +15,7 @@ import { HttpErrorCode, HTTP_ERROR_MESSAGE_DEFAULT } from '../../shared/constant
 export class HttpErrorService {
   error$ = new Subject<MessageState>();
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private transloco: TranslocoService) {}
 
   handleError(error: HttpErrorResponse, errorMessages: IHttpErrorMessage[]): Observable<never> {
     const statusCode = error.status;
@@ -27,8 +28,8 @@ export class HttpErrorService {
     return EMPTY;
   }
 
-  showMessage(message: string = HTTP_ERROR_MESSAGE_DEFAULT): void {
-    this.error$.next({ isShown: true, message });
+  showMessage(message: string = HTTP_ERROR_MESSAGE_DEFAULT.transloco): void {
+    this.error$.next({ isShown: true, message: this.transloco.translate(message) });
   }
 
   private isUnauth(code: number): boolean {

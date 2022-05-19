@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { debounceTime, map, ReplaySubject, takeUntil } from 'rxjs';
 import { HTTP_ERROR_MESSAGE_DEFAULT } from 'src/app/shared/constants';
 import { MessageState } from 'src/app/shared/models/message-state.model';
 import { HttpErrorService } from '../../services/http-error.service';
 
-const ERROR_MESSAGE = HTTP_ERROR_MESSAGE_DEFAULT;
+const ERROR_MESSAGE = HTTP_ERROR_MESSAGE_DEFAULT.transloco;
 const MESSAGE_DISAPPEAR_TIME = 5000;
 const MESSAGE_LENGTH_MAX = 50;
 const DEBOUNCE_TIME = 10;
@@ -17,7 +18,7 @@ const DEBOUNCE_TIME = 10;
 export class MessageBoxComponent implements OnInit, OnDestroy {
   state: MessageState = {
     isShown: false,
-    message: ERROR_MESSAGE,
+    message: this.transloco.translate(ERROR_MESSAGE),
   };
 
   private destroyed$ = new ReplaySubject<boolean>(1);
@@ -26,7 +27,7 @@ export class MessageBoxComponent implements OnInit, OnDestroy {
 
   private timeoutId: ReturnType<typeof setTimeout> | null = null;
 
-  constructor(private httpErrorService: HttpErrorService) {}
+  constructor(private httpErrorService: HttpErrorService, private transloco: TranslocoService) {}
 
   ngOnInit(): void {
     this.httpErrorService.error$
