@@ -1,0 +1,22 @@
+{
+  "tabWidth": 2,
+  "printWidth": 100,
+  "useTabs": false,
+  "overrides": [
+    {
+      "files": "*.component.html",
+      "options": {
+        "parser": "angular"
+      }
+    },
+    {
+      "files": "*.ts",
+      "options": {
+        "semi": true,
+        "bracketSpacing": true,
+        "singleQuote": true,
+        "trailingComma": "all"
+      }
+    }
+  ]
+}

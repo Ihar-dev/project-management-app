@@ -1,0 +1,13 @@
+.button-board-delete {
+  min-width: 30px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.5);
+  border: none;
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}

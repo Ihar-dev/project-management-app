@@ -1,0 +1,121 @@
+{
+  "button": {
+    "create-board": "Create new board",
+    "apply": "Apply",
+    "discard": "Discard",
+    "back-home": "Back to home page",
+    "submit": "Submit",
+    "home": "Home",
+    "delete-profile": "Delete profile",
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "login-title": "{{auth.login-title}}"
+  },
+
+  "navigation": {
+    "profile": "Profile",
+    "about": "About",
+    "logout": "Logout"
+  },
+
+  "auth": {
+    "login-title": "Log in",
+    "signup-title": "Sign up",
+    "login-ph": "Enter login",
+    "password-ph": "Password",
+    "password-confirm-ph": "Confirm password",
+    "name-ph": "Enter your name",
+    "register-link": "Not registered yet? Sign up!",
+    "login-link": "Not registered yet? Sign up!",
+    "name": "Name",
+    "login": "Login",
+    "please-login": "Please login.",
+    "session": "Your session has expired.",
+
+    "error": {
+      "login": "Please enter a login.",
+      "password": "Please enter a password.",
+      "name": "Please enter a name.",
+      "length": "The min length is {{length}} {length, plural, one {symbol} other {symbols}}.",
+      "password-upLowCase": "Include uppercase and lowercase letters.",
+      "password-digits": "Include at least 1 digit.",
+      "password-special": "Include 1 special character (!@#$%^&?[]).",
+      "password-confirm": "Please confirm a password.",
+      "password-match": "Passwords do not match!",
+      "password-wrong": "Wrong password!"
+    }
+  },
+
+  "welcome": {
+    "our-team": "Our team",
+    "Ihar": "Ihar",
+    "Tetiana": "Tetiana",
+    "Ilia": "Ilia",
+    "slogan": "Take your company to\nthe next level with a lot of\nideas and making great\nprogress"
+  },
+
+  "profile": {
+    "change-general": "Change general data",
+    "change-password": "Change password",
+    "update-general": "Update general data",
+    "current-password": "Current password",
+    "new-password": "New password",
+    "confirm-new-password": "Confirm new password",
+    "name": "Name",
+    "login": "Login",
+    "delete-description": "Once you confirm, all of your account data will be permanently deleted.",
+    "delete-title": "Delete account",
+    "update-title": "Your data has been successfully updated.",
+    "update-btn": "ok"
+  },
+
+  "main": {
+    "boards": "Boards",
+    "search-down": "&dArr; Search &dArr;",
+    "search-up": "&uArr; Search &uArr;",
+    "task-search": "task search",
+    "edit": "Edit",
+    "save": "Save",
+    "title-editing": "board title editing",
+    "description-editing": "board description editing",
+    "title-required": "The title is required",
+    "title-short": "The title is too short",
+    "title-long": "The title is too long",
+    "description-required": "The description is required",
+    "description-short": "The description is too short",
+    "description-long": "The description is too long",
+    "delete-board": "Are you sure you would like to delete the board?",
+    "delete-column": "Are you sure you would like to delete the column?",
+    "delete-task": "Are you sure you would like to delete the task?"
+  },
+
+  "dialog": {
+    "title": {
+      "board": "Enter a board name:",
+      "column": "Enter a column name:",
+      "task": "Enter a task name:",
+      "columnEdit": "Edit a column name:",
+      "taskEdit": "Edit a task name:"
+    },
+    "default": {
+      "board": "New board",
+      "column": "New column",
+      "task": "New task"
+    },
+    "description": "{{main.description-required}}",
+    "title-alert": "Title must contain at least {{length}} {length, plural, one {character} other {characters}}",
+    "description-alert": "Description must contain at least {{length}} {length, plural, one {character} other {characters}}"
+  },
+
+  "column": {
+    "add-task": "Add task",
+    "delete-column": "Delete column",
+    "delete-task": "Delete task",
+    "add-column": "Add column",
+    "empty-board": "No data here yet. You may add your first column!",
+    "select-user": "Select user"
+  },
+
+  "default-error": "An error occurred. Please try again later.",
+  "auth-error": "It seems you are not logged in. Please login."
+}

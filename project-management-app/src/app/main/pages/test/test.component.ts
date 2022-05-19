@@ -1,0 +1,211 @@
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { filter, Observable, of, take, tap } from 'rxjs';
+import { IBoard } from 'src/app/shared/models/board.model';
+import { IColumnRequest } from 'src/app/shared/models/column-request.model';
+import { IColumn } from 'src/app/shared/models/column.model';
+import { ITaskRequest } from 'src/app/shared/models/task-request.model';
+import { ITask } from 'src/app/shared/models/task.model';
+import { BoardActions } from 'src/app/store/actions/board.action';
+import { ColumnActions } from 'src/app/store/actions/column.action';
+import { TaskActions } from 'src/app/store/actions/task.action';
+import { BoardSelectors } from 'src/app/store/selectors/board.selector';
+import { MatDialog } from '@angular/material/dialog';
+import {
+  DialogCreationComponent,
+  DialogInterface,
+} from 'src/app/shared/components/dialog-creation/dialog-creation.component';
+import { UsersActions } from 'src/app/store/actions/users.action';
+import { UsersSelectors } from 'src/app/store/selectors/users.selector';
+import { User } from 'src/app/shared/models/user.model';
+
+const USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
+
+@Component({
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.scss'],
+})
+export class TestComponent implements OnInit {
+  defaultUser = USER_ID;
+
+  boardTitle = '';
+
+  columnTitle = '';
+
+  newBoardTitle = '';
+
+  taskTitle = '';
+
+  taskDescription = '';
+
+  boardIdForColumn = '';
+
+  columnIdForTask = '';
+
+  boards$: Observable<IBoard[]> = of([]);
+  users$: Observable<User[]> = of([]);
+
+  constructor(private store: Store, private dialog: MatDialog) {}
+
+  ngOnInit(): void {
+    this.getBoards();
+    this.getUsers();
+
+    this.boards$ = this.store.select(BoardSelectors.selectBoards);
+    this.users$ = this.store.select(UsersSelectors.selectUsers);
+
+    this.boards$
+      .pipe(
+        filter((boards) => boards.length > 0),
+        take(1),
+        tap((boards) =>
+          boards.forEach((board) =>
+            this.store.dispatch(BoardActions.getBoardById({ id: board.id })),
+          ),
+        ),
+      )
+      .subscribe();
+  }
+
+  addBoard(): void {
+    this.store.dispatch(
+      BoardActions.addBoard({
+        board: { title: this.boardTitle, description: 'EMPTY DESCRIPTION' },
+      }),
+    );
+  }
+
+  getBoards(): void {
+    this.store.dispatch(BoardActions.getBoards());
+  }
+
+  deleteBoard(id: string): void {
+    this.store.dispatch(BoardActions.deleteBoard({ id }));
+  }
+
+  getBoardById(id: string): void {
+    this.store.dispatch(BoardActions.getBoardById({ id }));
+  }
+
+  renameBoard(id: string): void {
+    this.store.dispatch(
+      BoardActions.putBoard({
+        id,
+        board: { title: this.newBoardTitle, description: 'EMPTY DESCRIPTION' },
+      }),
+    );
+  }
+
+  addColumn(boardID: string, column: IColumnRequest): void {
+    this.store.dispatch(
+      ColumnActions.addColumn({
+        boardID,
+        column,
+      }),
+    );
+  }
+
+  deleteColumn(boardID: string, columnID: string): void {
+    this.store.dispatch(
+      ColumnActions.deleteColumn({
+        boardID,
+        columnID,
+      }),
+    );
+  }
+
+  renameColumn(boardID: string, column: Partial<IColumn>): void {
+    this.store.dispatch(
+      ColumnActions.putColumn({
+        boardID,
+        column,
+      }),
+    );
+  }
+
+  renameColumnModal(boardID: string, column: IColumn): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'columnEdit',
+        boardID,
+        column,
+      },
+    });
+  }
+
+  addTask(boardID: string, columnID: string, task: Partial<ITaskRequest>): void {
+    this.store.dispatch(
+      TaskActions.AddTask({
+        boardID,
+        columnID,
+        task,
+      }),
+    );
+  }
+
+  deleteTask(boardID: string, columnID: string, taskID: string): void {
+    this.store.dispatch(
+      TaskActions.DeleteTask({
+        boardID,
+        columnID,
+        taskID,
+      }),
+    );
+  }
+
+  updateTask(
+    boardID: string,
+    columnID: string,
+    taskID: string,
+    task: Omit<ITaskRequest, 'id'>,
+  ): void {
+    this.store.dispatch(
+      TaskActions.PutTask({
+        boardID,
+        columnID,
+        taskID,
+        task,
+      }),
+    );
+  }
+
+  updateTaskModal(boardID: string, columnID: string, task: ITask): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'taskEdit',
+        boardID,
+        columnID,
+        task,
+      },
+    });
+  }
+
+  findLastOrder(array: IColumn[] | ITask[] | undefined): number {
+    if (!array || !array.length) {
+      return 1;
+    }
+    return array[array.length - 1].order + 1;
+  }
+
+  openCreateColumnDialog(): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{ type: 'column', boardID: this.boardIdForColumn },
+    });
+  }
+
+  openCreateTaskDialog(): void {
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{
+        type: 'task',
+        boardID: this.boardIdForColumn,
+        columnID: this.columnIdForTask,
+      },
+    });
+  }
+
+  /*  users methods */
+  getUsers(): void {
+    this.store.dispatch(UsersActions.getAll());
+  }
+}

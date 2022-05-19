@@ -1,0 +1,94 @@
+@import "variables";
+@import "mixins";
+
+:host {
+  flex-grow: 1;
+}
+
+.container {
+  @include animateScaleUp();
+
+  padding-top: 0;
+  margin-top: -11.3rem;
+
+  @media screen and (max-width: $tablet) {
+    margin-top: -2rem;
+  }
+}
+
+.profile-page {
+  &__bg {
+    min-height: 20rem;
+    background-color: $board-column-title-input;
+    opacity: 0.1;
+    transform: translateY(-100%);
+    animation: goUp 0.6s 0.2s ease-in forwards;
+  }
+
+  &__content {
+    position: relative;
+    padding: 0 2rem 2rem;
+    min-height: 50rem;
+    background-color: $form-bg;
+    border-radius: $border-radius;
+  }
+}
+
+.user-info {
+  @extend %flex-normal-pattern;
+
+  padding: 20px 10px;
+  gap: 1.5rem;
+
+  @media screen and (max-width: $tablet) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__name {
+    width: 100%;
+    font-size: 3.4rem;
+    font-weight: 500;
+    word-break: break-all;
+  }
+
+  &__img {
+    color: $form-bg;
+    transform: scale(0);
+    opacity: 0.5;
+    animation: scaleUserImg 0.8s 0.3s ease-in-out forwards;
+
+    &__icon {
+      margin-top: -4rem;
+      width: 15rem;
+      height: 15rem;
+      font-size: 15rem;
+      background-color: $profile-user-bg;
+      border-radius: 50%;
+    }
+
+    @media screen and (max-width: $tablet) {
+      position: absolute;
+      top: -12rem;
+      left: calc(50% - 7.5rem);
+    }
+  }
+
+  &__btn {
+    height: 5rem;
+
+    @media screen and (max-width: $tablet) {
+      width: 20rem;
+    }
+  }
+}
+
+.user-data {
+  &__form {
+    @extend %flex-column-pattern;
+
+    margin: 0 auto;
+    max-width: 55rem;
+    text-align: center;
+  }
+}

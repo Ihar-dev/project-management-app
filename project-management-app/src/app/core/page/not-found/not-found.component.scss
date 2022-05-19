@@ -1,0 +1,46 @@
+@import "variables";
+
+
+:host{
+  flex-grow: 1;
+  display: flex;
+}
+
+.block {
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+  width: 100%;
+  background-color: $color-white;
+  min-height: 60vh;
+  overflow: hidden;
+
+  &__img {
+    max-width: 90rem;
+    width: 100%;
+    height: 40vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}
+
+.btn {
+  color: $color-grey;
+  font-size: 3rem;
+  font-weight: 300;
+  border-radius: 2rem;
+  border: 2px solid $color-grey;
+  padding: 1rem 2rem;
+  background: none;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: $color-grey;
+    color: $color-grey-dark;
+  }
+}

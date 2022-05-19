@@ -1,0 +1,211 @@
+@import "mixins";
+@import "variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media screen and (orientation: landscape) {
+  .main__container {
+    background: $purple-bg;
+  }
+}
+
+.main__container {
+  position: relative;
+  flex-grow: 1;
+  @extend %flex-column-pattern;
+  background-position: bottom;
+  background-size: cover;
+
+  h1 {
+    @extend %big-text-pattern;
+    margin: 1rem;
+    font-size: 5rem;
+    line-height: 9rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    border-radius: 2rem;
+    background-color: $theme-primary-transparent;
+    color: white;
+    transition: box-shadow 0.3s, color 0.3s;
+    user-select: none;
+
+    &:hover,
+    &:focus {
+      color: $theme-accent;
+      box-shadow: 0 0.8rem 0.8rem -0.4rem $theme-accent-transparent;
+    }
+  }
+}
+
+.main__inner-container {
+  position: relative;
+  width: calc(100% - 8rem);
+  height: auto;
+  @extend %flex-column-pattern;
+  @include scrollbar(10px, 100%);
+  margin: 0 4rem 4rem 4rem;
+  padding: 1rem;
+  row-gap: 3rem;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: $tablet) {
+  .main__header-container {
+    flex-direction: column;
+  }
+}
+
+.main__header-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 14rem);
+}
+
+.main__search-button {
+  border-radius: 1.5rem;
+  @extend %normal-text-pattern;
+  font-size: 4rem;
+  line-height: 4.5rem;
+  padding: 1rem 2rem;
+  margin-right: 2rem;
+  text-align: center;
+  color: white;
+  background-color: $board-blue-bg;
+  transition: box-shadow 0.3s, transform 0.3s;
+
+  &:hover {
+    @extend %hover-pattern;
+  }
+}
+
+.main__search-container {
+  position: absolute;
+  @extend %flex-column-pattern;
+  row-gap: 2rem;
+  bottom: 0;
+  right: -3%;
+  width: 106%;
+  height: 0;
+  border-radius: 2rem 0 0 2rem;
+  transform: translateY(100%);
+  @include scrollbar(8px);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  background-color: $theme-primary-transparent;
+  transition: height 0.5s, padding 0.5s;
+  z-index: 300;
+
+  &.active {
+    height: 70vh;
+    padding: 3rem;
+  }
+}
+
+@media screen and (max-width: $laptop) {
+  .main__search-container {
+    &.active {
+      height: 45vh;
+    }
+  }
+}
+
+.main__inner-search-container,
+.main__search-results-container {
+  position: relative;
+  width: 100%;
+  @extend %flex-column-pattern;
+  row-gap: 1.5rem;
+  border-radius: 2rem;
+  background-color: $color-white-darken;
+  z-index: 400;
+}
+
+.main__inner-search-container {
+  border: solid 2px $color-grey;
+}
+
+.main__search-results-container {
+  height: 0;
+  margin: 2rem;
+  padding: 2rem;
+  @extend %normal-text-pattern;
+  color: $font-black;
+  opacity: 0;
+  transition: opacity 1s;
+
+  &.active {
+    opacity: 1;
+    height: max-content;
+  }
+
+  h2 {
+    font-size: 4rem;
+    line-height: 5rem;
+  }
+
+  .main__search-result-container {
+    align-self: flex-start;
+    background-color: $color-grey;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: $theme-primary-transparent;
+    }
+  }
+}
+
+.board-input-form {
+  font-size: 3rem;
+  width: 100%;
+}
+
+.main__reset-button-icon {
+  width: 5rem;
+}
+
+.main__make-search-button {
+  position: relative;
+  width: 10rem;
+  height: 10rem;
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+  transition: box-shadow 0.3s, transform 0.3s;
+  z-index: 300;
+
+  &:hover {
+    @extend %hover-grey-pattern;
+  }
+}
+
+.user-menu {
+  position: relative;
+}
+
+.mat-menu-item {
+  @extend %normal-text-pattern;
+  font-size: 2rem;
+  color: $font-black;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $theme-primary-transparent;
+  }
+}
+
+.mat-icon {
+  font-size: 4rem;
+  width: 4rem;
+  height: 4rem;
+}

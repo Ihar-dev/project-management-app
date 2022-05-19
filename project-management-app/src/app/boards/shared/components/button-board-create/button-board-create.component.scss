@@ -1,0 +1,11 @@
+@import "variables";
+@import "mixins";
+
+.button-board-create {
+  @include btn-shadow-style;
+
+  min-width: 180px;
+  width: 100%;
+  height: 36px;
+  border-radius: $border-radius;
+}

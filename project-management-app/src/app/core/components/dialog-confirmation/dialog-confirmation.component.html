@@ -1,0 +1,8 @@
+<h2 class="dialog__title">{{ data.h2 }}</h2>
+<p class="dialog__text" *ngIf="data.p">{{ data.p }}</p>
+<div class="dialog__btn-block" *transloco="let t; read: 'button'">
+  <button mat-raised-button color="primary" class="btn" [mat-dialog-close]="true">
+    {{ t("apply") }}
+  </button>
+  <button mat-raised-button color="warn" class="btn" mat-dialog-close>{{ t("discard") }}</button>
+</div>

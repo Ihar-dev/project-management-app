@@ -1,0 +1,51 @@
+@import "variables";
+@import "mixins";
+
+.disabled {
+  opacity: 0.3;
+}
+
+.task {
+  padding: 1.8rem;
+  border-radius: $border-radius;
+
+  &__header {
+    @extend %flex-normal-pattern;
+  }
+
+  &__title {
+    flex: 0 1 80%;
+    font-size: 2.2rem;
+    font-weight: 500;
+  }
+
+  &__title,
+  &__description,
+  &__user {
+    word-break: break-word;
+  }
+
+  &__user {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+  }
+
+  &__actions {
+    @extend %flex-normal-pattern;
+
+    &__add-btn {
+      min-width: 3rem;
+      width: 4rem;
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  &__user-form {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

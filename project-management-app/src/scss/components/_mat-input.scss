@@ -1,0 +1,23 @@
+@import "variables";
+
+.mat-form-field {
+  font-size: 14px;
+
+  .mat-form-field-outline {
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
+  }
+
+  .mat-form-field-outline .mat-form-field-outline-start {
+    border-radius: $border-radius 0 0 $border-radius;
+    min-width: $border-radius;
+  }
+
+  .mat-form-field-outline .mat-form-field-outline-end {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+
+  &.mat-form-field-appearance-outline .mat-form-field-flex {
+    padding: 0 60px 2px 20px;
+  }
+}

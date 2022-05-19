@@ -1,0 +1,50 @@
+@import "variables";
+@import "mixins";
+
+.main {
+  @include animateScaleUp();
+
+  display: flex;
+  box-shadow: $box-shadow;
+  border-radius: $border-radius;
+
+  @media screen and (max-width: $laptop) {
+    justify-content: center;
+    box-shadow: none;
+  }
+
+  &__abstract {
+    height: auto;
+    background: url("../../../../assets/images/auth_module/form_bg.png") top left / cover no-repeat;
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  &__form,
+  &__abstract {
+    position: relative;
+    flex: 0 1 50%;
+  }
+
+  &__form {
+    @media screen and (max-width: $laptop) {
+      flex: 0 1 85%;
+    }
+
+    @media screen and (max-width: $mobile) {
+      flex: 0 1 100%;
+    }
+  }
+
+  &__abstract {
+    @media screen and (max-width: $laptop) {
+      display: none;
+    }
+  }
+}
+
+.btn-back {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  z-index: 510;
+}

@@ -1,0 +1,57 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "plugins": ["import", "ngrx"],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["./tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "prettier"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/no-empty-lifecycle-method": "off",
+        "import/prefer-default-export": "off",
+        "class-methods-use-this": "off",
+        "no-console": "off",
+        "linebreak-style": "off",
+        "@typescript-eslint/lines-between-class-members": ["off"],
+        "arrow-parens": "off",
+        "no-plusplus": "off",
+        "spaced-comment": ["off"],
+        "ngrx/prefer-effect-callback-in-block-statement": "off",
+        "ngrx/on-function-explicit-return-type": "off"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}
