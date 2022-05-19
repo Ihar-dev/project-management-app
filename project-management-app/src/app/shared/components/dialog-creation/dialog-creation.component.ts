@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { TranslocoService } from '@ngneat/transloco';
 import { EMPTY, map, Observable, of, take, tap } from 'rxjs';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { ColumnActions } from 'src/app/store/actions/column.action';
@@ -26,17 +27,17 @@ export interface DialogInterface {
 }
 
 enum DialogTitle {
-  board = 'Enter a board name:',
-  column = 'Enter a column name:',
-  task = 'Enter a task name:',
-  columnEdit = 'Edit a column name:',
-  taskEdit = 'Edit a task name:',
+  board = 'dialog.title.board',
+  column = 'dialog.title.column',
+  task = 'dialog.title.task',
+  columnEdit = 'dialog.title.columnEdit',
+  taskEdit = 'dialog.title.taskEdit',
 }
 
 enum DefaultTitle {
-  board = 'New board',
-  column = 'New column',
-  task = 'New task',
+  board = 'dialog.default.board',
+  column = 'dialog.default.column',
+  task = 'dialog.default.task',
   columnEdit = '',
   taskEdit = '',
 }
@@ -46,6 +47,8 @@ const MIN_TITLE_LENGTH = 3;
 const DEFAULT_ALERT = {
   TITLE: `Title must contain at least ${MIN_TITLE_LENGTH} characters`,
   DESCRIPTION: `Description must contain at least  ${MIN_TITLE_LENGTH} characters`,
+  TitleTransloco: 'title-alert',
+  DescriptionTransloco: 'description-alert',
 };
 
 @Component({
@@ -58,15 +61,17 @@ export class DialogCreationComponent implements OnInit {
 
   private currentUser$: Observable<User | null> = EMPTY;
 
-  title: string = DefaultTitle[this.data.type];
+  title: string = this.transloco.translate(DefaultTitle[this.data.type]);
 
   description = '';
 
-  titleAlert = DEFAULT_ALERT.TITLE;
+  titleAlert = DEFAULT_ALERT.TitleTransloco;
 
-  descriptionAlert = DEFAULT_ALERT.DESCRIPTION;
+  descriptionAlert = DEFAULT_ALERT.DescriptionTransloco;
 
-  dialogTitle = DialogTitle[this.data.type];
+  minLength = MIN_TITLE_LENGTH;
+
+  dialogTitle = this.transloco.translate(DialogTitle[this.data.type]);
 
   currentColumn!: IColumn;
 
@@ -86,6 +91,7 @@ export class DialogCreationComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogCreationComponent>,
     private store: Store,
     private router: Router,
+    private transloco: TranslocoService,
     @Inject(MAT_DIALOG_DATA) public data: DialogInterface,
   ) {}
 

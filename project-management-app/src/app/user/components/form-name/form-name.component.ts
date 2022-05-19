@@ -12,7 +12,7 @@ import { ERRORS_MESSAGES_EDIT_PROFILE_NAME } from 'src/app/forms/errors/error-me
 import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
 
-const FORM_TITLE = 'Update general data';
+const FORM_TITLE = 'profile.update-general';
 @Component({
   selector: 'app-form-name',
   templateUrl: './form-name.component.html',

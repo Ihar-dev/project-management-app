@@ -5,18 +5,26 @@ import { TUserData } from 'src/app/shared/models/register-data.model';
 import { User } from 'src/app/shared/models/user.model';
 import { selectProfile } from 'src/app/store/selectors/auth.selector';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 import { UsersAction, UsersActions } from 'src/app/store/actions/users.action';
 import { Actions, ofType } from '@ngrx/effects';
 import { IPopupData, PopupComponent } from 'src/app/core/components/popup/popup.component';
+import { UserService } from '../../services/user.service';
 import {
   DialogConfirmationComponent,
   DialogData,
 } from '../../../core/components/dialog-confirmation/dialog-confirmation.component';
 
-const DELETE_ACCOUNT_QUESTION = 'Delete account';
-const DELETE_CONFIRM = 'Once you confirm, all of your account data will be permanently deleted.';
-const UPDATE_TITLE = 'Your data has been successfully updated.';
-const UPDATE_BTN_TEXT = 'Ok';
+const DELETE_ACCOUNT_QUESTION = { message: 'Delete account', transloco: 'profile.delete-title' };
+const DELETE_CONFIRM = {
+  message: 'Once you confirm, all of your account data will be permanently deleted.',
+  transloco: 'profile.delete-description',
+};
+const UPDATE_TITLE = {
+  message: 'Your data has been successfully updated.',
+  transloco: 'profile.update-title',
+};
+const UPDATE_BTN_TEXT = { message: 'Ok', transloco: 'profile.update-btn' };
 const UPDATE_POPUP_DELAY = 2000;
 
 @Component({
@@ -31,7 +39,13 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
 
   profile: User | null = null;
 
-  constructor(private store: Store, private readonly dialog: MatDialog, private updates$: Actions) {
+  constructor(
+    private store: Store,
+    private userService: UserService,
+    private readonly dialog: MatDialog,
+    private updates$: Actions,
+    private translocoService: TranslocoService,
+  ) {
     this.updates$
       .pipe(ofType(UsersAction.PutUserSuccess), takeUntil(this.destroyed$))
       .subscribe(() => {
@@ -77,10 +91,10 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
     const dialogTimer = timer(UPDATE_POPUP_DELAY);
     const dialogRef = this.dialog.open(PopupComponent, {
       data: <IPopupData>{
-        title: UPDATE_TITLE,
+        title: this.translocoService.translate(UPDATE_TITLE.transloco),
         isCancelBtn: false,
         isSuccessImg: true,
-        btnSubmitText: UPDATE_BTN_TEXT,
+        btnSubmitText: this.translocoService.translate(UPDATE_BTN_TEXT.transloco),
       },
     });
 
@@ -90,11 +104,13 @@ export class ProfilePageComponent implements OnInit, OnDestroy {
   }
 
   private get deleteConfirmQues(): string {
-    return `${DELETE_ACCOUNT_QUESTION} ${this.profile?.name}?`;
+    return `${this.translocoService.translate(DELETE_ACCOUNT_QUESTION.transloco)} ${
+      this.profile?.name
+    }?`;
   }
 
   private get deleteConfirm(): string {
-    return DELETE_CONFIRM;
+    return this.translocoService.translate(DELETE_CONFIRM.transloco);
   }
 
   ngOnDestroy(): void {

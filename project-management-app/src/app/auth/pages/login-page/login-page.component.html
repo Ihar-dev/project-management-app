@@ -1,19 +1,32 @@
-<div class="container">
+<div class="container" *transloco="let t; read: 'auth'">
   <app-auth-main>
     <app-form [form]="form" (submit)="onSubmit()">
-      <app-form-title [title]="title"></app-form-title>
+      <app-form-title [title]="t(title)"></app-form-title>
 
-      <app-form-field [control]="controlLogin" placeholder="Enter login" label="Login"></app-form-field>
-      <app-form-error [control]="controlLogin" [errors]="formErrors[controlLoginKey]"></app-form-error>
+      <app-form-field
+        [control]="controlLogin"
+        [placeholder]="t('login-ph')"
+        [label]="t('login')"
+      ></app-form-field>
+      <app-form-error
+        [control]="controlLogin"
+        [errors]="formErrors[controlLoginKey]"
+      ></app-form-error>
 
-      <app-form-field-password [control]="controlPassword" label="Password"></app-form-field-password>
-      <app-form-error [control]="controlPassword" [errors]="formErrors[controlPasswordKey]"></app-form-error>
+      <app-form-field-password
+        [control]="controlPassword"
+        [label]="t('password-ph')"
+      ></app-form-field-password>
+      <app-form-error
+        [control]="controlPassword"
+        [errors]="formErrors[controlPasswordKey]"
+      ></app-form-error>
 
       <app-form-submit>
         <app-button [isDisabled]="!form.valid"></app-button>
       </app-form-submit>
 
-      <a mat-button href="#" [routerLink]="'../signup'" color="primary">Not registered yet? Sign up</a>
+      <a mat-button href="#" [routerLink]="'../signup'" color="primary">{{ t("register-link") }}</a>
     </app-form>
   </app-auth-main>
 </div>

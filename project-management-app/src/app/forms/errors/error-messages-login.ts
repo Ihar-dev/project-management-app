@@ -5,12 +5,14 @@ export const ERRORS_MESSAGES_LOGIN: TValidationError = {
     {
       type: 'required',
       message: 'Please enter a login.',
+      transloco: 'login',
     },
   ],
   password: [
     {
       type: 'required',
       message: 'Please enter a password.',
+      transloco: 'password',
     },
   ],
 };

@@ -11,7 +11,7 @@ export class LoaderService {
 
   showSpinner(): void {
     this.isShownSpinner = true;
-    this.spinnerVisibility$.next(this.isShownSpinner);
+    setTimeout(() => this.spinnerVisibility$.next(this.isShownSpinner), 300);
   }
 
   hideSpinner(): void {

@@ -1,5 +1,5 @@
 <button class="btn" mat-raised-button color="primary" (click)="openCreateBoardDialog()">
-  Create new board
+  {{ "button.create-board" | transloco }}
 </button>
 
 <button
@@ -7,7 +7,7 @@
   mat-icon-button
   color="primary"
   (click)="openCreateBoardDialog()"
-  title="Create new board"
+  [title]="'button.create-board' | transloco"
 >
   <mat-icon>note_add</mat-icon>
 </button>

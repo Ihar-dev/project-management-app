@@ -10,11 +10,14 @@ export class BaseApiInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if (!this.isAuth(request)) {
-      return EMPTY;
+    if (request.url[0] !== '/') {
+      if (!this.isAuth(request)) {
+        return EMPTY;
+      }
+      const res = request.clone({ url: `${environment.baseUrl}${request.url}` });
+      return next.handle(res);
     }
-    const res = request.clone({ url: `${environment.baseUrl}${request.url}` });
-    return next.handle(res);
+    return next.handle(request.clone({ url: request.url }));
   }
 
   private isAuth(request: HttpRequest<unknown>): boolean {
