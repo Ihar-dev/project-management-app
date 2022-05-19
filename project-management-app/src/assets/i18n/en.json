@@ -110,6 +110,7 @@
   },
 
   "error": {
-    "default-error": "An error occurred. Please try again later."
+    "default-error": "An error occurred. Please try again later.",
+    "auth-error": "It seems you are not logged in. Please login."
   }
 }

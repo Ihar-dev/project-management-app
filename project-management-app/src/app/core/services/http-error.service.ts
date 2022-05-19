@@ -34,7 +34,7 @@ export class HttpErrorService {
 
   private isUnauth(code: number): boolean {
     if (code === HttpErrorCode.UNAUTHORIZED) {
-      this.showMessage(UNAUTHORIZED_MESSAGE);
+      this.showMessage(this.transloco.translate(UNAUTHORIZED_MESSAGE.transloco));
       this.store.dispatch(logout());
       return true;
     }
