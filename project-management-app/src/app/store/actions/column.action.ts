@@ -11,6 +11,7 @@ export enum ColumnAction {
   DeleteColumnSuccess = '[column] DELETE_COLUMN_SUCCESS',
   PutColumn = '[column] PUT_COLUMN',
   PutColumnSuccess = '[column] PUT_COLUMN_SUCCESS',
+  DragColumn = '[column] DRAG_COLUMN',
   ColumnError = '[column] COLUMN_ERROR',
 }
 
@@ -41,10 +42,14 @@ export namespace ColumnActions {
     ColumnAction.PutColumnSuccess,
     props<{ boardID: string; column: IColumn }>(),
   );
+  export const dragColumn = createAction(
+    ColumnAction.DragColumn,
+    props<{ boardID: string; column: IColumn }>(),
+  );
   export const columnError = createAction(
     ColumnAction.ColumnError,
     props<{
-      data: { error: HttpErrorResponse; actionType: ColumnAction; messages: IHttpErrorMessage[] };
+      data: { error: HttpErrorResponse; messages: IHttpErrorMessage[] };
     }>(),
   );
 }

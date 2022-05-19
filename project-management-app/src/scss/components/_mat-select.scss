@@ -1,0 +1,5 @@
+@import "mixins";
+
+.mat-select-panel {
+  @include scrollbar(8px);
+}

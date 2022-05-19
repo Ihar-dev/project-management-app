@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 
+import { ITaskRequest } from 'src/app/shared/models/task-request.model';
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
@@ -34,6 +35,7 @@ export class BoardHandlingService {
     columns: [],
   };
   private columns = false;
+  public boardEditMode = false;
 
   constructor(private readonly store: Store, private readonly dialog: MatDialog) {
     this.getBoards();
@@ -65,7 +67,9 @@ export class BoardHandlingService {
     this.store.dispatch(BoardActions.getBoards());
   }
 
-  public openDialogToDelete(entity: string, title: string, boardID: string, columnID: string, taskID: string): void {
+  public openDialogToDelete(entity: string, title: string, boardID: string,
+    columnID: string, taskID: string, ban: boolean): void {
+    if (ban) return;
     let question: string;
     switch (entity) {
       case 'board':
@@ -161,5 +165,33 @@ export class BoardHandlingService {
   public openCreateTaskDialog(boardID: string, columnID: string): void {
     this.dialog.open(DialogCreationComponent,
     { data: <DialogInterface> { type: 'task', boardID, columnID } });
+  }
+
+  public updateTask(
+    boardID: string,
+    columnID: string,
+    oldTask: ITask | null ,
+    newUserId: string,
+  ): void {
+    if (oldTask) {
+      const taskID = oldTask.id;
+      const task: Omit < ITaskRequest, 'id' > = {
+        title: oldTask.title,
+        done: oldTask.done,
+        order: oldTask.order,
+        description: oldTask.description,
+        userId: newUserId,
+        boardId: boardID,
+        columnId: columnID,
+      }
+      this.store.dispatch(
+        TaskActions.PutTask({
+          boardID,
+          columnID,
+          taskID,
+          task,
+        }),
+      );
+    }
   }
 }

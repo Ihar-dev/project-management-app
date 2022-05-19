@@ -1,8 +1,10 @@
 @import "variables";
 @import "mixins";
+@import "animation";
 
 .btn {
   @include btn-shadow-style;
+  animation: 0.5s forwards reveal;
 
   font-size: 2.4rem;
   font-weight: 300;
