@@ -66,7 +66,9 @@ export class BoardHandlingService {
     this.store.dispatch(BoardActions.getBoards());
   }
 
-  public openDialogToDelete(entity: string, title: string, boardID: string, columnID: string, taskID: string): void {
+  public openDialogToDelete(entity: string, title: string, boardID: string,
+    columnID: string, taskID: string, ban: boolean): void {
+    if (ban) return;
     let question: string;
     switch (entity) {
       case 'board':
