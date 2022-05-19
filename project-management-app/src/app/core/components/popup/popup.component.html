@@ -1,0 +1,11 @@
+<div class="popup popup--active">
+  <div class="popup__img" [ngClass]="{ 'popup__img--success': data.isSuccessImg}"></div>
+  <p class="popup__text">{{data.title}}</p>
+  <p class="popup__text--additional">{{ data.subtitle || '' }}</p>
+  <div class="popup__controls">
+    <app-button class="popup__btn" color="primary" [text]="data.btnSubmitText" [mat-dialog-close]="true"></app-button>
+    <app-button class="popup__btn" color="warn" [text]="data.btnCancelText || ''" mat-dialog-close
+      *ngIf="data.isCancelBtn">
+    </app-button>
+  </div>
+</div>
