@@ -108,7 +108,8 @@
     "delete-column": "Delete column",
     "delete-task": "Delete task",
     "add-column": "Add column",
-    "empty-board": "No data here yet. You may add your first column!"
+    "empty-board": "No data here yet. You may add your first column!",
+    "select-user": "Select user"
   },
 
   "default-error": "An error occurred. Please try again later.",

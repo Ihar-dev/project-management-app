@@ -27,7 +27,7 @@
     <button
       class="task__actions__add-btn"
       mat-button
-      title="Select User"
+      [title]="t('column.select-user')"
       (click)="userSelectToggle()"
       *ngIf="!selectUserMode"
       appClickStopPropagation
