@@ -60,5 +60,12 @@
     "login": "Логин",
     "delete-description": "Если вы согласитесь ваш аккаунт будет безвозвратно удалён.",
     "delete-title": "Удалить аккаунт"
+  },
+
+  "main": {
+    "boards": "Доски",
+    "search-down": "&dArr; Поиск &dArr;",
+    "search-up": "&uArr; Поиск &uArr;",
+    "task-search": "поиск задачи"
   }
 }

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
 
 import { CoreModule } from '../core/core.module';
 import { MainRoutingModule } from './main-routing.module';
@@ -30,6 +31,7 @@ import { RandomPhotoBackDirective } from '../shared/directives/random-photo-back
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
+    TranslocoModule,
   ],
 })
 export class MainModule {}

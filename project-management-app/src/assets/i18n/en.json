@@ -60,5 +60,12 @@
     "login": "Login",
     "delete-description": "Once you confirm, all of your account data will be permanently deleted.",
     "delete-title": "Delete account"
+  },
+
+  "main": {
+    "boards": "Boards",
+    "search-down": "&dArr; Search &dArr;",
+    "search-up": "&uArr; Search &uArr;",
+    "task-search": "task search"
   }
 }

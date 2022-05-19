@@ -15,6 +15,8 @@ import { SearchResult } from '../../models/search-result.model';
 enum SearchTitles {
   Down = '&dArr; Search &dArr;',
   Up = '&uArr; Search &uArr;',
+  translocoDown = 'search-down',
+  translocoUp = 'search-up',
 }
 
 @Component({
@@ -35,7 +37,7 @@ export class MainComponent implements OnInit, OnDestroy {
   public searchDisplay = false;
   public searchResults: SearchResult[] = [];
   public SearchTitle: SearchTitles;
-  private users$: Observable < User[] >;
+  private users$: Observable<User[]>;
   public users: User[] = [];
 
   constructor(
@@ -62,7 +64,7 @@ export class MainComponent implements OnInit, OnDestroy {
         } else this.searchDisplay = false;
       },
     );
-    this.SearchTitle = SearchTitles.Down;
+    this.SearchTitle = SearchTitles.translocoDown;
     this.users$ = this.store.select(UsersSelectors.selectUsers);
     this.usersSubs = this.users$.subscribe((users: User[]) => {
       this.users = users;
@@ -70,18 +72,19 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public taskSearch(): void {
-    if (this.dataForSearch) this.taskSearchService.filter(this.boards, this.dataForSearch, this.users);
+    if (this.dataForSearch)
+      this.taskSearchService.filter(this.boards, this.dataForSearch, this.users);
     else this.searchDisplay = false;
   }
 
   public searchButtonClick(): void {
     if (this.searchContainerDisplay) {
-      this.SearchTitle = SearchTitles.Down;
+      this.SearchTitle = SearchTitles.translocoDown;
       this.searchContainerDisplay = false;
       this.searchDisplay = false;
       this.dataForSearch = '';
     } else {
-      this.SearchTitle = SearchTitles.Up;
+      this.SearchTitle = SearchTitles.translocoUp;
       this.searchContainerDisplay = true;
       this.boards.forEach((el: IBoard) => this.getBoardById(el.id));
     }
