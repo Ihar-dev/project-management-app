@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { TranslocoModule } from '@ngneat/transloco';
 import { ReactiveComponentModule } from '@ngrx/component';
 import { CoreRoutingModule } from './core-routing.module';
 
@@ -37,7 +38,7 @@ import { PopupComponent } from './components/popup/popup.component';
     OpenNavigationComponent,
     PopupComponent,
   ],
-  imports: [SharedModule, CoreRoutingModule, ReactiveComponentModule],
+  imports: [SharedModule, CoreRoutingModule, ReactiveComponentModule, TranslocoModule],
   exports: [MessageBoxComponent, LoaderComponent, FooterComponent, HeaderComponent, PopupComponent],
 })
 export class CoreModule {}

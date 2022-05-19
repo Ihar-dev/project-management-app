@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
-const DEFAULT_PLACEHOLDER_TEXT = 'Password';
+const DEFAULT_PLACEHOLDER_TEXT = 'password-ph';
 @Component({
   selector: 'app-form-field-password',
   templateUrl: './form-field-password.component.html',

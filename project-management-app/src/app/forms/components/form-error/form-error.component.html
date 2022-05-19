@@ -1,5 +1,10 @@
-<ng-container *ngFor="let error of errors">
-  <mat-error class="error" *ngIf="(control?.dirty || control?.touched) && control?.hasError(error.type)">
-    <p class="error__message">{{error.message}}</p>
-  </mat-error>
+<ng-container *transloco="let t; read: 'auth.error'">
+  <ng-container *ngFor="let error of errors">
+    <mat-error
+      class="error"
+      *ngIf="(control?.dirty || control?.touched) && control?.hasError(error.type)"
+    >
+      <p class="error__message">{{ t(error.transloco, { length: error.length }) }}</p>
+    </mat-error>
+  </ng-container>
 </ng-container>

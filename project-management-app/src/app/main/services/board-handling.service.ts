@@ -2,32 +2,41 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslocoService } from '@ngneat/transloco';
 
 import { ITaskRequest } from 'src/app/shared/models/task-request.model';
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
-import { DialogCreationComponent, DialogInterface } from 'src/app/shared/components/dialog-creation/dialog-creation.component';
+import {
+  DialogCreationComponent,
+  DialogInterface,
+} from 'src/app/shared/components/dialog-creation/dialog-creation.component';
 import { ITask } from 'src/app/shared/models/task.model';
 import { IColumn } from 'src/app/shared/models/column.model';
 import { IBoard } from '../../shared/models/board.model';
-import { DialogConfirmationComponent, DialogData }
-from '../../core/components/dialog-confirmation/dialog-confirmation.component';
+import {
+  DialogConfirmationComponent,
+  DialogData,
+} from '../../core/components/dialog-confirmation/dialog-confirmation.component';
 import { BoardSelectors } from '../../store/selectors/board.selector';
 
 enum DeleteQuestions {
   board = 'Are you sure you would like to delete the board?',
   column = 'Are you sure you would like to delete the column?',
   task = 'Are you sure you would like to delete the task?',
+  translocoBoard = 'main.delete-board',
+  translocoColumn = 'main.delete-column',
+  translocoTask = 'main.delete-task',
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BoardHandlingService {
   private id = '';
-  private boards$: Observable < IBoard[] >;
-  public board$ = new Subject < IBoard >();
+  private boards$: Observable<IBoard[]>;
+  public board$ = new Subject<IBoard>();
   public board: IBoard = {
     id: '',
     title: '',
@@ -37,11 +46,15 @@ export class BoardHandlingService {
   private columns = false;
   public boardEditMode = false;
 
-  constructor(private readonly store: Store, private readonly dialog: MatDialog) {
+  constructor(
+    private readonly store: Store,
+    private readonly dialog: MatDialog,
+    private translocoService: TranslocoService,
+  ) {
     this.getBoards();
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
     this.boards$.subscribe((boards: IBoard[]) => {
-      boards.forEach(board => {
+      boards.forEach((board) => {
         if (board.id === this.id) {
           if (!board.columns && !this.columns) {
             this.columns = true;
@@ -67,19 +80,25 @@ export class BoardHandlingService {
     this.store.dispatch(BoardActions.getBoards());
   }
 
-  public openDialogToDelete(entity: string, title: string, boardID: string,
-    columnID: string, taskID: string, ban: boolean): void {
+  public openDialogToDelete(
+    entity: string,
+    title: string,
+    boardID: string,
+    columnID: string,
+    taskID: string,
+    ban: boolean,
+  ): void {
     if (ban) return;
     let question: string;
     switch (entity) {
       case 'board':
-        question = DeleteQuestions.board;
+        question = this.translocoService.translate(DeleteQuestions.translocoBoard);
         break;
       case 'column':
-        question = DeleteQuestions.column;
+        question = this.translocoService.translate(DeleteQuestions.translocoColumn);
         break;
       case 'task':
-        question = DeleteQuestions.task;
+        question = this.translocoService.translate(DeleteQuestions.translocoTask);
         break;
       default:
         question = '';
@@ -159,23 +178,26 @@ export class BoardHandlingService {
   }
 
   public openCreateColumnDialog(boardID: string): void {
-    this.dialog.open(DialogCreationComponent, { data: <DialogInterface> { type: 'column', boardID } });
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{ type: 'column', boardID },
+    });
   }
 
   public openCreateTaskDialog(boardID: string, columnID: string): void {
-    this.dialog.open(DialogCreationComponent,
-    { data: <DialogInterface> { type: 'task', boardID, columnID } });
+    this.dialog.open(DialogCreationComponent, {
+      data: <DialogInterface>{ type: 'task', boardID, columnID },
+    });
   }
 
   public updateTask(
     boardID: string,
     columnID: string,
-    oldTask: ITask | null ,
+    oldTask: ITask | null,
     newUserId: string,
   ): void {
     if (oldTask) {
       const taskID = oldTask.id;
-      const task: Omit < ITaskRequest, 'id' > = {
+      const task: Omit<ITaskRequest, 'id'> = {
         title: oldTask.title,
         done: oldTask.done,
         order: oldTask.order,
@@ -183,7 +205,7 @@ export class BoardHandlingService {
         userId: newUserId,
         boardId: boardID,
         columnId: columnID,
-      }
+      };
       this.store.dispatch(
         TaskActions.PutTask({
           boardID,

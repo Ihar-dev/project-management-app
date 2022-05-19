@@ -32,6 +32,7 @@
     background-color: $theme-primary-transparent;
     color: white;
     transition: box-shadow 0.3s, color 0.3s;
+    user-select: none;
 
     &:hover,
     &:focus {
@@ -109,7 +110,6 @@
 
 @media screen and (max-width: $laptop) {
   .main__search-container {
-
     &.active {
       height: 45vh;
     }

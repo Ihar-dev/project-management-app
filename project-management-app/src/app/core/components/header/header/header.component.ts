@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { logout } from 'src/app/store/actions/auth.action';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
 enum Localized {
-  eng = 'eng',
+  en = 'en',
   ru = 'ru',
 }
 
@@ -19,14 +20,15 @@ const PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH = ['/auth/login', '/auth/signup'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  localized = Localized.eng;
+  localized = Localized.en;
 
   isAuth$ = this.store.select(selectIsAuth);
 
-  constructor(private store: Store, private router: Router) {}
+  constructor(private store: Store, private router: Router, private transloco: TranslocoService) {}
 
   toggleLocalization(): void {
-    this.localized = this.localized === Localized.eng ? Localized.ru : Localized.eng;
+    this.localized = this.localized === Localized.en ? Localized.ru : Localized.en;
+    this.transloco.setActiveLang(this.localized);
   }
 
   onLogout(): void {

@@ -4,16 +4,11 @@ import { StoreState } from './store.model';
 
 const lsAuthKey = '___auth-state___';
 
-function catchErr(err: unknown) {
-  console.log(err);
-}
-
 function handleLsState(callback: () => void) {
   try {
     callback();
-  } catch (err) {
-    catchErr(err);
-  }
+    // eslint-disable-next-line no-empty
+  } catch {}
 }
 
 export function lsStateReducer(reducer: ActionReducer<StoreState>): ActionReducer<any, any> {

@@ -1,26 +1,44 @@
-<mat-card class="task">
+<mat-card class="task" *transloco="let t">
   <mat-card-title class="task__header">
-    <h4 class="task__title">{{task?.title || title}}</h4>
-    <app-button-board-delete title="Delete task" [style.opacity]="profile.id===task?.userId?'1':'0.3'"
-    appClickStopPropagation
-    (click)="boardHandlingService.openDialogToDelete('task', taskTitle, boardID, columnID, taskID, profile.id!==task?.userId)">
+    <h4 class="task__title">{{ task?.title || title }}</h4>
+    <app-button-board-delete
+      [title]="t('column.delete-task')"
+      [inputClass]="profile.id !== task?.userId ? 'disabled' : ''"
+      appClickStopPropagation
+      (click)="
+        boardHandlingService.openDialogToDelete(
+          'task',
+          taskTitle,
+          boardID,
+          columnID,
+          taskID,
+          profile.id !== task?.userId
+        )
+      "
+    >
     </app-button-board-delete>
   </mat-card-title>
   <mat-card-content>
-    <p class="task__description">{{ task?.description || ''}}</p>
+    <p class="task__description">{{ task?.description || "" }}</p>
   </mat-card-content>
   <mat-card-actions class="task__actions">
     <app-task-member name="Username"></app-task-member>
-    <div class="task__user" [appGetUserName] = "taskAndUsers"></div>
-    <button class="task__actions__add-btn" mat-button title="Select User"
-    (click)="userSelectToggle()" *ngIf="!selectUserMode" appClickStopPropagation>
+    <div class="task__user" [appGetUserName]="taskAndUsers"></div>
+    <button
+      class="task__actions__add-btn"
+      mat-button
+      [title]="t('column.select-user')"
+      (click)="userSelectToggle()"
+      *ngIf="!selectUserMode"
+      appClickStopPropagation
+    >
       <mat-icon>{{ userIcon }}</mat-icon>
     </button>
     <form class="task__user-form" *ngIf="selectUserMode" appClickStopPropagation>
       <mat-form-field appearance="fill" class="task__user-select">
         <mat-select [(ngModel)]="selectedUser" name="user" class="task__user-select">
           <mat-option *ngFor="let user of users" [value]="user.name" (click)="setUser(user.id)">
-            {{user.name}}
+            {{ user.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>

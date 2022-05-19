@@ -7,7 +7,7 @@ import { TSigninData } from 'src/app/shared/models/login-data.model';
 import { Store } from '@ngrx/store';
 import { login } from 'src/app/store/actions/auth.action';
 
-const FORM_TITLE = 'Log in';
+const FORM_TITLE = 'login-title';
 
 @Component({
   selector: 'app-login-page',

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TranslocoModule } from '@ngneat/transloco';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -29,6 +30,13 @@ import { GetUserNameDirective } from './directives/get-user-name.directive';
     ColumnEditComponent,
     GetUserNameDirective,
   ],
-  imports: [CommonModule, BoardRoutingModule, MaterialModule, SharedModule, DragDropModule],
+  imports: [
+    CommonModule,
+    BoardRoutingModule,
+    MaterialModule,
+    SharedModule,
+    DragDropModule,
+    TranslocoModule,
+  ],
 })
 export class BoardModule {}

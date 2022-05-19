@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
 
 import { CoreModule } from '../core/core.module';
 import { MainRoutingModule } from './main-routing.module';
-import { WelcomeComponent } from '../welcome/pages/welcome/welcome.component';
 import { MaterialModule } from '../shared/material.module';
 import { MainComponent } from './pages/main/main.component';
 import { BoardComponent } from './components/board/board.component';
@@ -16,7 +16,6 @@ import { RandomPhotoBackDirective } from '../shared/directives/random-photo-back
 
 @NgModule({
   declarations: [
-    WelcomeComponent,
     MainComponent,
     BoardComponent,
     TestComponent,
@@ -32,6 +31,7 @@ import { RandomPhotoBackDirective } from '../shared/directives/random-photo-back
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-  ]
+    TranslocoModule,
+  ],
 })
 export class MainModule {}
