@@ -67,7 +67,7 @@
     padding: 2rem 2rem 0;
     background-color: $board-main-bg;
     border-top: 2px solid $theme-accent;
-    border-radius: $border-radius;
+    border-radius: $border-radius $border-radius 5px 5px;
 
     @media screen and (max-width: $tablet) {
       height: calc(100vh - 26rem);
@@ -127,6 +127,9 @@
 
 .cdk-drag-placeholder {
   opacity: 0.5;
+  border: 2px dashed $theme-accent;
+  border-radius: $border-radius;
+  transition: all 0.3s;
 }
 
 .cdk-drag-animating {
