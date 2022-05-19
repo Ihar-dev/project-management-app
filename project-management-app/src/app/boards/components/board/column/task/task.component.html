@@ -1,8 +1,9 @@
 <mat-card class="task">
   <mat-card-title class="task__header">
     <h4 class="task__title">{{task?.title || title}}</h4>
-    <app-button-board-delete title="Delete task" appClickStopPropagation
-    (click)="boardHandlingService.openDialogToDelete('task', taskTitle, boardID, columnID, taskID)">
+    <app-button-board-delete title="Delete task" [style.opacity]="profile.id===task?.userId?'1':'0.3'"
+    appClickStopPropagation
+    (click)="boardHandlingService.openDialogToDelete('task', taskTitle, boardID, columnID, taskID, profile.id!==task?.userId)">
     </app-button-board-delete>
   </mat-card-title>
   <mat-card-content>
@@ -10,8 +11,19 @@
   </mat-card-content>
   <mat-card-actions class="task__actions">
     <app-task-member name="Username"></app-task-member>
-    <button class="task__actions__add-btn" mat-button title="Add user to this task">
-      <mat-icon>add</mat-icon>
+    <div class="task__user" [appGetUserName] = "taskAndUsers"></div>
+    <button class="task__actions__add-btn" mat-button title="Select User"
+    (click)="userSelectToggle()" *ngIf="!selectUserMode" appClickStopPropagation>
+      <mat-icon>{{ userIcon }}</mat-icon>
     </button>
+    <form class="task__user-form" *ngIf="selectUserMode" appClickStopPropagation>
+      <mat-form-field appearance="fill" class="task__user-select">
+        <mat-select [(ngModel)]="selectedUser" name="user" class="task__user-select">
+          <mat-option *ngFor="let user of users" [value]="user.name" (click)="setUser(user.id)">
+            {{user.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
   </mat-card-actions>
 </mat-card>
