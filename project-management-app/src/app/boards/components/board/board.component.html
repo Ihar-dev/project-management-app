@@ -12,7 +12,7 @@
     </div>
   </div>
   <div class="board__content">
-    <div *ngIf="columns && columns.length; else noData" cdkDropList cdkDropListOrientation="horizontal"
+    <div *ngIf="!columns || columns && columns.length; else noData" cdkDropList cdkDropListOrientation="horizontal"
       class="board__content--scrollable" (cdkDropListDropped)="drop($event)" cdkDropListGroup>
       <app-column class="columns-box" *ngFor="let columnItem of columns" [columns]="columns" [column]="columnItem"
         [boardID]="id" cdkDragLockAxis="x" cdkDrag>

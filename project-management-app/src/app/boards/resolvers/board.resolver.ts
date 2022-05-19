@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { catchError, EMPTY, filter, map, Observable, take } from 'rxjs';
 import { IBoard } from 'src/app/shared/models/board.model';
 import { BoardActions } from 'src/app/store/actions/board.action';
@@ -17,8 +17,7 @@ export class BoardResolver implements Resolve<Observable<IBoard | null>> {
   resolve(route: ActivatedRouteSnapshot): Observable<IBoard | null> {
     const id = route.paramMap.get('id') || '';
 
-    return this.store.pipe(
-      select(BoardSelectors.selectBoards),
+    return this.store.select(BoardSelectors.selectBoards).pipe(
       filter((data) => !!data.length),
       map((data) => {
         const board = data.find((elem) => elem.id === id);
