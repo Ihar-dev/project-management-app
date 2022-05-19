@@ -26,6 +26,6 @@ export const logoutSuccess = createAction(AuthActionType.LogoutSuccess);
 export const authError = createAction(
   AuthActionType.AuthError,
   props<{
-    data: { error: HttpErrorResponse; actionType: AuthActionType; messages: IHttpErrorMessage[] };
+    data: { error: HttpErrorResponse; messages: IHttpErrorMessage[] };
   }>(),
 );

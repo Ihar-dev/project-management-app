@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
+import { User } from 'src/app/shared/models/user.model';
 import { IColumn } from 'src/app/shared/models/column.model';
 import { ITask } from 'src/app/shared/models/task.model';
 import { BoardHandlingService } from '../../../../main/services/board-handling.service';
@@ -12,6 +13,7 @@ import { DragDropService } from '../../../services/drag-drop.service';
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent implements OnInit {
+  @Input() public users: User[] = [];
   @Input() column: IColumn | null = null;
   @Input() columns: IColumn[] = [];
   @Input() public boardID = '';

@@ -2,7 +2,7 @@
 @import "mixins";
 
 .task {
-  padding: 1.5rem;
+  padding: 1.8rem;
   border-radius: $border-radius;
 
   &__header {
@@ -16,8 +16,15 @@
   }
 
   &__title,
-  &__description {
+  &__description,
+  &__user {
     word-break: break-word;
+  }
+
+  &__user {
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
   }
 
   &__actions {
@@ -29,5 +36,12 @@
       display: flex;
       justify-content: center;
     }
+  }
+
+  &__user-form {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
