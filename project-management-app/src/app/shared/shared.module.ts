@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
 import { MaterialModule } from './material.module';
 import { StickyHeaderDirective } from './directives/sticky-header.directive';
 import { ButtonComponent } from './components/button/button.component';
@@ -13,7 +14,7 @@ import { BackButtonComponent } from './components/back-button/back-button.compon
     DialogCreationComponent,
     BackButtonComponent,
   ],
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, MaterialModule, TranslocoModule],
   exports: [
     CommonModule,
     MaterialModule,

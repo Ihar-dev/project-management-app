@@ -7,7 +7,7 @@ import { TUserData } from 'src/app/shared/models/register-data.model';
 import { Store } from '@ngrx/store';
 import { signup } from 'src/app/store/actions/auth.action';
 
-const FORM_TITLE = 'Sign up';
+const FORM_TITLE = 'signup-title';
 
 @Component({
   selector: 'app-registration-page',

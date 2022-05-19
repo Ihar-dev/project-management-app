@@ -12,7 +12,7 @@ import { PasswordAsyncValidator } from 'src/app/forms/validators/passwordValidat
 import { ValidationFormService } from 'src/app/forms/validators/validation-form.service';
 import { TUserData } from 'src/app/shared/models/register-data.model';
 
-const FORM_TITLE = 'Change password';
+const FORM_TITLE = 'profile.change-password';
 @Component({
   selector: 'app-form-password',
   templateUrl: './form-password.component.html',

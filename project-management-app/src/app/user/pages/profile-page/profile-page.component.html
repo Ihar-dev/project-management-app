@@ -1,18 +1,15 @@
 <div class="profile-page">
   <div class="profile-page__bg"></div>
   <div class="container">
-
     <div class="profile-page__content">
       <div class="user-info">
         <div class="user-info__img">
-          <mat-icon class="user-info__img__icon">
-            account_circle
-          </mat-icon>
+          <mat-icon class="user-info__img__icon"> account_circle </mat-icon>
         </div>
 
-        <h2 class="user-info__name">{{profile?.name || 'Username'}}</h2>
+        <h2 class="user-info__name">{{ profile?.name || "Username" }}</h2>
         <div class="user-info__btn">
-          <app-button text="Delete profile" color="warn" (click)="onDelete()"></app-button>
+          <app-button [text]="'delete-profile'" color="warn" (click)="onDelete()"></app-button>
         </div>
       </div>
 

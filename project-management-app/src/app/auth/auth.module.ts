@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TranslocoModule } from '@ngneat/transloco';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '../forms/forms.module';
 
@@ -9,6 +10,6 @@ import { AuthMainComponent } from './components/auth-main/auth-main.component';
 
 @NgModule({
   declarations: [LoginPageComponent, RegistrationPageComponent, AuthMainComponent],
-  imports: [AuthRoutingModule, SharedModule, FormsModule],
+  imports: [AuthRoutingModule, SharedModule, FormsModule, TranslocoModule],
 })
 export class AuthModule {}

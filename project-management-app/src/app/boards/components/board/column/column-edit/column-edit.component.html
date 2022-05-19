@@ -1,10 +1,10 @@
-<div class="edit">
+<div class="edit" *transloco="let t; read: 'button'">
   <div class="edit__actions">
     <button class="edit__btn" (click)="onCancelEditing()" appClickStopPropagation>
-      Cancel
+      {{ t("discard") }}
     </button>
     <button class="edit__btn" (click)="onSubmitEditing(inputTitle.value)" appClickStopPropagation>
-      Submit
+      {{ t("apply") }}
     </button>
   </div>
   <input class="edit__input" #inputTitle type="text" [value]="column?.title || ''" autofocus />

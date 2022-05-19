@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { TranslocoModule } from '@ngneat/transloco';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -21,7 +22,7 @@ const formsDeclarations = [
 ];
 @NgModule({
   declarations: [...formsDeclarations],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, TranslocoModule],
   exports: [...formsDeclarations],
 })
 export class FormsModule {}
