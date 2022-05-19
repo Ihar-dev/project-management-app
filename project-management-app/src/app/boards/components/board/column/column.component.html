@@ -1,4 +1,4 @@
-<div class="column">
+<div class="column" *transloco="let t; read: 'column'">
   <div class="column__scrollable">
     <div class="column__header" (click)="onClickTitle()" appClickStopPropagation>
       <div class="column__title">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <app-button-board-delete
-        title="Delete column"
+        [title]="t('delete-column')"
         (click)="
           boardHandlingService.openDialogToDelete(
             'column',
@@ -50,7 +50,7 @@
     </div>
   </div>
   <app-button-board-create
-    text="Add task"
+    [text]="t('add-task')"
     (click)="boardHandlingService.openCreateTaskDialog(boardID, columnID)"
   >
   </app-button-board-create>

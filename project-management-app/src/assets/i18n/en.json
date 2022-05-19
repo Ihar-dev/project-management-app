@@ -66,6 +66,43 @@
     "boards": "Boards",
     "search-down": "&dArr; Search &dArr;",
     "search-up": "&uArr; Search &uArr;",
-    "task-search": "task search"
+    "task-search": "task search",
+    "edit": "Edit",
+    "save": "Save",
+    "title-editing": "board title editing",
+    "description-editing": "board description editing",
+    "title-required": "The title is required",
+    "title-short": "The title is too short",
+    "description-required": "The description is required",
+    "description-short": "The description is too short",
+    "delete-board": "Are you sure you would like to delete the board?",
+    "delete-column": "Are you sure you would like to delete the column?",
+    "delete-task": "Are you sure you would like to delete the task?"
+  },
+
+  "dialog": {
+    "title": {
+      "board": "Enter a board name:",
+      "column": "Enter a column name:",
+      "task": "Enter a task name:",
+      "columnEdit": "Edit a column name:",
+      "taskEdit": "Edit a task name:"
+    },
+    "default": {
+      "board": "New board",
+      "column": "New column",
+      "task": "New task"
+    },
+    "description": "{{main.description-required}}",
+    "title-alert": "Title must contain at least {{length}} {length, plural, one {character} other {characters}}",
+    "description-alert": "Description must contain at least {{length}} {length, plural, one {character} other {characters}}"
+  },
+
+  "column": {
+    "add-task": "Add task",
+    "delete-column": "Delete column",
+    "delete-task": "Delete task",
+    "add-column": "Add column",
+    "empty-board": "No data here yet. You may add your first column!"
   }
 }

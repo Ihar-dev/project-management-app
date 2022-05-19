@@ -66,6 +66,43 @@
     "boards": "Доски",
     "search-down": "&dArr; Поиск &dArr;",
     "search-up": "&uArr; Поиск &uArr;",
-    "task-search": "поиск задачи"
+    "task-search": "поиск задачи",
+    "edit": "Редактировать",
+    "save": "Сохранить",
+    "title-editing": "редактирование заголовка доски",
+    "description-editing": "редактирование описания доски",
+    "title-required": "Введите заголовок",
+    "title-short": "Заголовок слишком короткий",
+    "description-required": "Введите описание",
+    "description-short": "Описание слишком короткое",
+    "delete-board": "Вы уверены что хотите удалить эту доску?",
+    "delete-column": "Вы уверены что хотите удалить эту колонку?",
+    "delete-task": "Вы уверены что хотите удалить эту задачу?"
+  },
+
+  "dialog": {
+    "title": {
+      "board": "Введите имя доски:",
+      "column": "Введите имя колонки:",
+      "task": "Введите имя задачи:",
+      "columnEdit": "Редактирование колонки:",
+      "taskEdit": "Редактирование задачи:"
+    },
+    "default": {
+      "board": "Новая доска",
+      "column": "Новая колонка",
+      "task": "Новая задача"
+    },
+    "description": "{{main.description-required}}",
+    "title-alert": "Имя должно содержать хотя бы {{length}} {length, plural, one {символ} few {символа} other {символов}}",
+    "description-alert": "Описание должно содержать хотя бы {{length}} {length, plural, one {символ} few {символа} other {символов}}"
+  },
+
+  "column": {
+    "add-task": "Добавить задачу",
+    "delete-column": "Удалить колонку",
+    "delete-task": "Удалить задачу",
+    "add-column": "Создать колонку",
+    "empty-board": "Пока здесь пусто. Вы можете создать вашу первую колонку!"
   }
 }
