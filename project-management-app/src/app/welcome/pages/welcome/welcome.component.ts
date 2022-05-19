@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { ReplaySubject, takeUntil } from 'rxjs';
 import { PopupComponent } from 'src/app/core/components/popup/popup.component';
@@ -9,10 +10,10 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { logout } from 'src/app/store/actions/auth.action';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
-const DIALOG_TITLE = 'Your session has expired.';
-const DIALOG_SUBTITLE = 'Please login.';
-const DIALOG_BTN_CANCEL = 'Cancel';
-const DIALOG_BTN_SUBMIT = 'Log in';
+const DIALOG_TITLE = 'auth.session.';
+const DIALOG_SUBTITLE = 'auth.please-login';
+const DIALOG_BTN_CANCEL = 'button.cancel';
+const DIALOG_BTN_SUBMIT = 'auth.login-title';
 
 @Component({
   selector: 'app-welcome',
@@ -32,6 +33,7 @@ export class WelcomeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private readonly router: Router,
     private readonly dialog: MatDialog,
+    private transloco: TranslocoService,
   ) {}
 
   ngOnInit(): void {
@@ -47,12 +49,12 @@ export class WelcomeComponent implements OnInit, OnDestroy {
   private openTokenExpDialog() {
     const dialogRef = this.dialog.open(PopupComponent, {
       data: {
-        title: DIALOG_TITLE,
-        subtitle: DIALOG_SUBTITLE,
+        title: this.transloco.translate(DIALOG_TITLE),
+        subtitle: this.transloco.translate(DIALOG_SUBTITLE),
         isCancelBtn: true,
         isSuccessImg: false,
-        btnCancelText: DIALOG_BTN_CANCEL,
-        btnSubmitText: DIALOG_BTN_SUBMIT,
+        btnCancelText: this.transloco.translate(DIALOG_BTN_CANCEL),
+        btnSubmitText: this.transloco.translate(DIALOG_BTN_SUBMIT),
       },
     });
 
