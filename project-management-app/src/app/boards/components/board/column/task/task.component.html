@@ -3,7 +3,7 @@
     <h4 class="task__title">{{ task?.title || title }}</h4>
     <app-button-board-delete
       [title]="t('column.delete-task')"
-      [class.disabled]="profile.id !== task?.userId"
+      [inputClass]="profile.id !== task?.userId ? 'disabled' : ''"
       appClickStopPropagation
       (click)="
         boardHandlingService.openDialogToDelete(
