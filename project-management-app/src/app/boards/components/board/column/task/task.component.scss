@@ -1,6 +1,10 @@
 @import "variables";
 @import "mixins";
 
+.disabled {
+  opacity: 0.3;
+}
+
 .task {
   padding: 1.8rem;
   border-radius: $border-radius;

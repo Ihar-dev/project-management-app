@@ -28,8 +28,10 @@ export class HttpErrorService {
     return EMPTY;
   }
 
-  showMessage(message: string = HTTP_ERROR_MESSAGE_DEFAULT.transloco): void {
-    this.error$.next({ isShown: true, message: this.transloco.translate(message) });
+  showMessage(
+    message: string = this.transloco.translate(HTTP_ERROR_MESSAGE_DEFAULT.transloco),
+  ): void {
+    this.error$.next({ isShown: true, message });
   }
 
   private isUnauth(code: number): boolean {

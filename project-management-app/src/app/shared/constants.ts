@@ -29,7 +29,7 @@ export enum TokenLimit {
 
 export const HTTP_ERROR_MESSAGE_DEFAULT = {
   message: 'An error occurred. Please try again later.',
-  transloco: 'error.default-error',
+  transloco: 'default-error',
 };
 
 export type TErrorHandler = (error: HttpErrorResponse, storeAction: string) => Observable<never>;

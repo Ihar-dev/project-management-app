@@ -44,6 +44,7 @@ export class BoardHandlingService {
     columns: [],
   };
   private columns = false;
+  public boardEditMode = false;
 
   constructor(
     private readonly store: Store,

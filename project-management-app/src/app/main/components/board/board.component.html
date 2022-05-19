@@ -5,7 +5,7 @@
     color="white"
     *ngIf="!boardEditMode"
     [class.hide]="mouseExisting"
-    (click)="boardEditMode = true"
+    (click)="editButtonOnClick()"
     [title]="t('edit')"
     class="board__edit-button"
     appMouseMoveStopPropagation
@@ -36,7 +36,7 @@
     >
     <span>&nbsp;</span>
     <mat-form-field appearance="fill" class="board-input-form">
-      <mat-label>{{ t("title-editing") }}</mat-label>
+      <mat-label style="color: white">{{ t("title-editing") }}</mat-label>
       <input
         matInput
         type="text"
@@ -59,11 +59,11 @@
         >
           {{ t("title-short") }}
         </span>
-        <span *ngIf="userTitle!.errors?.['maxlength']">The title is too long</span>
+        <span *ngIf="userTitle!.errors?.['maxlength']">{{ t("title-long") }}</span>
       </div>
     </mat-form-field>
     <mat-form-field appearance="fill" class="board-input-form">
-      <mat-label>{{ t("description-editing") }}</mat-label>
+      <mat-label style="color: white">{{ t("description-editing") }}</mat-label>
       <input
         matInput
         type="text"
@@ -92,7 +92,7 @@
         >
           {{ t("description-short") }}
         </span>
-        <span *ngIf="userDescription!.errors?.['maxlength']">The description is too long</span>
+        <span *ngIf="userDescription!.errors?.['maxlength']">{{ t("description-long") }}</span>
       </div>
     </mat-form-field>
   </form>

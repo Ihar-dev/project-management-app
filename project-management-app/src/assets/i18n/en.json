@@ -76,8 +76,10 @@
     "description-editing": "board description editing",
     "title-required": "The title is required",
     "title-short": "The title is too short",
+    "title-long": "The title is too long",
     "description-required": "The description is required",
     "description-short": "The description is too short",
+    "description-long": "The description is too long",
     "delete-board": "Are you sure you would like to delete the board?",
     "delete-column": "Are you sure you would like to delete the column?",
     "delete-task": "Are you sure you would like to delete the task?"
@@ -109,8 +111,6 @@
     "empty-board": "No data here yet. You may add your first column!"
   },
 
-  "error": {
-    "default-error": "An error occurred. Please try again later.",
-    "auth-error": "It seems you are not logged in. Please login."
-  }
+  "default-error": "22",
+  "auth-error": "It seems you are not logged in. Please login."
 }

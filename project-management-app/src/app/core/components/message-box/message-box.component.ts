@@ -5,7 +5,7 @@ import { HTTP_ERROR_MESSAGE_DEFAULT } from 'src/app/shared/constants';
 import { MessageState } from 'src/app/shared/models/message-state.model';
 import { HttpErrorService } from '../../services/http-error.service';
 
-const ERROR_MESSAGE = HTTP_ERROR_MESSAGE_DEFAULT.transloco;
+const ERROR_MESSAGE = HTTP_ERROR_MESSAGE_DEFAULT.message;
 const MESSAGE_DISAPPEAR_TIME = 5000;
 const MESSAGE_LENGTH_MAX = 50;
 const DEBOUNCE_TIME = 10;
@@ -18,7 +18,7 @@ const DEBOUNCE_TIME = 10;
 export class MessageBoxComponent implements OnInit, OnDestroy {
   state: MessageState = {
     isShown: false,
-    message: this.transloco.translate(ERROR_MESSAGE),
+    message: ERROR_MESSAGE,
   };
 
   private destroyed$ = new ReplaySubject<boolean>(1);
