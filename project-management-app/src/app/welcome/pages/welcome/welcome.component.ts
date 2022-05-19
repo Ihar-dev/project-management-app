@@ -10,10 +10,10 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { logout } from 'src/app/store/actions/auth.action';
 import { selectIsAuth } from 'src/app/store/selectors/auth.selector';
 
-const DIALOG_TITLE = 'auth.session.';
+const DIALOG_TITLE = 'auth.session';
 const DIALOG_SUBTITLE = 'auth.please-login';
-const DIALOG_BTN_CANCEL = 'button.cancel';
-const DIALOG_BTN_SUBMIT = 'auth.login-title';
+const DIALOG_BTN_CANCEL = 'cancel';
+const DIALOG_BTN_SUBMIT = 'login-title';
 
 @Component({
   selector: 'app-welcome',

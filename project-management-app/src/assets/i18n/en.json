@@ -8,7 +8,8 @@
     "home": "Home",
     "delete-profile": "Delete profile",
     "ok": "Ok",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "login-title": "{{auth.login-title}}"
   },
 
   "navigation": {
