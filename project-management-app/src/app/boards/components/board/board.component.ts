@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ReplaySubject, takeUntil } from 'rxjs';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { IBoard } from 'src/app/shared/models/board.model';
@@ -17,36 +17,40 @@ const TITLE_DEFAULT = 'Board title';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-  private boardSubs: Subscription;
   public id = '';
   readonly title = TITLE_DEFAULT;
   public columns: IColumn[] = [];
+  private destroyed$ = new ReplaySubject<boolean>(1);
 
   board: IBoard | null = null;
 
-  constructor(private location: Location, public readonly boardHandlingService: BoardHandlingService,
-  private readonly router: Router, public readonly dragDropService: DragDropService) {}
+  constructor(
+    private location: Location,
+    public readonly boardHandlingService: BoardHandlingService,
+    public readonly dragDropService: DragDropService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
-    this.boardSubs = this.boardHandlingService.board$.subscribe((board: IBoard) => {
+    this.boardHandlingService.board$.pipe(takeUntil(this.destroyed$)).subscribe((board: IBoard) => {
       this.board = board;
       this.id = board.id;
       this.columns = board.columns;
     });
-    const { url } = this.router;
-    const urlArr = url.split('/');
-    const id = urlArr[urlArr.length - 1];
-    this.boardHandlingService.setBoardId(id);
+
+    this.route.data.pipe(takeUntil(this.destroyed$)).subscribe((data) => {
+      this.boardHandlingService.setBoardId(data['board'].id);
+    });
   }
 
   ngOnDestroy(): void {
-    this.boardSubs.unsubscribe();
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   onClickBack(): void {
     this.location.back();
   }
-
 
   drop(event: CdkDragDrop<IColumn[]>) {
     if (this.board) this.dragDropService.moveColumn(event, this.id, this.board);
