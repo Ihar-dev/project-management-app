@@ -11,6 +11,7 @@ import { BoardActions } from 'src/app/store/actions/board.action';
 import { TaskSearchService } from '../../services/task-search.service';
 import { IBoard } from '../../../shared/models/board.model';
 import { SearchResult } from '../../models/search-result.model';
+import { BoardHandlingService } from '../../services/board-handling.service';
 
 enum SearchTitles {
   Down = '&dArr; Search &dArr;',
@@ -42,6 +43,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private store: Store,
     private readonly taskSearchService: TaskSearchService,
+    public readonly boardHandlingService: BoardHandlingService
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +90,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   public openBoard(id: string): void {
-    if (id) this.router.navigate([`/board/${id}`]);
+    if (id && !this.boardHandlingService.boardEditMode) this.router.navigate([`/board/${id}`]);
   }
 
   private getBoardById(id: string): void {

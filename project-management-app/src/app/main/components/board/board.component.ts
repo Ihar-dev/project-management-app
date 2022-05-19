@@ -63,9 +63,15 @@ export class BoardComponent implements OnInit {
       this.boardName = boardTitleInputValue;
       this.boardDescription = boardDescriptionInputValue;
       this.boardEditMode = false;
+      this.boardHandlingService.boardEditMode = false;
       this.store.dispatch(BoardActions.putBoard({ id: this.id, board: { title: boardTitleInputValue,
       description: boardDescriptionInputValue } }));
     }
+  }
+
+  public editButtonOnClick(): void {
+    this.boardEditMode = true;
+    this.boardHandlingService.boardEditMode = true;
   }
 
   public get userTitle(): AbstractControl | null {
