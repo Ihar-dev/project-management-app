@@ -35,6 +35,7 @@ export class BoardHandlingService {
     columns: [],
   };
   private columns = false;
+  public boardEditMode = false;
 
   constructor(private readonly store: Store, private readonly dialog: MatDialog) {
     this.getBoards();
