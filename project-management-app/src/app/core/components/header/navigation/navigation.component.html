@@ -1,4 +1,4 @@
-<ng-container *ngIf="(isAuth$ | async) && !hiddenElement">
+<nav class="nav" *ngIf="(isAuth$ | async) && !hiddenElement">
   <span *ngIf="profile$ | async as profile" class="user-name" title="Your name">{{
     profile.name
   }}</span>
@@ -19,4 +19,4 @@
       {{ t("logout") }}
     </button>
   </div>
-</ng-container>
+</nav>

@@ -2,10 +2,10 @@
   position: fixed;
   top: 40%;
   left: 50%;
-  z-index: 52;
+  z-index: 1001;
   transform: translateX(-50%);
   opacity: 0;
-  animation: 0.4s showUp ease-in forwards;
+  animation: 0.1s showUp ease-in forwards;
 }
 
 .overflow {
@@ -14,9 +14,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 51;
+  z-index: 1000;
   background-color: rgba(0, 0, 0, 0.7);
   pointer-events: none;
   opacity: 0;
-  animation: 0.4s showUp ease-in forwards;
+  animation: 0.1s showUp ease-in forwards;
+  pointer-events: none;
 }

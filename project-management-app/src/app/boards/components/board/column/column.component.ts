@@ -1,7 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
+import { User } from 'src/app/shared/models/user.model';
 import { IColumn } from 'src/app/shared/models/column.model';
+import { ITask } from 'src/app/shared/models/task.model';
 import { BoardHandlingService } from '../../../../main/services/board-handling.service';
+import { DragDropService } from '../../../services/drag-drop.service';
 
 @Component({
   selector: 'app-column',
@@ -9,18 +13,29 @@ import { BoardHandlingService } from '../../../../main/services/board-handling.s
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent implements OnInit {
+  @Input() public users: User[] = [];
   @Input() column: IColumn | null = null;
+  @Input() columns: IColumn[] = [];
   @Input() public boardID = '';
   public columnID = '';
   public columnTitle = '';
+  public tasks: ITask[] = [];
 
   editMode: boolean = false;
 
-  constructor(public readonly boardHandlingService: BoardHandlingService) {}
+  constructor(public readonly boardHandlingService: BoardHandlingService,
+    public readonly dragDropService: DragDropService) {}
+
+  public drop(event: CdkDragDrop<ITask[]>) {
+    if (event.previousContainer === event.container) {
+      if (this.column) this.dragDropService.moveTask(event, this.boardID, this.column);
+    } else if (this.column) this.dragDropService.moveTaskDifferentColumn(event, this.boardID, this.column, this.columns);
+  }
 
   ngOnInit(): void {
     if (this.column?.id) this.columnID = this.column.id;
     if (this.column?.title) this.columnTitle = this.column.title;
+    if (this.column?.tasks) this.tasks = this.column?.tasks;
   }
 
   onClickTitle(): void {

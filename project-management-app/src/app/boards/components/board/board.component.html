@@ -11,11 +11,22 @@
       </app-button-board-create>
     </div>
   </div>
-
   <div class="board__content">
-    <div class="board__content--scrollable">
-      <app-column *ngFor="let columnItem of board?.columns" [column]="columnItem" [boardID]="id">
+    <div *ngIf="!columns || columns && columns.length; else noData" cdkDropList cdkDropListOrientation="horizontal"
+      class="board__content--scrollable" (cdkDropListDropped)="drop($event)" cdkDropListGroup>
+      <app-column class="columns-box" [users]="users" *ngFor="let columnItem of columns" [columns]="columns"
+        [column]="columnItem" [boardID]="id" cdkDragLockAxis="x" cdkDrag>
       </app-column>
     </div>
   </div>
 </div>
+
+<ng-template #noData>
+  <div class="board__no-data">
+    <p class="board__no-data__text">No data here yet. You may add your first column!</p>
+    <div class="board__btn--add-column board__no-data__btn">
+      <app-button-board-create text="Add column" (click)="boardHandlingService.openCreateColumnDialog(id)">
+      </app-button-board-create>
+    </div>
+  </div>
+</ng-template>

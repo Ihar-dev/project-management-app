@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ErrorNotifierService } from './error-notifier.service';
+import { HttpErrorService } from './http-error.service';
 
-describe('ErrorNotifierService', () => {
-  let service: ErrorNotifierService;
+describe('HttpErrorService', () => {
+  let service: HttpErrorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ErrorNotifierService);
+    service = TestBed.inject(HttpErrorService);
   });
 
   it('should be created', () => {

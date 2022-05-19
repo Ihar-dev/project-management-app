@@ -24,7 +24,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     color: $font-white;
-    width: 80%;
+    width: 70%;
 
     @media screen and (max-width: $tablet) {
       width: 56%;
@@ -36,7 +36,6 @@
 
     &__text {
       width: 80%;
-
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
@@ -45,6 +44,8 @@
 
   &__btn {
     &--back {
+      @extend %flex-centre-pattern;
+
       min-width: 4rem;
       height: 4rem;
       border-radius: 100%;
@@ -61,16 +62,26 @@
 
   &__content {
     width: 100%;
-
+    height: calc(100vh - 25rem);
+    position: relative;
     padding: 2rem 2rem 0;
     background-color: $board-main-bg;
     border-top: 2px solid $theme-accent;
-    border-radius: $border-radius;
+    border-radius: $border-radius $border-radius 5px 5px;
+
+    @media screen and (max-width: $tablet) {
+      height: calc(100vh - 26rem);
+    }
+
+    @media screen and (max-width: $mobile) {
+      height: calc(100vh - 39rem);
+    }
 
     &--scrollable {
       @include scrollbar(100%, 10px);
 
       width: 100%;
+      height: 100%;
       padding-bottom: 1rem;
       display: grid;
       grid-auto-columns: 30rem;
@@ -80,4 +91,51 @@
       overflow-x: scroll;
     }
   }
+
+  &__no-data {
+    @extend %flex-column-pattern;
+
+    position: relative;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 55%;
+    opacity: 0;
+    animation: showUp 0.2s 0.4s linear forwards;
+
+    &__text {
+      margin-bottom: 4rem;
+      font-size: 2.6rem;
+      font-weight: 500;
+      line-height: 3.8rem;
+      color: $font-black;
+      text-align: center;
+    }
+
+    &__btn {
+      max-width: 25rem;
+    }
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: $border-radius;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.5;
+  border: 2px dashed $theme-accent;
+  border-radius: $border-radius;
+  transition: all 0.3s;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .columns-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

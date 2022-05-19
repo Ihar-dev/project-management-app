@@ -2,16 +2,16 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, Observable, of, take, tap } from 'rxjs';
+import { EMPTY, map, Observable, of, take, tap } from 'rxjs';
 import { BoardActions } from 'src/app/store/actions/board.action';
 import { ColumnActions } from 'src/app/store/actions/column.action';
 import { TaskActions } from 'src/app/store/actions/task.action';
 import { BoardSelectors } from 'src/app/store/selectors/board.selector';
+import { selectProfile } from 'src/app/store/selectors/auth.selector';
 import { IBoard } from '../../models/board.model';
 import { IColumn } from '../../models/column.model';
 import { ITask } from '../../models/task.model';
-
-const DEFAULT_USER_ID = 'd07f544c-99e0-4816-a331-5c87794e4270';
+import { User } from '../../models/user.model';
 
 const MAIN_PAGE = '/main';
 
@@ -54,7 +54,9 @@ const DEFAULT_ALERT = {
   styleUrls: ['./dialog-creation.component.scss'],
 })
 export class DialogCreationComponent implements OnInit {
-  boards$: Observable<IBoard[]> = of([]);
+  private boards$: Observable<IBoard[]> = of([]);
+
+  private currentUser$: Observable<User | null> = EMPTY;
 
   title: string = DefaultTitle[this.data.type];
 
@@ -69,6 +71,8 @@ export class DialogCreationComponent implements OnInit {
   currentColumn!: IColumn;
 
   currentTask!: ITask;
+
+  private currentUserID = '';
 
   createEntity = {
     board: this.createBoard,
@@ -87,6 +91,16 @@ export class DialogCreationComponent implements OnInit {
 
   ngOnInit(): void {
     this.boards$ = this.store.select(BoardSelectors.selectBoards);
+    this.currentUser$ = this.store.select(selectProfile);
+    this.currentUser$
+      .pipe(
+        take(1),
+        tap((user) => {
+          this.currentUserID = user?.id || '';
+        }),
+      )
+      .subscribe();
+
     if (this.data.column) {
       this.currentColumn = this.data.column;
       this.title = this.currentColumn.title;
@@ -137,7 +151,7 @@ export class DialogCreationComponent implements OnInit {
             order: this.takeNextTaskOrder,
             description: this.description,
             done: false,
-            userId: DEFAULT_USER_ID,
+            userId: this.currentUserID,
           },
         }),
       );

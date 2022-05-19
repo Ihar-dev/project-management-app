@@ -36,10 +36,12 @@ export class HeaderComponent {
   }
 
   get hideHeader(): boolean {
-    return PAGE_WITH_TRANSPARENT_HEADER.some((url) => url === this.router.url);
+    const { url } = this.router;
+    return PAGE_WITH_TRANSPARENT_HEADER.some((urlPath) => url.includes(urlPath));
   }
 
   get hideHeaderWithoutAuth(): boolean {
-    return PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH.some((url) => url === this.router.url);
+    const { url } = this.router;
+    return PAGE_WITH_TRANSPARENT_HEADER_WITHOUT_AUTH.some((urlPath) => url.includes(urlPath));
   }
 }

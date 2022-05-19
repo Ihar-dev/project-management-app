@@ -1,9 +1,8 @@
 @import "variables";
+@import "animation";
 
 :host {
   margin-left: auto;
-  display: flex;
-  align-items: center;
 
   @media only screen and (max-width: $laptop) {
     position: absolute;
@@ -30,6 +29,12 @@
 
 .nav-block {
   display: flex;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  animation: 0.5s forwards reveal;
 }
 
 .user-name {

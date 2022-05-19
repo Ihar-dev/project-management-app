@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MaterialModule } from '../shared/material.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -13,6 +14,7 @@ import { ButtonBoardDeleteComponent } from './shared/components/button-board-del
 import { ButtonBoardCreateComponent } from './shared/components/button-board-create/button-board-create.component';
 import { TaskMemberComponent } from './components/board/column/task/task-member/task-member.component';
 import { ColumnEditComponent } from './components/board/column/column-edit/column-edit.component';
+import { GetUserNameDirective } from './directives/get-user-name.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ColumnEditComponent } from './components/board/column/column-edit/colum
     ButtonBoardCreateComponent,
     TaskMemberComponent,
     ColumnEditComponent,
+    GetUserNameDirective,
   ],
-  imports: [CommonModule, BoardRoutingModule, MaterialModule, SharedModule],
+  imports: [CommonModule, BoardRoutingModule, MaterialModule, SharedModule, DragDropModule],
 })
 export class BoardModule {}

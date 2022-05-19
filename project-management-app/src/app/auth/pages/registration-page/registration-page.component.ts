@@ -38,10 +38,7 @@ export class RegistrationPageComponent {
       {
         name: ['', [Validators.required, Validators.minLength(FormFieldLength.name)]],
         login: ['', [Validators.required, Validators.minLength(FormFieldLength.login)]],
-        password: [
-          '',
-          Validators.compose([Validators.required, this.validFormService.validatePassword()]),
-        ],
+        password: ['', [Validators.required, this.validFormService.validatePassword()]],
         confirmPassword: ['', [Validators.required]],
       },
       {

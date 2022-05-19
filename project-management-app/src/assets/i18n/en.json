@@ -24,6 +24,8 @@
     "name-ph": "Enter your name",
     "register-link": "Not registered yet? Sign up!",
     "login-link": "Not registered yet? Sign up!",
+    "name": "Name",
+    "login": "Login",
 
     "error": {
       "login": "Please enter a login.",

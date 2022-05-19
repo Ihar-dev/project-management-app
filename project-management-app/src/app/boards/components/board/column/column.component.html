@@ -4,24 +4,54 @@
       <div class="column__title">
         <h3 class="column__title--no-edit" *ngIf="!editMode">
           <mat-icon class="column__title__icon">flare</mat-icon>
-          <span class="column__title__text">{{ column?.title || '' }}</span>
+          <span class="column__title__text">{{ column?.title || "" }}</span>
         </h3>
         <div class="column__title--edit" *ngIf="editMode">
-          <app-column-edit [column]="column" [boardID]="boardID" (cancelEditing)="onCancelEditing()"
-            (submitEditing)="onSubmitEditing($event)"></app-column-edit>
+          <app-column-edit
+            [column]="column"
+            [boardID]="boardID"
+            (cancelEditing)="onCancelEditing()"
+            (submitEditing)="onSubmitEditing($event)"
+          ></app-column-edit>
         </div>
       </div>
-      <app-button-board-delete title="Delete column"
-      (click)="boardHandlingService.openDialogToDelete('column', columnTitle, boardID, columnID, '')"
-      appClickStopPropagation></app-button-board-delete>
+      <app-button-board-delete
+        title="Delete column"
+        (click)="
+          boardHandlingService.openDialogToDelete(
+            'column',
+            columnTitle,
+            boardID,
+            columnID,
+            '',
+            false
+          )
+        "
+        appClickStopPropagation
+      ></app-button-board-delete>
     </div>
-
-    <div class="column__content">
-      <app-task class="column__item" *ngFor="let task of column?.tasks" [task]="task"
-      (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
-      [columnID]="columnID" [boardID]="boardID" ></app-task>
+    <div
+      class="column__content"
+      cdkDropList
+      [cdkDropListData]="tasks"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task
+        class="column__item column-box"
+        *ngFor="let task of tasks"
+        [users]="users"
+        [task]="task"
+        [columnID]="columnID"
+        [boardID]="boardID"
+        (click)="boardHandlingService.updateTaskModal(boardID, columnID, task)"
+        cdkDrag
+      >
+      </app-task>
     </div>
   </div>
-  <app-button-board-create text="Add task"
-  (click)="boardHandlingService.openCreateTaskDialog(boardID, columnID)"></app-button-board-create>
+  <app-button-board-create
+    text="Add task"
+    (click)="boardHandlingService.openCreateTaskDialog(boardID, columnID)"
+  >
+  </app-button-board-create>
 </div>
