@@ -115,7 +115,7 @@ export class AuthService implements OnDestroy {
   private saveToken(token: string): void {
     const tokenExp: TTokenResponse = {
       token,
-      exp: this.getTokenExpDate(TokenLimit.hourSix),
+      exp: this.getTokenExpDate(TokenLimit.minute),
     };
     this.lsService.setItem(USER_TOKEN_KEY, tokenExp);
   }

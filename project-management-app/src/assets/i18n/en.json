@@ -7,7 +7,9 @@
     "submit": "Submit",
     "home": "Home",
     "delete-profile": "Delete profile",
-    "ok": "Ok"
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "login-title": "{{auth.login-title}}"
   },
 
   "navigation": {
@@ -27,6 +29,8 @@
     "login-link": "Not registered yet? Sign up!",
     "name": "Name",
     "login": "Login",
+    "please-login": "Please login.",
+    "session": "Your session has expired.",
 
     "error": {
       "login": "Please enter a login.",
