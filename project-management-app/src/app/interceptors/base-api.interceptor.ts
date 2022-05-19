@@ -21,7 +21,7 @@ export class BaseApiInterceptor implements HttpInterceptor {
     if (
       request.url.includes(Url.SIGN_IN) ||
       request.url.includes(Url.SIGN_UP) ||
-      request.url.includes(Url.USERS)
+      request.url.endsWith(Url.USERS)
     ) {
       return true;
     }

@@ -21,8 +21,8 @@ export class ErrorEffects {
           ColumnActions.columnError,
           TaskActions.taskError,
         ),
-        tap(({ data: { error, actionType, messages } }) => {
-          this.handler.handleError(error, actionType, messages);
+        tap(({ data: { error, messages } }) => {
+          this.handler.handleError(error, messages);
         }),
       ),
     { dispatch: false },

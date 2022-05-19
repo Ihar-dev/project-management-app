@@ -18,7 +18,14 @@
       <app-button-board-delete
         title="Delete column"
         (click)="
-          boardHandlingService.openDialogToDelete('column', columnTitle, boardID, columnID, '')
+          boardHandlingService.openDialogToDelete(
+            'column',
+            columnTitle,
+            boardID,
+            columnID,
+            '',
+            false
+          )
         "
         appClickStopPropagation
       ></app-button-board-delete>
@@ -32,6 +39,7 @@
       <app-task
         class="column__item column-box"
         *ngFor="let task of tasks"
+        [users]="users"
         [task]="task"
         [columnID]="columnID"
         [boardID]="boardID"

@@ -2,13 +2,7 @@
 @import "mixins";
 
 :host {
-  opacity: 1;
-  // animation: slideColumn 0.6s ease-in forwards;
-  @for $i from 0 through 10 {
-    &:nth-of-type(#{$i}n) {
-      animation-delay: #{$i * 0.2}s;
-    }
-  }
+  height: fit-content;
   cursor: pointer;
 }
 
@@ -21,9 +15,10 @@
   background-color: $board-column-bg;
 
   &__scrollable {
+    @include scrollbar(8px);
+
     position: relative;
     display: block;
-    @include scrollbar(8px);
     max-height: calc(100vh - 38rem);
     height: 100%;
     margin-bottom: 1rem;
@@ -72,6 +67,8 @@
   }
 
   &__content {
+    @include scrollbar(0, 0);
+
     display: block;
     padding: 0.8rem;
     overflow-y: auto;
