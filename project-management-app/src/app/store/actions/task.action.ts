@@ -44,7 +44,7 @@ export namespace TaskActions {
   export const taskError = createAction(
     TaskAction.TaskError,
     props<{
-      data: { error: HttpErrorResponse; actionType: TaskAction; messages: IHttpErrorMessage[] };
+      data: { error: HttpErrorResponse; messages: IHttpErrorMessage[] };
     }>(),
   );
 }

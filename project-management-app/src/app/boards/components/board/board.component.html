@@ -14,8 +14,8 @@
   <div class="board__content">
     <div *ngIf="!columns || columns && columns.length; else noData" cdkDropList cdkDropListOrientation="horizontal"
       class="board__content--scrollable" (cdkDropListDropped)="drop($event)" cdkDropListGroup>
-      <app-column class="columns-box" *ngFor="let columnItem of columns" [columns]="columns" [column]="columnItem"
-        [boardID]="id" cdkDragLockAxis="x" cdkDrag>
+      <app-column class="columns-box" [users]="users" *ngFor="let columnItem of columns" [columns]="columns"
+        [column]="columnItem" [boardID]="id" cdkDragLockAxis="x" cdkDrag>
       </app-column>
     </div>
   </div>

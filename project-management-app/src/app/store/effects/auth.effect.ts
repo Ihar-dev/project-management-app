@@ -20,15 +20,7 @@ export class AuthEffects {
           map((data) =>
             AuthActions.login({ userData: { password: data.password, login: data.login } }),
           ),
-          catchError((err) => [
-            AuthActions.authError({
-              data: {
-                error: err,
-                actionType: AuthActions.AuthActionType.Signup,
-                messages: this.errorMessages,
-              },
-            }),
-          ]),
+          catchError((err) => this.handleAuthError(err)),
         ),
       ),
     ),
@@ -46,15 +38,7 @@ export class AuthEffects {
 
             return AuthActions.loginFailure();
           }),
-          catchError((err) => [
-            AuthActions.authError({
-              data: {
-                error: err,
-                actionType: AuthActions.AuthActionType.Login,
-                messages: this.errorMessages,
-              },
-            }),
-          ]),
+          catchError((err) => this.handleAuthError(err)),
         ),
       ),
     ),
@@ -67,15 +51,18 @@ export class AuthEffects {
         this.authService.signOut();
         return AuthActions.logoutSuccess();
       }),
-      catchError((err) => [
-        AuthActions.authError({
-          data: {
-            error: err,
-            actionType: AuthActions.AuthActionType.Logout,
-            messages: this.errorMessages,
-          },
-        }),
-      ]),
+      catchError((err) => this.handleAuthError(err)),
     ),
   );
+
+  handleAuthError(err: any) {
+    return [
+      AuthActions.authError({
+        data: {
+          error: err,
+          messages: this.errorMessages,
+        },
+      }),
+    ];
+  }
 }

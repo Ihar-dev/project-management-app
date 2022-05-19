@@ -10,9 +10,16 @@ import { logout } from 'src/app/store/actions/auth.action';
 
 import { TUserData } from '../models/register-data.model';
 import { User, UserDataResponse } from '../models/user.model';
-import { TokenLimit, Url, USER_TOKEN_KEY } from '../constants';
+import {
+  TokenLimit,
+  TOKEN_EXP_QUERY_KEY,
+  TOKEN_EXP_QUERY_VALUE,
+  Url,
+  USER_TOKEN_KEY,
+} from '../constants';
 import { TSigninData } from '../models/login-data.model';
 import { TTokenResponse } from '../models/token-response.model';
+import { TQueryRoute } from '../models/query-route.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +36,8 @@ export class AuthService implements OnDestroy {
   private isAuthenticated = false;
 
   private subs = Subscription.EMPTY;
+
+  private query: TQueryRoute = {};
 
   constructor(
     private http: HttpClient,
@@ -77,25 +86,36 @@ export class AuthService implements OnDestroy {
   }
 
   isUserAuthenticated(): boolean {
+    this.query = {};
+
     if (!this.isAuthenticated) {
       return false;
     }
-    const tokenData = this.lsService.getItem<TTokenResponse>(USER_TOKEN_KEY);
-    if (tokenData && tokenData.exp) {
-      const isTokenActive = this.checkTokenExpiration(tokenData.exp);
-      if (isTokenActive) {
-        return true;
-      }
+    if (this.isTokenActive()) {
+      return true;
     }
 
     this.store.dispatch(logout());
     return false;
   }
 
+  isTokenActive(): boolean {
+    const tokenData = this.lsService.getItem<TTokenResponse>(USER_TOKEN_KEY);
+    if (tokenData && tokenData.exp) {
+      const isTokenActive = this.checkTokenExpiration(tokenData.exp);
+      if (isTokenActive) {
+        return true;
+      }
+      this.setTokenExpQueries();
+    }
+
+    return false;
+  }
+
   private saveToken(token: string): void {
     const tokenExp: TTokenResponse = {
       token,
-      exp: this.getTokenExpDate(TokenLimit.day),
+      exp: this.getTokenExpDate(TokenLimit.hourSix),
     };
     this.lsService.setItem(USER_TOKEN_KEY, tokenExp);
   }
@@ -110,8 +130,18 @@ export class AuthService implements OnDestroy {
     return currentDate - tokenExpDate < 0;
   }
 
+  private setTokenExpQueries(): void {
+    this.query = {
+      [TOKEN_EXP_QUERY_KEY]: TOKEN_EXP_QUERY_VALUE,
+    };
+  }
+
   private navigate(...paths: string[]): void {
-    this.router.navigate(paths, { replaceUrl: true });
+    this.router.navigate(paths, {
+      replaceUrl: true,
+      queryParams: { ...this.query },
+      queryParamsHandling: 'merge',
+    });
   }
 
   ngOnDestroy(): void {

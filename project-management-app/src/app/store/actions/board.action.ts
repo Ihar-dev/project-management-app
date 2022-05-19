@@ -55,7 +55,7 @@ export namespace BoardActions {
   export const boardError = createAction(
     BoardAction.boardError,
     props<{
-      data: { error: HttpErrorResponse; actionType: BoardAction; messages: IHttpErrorMessage[] };
+      data: { error: HttpErrorResponse; messages: IHttpErrorMessage[] };
     }>(),
   );
 }

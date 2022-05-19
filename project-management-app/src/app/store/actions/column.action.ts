@@ -44,7 +44,7 @@ export namespace ColumnActions {
   export const columnError = createAction(
     ColumnAction.ColumnError,
     props<{
-      data: { error: HttpErrorResponse; actionType: ColumnAction; messages: IHttpErrorMessage[] };
+      data: { error: HttpErrorResponse; messages: IHttpErrorMessage[] };
     }>(),
   );
 }
