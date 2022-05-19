@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription, Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { ReplaySubject, takeUntil, Observable } from 'rxjs';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Store } from '@ngrx/store';
 
@@ -21,40 +21,43 @@ const TITLE_DEFAULT = 'Board title';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-
-  private boardSubs: Subscription;
-  private usersSubs: Subscription;
   public id = '';
   readonly title = TITLE_DEFAULT;
   public columns: IColumn[] = [];
-  public board: IBoard | null = null;
-  private users$: Observable < User[] >;
+  private destroyed$ = new ReplaySubject<boolean>(1);
+
+  board: IBoard | null = null;
+  private users$: Observable<User[]>;
   public users: User[] = [];
 
-  constructor(private location: Location, public readonly boardHandlingService: BoardHandlingService,
-  private readonly router: Router, public readonly dragDropService: DragDropService,
-  private readonly store: Store) {}
+  constructor(
+    private location: Location,
+    public readonly boardHandlingService: BoardHandlingService,
+    public readonly dragDropService: DragDropService,
+    private route: ActivatedRoute,
+    private readonly store: Store,
+  ) {}
 
   ngOnInit() {
     this.getUsers();
-    this.boardSubs = this.boardHandlingService.board$.subscribe((board: IBoard) => {
+    this.boardHandlingService.board$.pipe(takeUntil(this.destroyed$)).subscribe((board: IBoard) => {
       this.board = board;
       this.id = board.id;
       this.columns = board.columns;
     });
-    const { url } = this.router;
-    const urlArr = url.split('/');
-    const id = urlArr[urlArr.length - 1];
-    this.boardHandlingService.setBoardId(id);
     this.users$ = this.store.select(UsersSelectors.selectUsers);
-    this.usersSubs = this.users$.subscribe((users: User[]) => {
+    this.users$.pipe(takeUntil(this.destroyed$)).subscribe((users: User[]) => {
       this.users = users;
+    });
+
+    this.route.data.pipe(takeUntil(this.destroyed$)).subscribe((data) => {
+      this.boardHandlingService.setBoardId(data['board'].id);
     });
   }
 
   ngOnDestroy(): void {
-    this.boardSubs.unsubscribe();
-    this.usersSubs.unsubscribe();
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   onClickBack(): void {
